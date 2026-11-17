@@ -51,6 +51,15 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 @media(max-width:600px){header{padding:23px 20px}nav{gap:3px;padding:8px 5px}nav button{padding:10px 9px;font-size:12px}.container{padding:22px 14px 40px}.hero{border-radius:18px}.grid{grid-template-columns:1fr;gap:8px}.card{padding:17px}}
 
 .auth-modal{position:fixed;inset:0;z-index:10001;background:#08142ddd;display:none;align-items:center;justify-content:center;padding:18px}.auth-box{width:min(100%,430px);background:var(--paper);color:var(--ink);border-radius:20px;padding:24px;box-shadow:0 20px 70px #0005}.auth-box h2{margin-top:0}.auth-box input{width:100%;padding:13px;border:1px solid var(--line);border-radius:10px;margin:7px 0 14px;background:transparent;color:var(--ink);font:inherit}.auth-actions{display:flex;gap:10px;flex-wrap:wrap}.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.stat{padding:15px;border:1px solid var(--line);border-radius:12px}.stat b{display:block;font-size:24px;color:var(--blue)}.small-note{font-size:12px;color:var(--muted)}
+
+.home-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:26px 0}
+.home-action-card{min-height:230px;padding:28px;border-radius:20px;background:white;border:1px solid var(--line);box-shadow:0 10px 28px #18294b0d;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.home-action-card h3{font-size:24px;margin:10px 0 5px;color:var(--ink)}
+.home-action-card p{color:var(--muted);line-height:1.65;max-width:420px;flex:1}
+.home-action-icon{font-size:38px}
+.home-action-card .primary{font-size:16px;padding:14px 22px}
+body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
+@media(max-width:650px){.home-actions{grid-template-columns:1fr;gap:14px}.home-action-card{min-height:205px;padding:23px}}
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
 </head>
@@ -73,8 +82,10 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <div class="hero">
 <h2>Welcome to SSC EXAM.IN</h2>
 <p>SSC परीक्षांची तयारी करा. मागील वर्षांचे प्रश्न (PYQ) आणि Mock Test एकाच ठिकाणी.</p>
-<button class="primary" onclick="showPage('pyq')">Start PYQ Test</button>
-<button class="primary" onclick="showPage('mock')">Start Mock Test</button>
+</div>
+<div class="home-actions">
+<div class="home-action-card pyq-action"><div class="home-action-icon">📚</div><h3>PYQ Test</h3><p>मागील वर्षांच्या प्रश्नपत्रिका आणि प्रश्नांचा सराव करा.</p><button class="primary" onclick="showPage('pyq')">Start PYQ Test</button></div>
+<div class="home-action-card mock-action"><div class="home-action-icon">🎯</div><h3>Mock Test</h3><p>परीक्षेच्या तयारीसाठी Mock Test सोडवा आणि तुमचा निकाल तपासा.</p><button class="primary" onclick="showPage('mock')">Start Mock Test</button></div>
 </div>
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
 </section>
