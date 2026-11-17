@@ -73,7 +73,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 
 <button onclick="showPage('home')">Home</button>
 <button onclick="showPage('pyq')">PYQ Test</button>
-<button onclick="showPage('mock')">Mock Test</button>
+<button type="button" onclick="document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('mock').classList.add('active');window.scrollTo(0,0);">Mock Test</button>
 <button onclick="showPage('settings')">Settings</button>
 
 </nav>
@@ -86,7 +86,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 </div>
 <div class="home-actions">
 <div class="home-action-card pyq-action"><div class="home-action-icon">📚</div><h3>PYQ Test</h3><p>मागील वर्षांच्या प्रश्नपत्रिका आणि प्रश्नांचा सराव करा.</p><button class="primary" onclick="showPage('pyq')">Start PYQ Test</button></div>
-<div class="home-action-card mock-action"><div class="home-action-icon">🎯</div><h3>5000 Mock Tests</h3><p>SSC GD साठी 5000 Mock Test संचांमधून सराव करा. प्रत्येक टेस्टमध्ये 80 प्रश्न आणि 60 मिनिटे.</p><button class="primary" onclick="showPage('mock')">Start Mock Test</button></div>
+<div class="home-action-card mock-action"><div class="home-action-icon">🎯</div><h3>5000 Mock Tests</h3><p>SSC GD साठी 5000 Mock Test संचांमधून सराव करा. प्रत्येक टेस्टमध्ये 80 प्रश्न आणि 60 मिनिटे.</p><button class="primary" type="button" onclick="document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('mock').classList.add('active');window.scrollTo(0,0);">Start Mock Test</button></div>
 </div>
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
 </section>
