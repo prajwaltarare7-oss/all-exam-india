@@ -92,6 +92,10 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <div class="grid" id="policeList"></div>
 <div class="notice">हे अधिकृत पोर्टलचे दुवे आहेत. सध्या भरती सुरू आहे किंवा परीक्षा पॅटर्न पडताळलेला आहे असा याचा अर्थ नाही.</div>
 </section>
+<section id="examDetail" class="page">
+<h2 id="detailTitle">Exam-wise PYQ & Practice</h2>
+<div id="examResources"></div>
+</section>
 <section id="free" class="page">
 <h2>Free Tests</h2>
 <div class="notice">Free practice tests हा PYQ आणि full-length Mock Tests पासून वेगळा विभाग आहे. पडताळलेले प्रश्नसंच तयार झाल्यावर विषयानुसार येथे उपलब्ध होतील.</div>
@@ -187,8 +191,22 @@ function searchExams(value){
 renderExams(exams.filter(e=>e.toLowerCase().includes(value.toLowerCase())));
 }
 function selectExam(name){
-const selector=document.getElementById("mockExam");if(selector){selector.value=name;showPatternInfo();}
-showPage("mock");
+window.selectedExam=name;
+renderExamResources(name);
+showPage("examDetail");
+}
+function renderExamResources(name){
+document.getElementById("detailTitle").textContent=name+" — PYQ, Papers & Practice";
+const box=document.getElementById("examResources");
+const official=getOfficialSourceForExam(name);
+let html="<div class=\"card\"><h3>Official exam source</h3>";
+if(official){html+="<p>"+escapeHTML(official.category||"Official source")+"</p><a href=\""+official.source+"\" target=\"_blank\" rel=\"noopener\">Official website / papers</a>";}
+else{html+="<p>या परीक्षेचा अधिकृत पेपर संग्रह अजून स्वतंत्रपणे पडताळलेला नाही.</p>";}
+html+="</div>";
+html+="<div class=\"card\"><h3>PYQ practice library</h3><p>बाह्य संग्रहातील पेपरची उपलब्धता व त्याचे लेबल तपासा.</p><p><a href=\"https://examudaan.in/question-papers\" target=\"_blank\" rel=\"noopener\">MPSC / Maharashtra Police / UPSC / SSC / Railway paper library</a></p><p><a href=\"https://previousyearquestions.app/\" target=\"_blank\" rel=\"noopener\">Multi-exam PYQ directory</a></p><p><a href=\"https://www.unlockias.in/state-psc-previous-year-questions\" target=\"_blank\" rel=\"noopener\">State PSC question practice directory</a></p></div>";
+html+="<div class=\"card\"><h3>Attempt practice test</h3><p>या वेबसाइटमध्ये timed test तेव्हाच सुरू होईल जेव्हा प्रश्न, पर्याय आणि उत्तरतालिका तपासून जोडली जातील.</p><a class=\"primary\" href=\"https://previousyearquestions.app/\" target=\"_blank\" rel=\"noopener\">Open external practice library</a></div>";
+html+="<div class=\"notice\"><b>महत्त्वाचे:</b> काही परीक्षांचे प्रश्न memory-based असतात किंवा login/मर्यादित कालावधीच्या response-sheet मध्ये असतात. त्यांना official PYQ म्हणून चुकीचे लेबल लावले जाणार नाही. <a href=\"https://dev.prepmatic.in/questions/does-ibps-publish-previous-year-question-papers/\" target=\"_blank\" rel=\"noopener\">Bank exam paper availability note</a></div>";
+box.innerHTML=html;
 }
 function getOfficialSourceForExam(exam){
 if(exam.startsWith("MPSC")) return officialSources.find(s=>s.name==="MPSC");
