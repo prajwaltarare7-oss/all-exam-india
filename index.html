@@ -418,11 +418,12 @@ if(id==="pyq")renderPYQ();
 function getOfficialSourceForExam(exam){
 return exam.startsWith("SSC") ? officialSources[0] : null;
 }
+function openPYQPracticeDefault(){openPYQPractice("SSC GD");}
 function renderPYQ(){
 const q=(document.getElementById("pyqSearch").value||"").toLowerCase();
 const filtered=exams.filter(name=>name.toLowerCase().includes(q));
 document.getElementById("pyqList").innerHTML=filtered.map(name=>{
-if(name==="SSC GD")return '<div class="card"><h3>SSC GD — PYQ-style Practice Demo</h3><p>सध्या उपलब्ध प्रश्न हे AI-created सराव प्रश्न आहेत; अधिकृत मागील वर्षांचे PYQ नाहीत.</p><button class="primary" onclick="openPYQPractice(\\'SSC GD\\')">Start Practice Test</button></div>';
+if(name==="SSC GD")return '<div class="card"><h3>SSC GD — PYQ-style Practice Demo</h3><p>सध्या उपलब्ध प्रश्न हे AI-created सराव प्रश्न आहेत; अधिकृत मागील वर्षांचे PYQ नाहीत.</p><button class="primary" onclick="openPYQPracticeDefault()">Start Practice Test</button></div>';
 return '<div class="card"><h3>'+escapeHTML(name)+'</h3><p>या परीक्षेचा पडताळलेला PYQ प्रश्नसंच अजून जोडलेला नाही.</p></div>';
 }).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
 }
