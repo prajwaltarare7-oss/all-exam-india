@@ -278,7 +278,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <section id="settings" class="page">
 <h2>Settings</h2>
 <div class="card"><h3>Appearance</h3><p>वेबसाइटचा रंग निवडा.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
-<div class="card"><h3>Refresh</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" onclick="location.reload()">Refresh Website</button></div>
+<div class="card"><h3>Refresh Website</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" type="button" onclick="location.reload()">↻ Refresh Now</button></div>
 <div class="card"><h3>तुमची Test माहिती</h3><div class="stat-grid"><div class="stat"><b id="statTests">0</b>Tests पूर्ण</div><div class="stat"><b id="statBest">0</b>Best score</div><div class="stat"><b id="statVisitors">1</b>या डिव्हाइसवरील भेटी</div></div><p class="small-note">ही माहिती सध्या फक्त या ब्राउझरमध्ये दिसते; सर्व विद्यार्थ्यांची एकत्रित आकडेवारी व leaderboard साठी database जोडणे बाकी आहे.</p><h3>Leaderboard (या डिव्हाइसवरील)</h3><div id="localLeaderboard"></div><h3>Test History</h3><div id="testHistory"></div></div><div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
 </section>
 <section id="testroom" class="page">
@@ -778,7 +778,7 @@ function renderPYQ(){
  const showGD=!q||"ssc gd".includes(q)||matchingSessions.length>0;
  let html="";
  if(showGD){
-  html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>उपलब्ध फाइल-नावांमधील वर्ष आणि शिफ्टचा संदर्भ वापरून 61 स्वतंत्र सराव संच तयार केले आहेत. प्रत्येक टेस्टमध्ये 80 सराव प्रश्न, 60 मिनिटांचा Timer आणि Professional Result आहे.</p><div class="notice">महत्त्वाचे: खालील वर्ष/शिफ्ट ही फक्त संदर्भ माहिती आहे. प्रश्न स्वतंत्रपणे तयार केलेले आहेत; हे मूळ अधिकृत प्रश्नपत्र किंवा खरे PYQ नाहीत.</div></div>';
+  html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>उपलब्ध वर्ष आणि शिफ्टनुसार 61 SSC GD सराव संच. प्रत्येक टेस्टमध्ये 80 प्रश्न, 60 मिनिटांचा Timer आणि Professional Result आहे.</p></div>';
   [2024,2023].forEach(year=>{
    const group=gdPracticeSessions.filter(x=>x.year===year&&(!q||matchingSessions.includes(x)));
    if(!group.length)return;
