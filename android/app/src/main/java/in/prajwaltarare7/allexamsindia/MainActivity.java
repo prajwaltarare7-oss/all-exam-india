@@ -52,8 +52,8 @@ public class MainActivity extends Activity {
     private View errorView;
     private SharedPreferences preferences;
     private LinearLayout bottomNav;
-    private final TextView[] navItems = new TextView[4];
-    private final String[] navPages = {"home", "pyq", "mock", "currentaffairs"};
+    private final TextView[] navItems = new TextView[5];
+    private final String[] navPages = {"home", "pyq", "mock", "currentaffairs", "settings"};
     private boolean showingError = false;
     private String activePage = "home";
 
@@ -304,8 +304,8 @@ public class MainActivity extends Activity {
         bar.setBackground(barBg);
         bar.setElevation(dp(12));
 
-        String[] icons = {"⌂", "▤", "◎", "▣"};
-        String[] labels = {"Home", "PYQ", "Mock", "Current"};
+        String[] icons = {"⌂", "▤", "◎", "▣", "⚙"};
+        String[] labels = {"Home", "PYQ", "Mock", "Current", "Settings"};
         for (int i = 0; i < navPages.length; i++) {
             final String page = navPages[i];
             TextView item = new TextView(this);
