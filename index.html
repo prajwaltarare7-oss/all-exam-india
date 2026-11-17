@@ -58,71 +58,21 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <p>SSC Exams • PYQ Papers • Mock Tests • Study Notes</p>
 </header>
 <nav>
-<button onclick="showPage('home')">Home</button>
-<button onclick="showPage('exams')">All Exams</button>
-<button onclick="showPage('pyq')">PYQ Papers</button>
-<button onclick="showPage('free')">Free Tests</button>
-<button onclick="showPage('mock')">Mock Tests</button>
-<button onclick="showPage('notes')">Notes</button>
-<button onclick="showPage('profile')">Profile</button>
+
+<button onclick="showPage('pyq')">PYQ</button>
+<button onclick="showPage('testroom')">Test</button>
+<button onclick="showPage('mock')">Mock Test</button>
 <button onclick="showPage('settings')">Settings</button>
-<button onclick="showPage('account')">Login / Register</button>
 
 </nav>
 <main class="container">
-<section id="home" class="page active">
-<div class="hero">
-<h2>तुमच्या यशाची तयारी इथून सुरू करा!</h2>
-<p>SSC च्या सर्व प्रमुख परीक्षांसाठी अभ्यास, PYQ आणि Mock Tests.</p>
-<button class="primary" onclick="showPage('exams')">Explore Exams</button>
-</div>
-<input class="search" placeholder="परीक्षा शोधा..." oninput="searchExams(this.value)">
-<div class="grid" id="homeExamList"></div>
-</section>
-<section id="exams" class="page">
-<h2>All SSC Exams</h2>
-<input class="search" placeholder="परीक्षा शोधा..." oninput="searchExams(this.value)">
-<div class="grid" id="examList"></div>
-</section>
 <section id="pyq" class="page">
-<h2>Previous Year Question Papers</h2>
-<p>सर्व प्रश्नपत्रिका आणि टेस्ट याच वेबसाइटमध्ये उपलब्ध होतील.</p>
+<h2>SSC Previous Year Question Papers</h2>
+<p>SSC च्या मागील वर्षांच्या प्रश्नपत्रिका येथे शोधा. अधिकृत प्रश्नपत्रिकांसाठी SSC पोर्टल वापरा.</p>
+<div class="notice"><a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC Official Website — Question Papers & Notices</a></div>
 <input class="search" id="pyqSearch" placeholder="परीक्षा शोधा..." oninput="renderPYQ()">
 <div id="pyqList"></div>
 
-</section>
-<section id="examDetail" class="page">
-<h2 id="detailTitle">Exam-wise PYQ & Practice</h2>
-<div id="examResources"></div>
-</section>
-<section id="free" class="page">
-<h2>Free Tests</h2>
-<div class="notice">Free practice tests हा PYQ आणि full-length Mock Tests पासून वेगळा विभाग आहे. पडताळलेले प्रश्नसंच तयार झाल्यावर विषयानुसार येथे उपलब्ध होतील.</div>
-<div class="grid"><div class="card"><h3>Daily Practice</h3><p>दररोजचे लहान सराव संच.</p></div><div class="card"><h3>Topic-wise Practice</h3><p>गणित, बुद्धिमत्ता, सामान्यज्ञान आणि भाषा.</p></div><div class="card"><h3>Quick Revision</h3><p>वेगवान पुनरावृत्तीसाठी छोटे संच.</p></div></div>
-</section>
-<section id="notes" class="page">
-<h2>Study Notes</h2>
-<p>तुमच्या अभ्यासाच्या नोट्स या डिव्हाइसवर सेव्ह करू शकता.</p>
-<div class="card"><label for="noteTitle">Note title</label><input id="noteTitle" class="search" placeholder="उदा. भारतीय राज्यघटना"><label for="noteBody">Notes</label><textarea id="noteBody" class="search" rows="7" placeholder="तुमच्या नोट्स येथे लिहा..."></textarea><button class="primary" onclick="saveNote()">Save Note</button></div>
-<div id="notesList"></div>
-<div class="notice">या नोट्स फक्त या ब्राउझरमध्ये सेव्ह होतील. दुसऱ्या डिव्हाइसवर आपोआप दिसणार नाहीत.</div>
-</section>
-<section id="profile" class="page">
-<h2>Website Profile</h2>
-<div class="card owner-profile">
-<div class="owner-brand" aria-label="SSC EXAM.IN logo">
-<svg viewBox="0 0 120 120" role="img" aria-label="SSC EXAM.IN logo">
-<defs><linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#315ee8"/><stop offset="1" stop-color="#20b8c8"/></linearGradient></defs>
-<circle cx="60" cy="60" r="56" fill="url(#brandGrad)"/>
-<path d="M30 33h60v9H30zm0 17h60v9H30zm0 17h37v9H30z" fill="#fff" opacity=".95"/>
-<path d="M75 68l9 9 17-21" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="60" y="96" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">SSC EXAM.IN</text>
-</svg>
-</div>
-<div><h3>SSC EXAM.IN</h3><p class="owner-name">Prajwal Tarare</p><p><b>Website Owner & Creator</b></p><p>SSC EXAM.IN हे स्पर्धा परीक्षांची तयारी करणाऱ्या विद्यार्थ्यांसाठी तयार केलेले शैक्षणिक व्यासपीठ आहे. येथे SSC च्या विविध परीक्षांसाठी अभ्यास साहित्य, मागील वर्षांचे प्रश्नपत्रिका आणि सराव चाचण्या उपलब्ध करून देण्याचा उद्देश आहे.</p><p class="owner-tagline">Learn • Practice • Succeed</p></div>
-</div>
-<h2>Student Profile</h2>
-<div class="card"><label for="studentName">तुमचे नाव</label><input id="studentName" class="search" placeholder="नाव"><label for="targetExam">Target exam</label><select id="targetExam" class="search"></select><button class="primary" onclick="saveProfile()">Save Profile</button><p id="profileStatus" class="notice">प्रोफाइल माहिती या डिव्हाइसवरच सेव्ह होईल.</p></div>
 </section>
 <section id="settings" class="page">
 <h2>Settings</h2>
@@ -130,28 +80,9 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <div class="card"><h3>Refresh</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" onclick="location.reload()">Refresh Website</button></div>
 <div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
 </section>
-<section id="account" class="page">
-<h2>Student Login / Register</h2>
-<div class="notice"><b>Login पद्धत: Email + Password</b><br>एकाच account ने वेगवेगळ्या डिव्हाइसवर प्रवेश करता येईल. Account सुरक्षित ठेवण्यासाठी password authentication, database आणि password reset सेवा जोडणे आवश्यक आहे.</div>
-<div class="grid">
-<div class="card">
-<h3>Login</h3>
-<label for="loginEmail">Email address</label><input id="loginEmail" class="search" type="email" autocomplete="email" placeholder="तुमचा ईमेल">
-<label for="loginPassword">Password</label><input id="loginPassword" class="search" type="password" autocomplete="current-password" placeholder="पासवर्ड">
-<button class="primary" disabled>Login (backend जोडणे बाकी)</button>
-</div>
-<div class="card">
-<h3>Create account</h3>
-<label for="registerName">Full name</label><input id="registerName" class="search" type="text" autocomplete="name" placeholder="तुमचे नाव">
-<label for="registerEmail">Email address</label><input id="registerEmail" class="search" type="email" autocomplete="email" placeholder="तुमचा ईमेल">
-<label for="registerPassword">Create password</label><input id="registerPassword" class="search" type="password" autocomplete="new-password" placeholder="नवीन पासवर्ड">
-<button class="primary" disabled>Register (backend जोडणे बाकी)</button>
-</div>
-</div>
-<div class="notice">महत्त्वाचे: हा Login/Register फॉर्मचा पुढचा टप्पा आहे; तो अजून account तयार किंवा sign in करत नाही. खरे सुरक्षित login सुरू करण्यासाठी Firebase/Supabase सारखी authentication सेवा जोडून तिची project configuration आवश्यक आहे. ती जोडल्याशिवाय तुमचा पासवर्ड कुठेही पाठवला किंवा साठवला जाणार नाही.</div>
-</section>
 <section id="testroom" class="page">
-<h2 id="testTitle">Online Practice Test</h2>
+<h2 id="testTitle">SSC Online Test</h2>
+<div class="card"><label for="testExam">SSC परीक्षा निवडा</label><select id="testExam" class="search" onchange="openPractice(this.value)"></select><p>उपलब्ध प्रश्नसंच निवडून सराव टेस्ट सुरू करा.</p></div>
 <div class="notice">हे AI-created original practice questions आहेत; अधिकृत PYQ नाहीत. Demo test मध्ये कमी प्रश्न आहेत.</div>
 <div class="card" id="testIntro"><p>परीक्षा निवडा आणि सराव टेस्ट सुरू करा. PDF साठी प्रश्नपत्रिका Print / Save as PDF वापरा.</p><button class="primary" onclick="startPracticeTest()">Start Test</button> <button class="primary" onclick="printPracticePaper()">Question Paper PDF</button></div>
 <div id="testArea"></div><div id="testResult"></div>
@@ -159,7 +90,7 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <section id="mock" class="page">
 <h2>Exam-wise Mock Tests</h2>
 <div class="card"><h3>Choose your exam</h3><select id="mockExam" class="search" onchange="showPatternInfo()"></select><div id="patternInfo" class="notice">परीक्षा निवडा. उपलब्ध अधिकृत पॅटर्न दाखवला जाईल.</div><p>प्रश्नसंच पडताळणी पूर्ण झाल्यावरच timed mock सुरू करता येईल.</p></div>
-<div class="notice">खालील demo सराव संच AI-created आहेत; अधिकृत PYQ नाहीत. प्रश्नपत्रिका Print / Save as PDF करता येईल.</div><div class="grid"><div class="card"><h3>SSC GD</h3><p>5 प्रश्न • 10 मिनिटे • Demo practice</p><button class="primary" onclick="openPractice('SSC GD')">Start SSC GD Test</button></div><div class="card"><h3>Railway RRB NTPC</h3><p>5 प्रश्न • 10 मिनिटे • Demo practice</p><button class="primary" onclick="openPractice('Railway RRB NTPC')">Start Railway Test</button></div></div>
+<div class="notice">खालील demo सराव संच AI-created आहेत; अधिकृत PYQ नाहीत. प्रश्नपत्रिका Print / Save as PDF करता येईल.</div><div class="grid"><div class="card"><h3>SSC GD</h3><p>5 प्रश्न • 10 मिनिटे • Demo practice</p><button class="primary" onclick="openPractice('SSC GD')">Start SSC GD Test</button></div></div>
 </section>
 </main>
 <footer>© 2026 SSC EXAM.IN | Website by Prajwal Tarare | Learn • Practice • Succeed</footer>
@@ -201,40 +132,12 @@ document.getElementById("patternInfo").innerHTML=p
 }
 
 function setTheme(mode){document.body.classList.toggle('dark',mode==='dark');try{localStorage.setItem('aei-theme',mode)}catch(e){}}
-function saveNote(){const title=document.getElementById('noteTitle').value.trim();const body=document.getElementById('noteBody').value.trim();if(!title||!body){alert('शीर्षक आणि नोट्स लिहा.');return;}let notes=[];try{notes=JSON.parse(localStorage.getItem('aei-notes')||'[]')}catch(e){}notes.unshift({title,body});localStorage.setItem('aei-notes',JSON.stringify(notes));document.getElementById('noteTitle').value='';document.getElementById('noteBody').value='';renderNotes();}
-function renderNotes(){let notes=[];try{notes=JSON.parse(localStorage.getItem('aei-notes')||'[]')}catch(e){}document.getElementById('notesList').innerHTML=notes.map((n,i)=>'<div class="card"><h3>'+escapeHTML(n.title)+'</h3><p style="white-space:pre-wrap">'+escapeHTML(n.body)+'</p><button class="primary" onclick="deleteNote('+i+')">Delete</button></div>').join('')||'<p class="notice">अजून नोट्स सेव्ह केलेल्या नाहीत.</p>';}
-function deleteNote(i){let notes=JSON.parse(localStorage.getItem('aei-notes')||'[]');notes.splice(i,1);localStorage.setItem('aei-notes',JSON.stringify(notes));renderNotes();}
 function escapeHTML(v){return String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
-function saveProfile(){const profile={name:document.getElementById('studentName').value.trim(),exam:document.getElementById('targetExam').value};localStorage.setItem('aei-profile',JSON.stringify(profile));document.getElementById('profileStatus').textContent='प्रोफाइल या डिव्हाइसवर सेव्ह झाले.';}
-function initNewFeatures(){const opts=exams.map(e=>'<option value="'+escapeHTML(e)+'">'+escapeHTML(e)+'</option>').join('');document.getElementById('targetExam').innerHTML='<option value="">परीक्षा निवडा</option>'+opts;document.getElementById('mockExam').innerHTML='<option value="">परीक्षा निवडा</option>'+opts;try{const p=JSON.parse(localStorage.getItem('aei-profile')||'{}');document.getElementById('studentName').value=p.name||'';document.getElementById('targetExam').value=p.exam||'';const t=localStorage.getItem('aei-theme');if(t==='dark')setTheme('dark');}catch(e){}renderNotes();}
+function initNewFeatures(){const opts=exams.map(e=>'<option value="'+escapeHTML(e)+'">'+escapeHTML(e)+'</option>').join('');document.getElementById('mockExam').innerHTML='<option value="">परीक्षा निवडा</option>'+opts;document.getElementById('testExam').innerHTML='<option value="">परीक्षा निवडा</option>'+opts;try{const t=localStorage.getItem('aei-theme');if(t==='dark')setTheme('dark');}catch(e){}}
 function showPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-if(id==="pyq")renderPYQ();if(id==="notes")renderNotes();
-}
-function examCard(name){
-return `<div class="card"><h3>${name}</h3><p>Study • PYQ • Mock Test</p><button class="primary" onclick="selectExam('${name}')">Open Exam</button></div>`;
-}
-function renderExams(list=exams){
-document.getElementById("examList").innerHTML=list.map(examCard).join("");
-document.getElementById("homeExamList").innerHTML=list.slice(0,8).map(examCard).join("");
-}
-function searchExams(value){
-renderExams(exams.filter(e=>e.toLowerCase().includes(value.toLowerCase())));
-}
-function selectExam(name){
-window.selectedExam=name;
-renderExamResources(name);
-showPage("examDetail");
-}
-function renderExamResources(name){
-document.getElementById("detailTitle").textContent=name+" — PYQ Papers & Online Tests";
-const box=document.getElementById("examResources");
-let html="<div class=\"notice\"><b>SSC EXAM.IN — स्वतःची PYQ Library</b><br>सर्व पेपर आणि टेस्ट याच वेबसाइटमध्ये दिसतील. बाहेरील वेबसाइटचे पेज येथे दाखवले जाणार नाही.</div>";
-html+="<div class=\"card\"><h3>"+escapeHTML(name)+" — वर्षानुसार पेपर</h3><p>2011 ते 2026 या कालावधीतील पडताळलेले पेपर आपल्या library मध्ये जोडले जातील.</p><p>सध्या या परीक्षेचा पडताळलेला PDF/प्रश्नसंच येथे जोडलेला नाही.</p></div>";
-html+="<div class=\"card\"><h3>Online Test</h3><p>पेपर आणि उत्तरतालिका पडताळून आपल्या वेबसाइटमध्ये जोडल्यावर इथेच timed test देता येईल.</p></div>";
-html+="<div class=\"notice\">फक्त उपलब्ध आणि वापरण्याची परवानगी असलेले प्रश्नसंच जोडले जातील. पेपर, वर्ष किंवा प्रश्नसंख्या बनवून दाखवली जाणार नाही.</div>";
-box.innerHTML=html;
+if(id==="pyq")renderPYQ();
 }
 function getOfficialSourceForExam(exam){
 return exam.startsWith("SSC") ? officialSources[0] : null;
@@ -244,7 +147,7 @@ const q=(document.getElementById("pyqSearch").value||"").toLowerCase();
 const filtered=exams.filter(name=>name.toLowerCase().includes(q));
 document.getElementById("pyqList").innerHTML=filtered.map(name=>"<div class=\"card\"><h3>"+escapeHTML(name)+"</h3><p>या परीक्षेचे पेपर आणि टेस्ट आपल्या वेबसाइटमध्येच उपलब्ध होतील.</p></div>").join("")||"<p class=\"notice\">या नावाची परीक्षा सापडली नाही.</p>";
 }
-renderExams();initNewFeatures();
+initNewFeatures();
 </script>
 </body>
 </html>
