@@ -173,7 +173,7 @@ if(type==="Previous Year Papers"){
 content.innerHTML="<p>Loading question papers...</p>";
 
 try{
-let response=await fetch("papers/library.json");
+let response=await fetch("/all-exam-india/papers/library.json");
 let data=await response.json();
 
 let papers=data.papers.filter(p=>
