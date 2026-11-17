@@ -870,7 +870,12 @@ const grade=scorePercent>=85?(selectedPaperLanguage==='en'?'Excellent performanc
 const tag=isGDMock?'MOCK TEST':'PYQ TEST';
 const resultHtml='<section class="result-wrap" aria-live="polite"><div class="result-hero"><div><span class="result-kicker">'+tag+' • RESULT</span><h2>'+(selectedPaperLanguage==='en'?'Test Completed':'टेस्ट पूर्ण झाली')+'</h2><p>'+escapeHTML(activePractice.label||window.practiceExam||'Practice Test')+'</p><span class="result-grade">'+grade+'</span></div><div class="result-score-ring" style="--result-angle:'+(scorePercent*3.6).toFixed(1)+'deg"><div class="result-score-inner"><strong>'+score.toFixed(2)+'</strong><small>/ '+Number(maxMarks).toFixed(2)+'</small></div></div></div><div class="result-metrics"><div class="result-metric correct"><span>'+(selectedPaperLanguage==='en'?'Correct':'बरोबर')+'</span><b>'+correct+'</b></div><div class="result-metric wrong"><span>'+(selectedPaperLanguage==='en'?'Incorrect':'चुकीचे')+'</span><b>'+wrong+'</b></div><div class="result-metric unanswered"><span>'+(selectedPaperLanguage==='en'?'Unanswered':'अनुत्तरित')+'</span><b>'+skipped+'</b></div><div class="result-metric accuracy"><span>'+(selectedPaperLanguage==='en'?'Accuracy':'अचूकता')+'</span><b>'+accuracy+'%</b></div></div><div class="result-summary-grid"><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Attempted':'सोडवलेले')+'</span><b>'+attempted+' / '+total+'</b></div><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Completion':'पूर्णता')+'</span><b>'+completion+'%</b></div><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Negative marks':'वजा गुण')+'</span><b>'+negativeDeducted.toFixed(2)+'</b></div><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Time taken':'लागलेला वेळ')+'</span><b>'+timeText+'</b></div></div><div class="result-progress-wrap"><div class="result-progress-label"><span>'+(selectedPaperLanguage==='en'?'Score percentage':'गुणांची टक्केवारी')+'</span><b>'+scorePercent.toFixed(1)+'%</b></div><div class="result-progress"><span style="width:'+scorePercent.toFixed(1)+'%"></span></div></div></section>';
 document.getElementById("testArea").innerHTML="";
-saveTestRecord(score,total,correct);
+saveTestRecord(score,total,correct,{
+ wrong:wrong,skipped:skipped,negativeMarks:negativeDeducted,
+ attempted:attempted,completion:completion,maxMarks:maxMarks,timeTaken:timeText,
+ label:activePractice.label||window.practiceExam,
+ sessionId:activePractice.sessionId||"",attemptNumber:activePractice.attemptNumber||1
+});
 document.getElementById("testResult").innerHTML=resultHtml+reviewHtml+'<div class="result-action-bar no-print"><button class="primary" onclick="returnFromTest()">'+(selectedPaperLanguage==='en'?'Back':'मागे जा')+'</button>'+(activePractice.sessionId?'<button class="primary" onclick="reattemptCurrentPractice()">'+(selectedPaperLanguage==='en'?'Reattempt with New Questions':'नवीन प्रश्नांसह पुन्हा टेस्ट द्या')+'</button>':'')+'<button class="primary" onclick="printProfessionalResult()">'+(selectedPaperLanguage==='en'?'Print / Save Result PDF':'निकाल Print / Save PDF')+'</button></div>';
 }
 function printProfessionalResult(){window.print();}
@@ -1031,8 +1036,35 @@ function studentTestBucket(student,exam){return String(student&&student.name||""
 function practiceTestSignature(bank){const raw=(bank&&bank.questions||[]).map(q=>q.q+"|"+(q.o||[]).join("|")+"|"+q.a).join("||");let h=2166136261;for(let i=0;i<raw.length;i++)h=Math.imul(h^raw.charCodeAt(i),16777619);return (h>>>0).toString(36);}
 function readUsedStudentTests(bucket){try{const all=JSON.parse(localStorage.getItem("aei-used-tests")||"{}");return Array.isArray(all[bucket])?all[bucket]:[];}catch(e){return [];}}
 function studentTestSeed(name,attempt){let h=2166136261;const value=String(name||"").trim().toLowerCase();for(let i=0;i<value.length;i++)h=Math.imul(h^value.charCodeAt(i),16777619);return ((h>>>0)+Math.imul(attempt,2654435761))>>>0;}
-function saveTestRecord(score,total,correctCount){const student=getStudent();if(!student)return;let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}h.unshift({name:student.name,exam:window.practiceExam,score:score,total:total,accuracy:Math.round((correctCount===undefined?score:correctCount)/total*100),date:new Date().toLocaleString()});localStorage.setItem("aei-history",JSON.stringify(h.slice(0,50)));if(activePractice&&activePractice.testSeed!==undefined){const bucket=studentTestBucket(student,window.practiceExam);let all={};try{all=JSON.parse(localStorage.getItem("aei-used-tests")||"{}")}catch(e){}const used=Array.isArray(all[bucket])?all[bucket]:[];const entry={seed:activePractice.testSeed,signature:activePractice.testSignature||practiceTestSignature(activePractice)};if(!used.some(x=>x&&x.seed===entry.seed)||!used.some(x=>x&&x.signature===entry.signature)){if(!used.some(x=>x&&x.seed===entry.seed&&x.signature===entry.signature))used.push(entry);}all[bucket]=used;localStorage.setItem("aei-used-tests",JSON.stringify(all));}renderStudentStats();}
-function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}const visits=Number(localStorage.getItem("aei-visits")||"0");const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};set("statTests",h.length);set("statBest",h.length?Math.max(...h.map(x=>x.score)):"0");set("statVisitors",visits);const lb=document.getElementById("localLeaderboard"),hist=document.getElementById("testHistory");if(lb){const sorted=[...h].sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy).slice(0,10);lb.innerHTML=sorted.length?sorted.map((x,i)=>"<p>"+(i+1)+". "+escapeHTML(x.name)+" — "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून निकाल उपलब्ध नाही.</p>";}if(hist)hist.innerHTML=h.length?h.map(x=>"<p>"+escapeHTML(x.date)+" — "+escapeHTML(x.exam)+": "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून टेस्ट दिलेली नाही.</p>";}
+function saveTestRecord(score,total,correctCount,details){
+ const student=getStudent();if(!student)return;
+ const info=details||{};let h=[];
+ try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){h=[];}
+ const record={
+  id:"attempt-"+Date.now()+"-"+Math.random().toString(36).slice(2,8),
+  name:student.name,exam:window.practiceExam,label:info.label||window.practiceExam,
+  score:Number(Number(score).toFixed(2)),total:Number(total),
+  maxMarks:Number(info.maxMarks||total),correct:Number(correctCount===undefined?0:correctCount),
+  wrong:Number(info.wrong||0),skipped:Number(info.skipped||0),attempted:Number(info.attempted||0),
+  accuracy:Math.round((correctCount===undefined?score:correctCount)/Math.max(1,Number(info.attempted||total))*100),
+  negativeMarks:Number(Number(info.negativeMarks||0).toFixed(2)),
+  completion:Number(info.completion||0),timeTaken:info.timeTaken||"",
+  sessionId:info.sessionId||"",attemptNumber:Number(info.attemptNumber||1),
+  date:new Date().toLocaleString(),timestamp:Date.now()
+ };
+ h.unshift(record);
+ localStorage.setItem("aei-history",JSON.stringify(h.slice(0,2000)));
+ if(activePractice&&activePractice.testSeed!==undefined){
+  const bucket=studentTestBucket(student,window.practiceExam);let all={};
+  try{all=JSON.parse(localStorage.getItem("aei-used-tests")||"{}")}catch(e){all={};}
+  const used=Array.isArray(all[bucket])?all[bucket]:[];
+  const entry={seed:activePractice.testSeed,signature:activePractice.testSignature||practiceTestSignature(activePractice)};
+  if(!used.some(x=>x&&x.seed===entry.seed&&x.signature===entry.signature))used.push(entry);
+  all[bucket]=used;localStorage.setItem("aei-used-tests",JSON.stringify(all));
+ }
+ renderStudentStats();
+}
+function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}const visits=Number(localStorage.getItem("aei-visits")||"0");const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};set("statTests",h.length);set("statBest",h.length?Math.max(...h.map(x=>x.score)):"0");set("statVisitors",visits);const lb=document.getElementById("localLeaderboard"),hist=document.getElementById("testHistory");if(lb){const sorted=[...h].sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy).slice(0,10);lb.innerHTML=sorted.length?sorted.map((x,i)=>"<p>"+(i+1)+". "+escapeHTML(x.name)+" — "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून निकाल उपलब्ध नाही.</p>";}if(hist)hist.innerHTML=h.length?h.map(x=>"<p>"+escapeHTML(x.date)+" — "+escapeHTML(x.label||x.exam)+": <b>"+Number(x.score||0).toFixed(2)+"/"+Number(x.maxMarks||x.total||0).toFixed(2)+"</b> ("+Number(x.accuracy||0)+"%)"+(x.correct!==undefined?" • बरोबर "+x.correct+" • चुकीचे "+Number(x.wrong||0)+" • अनुत्तरित "+Number(x.skipped||0):"")+(x.negativeMarks!==undefined?" • वजा गुण "+Number(x.negativeMarks).toFixed(2):"")+(Number(x.attemptNumber||1)>1?" • Attempt "+x.attemptNumber:"")+"</p>").join(""):"<p>अजून टेस्ट दिलेली नाही.</p>";}
 try{const n=Number(localStorage.getItem("aei-visits")||"0")+1;localStorage.setItem("aei-visits",String(n));}catch(e){}
 
 initNewFeatures();renderMockCards();renderStudentStats();
