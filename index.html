@@ -195,6 +195,16 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 .upcoming-card .upcoming-types{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
 .upcoming-card .upcoming-types span{padding:7px 10px;border-radius:8px;background:#ffffff18;border:1px solid #ffffff30;font-size:11px;font-weight:800;letter-spacing:.35px}
 @media(max-width:650px){.home-actions{grid-template-columns:1fr;gap:14px}.home-action-card{min-height:205px;padding:23px}.upcoming-grid{grid-template-columns:1fr}.upcoming-card{min-height:175px;padding:21px}}
+
+/* SSC GD reference-date practice list: scoped to the PYQ section only */
+#pyqList .pyq-year-group{margin-top:14px}
+#pyqList .pyq-year-group>summary{cursor:pointer;padding:4px 2px}
+#pyqList .pyq-session-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+#pyqList .pyq-session-card{border:1px solid var(--line);border-radius:13px;background:var(--paper);padding:14px;min-width:0}
+#pyqList .pyq-session-card p{margin:7px 0;color:var(--muted)}
+#pyqList .pyq-session-card .small-note{font-size:12px}
+#pyqList .pyq-session-card button{width:100%;margin-top:6px}
+
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#website","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","name":"SSC EXAM.IN","alternateName":"ALL EXAM INDIA","description":"Prepare for SSC CGL, CHSL, MTS, GD, CPO, Stenographer, JE and other SSC exams with free online mock practice, selected PYQ-style demo questions, answer explanations and 2026 current affairs.","inLanguage":["mr","hi","en"]},{"@type":"EducationalOrganization","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#organization","name":"SSC EXAM.IN","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","description":"Online practice resources for Indian SSC competitive examinations."}]}</script>
@@ -254,7 +264,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <h2>SSC Previous Year Question Papers</h2>
 <p>SSC च्या मागील वर्षांच्या प्रश्नपत्रिका येथे शोधा. अधिकृत प्रश्नपत्रिकांसाठी SSC पोर्टल वापरा.</p>
 <div class="notice"><a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC Official Website — Question Papers & Notices</a></div>
-<div class="card"><h3>पेपरची भाषा निवडा / Choose Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="परीक्षा शोधा..." oninput="renderPYQ()">
+<div class="card"><h3>पेपरची भाषा निवडा / Choose Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="SSC GD / वर्ष / तारीख / Shift शोधा..." oninput="renderPYQ()">
 <div id="pyqList"></div>
 
 </section>
@@ -394,7 +404,7 @@ document.getElementById("testArea").innerHTML="";
 document.getElementById("testResult").innerHTML="";
 showPage("testroom");
 }
-function openPYQPractice(exam){openPractice(exam);startPracticeTest();}
+function openPYQPractice(exam,sessionId){openPractice(exam);if(exam==="SSC GD"&&sessionId){startGDSessionPractice(sessionId);return;}startPracticeTest();}
 function startPracticeTest(){
 isGDMock=false;
 if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}
@@ -714,7 +724,76 @@ function getOfficialSourceForExam(exam){
 return exam.startsWith("SSC") ? officialSources[0] : null;
 }
 function openPYQPracticeDefault(){openPYQPractice("SSC GD");}
+
+// SSC GD date/shift labels are reference metadata only. All questions are independently generated practice questions.
+const gdPracticeSessionIds=["27-feb-2024-shift-3","31-jan-2023-shift-1","20-feb-2024-shift-2","24-feb-2024-shift-3","6-feb-2023-shift-4","7-feb-2023-shift-2","13-feb-2023-shift-2","1-feb-2023-shift-4","24-feb-2024-shift-1","27-jan-2023-shift-1","13-feb-2023-shift-3","7-feb-2023-shift-3","25-jan-2023-shift-4","23-jan-2023-shift-3","21-feb-2024-shift-4","24-jan-2023-shift-2","9-feb-2023-shift-1","9-feb-2023-shift-3","31-jan-2023-shift-2","13-feb-2023-shift-1","27-jan-2023-shift-3","7-feb-2023-shift-1","27-jan-2023-shift-2","24-feb-2024-shift-2","31-jan-2023-shift-3","27-feb-2024-shift-1","9-feb-2023-shift-2","24-jan-2023-shift-1","30-jan-2023-shift-4","25-jan-2023-shift-3","26-feb-2024-shift-3","21-feb-2024-shift-3","23-jan-2023-shift-4","1-feb-2023-shift-2","13-feb-2023-shift-4","6-feb-2023-shift-1","7-feb-2023-shift-4","30-march-2024-shift-1","28-feb-2024-shift-1","6-feb-2023-shift-2","6-feb-2023-shift-3","1-feb-2023-shift-3","27-feb-2024-shift-4","24-jan-2023-shift-4","30-jan-2023-shift-1","2-feb-2023-shift-1","25-jan-2023-shift-2","26-feb-2024-shift-2","8-feb-2023-shift-1","31-jan-2023-shift-4","8-feb-2023-shift-3","2-feb-2023-shift-3","23-feb-2024-shift-4","1-feb-2023-shift-1","22-feb-2024-shift-2","27-jan-2023-shift-4","30-jan-2023-shift-2","9-feb-2023-shift-4","26-feb-2024-shift-1","8-feb-2023-shift-2","25-jan-2023-shift-1"];
+const gdMonthNames={jan:"January",feb:"February",march:"March"};
+const gdMonthNumbers={jan:1,feb:2,march:3};
+const gdPracticeSessions=gdPracticeSessionIds.map((id,index)=>{
+ const m=id.match(/^(\d+)-([a-z]+)-(\d{4})-shift-(\d)$/);
+ if(!m)return null;
+ const day=Number(m[1]),monthKey=m[2],year=Number(m[3]),shift=Number(m[4]);
+ return {id,index,day,month:gdMonthNumbers[monthKey]||1,year,shift,dateLabel:day+" "+(gdMonthNames[monthKey]||monthKey)+" "+year,label:day+" "+(gdMonthNames[monthKey]||monthKey)+" "+year+" • Shift "+shift};
+}).filter(Boolean).sort((a,b)=>(b.year-a.year)||(b.month-a.month)||(b.day-a.day)||(a.shift-b.shift));
+function gdSessionSeed(id){
+ let h=2166136261;
+ for(let i=0;i<id.length;i++)h=Math.imul(h^id.charCodeAt(i),16777619);
+ return h>>>0;
+}
+function startGDSessionPractice(sessionId){
+ const session=gdPracticeSessions.find(x=>x.id===sessionId);
+ if(!session)return;
+ window.practiceExam="SSC GD";
+ if(!getStudent()){
+  pendingPracticeStart=true;
+  window.pendingGDPracticeSession=sessionId;
+  isGDMock=false;
+  openRegistration();
+  return;
+ }
+ window.pendingGDPracticeSession=null;
+ isGDMock=false;
+ activePractice=buildGDMock(session.index+1,selectedPaperLanguage,gdSessionSeed(sessionId));
+ const rank=q=>/reasoning|तर्कशक्ति/i.test(q.section||"")?0:/general knowledge|सामान्य ज्ञान/i.test(q.section||"")?1:/mathematics|गणित/i.test(q.section||"")?2:3;
+ activePractice.questions.sort((a,b)=>rank(a)-rank(b));
+ activePractice.label="SSC GD Practice Set — "+session.dateLabel+" • Shift "+session.shift;
+ activePractice.duration=60;
+ activePractice.correctMarks=2;
+ activePractice.negativeMarks=0.25;
+ activePractice.maxMarks=160;
+ activePractice.referenceLabel="Reference: "+session.label;
+ resetPracticeState();
+ practiceSeconds=activePractice.duration*60;
+ document.getElementById("testIntro").style.display="none";
+ document.getElementById("testResult").innerHTML="";
+ document.getElementById("testTitle").textContent=activePractice.label;
+ showPage("testroom");
+ renderPracticeQuestionPaper(true);
+ startPracticeClock();
+}
+
 function renderPYQ(){
+ const q=(document.getElementById("pyqSearch").value||"").trim().toLowerCase();
+ const matchingSessions=gdPracticeSessions.filter(x=>(x.label+" ssc gd").toLowerCase().includes(q));
+ const showGD=!q||"ssc gd".includes(q)||matchingSessions.length>0;
+ let html="";
+ if(showGD){
+  html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>उपलब्ध फाइल-नावांमधील वर्ष आणि शिफ्टचा संदर्भ वापरून 61 स्वतंत्र सराव संच तयार केले आहेत. प्रत्येक टेस्टमध्ये 80 सराव प्रश्न, 60 मिनिटांचा Timer आणि Professional Result आहे.</p><div class="notice">महत्त्वाचे: खालील वर्ष/शिफ्ट ही फक्त संदर्भ माहिती आहे. प्रश्न स्वतंत्रपणे तयार केलेले आहेत; हे मूळ अधिकृत प्रश्नपत्र किंवा खरे PYQ नाहीत.</div></div>';
+  [2024,2023].forEach(year=>{
+   const group=gdPracticeSessions.filter(x=>x.year===year&&(!q||matchingSessions.includes(x)));
+   if(!group.length)return;
+   html+='<details class="card pyq-year-group" '+(year===2024||q?'open':'')+'><summary><strong>SSC GD '+year+' — '+group.length+' Practice Sets</strong></summary><div class="pyq-session-grid">';
+   group.forEach(session=>{
+    html+='<article class="pyq-session-card"><b>SSC GD '+session.year+'</b><p>'+session.dateLabel+'</p><p class="small-note">Shift '+session.shift+' · 80 Questions · 60 Minutes</p><button class="primary" type="button" onclick="openPYQPractice(\'SSC GD\',\''+session.id+'\')">Start Practice Test</button></article>';
+   });
+   html+='</div></details>';
+  });
+ }
+ const filtered=exams.filter(name=>name!=="SSC GD"&&name.toLowerCase().includes(q));
+ filtered.forEach(name=>{html+='<div class="card"><h3>'+escapeHTML(name)+'</h3><p>या परीक्षेचे स्वतंत्र प्रश्नसंच पुढील टप्प्यात जोडले जातील.</p></div>';});
+ document.getElementById("pyqList").innerHTML=html||"<p class='notice'>या नावाची परीक्षा किंवा वर्ष/शिफ्ट सापडली नाही.</p>";
+}
+
 const q=(document.getElementById("pyqSearch").value||"").toLowerCase();
 const filtered=exams.filter(name=>name.toLowerCase().includes(q));
 document.getElementById("pyqList").innerHTML=filtered.map(name=>{
@@ -739,7 +818,7 @@ function toggleCurrentAffairsSolution(id){const el=document.getElementById("ca-s
 function getStudent(){try{return JSON.parse(localStorage.getItem("aei-student")||"null")}catch(e){return null}}
 function openRegistration(){document.getElementById("registerModal").style.display="flex";document.getElementById("regName").focus()}
 function closeRegistration(){document.getElementById("registerModal").style.display="none"}
-function saveRegistration(){const name=document.getElementById("regName").value.trim();if(!name){alert("कृपया नाव किंवा nickname लिहा.");return;}localStorage.setItem("aei-student",JSON.stringify({name:name}));closeRegistration();if(pendingPracticeStart){pendingPracticeStart=false;if(isGDMock)startExamMock(window.practiceExam||"SSC GD");else startPracticeTest();}renderStudentStats();}
+function saveRegistration(){const name=document.getElementById("regName").value.trim();if(!name){alert("कृपया नाव किंवा nickname लिहा.");return;}localStorage.setItem("aei-student",JSON.stringify({name:name}));closeRegistration();if(pendingPracticeStart){pendingPracticeStart=false;if(window.pendingGDPracticeSession){const sessionId=window.pendingGDPracticeSession;window.pendingGDPracticeSession=null;startGDSessionPractice(sessionId);}else if(isGDMock)startExamMock(window.practiceExam||"SSC GD");else startPracticeTest();}renderStudentStats();}
 function studentTestBucket(student,exam){return String(student&&student.name||"").trim().toLowerCase()+"::"+String(exam||"");}
 function practiceTestSignature(bank){const raw=(bank&&bank.questions||[]).map(q=>q.q+"|"+(q.o||[]).join("|")+"|"+q.a).join("||");let h=2166136261;for(let i=0;i<raw.length;i++)h=Math.imul(h^raw.charCodeAt(i),16777619);return (h>>>0).toString(36);}
 function readUsedStudentTests(bucket){try{const all=JSON.parse(localStorage.getItem("aei-used-tests")||"{}");return Array.isArray(all[bucket])?all[bucket]:[];}catch(e){return [];}}
