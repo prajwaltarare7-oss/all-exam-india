@@ -613,7 +613,7 @@ shuffle(mathTypes).forEach(kind=>{
   const k=2+pick(8),p=3*k,q=4*k;ans=5*k;
   addNum(M,"एक समकोण त्रिभुज की दो लम्ब भुजाएँ "+p+" सेमी और "+q+" सेमी हैं। कर्ण ज्ञात करें।","The perpendicular sides of a right triangle are "+p+" cm and "+q+" cm. Find the hypotenuse.",ans,"पाइथागोरस प्रमेय: कर्ण = √("+p+"² + "+q+"²) = "+ans+" सेमी।","Pythagoras: hypotenuse = √("+p+"² + "+q+"²) = "+ans+" cm.");
  }else if(kind===18){
-  const speeds=[[30,60],[40,80],[45,90],[36,72],[24,48]],pair=speeds[pick(speeds.length)];a=pair[0];b=pair[1];ans=2*a*b/(a+b);
+  const speeds=[[30,60],[42,84],[45,90],[36,72],[24,48]],pair=speeds[pick(speeds.length)];a=pair[0];b=pair[1];ans=2*a*b/(a+b);
   addNum(M,"एक व्यक्ति समान दूरी "+a+" किमी/घंटा और "+b+" किमी/घंटा की चाल से तय करता है। औसत चाल कितनी होगी?","A person covers equal distances at "+a+" km/h and "+b+" km/h. Find the average speed.",ans,"समान दूरी के लिए औसत चाल = 2uv/(u+v) = 2 × "+a+" × "+b+"/("+a+" + "+b+") = "+ans+" किमी/घंटा।","For equal distances, average speed = 2uv/(u+v) = "+ans+" km/h.");
  }else if(kind===19){
   a=20+pick(50);b=3+pick(8);c=2+pick(7);ans=(a*a+b)%c;
