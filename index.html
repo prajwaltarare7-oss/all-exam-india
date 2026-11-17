@@ -277,6 +277,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 </section>
 <section id="settings" class="page">
 <h2>Settings</h2>
+<div class="card"><h3>📦 Backup &amp; Restore</h3><p>नवीन APK install करण्यापूर्वी तुमचे Profile, Test History, PYQ attempts आणि Mock Test attempts यांचा backup तयार करा. नवीन app मध्ये हाच code Restore करता येईल.</p><button class="primary" type="button" onclick="createAeiBackup()">Create Backup</button><textarea id="aeiBackupCode" class="search" rows="5" placeholder="Backup code येथे दिसेल. Restore करायचा असल्यास code येथे paste करा." style="width:100%;margin-top:10px;resize:vertical"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="primary" type="button" onclick="copyAeiBackup()">Copy Backup</button><button class="primary" type="button" onclick="restoreAeiBackup()">Restore Backup</button></div><p id="aeiBackupStatus" class="small-note" aria-live="polite">Backup code सुरक्षित ठेवा. यात तुमचे नाव आणि टेस्टचे निकाल असू शकतात.</p></div>
 <div class="card"><h3>Appearance</h3><p>वेबसाइटचा रंग निवडा.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
 <div class="card"><h3>Refresh Website</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" type="button" onclick="location.reload()">↻ Refresh Now</button></div>
 <div class="card"><h3>तुमची Test माहिती</h3><div class="stat-grid"><div class="stat"><b id="statTests">0</b>Tests पूर्ण</div><div class="stat"><b id="statBest">0</b>Best score</div><div class="stat"><b id="statVisitors">1</b>या डिव्हाइसवरील भेटी</div></div><p class="small-note">ही माहिती सध्या फक्त या ब्राउझरमध्ये दिसते; सर्व विद्यार्थ्यांची एकत्रित आकडेवारी व leaderboard साठी database जोडणे बाकी आहे.</p><h3>Leaderboard (या डिव्हाइसवरील)</h3><div id="localLeaderboard"></div><h3>Test History</h3><div id="testHistory"></div></div><div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
@@ -1028,6 +1029,51 @@ window.scrollTo(0,0);
 }
 function toggleCurrentAffairsSolution(id){const el=document.getElementById("ca-solution-"+id);if(el)el.style.display=el.style.display==="none"?"block":"none";}
 
+const AEI_BACKUP_KEYS=["aei-theme","aei-pyq-attempts","aei-student","aei-used-tests","aei-history","aei-visits"];
+function createAeiBackup(){
+ try{
+  const data={};AEI_BACKUP_KEYS.forEach(k=>{const v=localStorage.getItem(k);if(v!==null)data[k]=v;});
+  const payload={app:"All Exam India",version:1,createdAt:new Date().toISOString(),data:data};
+  const encoded="AEI-BACKUP-1:"+btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+  const field=document.getElementById("aeiBackupCode");if(field)field.value=encoded;
+  const status=document.getElementById("aeiBackupStatus");if(status)status.textContent="Backup तयार झाला. Copy Backup दाबून code सुरक्षित ठेवा.";
+ }catch(e){const status=document.getElementById("aeiBackupStatus");if(status)status.textContent="Backup तयार करता आला नाही. पुन्हा प्रयत्न करा.";}
+}
+function copyAeiBackup(){
+ const field=document.getElementById("aeiBackupCode");const status=document.getElementById("aeiBackupStatus");
+ if(!field||!field.value.trim()){if(status)status.textContent="आधी Create Backup दाबा.";return;}
+ field.focus();field.select();field.setSelectionRange(0,field.value.length);
+ let ok=false;try{ok=document.execCommand("copy");}catch(e){}
+ if(status)status.textContent=ok?"Backup code copy झाला. तो Notes मध्ये सुरक्षित ठेवा.":"Code select झाला आहे. Copy पर्याय वापरा.";
+}
+function restoreAeiBackup(){
+ const field=document.getElementById("aeiBackupCode");const status=document.getElementById("aeiBackupStatus");
+ if(!field||!field.value.trim()){if(status)status.textContent="आधीचा Backup code paste करा.";return;}
+ try{
+  const raw=field.value.trim();if(!raw.startsWith("AEI-BACKUP-1:"))throw new Error("Invalid backup");
+  const payload=JSON.parse(decodeURIComponent(escape(atob(raw.slice(14)))));
+  if(!payload||payload.app!=="All Exam India"||payload.version!==1||!payload.data)throw new Error("Invalid backup");
+  const backup=payload.data;
+  let currentHistory=[];let oldHistory=[];try{currentHistory=JSON.parse(localStorage.getItem("aei-history")||"[]");}catch(e){}
+  try{oldHistory=JSON.parse(backup["aei-history"]||"[]");}catch(e){}
+  const merged=[];const seen=new Set();
+  [...currentHistory,...oldHistory].forEach((x)=>{if(!x||typeof x!=="object")return;const key=String(x.id||[x.timestamp||"",x.date||"",x.exam||"",x.score||"",x.total||"",x.accuracy||"",x.name||""].join("|"));if(!seen.has(key)){seen.add(key);merged.push(x);}});
+  localStorage.setItem("aei-history",JSON.stringify(merged.slice(0,2000)));
+  let currentUsed={},backupUsed={};try{currentUsed=JSON.parse(localStorage.getItem("aei-used-tests")||"{}")||{};}catch(e){}
+  try{backupUsed=JSON.parse(backup["aei-used-tests"]||"{}")||{};}catch(e){}
+  const usedMerged={...backupUsed,...currentUsed};
+  Object.keys(backupUsed).forEach(bucket=>{const all=[...(Array.isArray(currentUsed[bucket])?currentUsed[bucket]:[]),...(Array.isArray(backupUsed[bucket])?backupUsed[bucket]:[])];const unique=[];const ids=new Set();all.forEach(x=>{const id=String(x&&x.seed)+"|"+String(x&&x.signature);if(!ids.has(id)){ids.add(id);unique.push(x);}});usedMerged[bucket]=unique;});
+  localStorage.setItem("aei-used-tests",JSON.stringify(usedMerged));
+  let curAttempts={},bakAttempts={};try{curAttempts=JSON.parse(localStorage.getItem("aei-pyq-attempts")||"{}")||{};}catch(e){}
+  try{bakAttempts=JSON.parse(backup["aei-pyq-attempts"]||"{}")||{};}catch(e){}
+  const attempts={...bakAttempts,...curAttempts};Object.keys(bakAttempts).forEach(k=>attempts[k]=Math.max(Number(curAttempts[k])||0,Number(bakAttempts[k])||0));
+  localStorage.setItem("aei-pyq-attempts",JSON.stringify(attempts));
+  if(!localStorage.getItem("aei-student")&&backup["aei-student"])localStorage.setItem("aei-student",backup["aei-student"]);
+  if(!localStorage.getItem("aei-theme")&&backup["aei-theme"])localStorage.setItem("aei-theme",backup["aei-theme"]);
+  localStorage.setItem("aei-visits",String(Math.max(Number(localStorage.getItem("aei-visits"))||0,Number(backup["aei-visits"])||0)));
+  renderStudentStats();const statusText="Backup restore झाला. आधीचे आणि सध्याचे test records एकत्र जतन केले आहेत.";if(status)status.textContent=statusText;alert(statusText);
+ }catch(e){if(status)status.textContent="Backup code चुकीचा किंवा अपूर्ण आहे. पूर्ण code पुन्हा paste करा.";}
+}
 function getStudent(){try{return JSON.parse(localStorage.getItem("aei-student")||"null")}catch(e){return null}}
 function openRegistration(){document.getElementById("registerModal").style.display="flex";document.getElementById("regName").focus()}
 function closeRegistration(){document.getElementById("registerModal").style.display="none"}
