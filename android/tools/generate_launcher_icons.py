@@ -35,7 +35,7 @@ sizes = {
 for folder, size in sizes.items():
     out_dir = RES / folder
     out_dir.mkdir(parents=True, exist_ok=True)
-    canvas = Image.new("RGBA", (size, size), "#101b35")
+    canvas = Image.new("RGBA", (size, size), "#172c59")
     side = int(size * 0.78)
     logo = render_logo(side, int(side * 560 / 520))
     # Fit within the square while preserving the original crest proportions.
