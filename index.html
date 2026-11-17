@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
+<meta name="aei-build-id" content="initial-20261118">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All Exam India | SSC Exam Preparation 2026 - Free Mock Tests &amp; PYQ Practice | SSC EXAM.IN</title>
@@ -1266,6 +1267,48 @@ function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("ae
 try{const n=Number(localStorage.getItem("aei-visits")||"0")+1;localStorage.setItem("aei-visits",String(n));}catch(e){}
 
 initAccountAuth();initNewFeatures();renderMockCards();renderStudentStats();
+
+/* Native app auto-update: check the published build and reload only on Home.
+   The active test/result screen is never interrupted. LocalStorage is preserved. */
+(function startAeiNativeAutoUpdate(){
+ if(!window.AndroidApp||window.__aeiNativeAutoUpdateStarted)return;
+ window.__aeiNativeAutoUpdateStarted=true;
+ const buildMeta=document.querySelector('meta[name="aei-build-id"]');
+ const currentBuild=buildMeta?buildMeta.content:"";
+ let pendingBuild="";
+ let checking=false;
+ const activePage=()=>document.querySelector(".page.active");
+ const safeToReload=()=>{const page=activePage();return !!page&&page.id==="home";};
+ const applyUpdate=()=>{
+  if(!pendingBuild||!safeToReload())return;
+  const next=new URL(location.href);
+  next.searchParams.set("appbuild",pendingBuild);
+  next.hash="";
+  location.replace(next.toString());
+ };
+ const checkForUpdate=async()=>{
+  if(checking||document.hidden)return;
+  checking=true;
+  try{
+   const url=new URL("version.json",location.href);
+   url.searchParams.set("check",String(Date.now()));
+   const response=await fetch(url.toString(),{cache:"no-store",credentials:"same-origin"});
+   if(!response.ok)return;
+   const info=await response.json();
+   if(!info||!info.build)return;
+   if(currentBuild&&info.build!==currentBuild)pendingBuild=String(info.build);
+   if(pendingBuild)applyUpdate();
+  }catch(e){
+   // Network may be temporarily unavailable; retry on the next interval.
+  }finally{checking=false;}
+ };
+ const observer=new MutationObserver(()=>{if(pendingBuild)applyUpdate();});
+ document.querySelectorAll(".page").forEach(page=>observer.observe(page,{attributes:true,attributeFilter:["class"]}));
+ document.addEventListener("visibilitychange",()=>{if(!document.hidden)checkForUpdate();});
+ setTimeout(checkForUpdate,2500);
+ setInterval(checkForUpdate,5*60*1000);
+})();
+
 </script>
 </body>
 </html>
