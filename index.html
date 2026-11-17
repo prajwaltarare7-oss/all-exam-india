@@ -157,13 +157,36 @@ document.getElementById("examTitle").innerText=exam[0];
 document.getElementById("examDescription").innerText=exam[2]+" — "+exam[1];
 }
 
+
 function openResource(type){
+
 document.getElementById("homePage").style.display="none";
 document.getElementById("examPage").style.display="none";
 document.getElementById("resourcePage").style.display="block";
 document.getElementById("resourceTitle").innerText=type;
 
-document.getElementById("resourceContent").innerHTML=`
+let content=document.getElementById("resourceContent");
+
+if(selectedExam==="UPSC" && type==="Previous Year Papers"){
+
+content.innerHTML=`
+<div class="resource">
+<h3>UPSC Previous Year Question Papers</h3>
+<p>Official UPSC question papers. Select the year and exam from the official website.</p>
+<a href="https://upsc.gov.in/examinations/previous-question-papers" target="_blank">
+<button>Open Official UPSC Papers</button>
+</a>
+</div>
+
+<div class="notice">
+Only official UPSC papers are linked here. Choose the required year and PDF on the official website.
+</div>
+`;
+
+return;
+}
+
+content.innerHTML=`
 <div class="resource">
 <h3>${selectedExam || "All Exams"}</h3>
 <p>Section: ${type}</p>
@@ -172,12 +195,14 @@ Verified official resources for this section have not been added yet.
 No invented questions, answers, syllabus or exam pattern are displayed.
 </div>
 </div>
+
 <div class="resource">
 <h3>Official information</h3>
 <p>Official notifications and documents will be linked here after verification from the relevant examination authority.</p>
 </div>
 `;
 }
+  
 
 function backToExam(){
 document.getElementById("resourcePage").style.display="none";
