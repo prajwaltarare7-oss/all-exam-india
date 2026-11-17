@@ -196,16 +196,22 @@ renderExamResources(name);
 showPage("examDetail");
 }
 function renderExamResources(name){
-document.getElementById("detailTitle").textContent=name+" — PYQ, Papers & Practice";
+document.getElementById("detailTitle").textContent=name+" — 15-Year PYQ Archive & Practice";
 const box=document.getElementById("examResources");
 const official=getOfficialSourceForExam(name);
-let html="<div class=\"card\"><h3>Official exam source</h3>";
+let html="<div class=\"notice\"><b>Archive target:</b> 2011–2026 (15 पूर्ण मागील वर्षे + चालू वर्ष). प्रत्येक वर्षात पेपर झाला असेलच असे नाही; उपलब्धता परीक्षा व आयोगानुसार तपासली जाईल.</div>";
+html+="<div class=\"card\"><h3>Official exam source</h3>";
 if(official){html+="<p>"+escapeHTML(official.category||"Official source")+"</p><a href=\""+official.source+"\" target=\"_blank\" rel=\"noopener\">Official website / papers</a>";}
 else{html+="<p>या परीक्षेचा अधिकृत पेपर संग्रह अजून स्वतंत्रपणे पडताळलेला नाही.</p>";}
 html+="</div>";
-html+="<div class=\"card\"><h3>PYQ practice library</h3><p>बाह्य संग्रहातील पेपरची उपलब्धता व त्याचे लेबल तपासा.</p><p><a href=\"https://examudaan.in/question-papers\" target=\"_blank\" rel=\"noopener\">MPSC / Maharashtra Police / UPSC / SSC / Railway paper library</a></p><p><a href=\"https://previousyearquestions.app/\" target=\"_blank\" rel=\"noopener\">Multi-exam PYQ directory</a></p><p><a href=\"https://www.unlockias.in/state-psc-previous-year-questions\" target=\"_blank\" rel=\"noopener\">State PSC question practice directory</a></p></div>";
-html+="<div class=\"card\"><h3>Attempt practice test</h3><p>या वेबसाइटमध्ये timed test तेव्हाच सुरू होईल जेव्हा प्रश्न, पर्याय आणि उत्तरतालिका तपासून जोडली जातील.</p><a class=\"primary\" href=\"https://previousyearquestions.app/\" target=\"_blank\" rel=\"noopener\">Open external practice library</a></div>";
-html+="<div class=\"notice\"><b>महत्त्वाचे:</b> काही परीक्षांचे प्रश्न memory-based असतात किंवा login/मर्यादित कालावधीच्या response-sheet मध्ये असतात. त्यांना official PYQ म्हणून चुकीचे लेबल लावले जाणार नाही. <a href=\"https://dev.prepmatic.in/questions/does-ibps-publish-previous-year-question-papers/\" target=\"_blank\" rel=\"noopener\">Bank exam paper availability note</a></div>";
+html+="<div class=\"card\"><h3>Year-wise PYQ collections</h3>";
+html+="<p><a href=\"https://www.upsc.gov.in/examinations/previous-question-papers\" target=\"_blank\" rel=\"noopener\">UPSC official question papers</a> · <a href=\"https://cms.upsc.gov.in/archived-exam-documents/question-papers/\" target=\"_blank\" rel=\"noopener\">UPSC official archive</a></p>";
+html+="<p><a href=\"https://ssc.gov.in/home/archives\" target=\"_blank\" rel=\"noopener\">SSC official archives</a></p>";
+html+="<p><a href=\"https://examudaan.in/mpsc-pyq\" target=\"_blank\" rel=\"noopener\">MPSC year-wise papers and keys (third-party index; check original MPSC notice)</a></p>";
+html+="<p><a href=\"https://examudaan.in/question-papers\" target=\"_blank\" rel=\"noopener\">Maharashtra Police / Talathi / ZP / multi-exam paper index (third-party)</a></p>";
+html+="<p><a href=\"https://previousyearquestions.app/\" target=\"_blank\" rel=\"noopener\">Multi-exam PYQ practice directory (third-party)</a></p></div>";
+html+="<div class=\"card\"><h3>Online test on our website</h3><p>प्रत्येक वर्षाचा पेपर इथेच test म्हणून सुरू करण्यासाठी प्रश्न, चार पर्याय, योग्य उत्तर, स्पष्टीकरण आणि पेपरचा मूळ स्रोत एकेक करून जोडणे आवश्यक आहे. हे पूर्ण होईपर्यंत बाह्य पेपरला आमचा स्वतःचा online test म्हणून दाखवणार नाही.</p></div>";
+html+="<div class=\"notice\"><b>Accuracy & copyright:</b> Official PDF/answer key उपलब्ध असल्यासच Official PYQ; memory-based प्रश्न वेगळे. ज्या PDF चे पुनर्प्रकाशन परवानगीशिवाय करता येत नाही ते आपल्या server वर copy न करता अधिकृत स्रोताचा दुवा दिला जाईल.</div>";
 box.innerHTML=html;
 }
 function getOfficialSourceForExam(exam){
