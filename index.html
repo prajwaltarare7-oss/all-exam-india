@@ -205,6 +205,24 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 #pyqList .pyq-session-card .small-note{font-size:12px}
 #pyqList .pyq-session-card button{width:100%;margin-top:6px}
 
+
+.account-auth-box{max-height:calc(100dvh - 36px);overflow-y:auto}
+.account-brand{text-align:center;margin-bottom:8px}
+.account-brand img{width:76px;height:76px;object-fit:contain;filter:drop-shadow(0 5px 9px #18294b25)}
+.account-auth-box h2{text-align:center;margin:4px 0 7px}
+.account-auth-box>p{text-align:center;line-height:1.55}
+.account-auth-box label{display:block;font-size:13px;font-weight:800;color:var(--muted);margin-top:9px}
+.account-auth-box input{margin:5px 0 8px}
+.account-auth-tabs{display:flex;gap:8px;margin:17px 0 13px;padding:5px;background:#edf2fb;border-radius:12px}
+.account-auth-tabs button{flex:1;border:0;border-radius:9px;padding:11px 8px;background:transparent;color:#5d6b83;font-weight:850;cursor:pointer}
+.account-auth-tabs button.active{background:#fff;color:#315ee8;box-shadow:0 3px 10px #172d5817}
+.account-auth-form .primary{width:100%;margin-top:10px;padding:14px}
+.account-auth-status{min-height:20px;text-align:center!important;font-size:13px;font-weight:750;margin:9px 0!important;color:#c13d48}
+.account-auth-status.ok{color:#16804a}
+body.dark .account-auth-tabs{background:#192a48}
+body.dark .account-auth-tabs button{color:#b8c5db}
+body.dark .account-auth-tabs button.active{background:#263a60;color:#dbe6ff}
+
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#website","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","name":"SSC EXAM.IN","alternateName":"ALL EXAM INDIA","description":"Free mock tests, free PYQ practice tests and current affairs for SSC examinations.","inLanguage":["mr","hi","en"]},{"@type":"EducationalOrganization","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#organization","name":"SSC EXAM.IN","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","description":"Online practice resources for Indian SSC competitive examinations."}]}</script>
@@ -220,6 +238,41 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 
 </nav>
 <div class="auth-modal" id="registerModal"><div class="auth-box"><h2>नोंदणी करा</h2><p>टेस्ट सुरू करण्यासाठी nickname देणे अनिवार्य आहे.</p><label for="regName">Nickname (अनिवार्य)</label><input id="regName" maxlength="30" required placeholder="तुमचे nickname लिहा"><div class="auth-actions"><button class="primary" onclick="saveRegistration()">नोंदणी करा</button></div><p class="small-note">ही प्राथमिक नोंदणी या डिव्हाइसच्या ब्राउझरमध्ये सेव्ह होईल. Shared account साठी online database जोडणे आवश्यक आहे.</p></div></div>
+
+<div class="auth-modal" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+ <div class="auth-box account-auth-box">
+  <div class="account-brand"><img src="assets/army-inspired-crest.svg" alt="All Exam India logo"></div>
+  <h2 id="accountTitle">Create your account</h2>
+  <p id="accountSubtitle">एकदाच Register करा आणि तुमची Test History जतन ठेवा.</p>
+  <div class="account-auth-tabs">
+   <button type="button" id="registerTab" class="active" onclick="setAccountMode('register')">Register</button>
+   <button type="button" id="loginTab" onclick="setAccountMode('login')">Sign In</button>
+  </div>
+  <form id="accountRegisterForm" class="account-auth-form" onsubmit="event.preventDefault();registerAccount()">
+   <label for="accountRegName">Full Name</label>
+   <input id="accountRegName" type="text" maxlength="30" autocomplete="name" required placeholder="तुमचे पूर्ण नाव">
+   <label for="accountRegPhone">Mobile Number</label>
+   <input id="accountRegPhone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" required placeholder="10 अंकी मोबाईल नंबर">
+   <label for="accountRegPassword">Create Password</label>
+   <input id="accountRegPassword" type="password" minlength="8" autocomplete="new-password" required placeholder="किमान 8 अक्षरे">
+   <label for="accountRegConfirm">Confirm Password</label>
+   <input id="accountRegConfirm" type="password" minlength="8" autocomplete="new-password" required placeholder="Password पुन्हा लिहा">
+   <button class="primary" type="submit">Create Account</button>
+  </form>
+  <form id="accountLoginForm" class="account-auth-form" style="display:none" onsubmit="event.preventDefault();loginAccount()">
+   <label for="accountLoginName">Full Name</label>
+   <input id="accountLoginName" type="text" maxlength="30" autocomplete="name" required placeholder="Register केलेले नाव">
+   <label for="accountLoginPhone">Mobile Number</label>
+   <input id="accountLoginPhone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" required placeholder="Register केलेला मोबाईल नंबर">
+   <label for="accountLoginPassword">Password</label>
+   <input id="accountLoginPassword" type="password" autocomplete="current-password" required placeholder="तुमचा Password">
+   <button class="primary" type="submit">Sign In</button>
+  </form>
+  <p id="accountAuthStatus" class="account-auth-status" aria-live="polite"></p>
+  <p class="small-note">Password plain text मध्ये सेव्ह होत नाही. हा account या फोन/अॅपमध्येच राहतो; मोबाईल नंबर OTP ने verify होत नाही. Password विसरू नका.</p>
+ </div>
+</div>
+
 <main class="container">
 <section id="home" class="page active">
 <div class="hero">
@@ -277,6 +330,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 </section>
 <section id="settings" class="page">
 <h2>Settings</h2>
+<div class="card"><h3>👤 Account</h3><p id="accountDetails">तुमचे account या डिव्हाइसवर सेव्ह आहे.</p><button class="primary" type="button" onclick="logoutAccount()">Logout</button></div>
 <div class="card"><h3>📦 Backup &amp; Restore</h3><p>नवीन APK install करण्यापूर्वी तुमचे Profile, Test History, PYQ attempts आणि Mock Test attempts यांचा backup तयार करा. नवीन app मध्ये हाच code Restore करता येईल.</p><button class="primary" type="button" onclick="createAeiBackup()">Create Backup</button><textarea id="aeiBackupCode" class="search" rows="5" placeholder="Backup code येथे दिसेल. Restore करायचा असल्यास code येथे paste करा." style="width:100%;margin-top:10px;resize:vertical"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="primary" type="button" onclick="copyAeiBackup()">Copy Backup</button><button class="primary" type="button" onclick="restoreAeiBackup()">Restore Backup</button></div><p id="aeiBackupStatus" class="small-note" aria-live="polite">Backup code सुरक्षित ठेवा. यात तुमचे नाव आणि टेस्टचे निकाल असू शकतात.</p></div>
 <div class="card"><h3>Appearance</h3><p>वेबसाइटचा रंग निवडा.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
 <div class="card"><h3>Refresh Website</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" type="button" onclick="location.reload()">↻ Refresh Now</button></div>
@@ -1074,10 +1128,25 @@ function restoreAeiBackup(){
   renderStudentStats();const statusText="Backup restore झाला. आधीचे आणि सध्याचे test records एकत्र जतन केले आहेत.";if(status)status.textContent=statusText;alert(statusText);
  }catch(e){if(status)status.textContent="Backup code चुकीचा किंवा अपूर्ण आहे. पूर्ण code पुन्हा paste करा.";}
 }
-function getStudent(){try{return JSON.parse(localStorage.getItem("aei-student")||"null")}catch(e){return null}}
-function openRegistration(){document.getElementById("registerModal").style.display="flex";document.getElementById("regName").focus()}
-function closeRegistration(){document.getElementById("registerModal").style.display="none"}
-function saveRegistration(){const name=document.getElementById("regName").value.trim();if(!name){alert("कृपया नाव किंवा nickname लिहा.");return;}localStorage.setItem("aei-student",JSON.stringify({name:name}));closeRegistration();if(pendingPracticeStart){pendingPracticeStart=false;if(window.pendingGDPracticeSession){const sessionId=window.pendingGDPracticeSession;window.pendingGDPracticeSession=null;startGDSessionPractice(sessionId);}else if(isGDMock)startExamMock(window.practiceExam||"SSC GD");else startPracticeTest();}renderStudentStats();}
+function readLocalAccount(){try{return JSON.parse(localStorage.getItem("aei-account-v1")||"null")}catch(e){return null}}
+function readLocalSession(){try{return JSON.parse(localStorage.getItem("aei-session-v1")||"null")}catch(e){return null}}
+function isAccountSignedIn(){const a=readLocalAccount(),s=readLocalSession();return !!(a&&s&&a.phone&&s.phone===a.phone)}
+function getStudent(){const a=readLocalAccount();if(!a||!isAccountSignedIn())return null;return {name:a.name,phone:a.phone}}
+function accountBase64(bytes){let out="";for(let i=0;i<bytes.length;i++)out+=String.fromCharCode(bytes[i]);return btoa(out)}
+function accountBytes(value){return Uint8Array.from(atob(value),ch=>ch.charCodeAt(0))}
+async function hashAccountPassword(password,saltText){if(!window.crypto||!crypto.subtle)throw new Error("या browser मध्ये सुरक्षित password सुविधा उपलब्ध नाही.");const key=await crypto.subtle.importKey("raw",new TextEncoder().encode(password),"PBKDF2",false,["deriveBits"]);const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:accountBytes(saltText),iterations:160000,hash:"SHA-256"},key,256);return accountBase64(new Uint8Array(bits))}
+function setAccountStatus(message,ok){const el=document.getElementById("accountAuthStatus");if(!el)return;el.textContent=message||"";el.classList.toggle("ok",!!ok)}
+function setAccountMode(mode){const a=readLocalAccount();if(a&&mode==="register")mode="login";const reg=mode==="register";const rf=document.getElementById("accountRegisterForm"),lf=document.getElementById("accountLoginForm"),rt=document.getElementById("registerTab"),lt=document.getElementById("loginTab");if(rf)rf.style.display=reg?"block":"none";if(lf)lf.style.display=reg?"none":"block";if(rt){rt.classList.toggle("active",reg);rt.style.display=a?"none":"block";}if(lt)lt.classList.toggle("active",!reg);const title=document.getElementById("accountTitle"),sub=document.getElementById("accountSubtitle");if(title)title.textContent=reg?"Create your account":"Welcome back";if(sub)sub.textContent=reg?"एकदाच Register करा आणि तुमची Test History जतन ठेवा.":"तुमचे नाव, मोबाईल नंबर आणि Password टाकून Login करा.";setAccountStatus("");if(reg){const legacyName=(()=>{try{return JSON.parse(localStorage.getItem("aei-student")||"null")?.name||""}catch(e){return ""}})();const ni=document.getElementById("accountRegName");if(ni&&!ni.value&&legacyName)ni.value=legacyName;}}
+function openAccountModal(mode){const modal=document.getElementById("accountModal");if(modal)modal.style.display="flex";setAccountMode(mode|| (readLocalAccount()?"login":"register"))}
+function closeAccountModal(){const modal=document.getElementById("accountModal");if(modal)modal.style.display="none"}
+function initAccountAuth(){const a=readLocalAccount(),s=readLocalSession();if(a&&s&&s.phone===a.phone){localStorage.setItem("aei-student",JSON.stringify({name:a.name}));closeAccountModal();const details=document.getElementById("accountDetails");if(details)details.textContent="Logged in as "+a.name+" • "+a.phone;return;}if(a){localStorage.removeItem("aei-session-v1");const n=document.getElementById("accountLoginName"),p=document.getElementById("accountLoginPhone");if(n)n.value=a.name||"";if(p)p.value=a.phone||"";openAccountModal("login");}else{openAccountModal("register");}}
+function continuePendingPractice(){if(!pendingPracticeStart)return;pendingPracticeStart=false;if(window.pendingGDPracticeSession){const sessionId=window.pendingGDPracticeSession;window.pendingGDPracticeSession=null;startGDSessionPractice(sessionId);}else if(isGDMock)startExamMock(window.practiceExam||"SSC GD");else startPracticeTest();}
+async function registerAccount(){if(readLocalAccount()){setAccountMode("login");setAccountStatus("या फोनवर account आधीच आहे. Sign In करा.");return;}const name=document.getElementById("accountRegName").value.trim(),phone=document.getElementById("accountRegPhone").value.replace(/\D/g,""),password=document.getElementById("accountRegPassword").value,confirmPassword=document.getElementById("accountRegConfirm").value;if(name.length<2){setAccountStatus("कृपया पूर्ण नाव लिहा.");return;}if(!/^[6-9]\d{9}$/.test(phone)){setAccountStatus("योग्य 10 अंकी भारतीय मोबाईल नंबर लिहा.");return;}if(password.length<8||!/\d/.test(password)){setAccountStatus("Password किमान 8 अक्षरांचा आणि त्यात किमान 1 अंक असावा.");return;}if(password!==confirmPassword){setAccountStatus("दोन्ही Password जुळत नाहीत.");return;}try{const salt=accountBase64(crypto.getRandomValues(new Uint8Array(16))),hash=await hashAccountPassword(password,salt),account={name:name,phone:phone,salt:salt,hash:hash,createdAt:Date.now()};localStorage.setItem("aei-account-v1",JSON.stringify(account));localStorage.setItem("aei-session-v1",JSON.stringify({phone:phone,signedInAt:Date.now()}));localStorage.setItem("aei-student",JSON.stringify({name:name}));document.getElementById("accountRegPassword").value="";document.getElementById("accountRegConfirm").value="";closeAccountModal();const details=document.getElementById("accountDetails");if(details)details.textContent="Logged in as "+name+" • "+phone;renderStudentStats();continuePendingPractice();}catch(e){setAccountStatus(e&&e.message?e.message:"Registration पूर्ण होऊ शकले नाही. पुन्हा प्रयत्न करा.");}}
+async function loginAccount(){const a=readLocalAccount();if(!a){setAccountMode("register");setAccountStatus("आधी Register करा.");return;}const name=document.getElementById("accountLoginName").value.trim(),phone=document.getElementById("accountLoginPhone").value.replace(/\D/g,""),password=document.getElementById("accountLoginPassword").value;if(name.toLowerCase()!==String(a.name||"").trim().toLowerCase()||phone!==a.phone){setAccountStatus("नाव किंवा मोबाईल नंबर बरोबर नाही.");return;}try{const hash=await hashAccountPassword(password,a.salt);if(hash!==a.hash){setAccountStatus("Password चुकीचा आहे.");return;}localStorage.setItem("aei-session-v1",JSON.stringify({phone:phone,signedInAt:Date.now()}));localStorage.setItem("aei-student",JSON.stringify({name:a.name}));document.getElementById("accountLoginPassword").value="";closeAccountModal();const details=document.getElementById("accountDetails");if(details)details.textContent="Logged in as "+a.name+" • "+a.phone;renderStudentStats();continuePendingPractice();}catch(e){setAccountStatus(e&&e.message?e.message:"Login करता आले नाही. पुन्हा प्रयत्न करा.");}}
+function logoutAccount(){if(!readLocalAccount())return;localStorage.removeItem("aei-session-v1");openAccountModal("login");setAccountStatus("तुम्ही Logout झाला आहात. पुन्हा Login करा.",true);}
+function openRegistration(){openAccountModal(readLocalAccount()?"login":"register")}
+function closeRegistration(){closeAccountModal()}
+function saveRegistration(){registerAccount();}
 function studentTestBucket(student,exam){return String(student&&student.name||"").trim().toLowerCase()+"::"+String(exam||"");}
 function practiceTestSignature(bank){const raw=(bank&&bank.questions||[]).map(q=>q.q+"|"+(q.o||[]).join("|")+"|"+q.a).join("||");let h=2166136261;for(let i=0;i<raw.length;i++)h=Math.imul(h^raw.charCodeAt(i),16777619);return (h>>>0).toString(36);}
 function readUsedStudentTests(bucket){try{const all=JSON.parse(localStorage.getItem("aei-used-tests")||"{}");return Array.isArray(all[bucket])?all[bucket]:[];}catch(e){return [];}}
@@ -1113,7 +1182,7 @@ function saveTestRecord(score,total,correctCount,details){
 function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}const visits=Number(localStorage.getItem("aei-visits")||"0");const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};set("statTests",h.length);set("statBest",h.length?Math.max(...h.map(x=>x.score)):"0");set("statVisitors",visits);const lb=document.getElementById("localLeaderboard"),hist=document.getElementById("testHistory");if(lb){const sorted=[...h].sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy).slice(0,10);lb.innerHTML=sorted.length?sorted.map((x,i)=>"<p>"+(i+1)+". "+escapeHTML(x.name)+" — "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून निकाल उपलब्ध नाही.</p>";}if(hist)hist.innerHTML=h.length?h.map(x=>"<p>"+escapeHTML(x.date)+" — "+escapeHTML(x.label||x.exam)+": <b>"+Number(x.score||0).toFixed(2)+"/"+Number(x.maxMarks||x.total||0).toFixed(2)+"</b> ("+Number(x.accuracy||0)+"%)"+(x.correct!==undefined?" • बरोबर "+x.correct+" • चुकीचे "+Number(x.wrong||0)+" • अनुत्तरित "+Number(x.skipped||0):"")+(x.negativeMarks!==undefined?" • वजा गुण "+Number(x.negativeMarks).toFixed(2):"")+(Number(x.attemptNumber||1)>1?" • Attempt "+x.attemptNumber:"")+"</p>").join(""):"<p>अजून टेस्ट दिलेली नाही.</p>";}
 try{const n=Number(localStorage.getItem("aei-visits")||"0")+1;localStorage.setItem("aei-visits",String(n));}catch(e){}
 
-initNewFeatures();renderMockCards();renderStudentStats();
+initAccountAuth();initNewFeatures();renderMockCards();renderStudentStats();
 </script>
 </body>
 </html>
