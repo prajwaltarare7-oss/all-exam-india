@@ -104,7 +104,18 @@ body.dark .test-status span,body.dark .question-legend span{background:#192a48;b
 .home-action-icon{font-size:38px}
 .home-action-card .primary{font-size:16px;padding:14px 22px}
 body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
-@media(max-width:650px){.home-actions{grid-template-columns:1fr;gap:14px}.home-action-card{min-height:205px;padding:23px}}
+.upcoming-section{margin:32px 0 12px}
+.upcoming-section>p{color:var(--muted);line-height:1.65;margin:0 0 14px}
+.upcoming-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.upcoming-card{position:relative;isolation:isolate;overflow:hidden;min-height:190px;padding:24px;border-radius:19px;color:#fff;background:linear-gradient(125deg,#101b35,#254987 66%,#087f91);box-shadow:0 14px 30px #172d5830;border:1px solid #ffffff22}
+.upcoming-card:after{content:"";position:absolute;z-index:-1;width:180px;height:180px;right:-65px;bottom:-105px;border:1px solid #ffffff45;border-radius:50%;box-shadow:0 0 0 22px #ffffff0b,0 0 0 48px #ffffff08}
+.upcoming-card .coming-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #ffffff45;border-radius:30px;background:#ffffff18;color:#fff;font-size:11px;font-weight:900;letter-spacing:1.1px}
+.upcoming-card .coming-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:#69f0c2;box-shadow:0 0 10px #69f0c2}
+.upcoming-card h3{font-size:23px;line-height:1.25;margin:15px 0 7px;color:#fff}
+.upcoming-card p{margin:0;color:#dbe7ff;line-height:1.6;font-size:14px}
+.upcoming-card .upcoming-types{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.upcoming-card .upcoming-types span{padding:7px 10px;border-radius:8px;background:#ffffff18;border:1px solid #ffffff30;font-size:11px;font-weight:800;letter-spacing:.35px}
+@media(max-width:650px){.home-actions{grid-template-columns:1fr;gap:14px}.home-action-card{min-height:205px;padding:23px}.upcoming-grid{grid-template-columns:1fr}.upcoming-card{min-height:175px;padding:21px}}
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
 </head>
@@ -130,6 +141,24 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <div class="home-action-card mock-action"><div class="home-action-icon">🎯</div><h3>50,000 Hard Mock Tests</h3><p>10 SSC परीक्षांसाठी प्रत्येकी 5,000 exam-pattern आधारित Hard Mock Test संच.</p><button class="primary" type="button" onclick="showPage(&quot;mock&quot;)">Start Mock Test</button></div>
 </div>
 <div class="home-action-card current-affairs-action"><div class="home-action-icon">🗞️</div><h3>Current Affairs 2026</h3><p>2026 मधील पडताळलेल्या चालू घडामोडींचे विषयानुसार फोल्डर, MCQ प्रश्न आणि उत्तरे व स्पष्टीकरण.</p><button class="primary" onclick="showPage('currentaffairs');renderCurrentAffairsFolders()">Open Current Affairs</button></div>
+<div class="upcoming-section">
+<h2>New Exams Coming Soon</h2>
+<p>लवकरच आणखी दोन परीक्षांसाठी PYQ सराव आणि Mock Tests उपलब्ध होतील.</p>
+<div class="upcoming-grid">
+<div class="upcoming-card">
+<span class="coming-badge">COMING SOON</span>
+<h3>🪖 NDA Exam</h3>
+<p>राष्ट्रीय संरक्षण अकादमी परीक्षेसाठी तयारीचा स्वतंत्र विभाग.</p>
+<div class="upcoming-types"><span>PYQ TESTS</span><span>MOCK TESTS</span></div>
+</div>
+<div class="upcoming-card">
+<span class="coming-badge">COMING SOON</span>
+<h3>🚔 Maharashtra Police Bharti</h3>
+<p>महाराष्ट्र पोलीस भरतीसाठी मागील प्रश्नांचा सराव आणि परीक्षापद्धतीनुसार टेस्ट.</p>
+<div class="upcoming-types"><span>PYQ TESTS</span><span>MOCK TESTS</span></div>
+</div>
+</div>
+</div>
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
 </section>
 <section id="pyq" class="page">
