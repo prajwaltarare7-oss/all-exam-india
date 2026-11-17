@@ -142,9 +142,10 @@ if(exam==="JEE Main") return officialSources.find(s=>s.name==="JEE Main");
 if(exam==="NEET UG") return officialSources.find(s=>s.name==="NEET UG");
 if(exam==="CTET") return officialSources.find(s=>s.name==="CTET");
 if(exam==="MAHA TET") return officialSources.find(s=>s.name==="MAHA TET");
-if(["UPPSC","BPSC","RPSC","MPPSC","HPSC","GPSC","TNPSC","KPSC","WBPSC","APPSC","TSPSC","OSSC","JKPSC"].includes(exam)) return {name:exam+" official commission",category:"State Public Service Commission",source:"https://upsc.gov.in/"};
-if(["Police Bharti"].includes(exam)) return {name:" संबंधित राज्य पोलीस भरती पोर्टल",category:"State Police Recruitment",source:"https://www.mahapolice.gov.in/"};
-if(["NDA","CDS","Agniveer"].includes(exam)) return {name:"Defence recruitment / examination information",category:"Defence examinations",source:"https://upsc.gov.in/"}; 
+if(["UPPSC","BPSC","RPSC","MPPSC","HPSC","GPSC","TNPSC","KPSC","WBPSC","APPSC","TSPSC","OSSC","JKPSC"].includes(exam)) return null;
+if(["Police Bharti"].includes(exam)) return {name:" महाराष्ट्र पोलीस भरती पोर्टल",category:"State Police Recruitment",source:"https://www.mahapolice.gov.in/"};
+if(["NDA","CDS"].includes(exam)) return {name:"UPSC NDA / CDS examination papers",category:"Defence examinations",source:"https://www.upsc.gov.in/examinations/previous-question-papers"};
+if(exam==="Agniveer") return {name:"Join Indian Army",category:"Defence recruitment",source:"https://joinindianarmy.nic.in/"}; 
 return null;
 }
 function renderPYQ(){
