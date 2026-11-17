@@ -58,25 +58,13 @@ footer{text-align:center;padding:25px;color:#667085}
 <div class="notice">सध्या अधिकृत वेबसाइटचे दुवे उपलब्ध आहेत. पडताळलेले PDF मिळाल्यावरच डाउनलोड जोडले जातील.</div>
 </section>
 <section id="mock" class="page">
-<h2>Mock Tests</h2>
-<div id="mockSetup" class="card">
-<p>तुमची परीक्षा निवडा:</p>
-<select id="mockExam" onchange="showPatternInfo()"></select>
-<div id="patternInfo" class="notice">परीक्षा निवडल्यानंतर तिचा उपलब्ध पॅटर्न येथे दिसेल.</div>
-<p>प्रश्नांची संख्या:</p>
-<select id="questionCount">
-<option value="5">5 Questions (Quick Practice)</option>
-<option value="10">10 Questions (Quick Practice)</option>
-</select>
-<button class="primary" onclick="startTest()">Start Practice</button>
-<p>सूचना: हे सध्या विषयानुसार सराव प्रश्न आहेत; अधिकृत PYQ किंवा पूर्ण लांबीची परीक्षा नाहीत. नवीन अधिकृत अधिसूचनेनुसार पॅटर्न बदलू शकतो.</p>
+<h2>Exam-wise Mock Tests</h2>
+<div class="card">
+<h3>Mock tests are being rebuilt</h3>
+<p>आधीचे सर्वसाधारण आणि सोपे सराव प्रश्न काढून टाकले आहेत.</p>
+<p>आता प्रत्येक परीक्षेसाठी स्वतंत्र प्रश्नसंच, अधिकृत परीक्षेच्या पॅटर्ननुसार प्रश्नसंख्या, वेळ, विभाग आणि negative marking पडताळल्याशिवाय Mock Test प्रकाशित होणार नाही.</p>
+<p>PYQ Papers आणि Mock Tests वेगळे ठेवले जातील. बनावट प्रश्नांना PYQ म्हणून दाखवले जाणार नाही.</p>
 </div>
-<div id="testArea" style="display:none">
-<div class="card"><span id="testTitle"></span><span id="timer">05:00</span></div>
-<div id="questions"></div>
-<button class="primary" onclick="submitTest()">Submit Test</button>
-</div>
-<div id="resultArea"></div>
 </section>
 </main>
 <footer>© 2026 ALL EXAM INDIA | Learn • Practice • Succeed</footer>
@@ -117,18 +105,6 @@ document.getElementById("patternInfo").innerHTML=p
 ? `<b>${p.name}</b><br>${p.sections}<br><b>कालावधी:</b> ${p.duration}<br><b>Marking:</b> ${p.marking}<br><a href="${p.source}" target="_blank" rel="noopener">अधिकृत अधिसूचना / स्रोत</a>`
 : `<b>${name}</b><br>या परीक्षेचा नवीनतम अधिकृत पॅटर्न अजून पडताळलेला नाही. त्यामुळे चुकीचे प्रश्नसंख्या/वेळ/negative marking दाखवले जाणार नाही. <a href="https://www.google.com/search?q=${encodeURIComponent(name+" official exam notification pattern")}" target="_blank" rel="noopener">अधिकृत पॅटर्न शोधा</a>`;
 }
-const practiceQuestions=[
-{q:"भारताची राजधानी कोणती?",o:["मुंबई","नवी दिल्ली","पुणे","चेन्नई"],a:1,ex:"भारताची राजधानी नवी दिल्ली आहे."},
-{q:"भारतीय संविधान कधी लागू झाले?",o:["15 ऑगस्ट 1947","26 जानेवारी 1950","2 ऑक्टोबर 1950","26 नोव्हेंबर 1949"],a:1,ex:"संविधान 26 जानेवारी 1950 रोजी लागू झाले."},
-{q:"महाराष्ट्र राज्याची स्थापना कधी झाली?",o:["1 मे 1960","1 मे 1956","15 ऑगस्ट 1947","26 जानेवारी 1950"],a:0,ex:"महाराष्ट्र राज्याची स्थापना 1 मे 1960 रोजी झाली."},
-{q:"भारताचा राष्ट्रीय प्राणी कोणता?",o:["सिंह","वाघ","हत्ती","बिबट्या"],a:1,ex:"भारताचा राष्ट्रीय प्राणी वाघ आहे."},
-{q:"सौरमालेतील सर्वात मोठा ग्रह कोणता?",o:["पृथ्वी","मंगळ","गुरू","शुक्र"],a:2,ex:"गुरू हा सर्वात मोठा ग्रह आहे."},
-{q:"पाण्याचे रासायनिक सूत्र काय आहे?",o:["CO2","O2","H2O","NaCl"],a:2,ex:"पाण्याचे सूत्र H2O आहे."},
-{q:"भारताचे पहिले राष्ट्रपती कोण होते?",o:["डॉ. राजेंद्र प्रसाद","डॉ. राधाकृष्णन","जवाहरलाल नेहरू","सरदार पटेल"],a:0,ex:"डॉ. राजेंद्र प्रसाद पहिले राष्ट्रपती होते."},
-{q:"महाराष्ट्राची राजधानी कोणती?",o:["नागपूर","नाशिक","मुंबई","पुणे"],a:2,ex:"महाराष्ट्राची राजधानी मुंबई आहे."},
-{q:"एका किलोमीटरमध्ये किती मीटर असतात?",o:["100","500","1000","10000"],a:2,ex:"एका किलोमीटरमध्ये 1000 मीटर असतात."},
-{q:"भारतीय संविधानाचे शिल्पकार कोण?",o:["महात्मा गांधी","डॉ. बाबासाहेब आंबेडकर","लोकमान्य टिळक","सुभाषचंद्र बोस"],a:1,ex:"डॉ. बाबासाहेब आंबेडकर यांना संविधानाचे शिल्पकार म्हटले जाते."}
-];
 function showPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
@@ -176,39 +152,6 @@ return `<div class="card"><h3>${name}</h3><p>${src.category}</p>
 <a href="${src.source}" target="_blank" rel="noopener">अधिकृत स्रोत उघडा</a></div>`;
 }).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
 }
-let questions=[],answers={},timeLeft=300,clock;
-function startTest(){
-const count=Number(document.getElementById("questionCount").value);
-questions=practiceQuestions.slice(0,count);answers={};timeLeft=300;
-document.getElementById("mockSetup").style.display="none";
-document.getElementById("resultArea").innerHTML="";
-document.getElementById("testArea").style.display="block";
-document.getElementById("testTitle").textContent=document.getElementById("mockExam").value+" • Practice Test";
-document.getElementById("questions").innerHTML=questions.map((q,i)=>`
-<div class="question"><h3>Q${i+1}. ${q.q}</h3>
-${q.o.map((v,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}" onchange="answers[${i}]=${j}">${v}</label>`).join("")}</div>`).join("");
-updateTimer();clearInterval(clock);
-clock=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=0)submitTest();},1000);
-}
-function updateTimer(){
-document.getElementById("timer").textContent=String(Math.floor(timeLeft/60)).padStart(2,"0")+":"+String(timeLeft%60).padStart(2,"0");
-}
-function submitTest(){
-clearInterval(clock);let score=0;
-const details=questions.map((q,i)=>{
-const correct=answers[i]===q.a;if(correct)score++;
-return `<div class="question"><h3>Q${i+1}. ${q.q}</h3>
-<p>तुमचे उत्तर: ${answers[i]===undefined?"उत्तर दिले नाही":q.o[answers[i]]}</p>
-<p>योग्य उत्तर: <b>${q.o[q.a]}</b></p><p>${q.ex}</p></div>`;
-}).join("");
-document.getElementById("testArea").style.display="none";
-document.getElementById("mockSetup").style.display="block";
-document.getElementById("resultArea").innerHTML=`<div class="card"><h2>Test Result</h2><h1>${score} / ${questions.length}</h1>
-<p>बरोबर: ${score} | चुकीचे किंवा न सोडवलेले: ${questions.length-score}</p>
-<button class="primary" onclick="startTest()">Try Again</button></div><h3>Answer Explanations</h3>${details}`;
-}
-exams.forEach(e=>document.getElementById("mockExam").innerHTML+=`<option>${e}</option>`);
-showPatternInfo();
 renderExams();
 </script>
 </body>
