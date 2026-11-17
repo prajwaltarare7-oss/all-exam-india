@@ -38,10 +38,10 @@ jobs:
           if re.search(pattern, source):
               source = re.sub(pattern, tag, source, count=1)
           else:
-              source = source.replace("<head>", "<head>\\n" + tag, 1)
+              source = source.replace("<head>", "<head>\n" + tag, 1)
           page.write_text(source, encoding="utf-8")
           pathlib.Path("version.json").write_text(
-              json.dumps({"build": build, "updatedAt": updated}, separators=(",", ":")) + "\\n",
+              json.dumps({"build": build, "updatedAt": updated}, separators=(",", ":")) + "\n",
               encoding="utf-8"
           )
           PY
