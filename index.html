@@ -509,45 +509,191 @@ gdGK.push(
 );
 
 function buildGDMock(no,lang,seed){
-const randomSeed=seed===undefined?no*7919+37:seed,questionOffset=randomSeed%Math.max(gdHG.length,gdGK.length),rnd=gdRand(randomSeed),pick=n=>Math.floor(rnd()*n),out=[];
+const randomSeed=seed===undefined?no*7919+37:seed;
+const rnd=gdRand(randomSeed),pick=n=>Math.floor(rnd()*n);
+const shuffle=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=pick(i+1);[x[i],x[j]]=[x[j],x[i]];}return x;};
+const out=[];
+const sectionNames={
+ "गणित / Mathematics":lang==="hi"?"गणित":"Mathematics",
+ "तर्कशक्ति / Reasoning":lang==="hi"?"तर्कशक्ति":"Reasoning",
+ "हिंदी व्याकरण / Hindi Grammar":lang==="hi"?"हिंदी व्याकरण":"English Language",
+ "सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS":lang==="hi"?"सामान्य ज्ञान एवं सामान्य विज्ञान":"General Knowledge & General Science"
+};
 function add(sec,qh,qe,oh,oe,ans,eh,ee){
  const opts=(lang==="hi"?oh:oe).slice(),correct=opts[ans];
  for(let j=opts.length-1;j>0;j--){const k=pick(j+1);[opts[j],opts[k]]=[opts[k],opts[j]];}
- const sectionNames={"गणित / Mathematics":lang==="hi"?"गणित":"Mathematics","तर्कशक्ति / Reasoning":lang==="hi"?"तर्कशक्ति":"Reasoning","हिंदी व्याकरण / Hindi Grammar":lang==="hi"?"हिंदी व्याकरण":"Hindi Grammar","सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS":lang==="hi"?"सामान्य ज्ञान एवं सामान्य विज्ञान":"General Knowledge & General Science"};out.push({section:sectionNames[sec]||sec,q:lang==="hi"?qh:qe,o:opts,a:opts.indexOf(correct),e:lang==="hi"?eh:ee});
+ out.push({section:sectionNames[sec]||sec,q:lang==="hi"?qh:qe,o:opts,a:opts.indexOf(correct),e:lang==="hi"?eh:ee});
 }
-function options(answer,steps=[1,2,3]){const vals=[answer];steps.forEach(v=>{[answer+v,answer-v].forEach(n=>{if(!vals.includes(n))vals.push(n);});});while(vals.length<4)vals.push(answer+vals.length*7+11);return vals.slice(0,4).map(String);}
-for(let i=0;i<20;i++){
- const kind=i%10;let qh,qe,ans,ex;
- if(kind===0){const cp=pick(5)+15,profit=pick(4)+10;const sp=1000+pick(20)*50;ans=sp*(100+profit)/100;qh="एक वस्तु का क्रय मूल्य ₹"+sp+" है। उसे "+profit+"% लाभ पर बेचा गया। विक्रय मूल्य कितना होगा?";qe="An item costs ₹"+sp+". It is sold at a profit of "+profit+"%. Find its selling price.";ex="विक्रय मूल्य = "+sp+" × "+(100+profit)+"/100 = ₹"+ans+".";}
- else if(kind===1){const x=pick(5)+20,p=pick(4)+10;const marked=1000+pick(15)*100;ans=marked*(100-p)/100;qh="एक वस्तु का अंकित मूल्य ₹"+marked+" है। "+p+"% छूट देने पर विक्रय मूल्य कितना होगा?";qe="An item is marked at ₹"+marked+". Find its price after a "+p+"% discount.";ex="विक्रय मूल्य = "+marked+" × "+(100-p)+"/100 = ₹"+ans+".";}
- else if(kind===2){const a=pick(5)+2,b=pick(5)+2,total=(a+b)*(pick(12)+5);ans=total/(a+b)*a;qh="₹"+total+" को A और B में "+a+":"+b+" के अनुपात में बाँटा गया। A का हिस्सा कितना है?";qe="₹"+total+" is divided between A and B in the ratio "+a+":"+b+". Find A's share.";ex="A का हिस्सा = "+total+" × "+a+"/"+(a+b)+" = ₹"+ans+".";}
- else if(kind===3){const x=pick(6)+4,y=pick(6)+4,z=pick(6)+4;const total=x+y+z;ans=total/3;qh="तीन संख्याओं का औसत "+ans+" है। दो संख्याएँ "+x+" और "+y+" हैं। तीसरी संख्या कितनी है?";qe="The average of three numbers is "+ans+". Two numbers are "+x+" and "+y+". Find the third.";ans=3*ans-x-y;ex="तीसरी संख्या = 3 × औसत − "+x+" − "+y+" = "+ans+".";}
- else if(kind===4){const a=pick(8)+4,b=pick(8)+4;const days=a*b/(a+b);ans=Number.isInteger(days)?days:Math.round(days*10)/10;qh="A एक काम "+a+" दिनों में और B वही काम "+b+" दिनों में करता है। दोनों मिलकर कितने दिनों में काम पूरा करेंगे?";qe="A can finish a job in "+a+" days and B in "+b+" days. How long will they take together?";ex="एक दिन का काम = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; समय = "+ans+" दिन.";}
- else if(kind===5){const speed=pick(6)+12,time=pick(5)+2;ans=speed*time;qh="एक ट्रेन "+speed+" किमी/घंटा की चाल से "+time+" घंटे चलती है। तय दूरी कितनी है?";qe="A train travels at "+speed+" km/h for "+time+" hours. Find the distance.";ex="दूरी = चाल × समय = "+speed+" × "+time+" = "+ans+" किमी.";}
- else if(kind===6){const p=pick(8)+5,r=pick(5)+5,t=2,principal=1000+pick(10)*500;ans=principal*(1+r/100)**t;ans=Math.round(ans*100)/100;qh="₹"+principal+" पर "+r+"% वार्षिक चक्रवृद्धि ब्याज की दर से 2 वर्ष बाद मिश्रधन कितना होगा?";qe="Find the amount on ₹"+principal+" at "+r+"% compound interest per annum for 2 years.";ex="मिश्रधन = P(1 + R/100)² = "+principal+" × (1+"+r+"/100)² = ₹"+ans+".";}
- else if(kind===7){const a=pick(20)+20,b=pick(15)+5,c=pick(12)+3;ans=a*b/c;ans=Number.isInteger(ans)?ans:Math.round(ans*100)/100;qh=a+" मजदूर एक काम "+c+" दिनों में करते हैं। समान क्षमता वाले "+b+" मजदूर वही काम कितने दिनों में करेंगे?";qe=a+" workers complete a job in "+c+" days. How many days will "+b+" equally efficient workers take?";ex="कुल कार्य = "+a+" × "+c+" = "+(a*c)+" मजदूर-दिन; समय = "+(a*c)+"/"+b+" = "+ans+" दिन.";}
- else if(kind===8){const n=pick(8)+3,m=pick(8)+3;ans=n*m;qh=n+" और "+m+" का लघुत्तम समापवर्त्य (LCM) ज्ञात करें।";qe="Find the LCM of "+n+" and "+m+".";let aa=n,bb=m;while(bb){const t=bb;bb=aa%bb;aa=t;}ans=n*m/aa;ex="LCM × HCF = दोनों संख्याओं का गुणनफल; HCF = "+aa+", इसलिए LCM = "+ans+".";}
- else {const n=pick(12)+4;ans=n*(n+1)/2;qh="किसी पंक्ति में "+n+" व्यक्तियों के बीच प्रत्येक व्यक्ति अन्य प्रत्येक से एक बार हाथ मिलाता है। कुल हाथ मिलाने कितने होंगे?";qe="Each of "+n+" people shakes hands once with every other person. How many handshakes occur?";ans=n*(n-1)/2;ex="कुल जोड़े = n(n−1)/2 = "+n+" × "+(n-1)+" ÷ 2 = "+ans+".";}
- const vals=options(ans,[2,3,5,7,10,12,15,20,25,30,40,50,100].map(v=>Math.max(1,v)));
- const labels=vals.slice(),ci=pick(4);[labels[ci],labels[0]]=[labels[0],labels[ci]];
- add("गणित / Mathematics",qh,qe,labels,labels,labels.indexOf(String(ans)),ex,ex);
+function numericOptions(answer){
+ const a=Math.round(Number(answer)),vals=[a];
+ [2,-2,3,-3,5,-5,10,-10,20,-20,1,-1,7,-7,12,-12].forEach(d=>{const v=a+d;if(v>=0&&!vals.includes(v))vals.push(v);});
+ let n=1;while(vals.length<4){const v=a+31*n++;if(!vals.includes(v))vals.push(v);}
+ return shuffle(vals.slice(0,4).map(String));
 }
-for(let i=0;i<20;i++){
- const kind=i%8,base=pick(15)+4,d=pick(6)+3;let seq,ans,why;
- if(kind===0){const d1=pick(5)+2,d2=d1+pick(4)+2;seq=[base,base+d1,base+d1+d2,base+d1+d2+d1];ans=seq[3]+d2;why="अंतर बारी-बारी से "+d1+" और "+d2+" है।";}
- else if(kind===1){const n=pick(5)+2;seq=[n,n*n,n*n*n,(n+1)**2];ans=(n+1)**3;why="क्रम में संख्या, उसका वर्ग, घन और अगली संख्या का वर्ग/घन का पैटर्न है; अगला पद "+ans+" है।";}
- else if(kind===2){const n=pick(8)+3;seq=[n,n*2+1,(n*2+1)*2+1,((n*2+1)*2+1)*2+1];ans=seq[3]*2+1;why="हर पद को 2 से गुणा करके 1 जोड़ा गया है।";}
- else if(kind===3){const n=pick(8)+2;seq=[n*n,n*n+3,(n+1)**2,(n+1)**2+5];ans=(n+2)**2;why="वर्गों के बीच क्रमशः विषम संख्याएँ जोड़ी गई हैं।";}
- else if(kind===4){const n=pick(6)+3;seq=[n,n+2,(n+2)*2,(n+2)*4];ans=(n+2)*8;why="बारी-बारी से +2 और ×2 का नियम है।";}
- else if(kind===5){const n=pick(5)+2;seq=[n,n*3,n*3+4,(n*3+4)*3];ans=seq[3]+4;why="बारी-बारी से ×3 और +4 किया गया है।";}
- else if(kind===6){const n=pick(10)+3;seq=[n,n+5,n+5+7,n+5+7+9];ans=n+5+7+9+11;why="लगातार विषम अंतर 5, 7, 9, अगला 11 है।";}
- else {const n=pick(8)+2;seq=[n,n*n,n*n-n,n*n-n+(n+1)**2];ans=n*n-n+(n+1)**2-(n+1);why="बारी-बारी से वर्ग बनता है और फिर उसी आधार संख्या को घटाया जाता है।";}
- const vals=options(ans,[1,2,3,4,5,6,7,8,9,10,12,15]),labels=vals.slice(),ci=pick(4);[labels[ci],labels[0]]=[labels[0],labels[ci]];
- add("तर्कशक्ति / Reasoning","कठिन संख्या श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the challenging number series: "+seq.join(", ")+", ?",labels,labels,labels.indexOf(String(ans)),why+" अगला पद "+ans+" है.",why+" The next term is "+ans+".");
+function addNum(sec,qh,qe,answer,eh,ee){
+ const opts=numericOptions(answer);
+ add(sec,qh,qe,opts,opts,opts.indexOf(String(Math.round(Number(answer)))),eh,ee);
 }
-for(let i=0;i<20;i++){const q=gdHG[(i+questionOffset)%gdHG.length];add("हिंदी व्याकरण / Hindi Grammar",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
-for(let i=0;i<20;i++){const q=gdGK[(i+questionOffset)%gdGK.length];add("सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
-return {label:"SSC GD Mock Test "+no,duration:60,questions:out};
+function addChoice(sec,qh,qe,correct,distractors,eh,ee){
+ let vals=[String(correct),...distractors.map(String)].filter((v,i,a)=>a.indexOf(v)===i);
+ let n=1;while(vals.length<4)vals.push("Option "+(n++));
+ vals=shuffle(vals.slice(0,4));
+ add(sec,qh,qe,vals,vals,vals.indexOf(String(correct)),eh,ee);
+}
+const M="गणित / Mathematics";
+const R="तर्कशक्ति / Reasoning";
+const H="हिंदी व्याकरण / Hindi Grammar";
+const G="सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS";
+
+/* 20 अलग-अलग गणितीय प्रकार — हर पेपर में सभी प्रकारों का मिश्रण */
+const mathTypes=shuffle(Array.from({length:20},(_,i)=>i));
+mathTypes.forEach(kind=>{
+ let a,b,c,ans,exh,exe;
+ if(kind===0){
+  const base=500+pick(20)*100,pct=10+pick(9)*5;ans=base*pct/100;
+  addNum(M,"₹"+base+" का "+pct+"% कितना होगा?","What is "+pct+"% of ₹"+base+"?",ans,"प्रतिशत = "+base+" × "+pct+"/100 = ₹"+ans+".","Percentage = "+base+" × "+pct+"/100 = ₹"+ans+".");
+ }else if(kind===1){
+  const mp=1000+pick(20)*100,d1=10+pick(4)*5,d2=5+pick(4)*5;ans=mp*(100-d1)*(100-d2)/10000;
+  addNum(M,"एक वस्तु का अंकित मूल्य ₹"+mp+" है। पहले "+d1+"% और फिर "+d2+"% छूट दी जाती है। अंतिम मूल्य कितना होगा?","An item is marked at ₹"+mp+". Successive discounts of "+d1+"% and "+d2+"% are given. Find the final price.",ans,"अंतिम मूल्य = "+mp+" × "+(100-d1)+"/100 × "+(100-d2)+"/100 = ₹"+ans+".","Final price = "+mp+" × "+(100-d1)+"/100 × "+(100-d2)+"/100 = ₹"+ans+".");
+ }else if(kind===2){
+  a=2+pick(8);b=2+pick(8);c=10+pick(30);ans=c*a;
+  addNum(M,"₹"+(c*(a+b))+" को A और B में "+a+":"+b+" के अनुपात में बाँटा गया। A का हिस्सा कितना है?","₹"+(c*(a+b))+" is divided between A and B in the ratio "+a+":"+b+". Find A's share.",ans,"A का हिस्सा = कुल राशि × "+a+"/"+(a+b)+" = ₹"+ans+".","A's share = total × "+a+"/"+(a+b)+" = ₹"+ans+".");
+ }else if(kind===3){
+  a=20+pick(50);ans=a+8;
+  addNum(M,"पाँच संख्याओं का औसत "+(a+4)+" है। चार संख्याएँ "+a+", "+(a+2)+", "+(a+4)+" और "+(a+6)+" हैं। पाँचवीं संख्या ज्ञात करें।","The average of five numbers is "+(a+4)+". Four numbers are "+a+", "+(a+2)+", "+(a+4)+" and "+(a+6)+". Find the fifth number.",ans,"कुल योग = 5 × "+(a+4)+" = "+(5*(a+4))+"; पाँचवीं संख्या = "+(5*(a+4))+" − "+(a+a+2+a+4+a+6)+" = "+ans+".","Total = 5 × "+(a+4)+" = "+(5*(a+4))+"; fifth number = total − sum of four known numbers = "+ans+".");
+ }else if(kind===4){
+  const cp=400+pick(30)*20,pct=5+pick(9)*5;ans=cp*(100-pct)/100;
+  addNum(M,"एक वस्तु ₹"+cp+" में खरीदी गई और "+pct+"% हानि पर बेची गई। विक्रय मूल्य कितना है?","An article is bought for ₹"+cp+" and sold at a loss of "+pct+"%. Find its selling price.",ans,"विक्रय मूल्य = क्रय मूल्य × (100 − हानि%)/100 = ₹"+ans+".","Selling price = cost price × (100 − loss%)/100 = ₹"+ans+".");
+ }else if(kind===5){
+  const p=1000+pick(20)*500,r=4+pick(5)*2,t=2+pick(3);ans=p*r*t/100;
+  addNum(M,"₹"+p+" पर "+r+"% वार्षिक दर से "+t+" वर्षों का साधारण ब्याज ज्ञात करें।","Find the simple interest on ₹"+p+" at "+r+"% per annum for "+t+" years.",ans,"साधारण ब्याज = P × R × T/100 = "+p+" × "+r+" × "+t+"/100 = ₹"+ans+".","Simple interest = P × R × T/100 = "+p+" × "+r+" × "+t+"/100 = ₹"+ans+".");
+ }else if(kind===6){
+  const pairs=[[6,12],[8,8],[10,15],[12,20],[9,18],[15,30],[12,24],[8,24]];
+  const pair=pairs[pick(pairs.length)];a=pair[0];b=pair[1];ans=a*b/(a+b);
+  addNum(M,"A किसी काम को "+a+" दिनों में और B उसी काम को "+b+" दिनों में पूरा करता है। दोनों मिलकर कितने दिनों में काम करेंगे?","A can complete a job in "+a+" days and B in "+b+" days. How many days will they take together?",ans,"एक दिन का काम = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; समय = "+ans+" दिन।","One day's work = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; time = "+ans+" days.");
+ }else if(kind===7){
+  const speeds=[36,45,54,60,72,90],times=[20,40,60];a=speeds[pick(speeds.length)];b=times[pick(times.length)];ans=a*b/60;
+  addNum(M,"एक वाहन "+a+" किमी/घंटा की चाल से "+b+" मिनट चलता है। तय दूरी कितनी है?","A vehicle travels at "+a+" km/h for "+b+" minutes. Find the distance travelled.",ans,"समय = "+b+"/60+" घंटे; दूरी = "+a+" × "+b+"/60 = "+ans+" किमी।","Time = "+b+"/60 hours; distance = speed × time = "+ans+" km.");
+ }else if(kind===8||kind===9){
+  const base=2+pick(9),m=2+pick(8),n=2+pick(8),x=base*m,y=base*n;
+  let u=x,v=y;while(v){const z=v;v=u%v;u=z;}
+  ans=kind===8?u:x*y/u;
+  addNum(M,"संख्या "+x+" और "+y+" का "+(kind===8?"महत्तम समापवर्तक (HCF)":"लघुत्तम समापवर्त्य (LCM)")+" ज्ञात करें。".replace("。","?"),"Find the "+(kind===8?"HCF":"LCM")+" of "+x+" and "+y+".",ans,kind===8?"यूक्लिड विधि से HCF = "+ans+".":"LCM × HCF = दोनों संख्याओं का गुणनफल; LCM = "+x+" × "+y+"/"+u+" = "+ans+".",kind===8?"Using the Euclidean algorithm, HCF = "+ans+".":"LCM × HCF = product of the two numbers; LCM = "+x+" × "+y+"/"+u+" = "+ans+".");
+ }else if(kind===10){
+  a=15+pick(25);b=5+pick(15);ans=2*(a+b);
+  addNum(M,"एक आयत की लंबाई "+a+" सेमी और चौड़ाई "+b+" सेमी है। उसका परिमाप ज्ञात करें।","A rectangle is "+a+" cm long and "+b+" cm wide. Find its perimeter.",ans,"परिमाप = 2 × (लंबाई + चौड़ाई) = 2 × ("+a+" + "+b+") = "+ans+" सेमी।","Perimeter = 2 × (length + width) = 2 × ("+a+" + "+b+") = "+ans+" cm.");
+ }else if(kind===11){
+  a=8+pick(15)*2;b=3+pick(12);ans=a*b/2;
+  addNum(M,"एक त्रिभुज का आधार "+a+" सेमी और ऊँचाई "+b+" सेमी है। क्षेत्रफल ज्ञात करें।","A triangle has base "+a+" cm and height "+b+" cm. Find its area.",ans,"क्षेत्रफल = 1/2 × आधार × ऊँचाई = 1/2 × "+a+" × "+b+" = "+ans+" वर्ग सेमी।","Area = 1/2 × base × height = 1/2 × "+a+" × "+b+" = "+ans+" cm².");
+ }else if(kind===12){
+  a=2+pick(7);b=3+pick(18);c=a*(5+pick(12))+b;ans=(c-b)/a;
+  addNum(M,"यदि "+a+"x + "+b+" = "+c+" है, तो x का मान ज्ञात करें।","If "+a+"x + "+b+" = "+c+", find x.",ans,""+a+"x = "+c+" − "+b+" = "+(c-b)+"; x = "+ans+".",""+a+"x = "+c+" − "+b+" = "+(c-b)+"; x = "+ans+".");
+ }else if(kind===13){
+  const den=[4,5,8,10,12][pick(5)],whole=den*(5+pick(20)),num=1+pick(den-1);ans=whole*num/den;
+  addNum(M,""+whole+" का "+num+"/"+den+" भाग कितना है?","Find "+num+"/"+den+" of "+whole+".",ans,""+whole+" × "+num+"/"+den+" = "+ans+".",""+whole+" × "+num+"/"+den+" = "+ans+".");
+ }else if(kind===14){
+  a=8+pick(12);b=5+pick(10);ans=a+b;
+  addNum(M,"रीना की आयु "+a+" वर्ष है। उसकी बहन उससे "+b+" वर्ष बड़ी है। दोनों की आयु का योग कितना है?","Reena is "+a+" years old. Her sister is "+b+" years older. What is the sum of their ages?",a+(a+b),"बहन की आयु = "+a+" + "+b+" = "+(a+b)+" वर्ष; कुल = "+a+" + "+(a+b)+" = "+(2*a+b)+" वर्ष।","Sister's age = "+a+" + "+b+" = "+(a+b)+"; total = "+a+" + "+(a+b)+" = "+(2*a+b)+".");
+ }else if(kind===15){
+  a=2+pick(7);b=2+pick(7);c=10+pick(20);ans=c*b;
+  addNum(M,"एक मिश्रण में दूध और पानी का अनुपात "+a+":"+b+" है। यदि मिश्रण "+(c*(a+b))+" लीटर है, तो पानी कितना है?","Milk and water are mixed in the ratio "+a+":"+b+". If the mixture is "+(c*(a+b))+" litres, how much water is present?",ans,"पानी = कुल मात्रा × "+b+"/"+(a+b)+" = "+ans+" लीटर।","Water = total quantity × "+b+"/"+(a+b)+" = "+ans+" litres.");
+ }else if(kind===16){
+  const speeds=[10,15,20,30,40],speed=speeds[pick(speeds.length)],length=600+pick(10)*120;ans=length/speed;
+  addNum(M,""+length+" मीटर लंबी ट्रेन "+speed+" मीटर/सेकंड की चाल से एक खंभे को पार करती है। समय कितना लगेगा?","A "+length+" m long train passes a pole at "+speed+" m/s. How long does it take?",ans,"समय = दूरी/चाल = "+length+"/"+speed+" = "+ans+" सेकंड।","Time = distance/speed = "+length+"/"+speed+" = "+ans+" seconds.");
+ }else if(kind===17){
+  const k=2+pick(8),p=3*k,q=4*k;ans=5*k;
+  addNum(M,"एक समकोण त्रिभुज की दो लम्ब भुजाएँ "+p+" सेमी और "+q+" सेमी हैं। कर्ण ज्ञात करें।","The perpendicular sides of a right triangle are "+p+" cm and "+q+" cm. Find the hypotenuse.",ans,"पाइथागोरस प्रमेय: कर्ण = √("+p+"² + "+q+"²) = "+ans+" सेमी।","Pythagoras: hypotenuse = √("+p+"² + "+q+"²) = "+ans+" cm.");
+ }else if(kind===18){
+  const speeds=[[30,60],[40,80],[45,90],[36,72],[24,48]],pair=speeds[pick(speeds.length)];a=pair[0];b=pair[1];ans=2*a*b/(a+b);
+  addNum(M,"एक व्यक्ति समान दूरी "+a+" किमी/घंटा और "+b+" किमी/घंटा की चाल से तय करता है। औसत चाल कितनी होगी?","A person covers equal distances at "+a+" km/h and "+b+" km/h. Find the average speed.",ans,"समान दूरी के लिए औसत चाल = 2uv/(u+v) = 2 × "+a+" × "+b+"/("+a+" + "+b+") = "+ans+" किमी/घंटा।","For equal distances, average speed = 2uv/(u+v) = "+ans+" km/h.");
+ }else{
+  a=20+pick(50);b=3+pick(8);c=2+pick(7);ans=(a*a+b)%c;
+  addNum(M,""+a+"² + "+b+" को "+c+" से भाग देने पर शेषफल कितना होगा?","What is the remainder when "+a+"² + "+b+" is divided by "+c+"?",ans,""+a+"² + "+b+" = "+(a*a+b)+"; "+(a*a+b)+" को "+c+" से भाग देने पर शेषफल "+ans+" है。".replace("。","."),""+a+"² + "+b+" = "+(a*a+b)+"; the remainder on division by "+c+" is "+ans+".");
+ }
+});
+
+/* 20 अलग-अलग reasoning प्रकार */
+const reasoningTypes=shuffle(Array.from({length:20},(_,i)=>i));
+const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const letterWord=(word,shift)=>word.split("").map(ch=>letters[(letters.indexOf(ch)+shift)%26]).join("");
+const analogies=[
+ ["Bird","Nest","Bee","Hive","Web","Cave","Stable"],
+ ["Book","Read","Food","Eat","Write","Cook","Sleep"],
+ ["Doctor","Hospital","Teacher","School","Court","Market","Factory"],
+ ["Puppy","Dog","Kitten","Cat","Calf","Goat","Cub"],
+ ["Thermometer","Temperature","Barometer","Pressure","Speed","Weight","Distance"]
+];
+reasoningTypes.forEach(kind=>{
+ let a,b,c,ans;
+ if(kind===0){
+  a=5+pick(30);b=2+pick(8);ans=a+4*b;
+  addNum(R,"संख्या श्रृंखला पूरी करें: "+a+", "+(a+b)+", "+(a+2*b)+", "+(a+3*b)+", ?","Complete the number series: "+a+", "+(a+b)+", "+(a+2*b)+", "+(a+3*b)+", ?",ans,"प्रत्येक पद में "+b+" जोड़ा गया है। अगला पद "+ans+" है。".replace("。","."),"The common difference is "+b+". The next term is "+ans+".");
+ }else if(kind===1){
+  const step=2+pick(4),startIndex=pick(8),seq=[0,1,2,3].map(i=>letters[startIndex+i*step]),next=letters[startIndex+4*step];
+  addChoice(R,"अक्षर श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the letter series: "+seq.join(", ")+", ?",next,[letters[(startIndex+4*step+1)%26],letters[(startIndex+4*step+2)%26],letters[(startIndex+4*step+3)%26]],"हर अक्षर के बाद "+step+" स्थान आगे बढ़ा है। अगला अक्षर "+next+" है।","Each letter moves forward by "+step+" places. The next letter is "+next+".");
+ }else if(kind===2){
+  const words=["MIND","COLD","RING","STAR","LAMP","FISH","ROAD"],word=words[pick(words.length)],shift=1+pick(4),coded=letterWord(word,shift),target=["GAME","NOTE","SHIP","FARM","WIND"][pick(5)],correct=letterWord(target,shift);
+  addChoice(R,"एक कूट भाषा में प्रत्येक अक्षर को "+shift+" स्थान आगे लिखते हैं। यदि "+target+" को "+correct+" लिखा जाता है, तो "+word+" का कूट क्या होगा?","In a code, each letter is shifted forward by "+shift+" places. If "+target+" is coded as "+correct+", how will "+word+" be coded?",coded,[letterWord(word,(shift+1)%26),letterWord(word,(shift+2)%26),letterWord(word,(shift+3)%26)],"हर अक्षर को वर्णमाला में "+shift+" स्थान आगे बढ़ाया गया है।","Each letter is moved "+shift+" places forward in the alphabet.");
+ }else if(kind===3){
+  const p=analogies[pick(analogies.length)];
+  addChoice(R,p[0]+" : "+p[1]+" :: "+p[2]+" : ?",""+p[0]+" : "+p[1]+" :: "+p[2]+" : ?",p[3],[p[4],p[5],p[6]],p[0]+" और "+p[1]+" के बीच वही संबंध "+p[2]+" और "+p[3]+" के बीच है।","The relationship between "+p[0]+" and "+p[1]+" is the same as between "+p[2]+" and "+p[3]+".");
+ }else if(kind===4){
+  const even=[12+2*pick(8),22+2*pick(8),32+2*pick(8)],odd=31+2*pick(10),opts=shuffle([...even,odd]);
+  addChoice(R,"निम्नलिखित में से भिन्न संख्या चुनें: "+opts.join(", "),"Choose the number that is different: "+opts.join(", "),String(odd),opts.filter(x=>x!==odd).map(String),"तीन संख्याएँ सम हैं, जबकि "+odd+" विषम है।","Three numbers are even; "+odd+" is odd.");
+ }else if(kind===5){
+  addChoice(R,"अनीता, भरत की बहन है। भरत, चारु का पिता है। अनीता का चारु से क्या संबंध है?","Anita is Bharat's sister. Bharat is Charu's father. How is Anita related to Charu?","पैतृक बुआ",["माता","बहन","दादी"],"पिता की बहन को पैतृक बुआ कहते हैं।","A father's sister is a paternal aunt.");
+ }else if(kind===6){
+  const east=5+pick(8),north=4+pick(7),west=1+pick(east-1),south=1+pick(north-1);
+  const dx=east-west,dy=north-south;
+  ans=dy>0?(dx>0?"उत्तर-पूर्व":dx<0?"उत्तर-पश्चिम":"उत्तर"):dy<0?(dx>0?"दक्षिण-पूर्व":dx<0?"दक्षिण-पश्चिम":"दक्षिण"):(dx>0?"पूर्व":"पश्चिम");
+  addChoice(R,"एक व्यक्ति "+east+" किमी पूर्व, फिर "+north+" किमी उत्तर, फिर "+west+" किमी पश्चिम और "+south+" किमी दक्षिण चलता है। वह प्रारंभिक स्थान से किस दिशा में है?","A person walks "+east+" km east, "+north+" km north, "+west+" km west and "+south+" km south. In which direction is the person from the starting point?",ans,["उत्तर","दक्षिण","पूर्व"].filter(x=>x!==ans).concat(["पश्चिम","उत्तर-पूर्व","दक्षिण-पश्चिम"].filter(x=>x!==ans)).slice(0,3),"पूर्व-पश्चिम और उत्तर-दक्षिण की शेष दूरियों की तुलना करने पर दिशा "+ans+" मिलती है।","Compare the remaining east-west and north-south distances; the final direction is "+ans+".");
+ }else if(kind===7){
+  a=5+pick(12);b=8+pick(12);ans=a+b-1;
+  addNum(R,"एक पंक्ति में मोहन बाएँ से "+a+"वें और दाएँ से "+b+"वें स्थान पर है। पंक्ति में कुल कितने व्यक्ति हैं?","Mohan is "+a+"th from the left and "+b+"th from the right in a row. How many people are there?",ans,"कुल व्यक्ति = बाएँ से स्थान + दाएँ से स्थान − 1 = "+a+" + "+b+" − 1 = "+ans+".","Total = left position + right position − 1 = "+a+" + "+b+" − 1 = "+ans+".");
+ }else if(kind===8){
+  const names=shuffle(["A","B","C","D","E"]),left=names[0],next=names[1],mid=names[2],prev=names[3],right=names[4];
+  addChoice(R,"पाँच व्यक्ति एक पंक्ति में बैठे हैं। "+left+" सबसे बाएँ है, "+next+" उसके ठीक दाएँ है, "+right+" सबसे दाएँ है और "+prev+" उसके ठीक बाएँ है। बीच में कौन बैठा है?","Five people sit in a row. "+left+" is at the extreme left, "+next+" is immediately to the right of "+left+", "+right+" is at the extreme right and "+prev+" is immediately to the left of "+right+". Who sits in the middle?",mid,[left,next,prev],"बाएँ से क्रम "+left+", "+next+", "+mid+", "+prev+", "+right+" बनता है।","The order from left to right is "+left+", "+next+", "+mid+", "+prev+", "+right+".");
+ }else if(kind===9){
+  addChoice(R,"कथन: सभी गुलाब फूल हैं। कोई भी फूल धातु नहीं है। निष्कर्ष: I. कोई गुलाब धातु नहीं है। II. कुछ फूल गुलाब हैं। सही विकल्प चुनें।","Statements: All roses are flowers. No flower is a metal. Conclusions: I. No rose is a metal. II. Some flowers are roses. Choose the correct option.","केवल निष्कर्ष I अनुसरण करता है",["केवल निष्कर्ष II अनुसरण करता है","दोनों निष्कर्ष अनुसरण करते हैं","कोई निष्कर्ष अनुसरण नहीं करता"],"पहला निष्कर्ष निश्चित रूप से निकलता है। दूसरे के लिए अस्तित्व की जानकारी नहीं दी गई है।","Conclusion I follows. The statements do not establish the existence required for conclusion II.");
+ }else if(kind===10){
+  a=6+pick(10);b=2+pick(8);c=2+pick(5);ans=a+b*c-4;
+  addNum(R,"यदि @ का अर्थ +, # का अर्थ × और $ का अर्थ − है, तो "+a+" @ "+b+" # "+c+" $ 4 का मान ज्ञात करें।","If @ means +, # means × and $ means −, evaluate "+a+" @ "+b+" # "+c+" $ 4.",ans,"चिह्न बदलने पर "+a+" + "+b+" × "+c+" − 4 = "+ans+"।","After replacing the symbols: "+a+" + "+b+" × "+c+" − 4 = "+ans+".");
+ }else if(kind===11){
+  const groups=[["CABLE","CABIN","CABINet","CABLES"],["PLANE","PLANT","PLATE","PLAZA"],["BRICK","BRIDE","BRIEF","BRING"],["SCALE","SCALP","SCALD","SCALY"]];
+  const words=groups[pick(groups.length)].map(x=>x.toUpperCase()),sorted=words.slice().sort(),correct=sorted[1];
+  addChoice(R,"इन शब्दों को शब्दकोश क्रम में रखने पर दूसरा शब्द कौन-सा होगा: "+words.join(", ")+"?","Which word comes second when these are arranged in dictionary order: "+words.join(", ")+"?",correct,words.filter(x=>x!==correct),"शब्दों को वर्णक्रम में रखने पर क्रम "+sorted.join(", ")+" होता है।","In alphabetical order, the sequence is "+sorted.join(", ")+".");
+ }else if(kind===12){
+  const word=["DOG","CAT","SUN","MAP","PEN"][pick(5)];ans=word.split("").reduce((s,ch)=>s+letters.indexOf(ch)+1,0);
+  addNum(R,"यदि A=1, B=2, ... Z=26 हो, तो '"+word+"' के अक्षरों के स्थानों का योग कितना होगा?","If A=1, B=2, ... Z=26, what is the sum of the letter positions in '"+word+"'?",ans,""+word+" = "+word.split("").map(ch=>letters.indexOf(ch)+1).join(" + ")+" = "+ans+".",""+word+" = "+word.split("").map(ch=>letters.indexOf(ch)+1).join(" + ")+" = "+ans+".");
+ }else if(kind===13){
+  const days=["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],eng=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],base=pick(7),n=8+pick(20),idx=(base+n)%7;
+  addChoice(R,"यदि आज "+days[base]+" है, तो "+n+" दिन बाद कौन-सा दिन होगा?","If today is "+eng[base]+", what day will it be after "+n+" days?",days[idx],[days[(idx+1)%7],days[(idx+2)%7],days[(idx+6)%7]],n+" को 7 से भाग देने पर शेष "+(n%7)+" है; "+(n%7)+" दिन आगे बढ़ें।","Divide "+n+" by 7; the remainder is "+(n%7), " days ahead.");
+ }else if(kind===14){
+  addChoice(R,"दर्पण को दाईं ओर रखने पर ↗ का दर्पण प्रतिबिंब कौन-सा होगा?","What is the mirror image of ↗ when the mirror is placed on its right?", "↖",["↘","↙","↗"],"ऊर्ध्वाधर दर्पण में बायाँ और दायाँ उलटते हैं।","A vertical mirror reverses left and right.");
+ }else if(kind===15){
+  addChoice(R,"अक्षर संबंध पूरा करें: BD : FH :: JL : ?","Complete the letter analogy: BD : FH :: JL : ?", "NP",["MO","OQ","PR"],"दोनों अक्षरों को 4 स्थान आगे बढ़ाया गया है।","Both letters are shifted forward by four places.");
+ }else if(kind===16){
+  a=3+pick(7);b=a*(a+1);c=5+pick(5);ans=c*(c+1);
+  addNum(R,"यदि  "+a+" : "+b+" :: "+c+" : ?  है, तो रिक्त स्थान भरें।","If "+a+" : "+b+" :: "+c+" : ?, find the missing number.",ans,"नियम n × (n+1) है; "+c+" × "+(c+1)+" = "+ans+".","The rule is n × (n+1); "+c+" × "+(c+1)+" = "+ans+".");
+ }else if(kind===17){
+  addChoice(R,"निम्नलिखित में से भिन्न शब्द चुनें: तांबा, लोहा, चाँदी, प्लास्टिक।","Choose the odd word: Copper, Iron, Silver, Plastic.","प्लास्टिक",["तांबा","लोहा","चाँदी"],"तीन धातुएँ हैं; प्लास्टिक धातु नहीं है।","Three are metals; plastic is not a metal.");
+ }else if(kind===18){
+  addChoice(R,"P, Q से लंबा है। R, Q से छोटा है। S, P से लंबा है। सबसे लंबा कौन है?","P is taller than Q. R is shorter than Q. S is taller than P. Who is the tallest?","S",["P","Q","R"],"क्रम S > P > Q > R है।","The order is S > P > Q > R.");
+ }else{
+  addChoice(R,"प्रतीक श्रृंखला पूरी करें: ▲, ●, ■, ▲, ●, ?","Complete the symbol series: ▲, ●, ■, ▲, ●, ?", "■",["▲","●","◆"],"तीन प्रतीकों का क्रम बार-बार दोहराया जा रहा है।","The three-symbol pattern repeats.");
+ }
+});
+
+/* भाषा और सामान्य ज्ञान के प्रश्न हर पेपर में अलग क्रम और अलग चयन से लिए जाते हैं */
+if(lang==="hi"){
+ shuffle(gdHG,rnd).slice(0,20).forEach(q=>add(H,q[0],q[1],q[2],q[3],q[4],q[5],q[6]));
+}else{
+ shuffle(mockEnglishPool((randomSeed+991)>>>0),rnd).slice(0,20).forEach(q=>add(H,q.q,q.q,q.o,q.o,q.a,q.e,q.e));
+}
+shuffle(gdGK,rnd).slice(0,20).forEach(q=>add(G,q[0],q[1],q[2],q[3],q[4],q[5],q[6]));
+const rank=q=>/reasoning|तर्कशक्ति/i.test(q.section||"")?0:/general knowledge|सामान्य ज्ञान/i.test(q.section||"")?1:/mathematics|गणित/i.test(q.section||"")?2:3;
+out.sort((a,b)=>rank(a)-rank(b));
+return {label:"SSC GD Mock Test "+no,duration:60,questions:out,maxMarks:160,correctMarks:2,negativeMarks:0.25};
 }
 function buildNextStudentGDMock(lang){
 const student=getStudent(),bucket=studentTestBucket(student,"SSC GD"),used=readUsedStudentTests(bucket),base=used.length+1;
