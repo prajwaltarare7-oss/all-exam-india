@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SSC EXAM.IN</title>
+<title>SSC EXAM.IN | Free Tests & Current Affairs 2026</title>
+<meta name="description" content="ALL EXAM INDIA: Free available exam practice, PYQ-style questions, mock tests, answer explanations and 2026 current affairs for competitive exam preparation.">
 <style>
 :root{--navy:#101b35;--blue:#315ee8;--cyan:#25b8c8;--ink:#17233d;--muted:#68748b;--paper:#f5f7fc;--line:#e4e9f2}
 *{box-sizing:border-box}
@@ -110,7 +111,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <body>
 <header>
 <h1>SSC EXAM.IN</h1>
-<p>SSC Exams • PYQ Papers • Mock Tests • Study Notes</p>
+<p>Free Available Tests • PYQ Practice • Mock Tests • Solutions • Current Affairs 2026</p>
 </header>
 <nav>
 
@@ -122,12 +123,13 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <section id="home" class="page active">
 <div class="hero">
 <h2>Welcome to SSC EXAM.IN</h2>
-<p>SSC परीक्षांची तयारी करा. मागील वर्षांचे प्रश्न (PYQ) आणि Mock Test एकाच ठिकाणी.</p>
+<p>सर्व उपलब्ध टेस्ट मोफत: PYQ सराव, Mock Tests आणि उत्तरांसह स्पष्टीकरण. Current Affairs 2026 चा स्वतंत्र विभागही येथे आहे.</p>
 </div>
 <div class="home-actions">
 <div class="home-action-card pyq-action"><div class="home-action-icon">📚</div><h3>PYQ Test</h3><p>मागील वर्षांच्या प्रश्नपत्रिका आणि प्रश्नांचा सराव करा.</p><button class="primary" onclick="showPage('pyq')">Start PYQ Test</button></div>
 <div class="home-action-card mock-action"><div class="home-action-icon">🎯</div><h3>5000 Mock Tests</h3><p>SSC GD साठी 5000 Mock Test संचांमधून सराव करा. प्रत्येक टेस्टमध्ये 80 प्रश्न आणि 60 मिनिटे.</p><button class="primary" type="button" onclick="document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('mock').classList.add('active');window.scrollTo(0,0);">Start Mock Test</button></div>
 </div>
+<div class="home-action-card current-affairs-action"><div class="home-action-icon">🗞️</div><h3>Current Affairs 2026</h3><p>2026 मधील पडताळलेल्या चालू घडामोडींचे विषयानुसार फोल्डर, MCQ प्रश्न आणि उत्तरे व स्पष्टीकरण.</p><button class="primary" onclick="showPage('currentaffairs');renderCurrentAffairsFolders()">Open Current Affairs</button></div>
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
 </section>
 <section id="pyq" class="page">
@@ -137,6 +139,13 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <div class="card"><h3>पेपरची भाषा निवडा / Choose Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="परीक्षा शोधा..." oninput="renderPYQ()">
 <div id="pyqList"></div>
 
+</section>
+<section id="currentaffairs" class="page">
+<h2>Current Affairs 2026</h2>
+<p>2026 मधील महत्त्वाच्या चालू घडामोडींवर आधारित मोफत MCQ सराव. विषयाचे फोल्डर उघडा आणि प्रत्येक प्रश्नाचे उत्तर व स्पष्टीकरण पाहा.</p>
+<div class="notice"><b>टीप:</b> हा 17 नोव्हेंबर 2026 पर्यंतच्या निवडक, अधिकृत स्रोतांवर पडताळलेल्या घटनांचा अभ्याससंच आहे. वर्षातील प्रत्येक घटना किंवा प्रत्येक संभाव्य प्रश्न यात समाविष्ट असल्याचा दावा नाही; नवीन प्रश्न नियमितपणे जोडता येतील.</div>
+<div id="caFolders" class="grid"></div>
+<div id="caContent"></div>
 </section>
 <section id="settings" class="page">
 <h2>Settings</h2>
@@ -160,6 +169,33 @@ const exams=[
 ];
 const officialSources=[
 {name:"SSC",category:"Staff Selection Commission",source:"https://ssc.gov.in/"}
+];
+
+const currentAffairs2026=[
+{id:"economy",name:"अर्थव्यवस्था व केंद्रीय अर्थसंकल्प",icon:"💰",month:"फेब्रुवारी 2026",source:"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2221455&lang=3&reg=3",questions:[
+{q:"केंद्रीय अर्थसंकल्प 2026-27 संसदेत कोणी सादर केला?",o:["निर्मला सीतारामन","पीयूष गोयल","अमित शाह","एस. जयशंकर"],a:0,e:"1 फेब्रुवारी 2026 रोजी केंद्रीय अर्थमंत्री निर्मला सीतारामन यांनी अर्थसंकल्प 2026-27 सादर केला."},
+{q:"अर्थसंकल्प 2026-27 मध्ये वित्तीय तूट GDP च्या किती टक्के अंदाजित आहे?",o:["3.5%","4.3%","4.8%","5.1%"],a:1,e:"अर्थसंकल्पीय अंदाजानुसार 2026-27 मधील वित्तीय तूट GDP च्या 4.3% आहे."},
+{q:"केंद्रीय अर्थसंकल्प 2026-27 मधील एकूण खर्च किती अंदाजित आहे?",o:["₹43.5 लाख कोटी","₹48.5 लाख कोटी","₹53.5 लाख कोटी","₹58.5 लाख कोटी"],a:2,e:"PIB च्या अर्थसंकल्प ठळक मुद्द्यांनुसार एकूण खर्च ₹53.5 लाख कोटी अंदाजित आहे."},
+{q:"PIB नुसार कर्तव्य भवन येथे तयार झालेला पहिला अर्थसंकल्प कोणता?",o:["2024-25","2025-26","2026-27","2027-28"],a:2,e:"केंद्रीय अर्थसंकल्प 2026-27 हा कर्तव्य भवन येथे तयार झालेला पहिला अर्थसंकल्प असल्याचे PIB ने नमूद केले."}
+]},
+{id:"science",name:"विज्ञान, तंत्रज्ञान व अंतराळ",icon:"🚀",month:"जानेवारी–ऑक्टोबर 2026",source:"https://www.isro.gov.in/LaunchMissions.html",questions:[
+{q:"12 जानेवारी 2026 रोजी PSLV-C62 मोहिमेत कोणता उपग्रह पेलोड होता?",o:["EOS-05","NVS-03","EOS-N1","CMS-03"],a:2,e:"ISRO च्या Launch Missions नोंदीनुसार PSLV-C62 / EOS-N1 मोहीम 12 जानेवारी 2026 रोजी होती."},
+{q:"4 सप्टेंबर 2026 रोजी कोणत्या प्रक्षेपकाने EOS-05 उपग्रह नेला?",o:["PSLV-C62","GSLV-F17","GSLV-F18","LVM3-M6"],a:1,e:"ISRO च्या नोंदीनुसार GSLV-F17 / EOS-05 मोहीम 4 सप्टेंबर 2026 रोजी झाली."},
+{q:"30 ऑक्टोबर 2026 रोजी GSLV-F18 मोहिमेचा पेलोड कोणता होता?",o:["NVS-03","EOS-N1","EOS-05","NVS-02"],a:0,e:"ISRO च्या अधिकृत Launch Missions यादीत GSLV-F18 / NVS-03 मिशनची तारीख 30 ऑक्टोबर 2026 दिली आहे."},
+{q:"ऑगस्ट 2026 मधील PIB माहितीनुसार, Vyommitra सह पहिले uncrewed Gaganyaan प्रायोगिक मिशन कोणत्या कालावधीत लक्ष्यित होते?",o:["2026 चा पहिला तिमाही","2026 चा दुसरा तिमाही","2026 चा तिसरा तिमाही","2026 चा चौथा तिमाही"],a:3,e:"6 ऑगस्ट 2026 च्या PIB निवेदनानुसार Vyommitra सह पहिले uncrewed Gaganyaan मिशन 2026 च्या चौथ्या तिमाहीत लक्ष्यित होते. हे लक्ष्यित वेळापत्रक आहे; पूर्ण झाल्याचा दावा नाही."}
+]},
+{id:"sports",name:"क्रीडा व स्पर्धा",icon:"🏅",month:"जुलै–ऑगस्ट 2026",source:"https://olympic.ind.in/cwg-2026/",questions:[
+{q:"2026 Commonwealth Games कोणत्या शहरात आयोजित करण्यात आले?",o:["बर्मिंगहॅम","ग्लासगो","व्हिक्टोरिया","दिल्ली"],a:1,e:"Indian Olympic Association च्या अधिकृत पानानुसार 2026 Commonwealth Games ग्लासगो, स्कॉटलंड येथे 23 जुलै ते 2 ऑगस्टदरम्यान झाले."},
+{q:"Glasgow 2026 Commonwealth Games मध्ये भारताने पदकतालिकेत कोणते स्थान मिळवले?",o:["दुसरे","तिसरे","चौथे","पाचवे"],a:2,e:"Indian Olympic Association च्या 17 नोव्हेंबर 2026 रोजी अद्ययावत पानावर भारत चौथ्या स्थानावर दाखवला आहे."},
+{q:"Glasgow 2026 मध्ये भारताने एकूण किती पदके जिंकली?",o:["29","35","39","42"],a:2,e:"अधिकृत IOA पदकतालिकेनुसार भारताची एकूण पदके 39 होती: 13 सुवर्ण, 17 रौप्य आणि 9 कांस्य."},
+{q:"Glasgow 2026 मध्ये महिलांच्या 48 किलो वेटलिफ्टिंगमध्ये भारतासाठी सुवर्णपदक कोणी जिंकले?",o:["बिंद्याराणी देवी","मीराबाई चानू","ज्ञानेश्वरी यादव","शर्मिला ढणकर"],a:1,e:"IOA च्या पदक विजेत्यांच्या यादीत मीराबाई चानू यांनी महिलांच्या 48 किलो वेटलिफ्टिंगमध्ये सुवर्णपदक जिंकल्याची नोंद आहे."}
+]},
+{id:"governance",name:"शासन, कायदे व महत्त्वाच्या घडामोडी",icon:"🏛️",month:"सप्टेंबर 2026",source:"https://www.mha.gov.in/files/achievements_documents/MMASEP_29102026.pdf",questions:[
+{q:"गुजरात Uniform Civil Code Bill, 2026 ला राष्ट्रपतींची संमती कोणत्या दिवशी मिळाली?",o:["7 सप्टेंबर 2026","17 सप्टेंबर 2026","27 सप्टेंबर 2026","29 सप्टेंबर 2026"],a:1,e:"गृह मंत्रालयाच्या सप्टेंबर 2026 च्या अहवालानुसार गुजरात UCC Bill, 2026 ला 17 सप्टेंबर रोजी संमती मिळाली."},
+{q:"Assam Uniform Civil Code, 2026 ला राष्ट्रपतींची संमती कोणत्या दिवशी मिळाली?",o:["7 सप्टेंबर 2026","17 सप्टेंबर 2026","25 सप्टेंबर 2026","29 सप्टेंबर 2026"],a:3,e:"गृह मंत्रालयाच्या अहवालानुसार Assam UCC, 2026 ला 29 सप्टेंबर 2026 रोजी संमती मिळाली."},
+{q:"7 सप्टेंबर 2026 रोजी 28 वी पश्चिम विभागीय परिषद बैठक कुठे झाली?",o:["मुंबई","पणजी","पुणे","अहमदाबाद"],a:1,e:"गृह मंत्रालयाच्या सप्टेंबर 2026 अहवालात 28 वी Western Zonal Council बैठक पणजी, गोवा येथे झाल्याची नोंद आहे."},
+{q:"गृह मंत्रालयाने सप्टेंबर 2026 मध्ये व्हिसा अर्ज फॉर्ममधील फील्ड्स अंदाजे किती टक्क्यांनी कमी केल्याचे नमूद केले?",o:["30%","50%","70%","90%"],a:2,e:"गृह मंत्रालयाच्या अहवालानुसार 22 व्हिसा श्रेणी/उपश्रेणींच्या अर्जांमधील फील्ड्स अंदाजे 70% ने कमी करण्यात आली."}
+]}
 ];
 
 const practiceBanks={
@@ -435,6 +471,19 @@ if(name==="SSC GD")return '<div class="card"><h3>SSC GD — PYQ-style Practice D
 return '<div class="card"><h3>'+escapeHTML(name)+'</h3><p>या परीक्षेचा पडताळलेला PYQ प्रश्नसंच अजून जोडलेला नाही.</p></div>';
 }).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
 }
+
+function renderCurrentAffairsFolders(){
+const host=document.getElementById("caFolders"),content=document.getElementById("caContent");if(!host)return;
+if(content)content.innerHTML="";
+host.innerHTML=currentAffairs2026.map(folder=>'<div class="card"><div style="font-size:30px">'+folder.icon+'</div><h3>'+escapeHTML(folder.name)+'</h3><p>'+folder.questions.length+' प्रश्न • '+escapeHTML(folder.month)+'</p><button class="primary" onclick="openCurrentAffairsFolder(\''+folder.id+'\')">Folder उघडा</button></div>').join("");
+}
+function openCurrentAffairsFolder(id){
+const folder=currentAffairs2026.find(x=>x.id===id),host=document.getElementById("caContent");if(!folder||!host)return;
+document.getElementById("caFolders").style.display="none";
+host.innerHTML='<div class="card"><button onclick="renderCurrentAffairsFolders()" class="primary">← सर्व फोल्डर</button><h3 style="margin-top:16px">'+folder.icon+' '+escapeHTML(folder.name)+'</h3><p>'+escapeHTML(folder.month)+' • '+folder.questions.length+' MCQ</p><a href="'+folder.source+'" target="_blank" rel="noopener">अधिकृत स्रोत पाहा</a></div>'+folder.questions.map((q,i)=>'<div class="card"><b>प्रश्न '+(i+1)+'. '+escapeHTML(q.q)+'</b>'+q.o.map((o,j)=>'<p style="margin:8px 0;color:var(--ink)">'+String.fromCharCode(65+j)+'. '+escapeHTML(o)+'</p>').join("")+'<button class="primary" onclick="toggleCurrentAffairsSolution(\''+id+'-'+i+'\')">उत्तर व स्पष्टीकरण पाहा</button><div id="ca-solution-'+id+'-'+i+'" class="notice" style="display:none"><b>योग्य उत्तर: '+escapeHTML(q.o[q.a])+'</b><p>'+escapeHTML(q.e)+'</p><a href="'+folder.source+'" target="_blank" rel="noopener">स्रोत तपासा</a></div></div>').join("");
+window.scrollTo(0,0);
+}
+function toggleCurrentAffairsSolution(id){const el=document.getElementById("ca-solution-"+id);if(el)el.style.display=el.style.display==="none"?"block":"none";}
 
 function getStudent(){try{return JSON.parse(localStorage.getItem("aei-student")||"null")}catch(e){return null}}
 function openRegistration(){document.getElementById("registerModal").style.display="flex";document.getElementById("regName").focus()}
