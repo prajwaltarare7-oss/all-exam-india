@@ -149,6 +149,7 @@ const officialSources=[
 {name:"MAHA TET",category:"Teaching",source:"https://mahatet.in/"}
 ];
 const examPatterns={
+"NDA":{status:"verified",name:"NDA & Naval Academy written examination",sections:"Mathematics: 120 प्रश्न, 300 गुण; General Ability Test: English 50 प्रश्न (200 गुण) + General Knowledge 100 प्रश्न (400 गुण); लेखी परीक्षा एकूण 900 गुण",duration:"दोन्ही पेपर प्रत्येकी 2 तास 30 मिनिटे",marking:"चुकीच्या उत्तरासाठी त्या प्रश्नाच्या गुणांपैकी 1/3 गुण वजा; रिकाम्या उत्तराला दंड नाही",source:"https://www.upsc.gov.in/examinations/National%20Defence%20Academy%20and%20Naval%20Academy%20Examination%20%28II%29%2C%202026"},
 "SSC CGL":{status:"verified",name:"SSC CGL Tier-I (2026 notice)",sections:"Reasoning 25, General Awareness 25, Quantitative Aptitude 25, English 25",duration:"60 मिनिटे; प्रत्येक विभागासाठी sectional timer",marking:"प्रत्येक चुकीच्या उत्तरासाठी 0.50 गुण वजा",source:"https://ssc.gov.in/"},
 "NEET UG":{status:"verified",name:"NEET UG 2026",sections:"Physics 45, Chemistry 45, Biology 90; एकूण 180 अनिवार्य प्रश्न",duration:"180 मिनिटे",marking:"+4 बरोबर, −1 चुकीचे, 0 न सोडवलेले",source:"https://neet.nta.nic.in/"},
 "JEE Main":{status:"verified",name:"JEE Main Paper 1 (2027 information)",sections:"Physics 25, Chemistry 25, Mathematics 25; एकूण 75 प्रश्न",duration:"3 तास",marking:"+4 बरोबर, −1 चुकीचे, 0 न सोडवलेले",source:"https://jeemain.nta.nic.in/"},
@@ -201,6 +202,7 @@ html+="<div class=\"notice\">फक्त उपलब्ध आणि वाप
 box.innerHTML=html;
 }
 function getOfficialSourceForExam(exam){
+if(exam==="NDA") return {name:"UPSC NDA & Naval Academy previous question papers",category:"Defence examination",source:"https://www.upsc.gov.in/examinations/previous-question-papers"};
 if(exam.startsWith("SSC")) return officialSources.find(s=>s.name==="SSC");
 if(exam.startsWith("Railway")) return officialSources.find(s=>s.name==="Railway RRB");
 if(exam.startsWith("IBPS")) return officialSources.find(s=>s.name==="IBPS");
