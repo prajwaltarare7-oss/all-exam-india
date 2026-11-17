@@ -82,7 +82,7 @@ footer{text-align:center;padding:25px;color:#667085}
 <script>
 const exams=[
 "MPSC Rajyaseva","MPSC Group B","MPSC Group C","UPSC Civil Services",
-"SSC CGL","SSC CHSL","SSC MTS","Railway RRB NTPC","Railway Group D",
+"SSC CGL","SSC CHSL","SSC MTS","SSC GD","Railway RRB NTPC","Railway Group D","Railway RRB ALP","Railway RRB Technician",
 "IBPS PO","IBPS Clerk","SBI PO","SBI Clerk","Police Bharti",
 "NDA","CDS","Agniveer","CTET","MAHA TET","NEET UG","JEE Main",
 "UPPSC","BPSC","RPSC","MPPSC","HPSC","GPSC","TNPSC","KPSC",
@@ -131,12 +131,32 @@ function selectExam(name){
 document.getElementById("mockExam").value=name;
 showPage("mock");
 }
+function getOfficialSourceForExam(exam){
+if(exam.startsWith("MPSC")) return officialSources.find(s=>s.name==="MPSC");
+if(exam.startsWith("UPSC")) return officialSources.find(s=>s.name==="UPSC");
+if(exam.startsWith("SSC")) return officialSources.find(s=>s.name==="SSC");
+if(exam.startsWith("Railway")) return officialSources.find(s=>s.name==="Railway RRB");
+if(exam.startsWith("IBPS")) return officialSources.find(s=>s.name==="IBPS");
+if(exam.startsWith("SBI")) return officialSources.find(s=>s.name==="SBI");
+if(exam==="JEE Main") return officialSources.find(s=>s.name==="JEE Main");
+if(exam==="NEET UG") return officialSources.find(s=>s.name==="NEET UG");
+if(exam==="CTET") return officialSources.find(s=>s.name==="CTET");
+if(exam==="MAHA TET") return officialSources.find(s=>s.name==="MAHA TET");
+if(["UPPSC","BPSC","RPSC","MPPSC","HPSC","GPSC","TNPSC","KPSC","WBPSC","APPSC","TSPSC","OSSC","JKPSC"].includes(exam)) return {name:exam+" official commission",category:"State Public Service Commission",source:"https://upsc.gov.in/"};
+if(["Police Bharti"].includes(exam)) return {name:" संबंधित राज्य पोलीस भरती पोर्टल",category:"State Police Recruitment",source:"https://www.mahapolice.gov.in/"};
+if(["NDA","CDS","Agniveer"].includes(exam)) return {name:"Defence recruitment / examination information",category:"Defence examinations",source:"https://upsc.gov.in/"}; 
+return null;
+}
 function renderPYQ(){
 const q=(document.getElementById("pyqSearch").value||"").toLowerCase();
-const filtered=officialSources.filter(p=>(p.name+" "+p.category).toLowerCase().includes(q));
-document.getElementById("pyqList").innerHTML=filtered.map(p=>`
-<div class="card"><h3>${p.name}</h3><p>${p.category}</p>
-<a href="${p.source}" target="_blank" rel="noopener">अधिकृत वेबसाइट उघडा</a></div>`).join("")||"<p class='notice'>स्रोत उपलब्ध नाही.</p>";
+const filtered=exams.filter(name=>name.toLowerCase().includes(q));
+document.getElementById("pyqList").innerHTML=filtered.map(name=>{
+const src=getOfficialSourceForExam(name);
+if(!src) return `<div class="card"><h3>${name}</h3><p>अधिकृत प्रश्नपत्रिका स्रोत अजून पडताळलेला नाही.</p></div>`;
+return `<div class="card"><h3>${name}</h3><p>${src.category}</p>
+<p class="notice">हा अधिकृत पोर्टलचा दुवा आहे; येथे थेट PDF उपलब्ध असल्याची हमी नाही. PDF पडताळल्यानंतरच ती PYQ म्हणून दाखवली जाईल.</p>
+<a href="${src.source}" target="_blank" rel="noopener">अधिकृत स्रोत उघडा</a></div>`;
+}).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
 }
 let questions=[],answers={},timeLeft=300,clock;
 function startTest(){
