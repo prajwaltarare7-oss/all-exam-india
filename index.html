@@ -158,7 +158,8 @@ document.getElementById("examDescription").innerText=exam[2]+" — "+exam[1];
 }
 
 
-function openResource(type){
+
+async function openResource(type){
 
 document.getElementById("homePage").style.display="none";
 document.getElementById("examPage").style.display="none";
@@ -167,23 +168,42 @@ document.getElementById("resourceTitle").innerText=type;
 
 let content=document.getElementById("resourceContent");
 
-if(selectedExam==="UPSC" && type==="Previous Year Papers"){
+if(type==="Previous Year Papers"){
 
+content.innerHTML="<p>Loading question papers...</p>";
+
+try{
+let response=await fetch("papers/library.json");
+let data=await response.json();
+
+let papers=data.papers.filter(p=>
+!selectedExam || p.exam===selectedExam
+);
+
+if(papers.length===0){
 content.innerHTML=`
-<div class="resource">
-<h3>UPSC Previous Year Question Papers</h3>
-<p>Official UPSC question papers. Select the year and exam from the official website.</p>
-<a href="https://upsc.gov.in/examinations/previous-question-papers" target="_blank">
-<button>Open Official UPSC Papers</button>
-</a>
-</div>
-
 <div class="notice">
-Only official UPSC papers are linked here. Choose the required year and PDF on the official website.
-</div>
-`;
-
+अजून कोणतेही पडताळलेले PDF पेपर अपलोड केलेले नाहीत.
+खरे पेपर जोडल्यावर ते येथे दिसतील.
+</div>`;
 return;
+}
+
+content.innerHTML=papers.map((p,i)=>`
+<div class="resource">
+<h3>${p.exam} - ${p.year}</h3>
+<p>${p.title} ${p.stage || ""}</p>
+<button onclick="showPaper(${i})">View PDF</button>
+</div>
+`).join("");
+
+window.currentPapers=papers;
+return;
+
+}catch(error){
+content.innerHTML="<div class='notice'>PDF Library लोड झाली नाही. पुन्हा प्रयत्न करा.</div>";
+return;
+}
 }
 
 content.innerHTML=`
@@ -191,17 +211,29 @@ content.innerHTML=`
 <h3>${selectedExam || "All Exams"}</h3>
 <p>Section: ${type}</p>
 <div class="notice">
-Verified official resources for this section have not been added yet.
-No invented questions, answers, syllabus or exam pattern are displayed.
+Verified official resources have not been added yet.
 </div>
-</div>
-
-<div class="resource">
-<h3>Official information</h3>
-<p>Official notifications and documents will be linked here after verification from the relevant examination authority.</p>
-</div>
-`;
+</div>`;
 }
+
+function showPaper(index){
+let p=window.currentPapers[index];
+let content=document.getElementById("resourceContent");
+
+content.innerHTML=`
+<div class="resource">
+<h3>${p.exam} - ${p.year}</h3>
+<button onclick="openResource('Previous Year Papers')">← Back to Papers</button>
+<iframe src="${p.url}" width="100%" height="650"
+style="border:1px solid #ccc;border-radius:8px;margin-top:15px">
+</iframe>
+<br><br>
+<a href="${p.url}" download>
+<button>Download PDF</button>
+</a>
+</div>`;
+}
+  
   
 
 function backToExam(){
