@@ -44,6 +44,10 @@ nav button:hover,nav button:focus{background:#edf2ff;color:var(--blue);outline:n
 #timer{float:right;color:#c43d45;font-weight:800}
 a{color:var(--blue);font-weight:700;text-decoration:none}a:hover{text-decoration:underline}
 footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid var(--line);background:#fff;font-size:13px}
+
+.test-choice{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer}
+.test-choice input{margin-right:8px}.test-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:800}
+@media print{body:after,header,nav,footer,.no-print{display:none!important}body{background:#fff!important;color:#000!important}.container{max-width:none;padding:0}.page{display:none!important}#testroom.page.active{display:block!important}.card,.question{box-shadow:none;border:1px solid #bbb;break-inside:avoid}}
 @media(max-width:600px){header{padding:23px 20px}nav{gap:3px;padding:8px 5px}nav button{padding:10px 9px;font-size:12px}.container{padding:22px 14px 40px}.hero{border-radius:18px}.grid{grid-template-columns:1fr;gap:8px}.card{padding:17px}}
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
@@ -140,10 +144,17 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 </div>
 </div>
 <div class="notice">महत्त्वाचे: हा Login/Register फॉर्मचा पुढचा टप्पा आहे; तो अजून account तयार किंवा sign in करत नाही. खरे सुरक्षित login सुरू करण्यासाठी Firebase/Supabase सारखी authentication सेवा जोडून तिची project configuration आवश्यक आहे. ती जोडल्याशिवाय तुमचा पासवर्ड कुठेही पाठवला किंवा साठवला जाणार नाही.</div>
-</section><section id="mock" class="page">
+</section>
+<section id="testroom" class="page">
+<h2 id="testTitle">Online Practice Test</h2>
+<div class="notice">हे AI-created original practice questions आहेत; अधिकृत PYQ नाहीत. Demo test मध्ये कमी प्रश्न आहेत.</div>
+<div class="card" id="testIntro"><p>परीक्षा निवडा आणि सराव टेस्ट सुरू करा. PDF साठी प्रश्नपत्रिका Print / Save as PDF वापरा.</p><button class="primary" onclick="startPracticeTest()">Start Test</button> <button class="primary" onclick="printPracticePaper()">Question Paper PDF</button></div>
+<div id="testArea"></div><div id="testResult"></div>
+</section>
+<section id="mock" class="page">
 <h2>Exam-wise Mock Tests</h2>
 <div class="card"><h3>Choose your exam</h3><select id="mockExam" class="search" onchange="showPatternInfo()"></select><div id="patternInfo" class="notice">परीक्षा निवडा. उपलब्ध अधिकृत पॅटर्न दाखवला जाईल.</div><p>प्रश्नसंच पडताळणी पूर्ण झाल्यावरच timed mock सुरू करता येईल.</p></div>
-<div class="notice">आधीचे सर्वसाधारण प्रश्न काढले आहेत. PYQ Papers आणि Mock Tests वेगळे ठेवले जातील. बनावट प्रश्नांना PYQ म्हणून दाखवले जाणार नाही.</div>
+<div class="notice">खालील demo सराव संच AI-created आहेत; अधिकृत PYQ नाहीत. प्रश्नपत्रिका Print / Save as PDF करता येईल.</div><div class="grid"><div class="card"><h3>SSC GD</h3><p>5 प्रश्न • 10 मिनिटे • Demo practice</p><button class="primary" onclick="openPractice('SSC GD')">Start SSC GD Test</button></div><div class="card"><h3>Railway RRB NTPC</h3><p>5 प्रश्न • 10 मिनिटे • Demo practice</p><button class="primary" onclick="openPractice('Railway RRB NTPC')">Start Railway Test</button></div></div>
 </section>
 </main>
 <footer>© 2026 ALL EXAM INDIA | Learn • Practice • Succeed</footer>
@@ -166,6 +177,23 @@ const officialSources=[
 {name:"CTET",category:"Teaching",source:"https://ctet.nic.in/"},
 {name:"MAHA TET",category:"Teaching",source:"https://mahatet.in/"}
 ];
+
+const practiceBanks={
+"SSC GD":{label:"SSC GD — Demo Practice Set 1",duration:10,questions:[
+{q:"भारतीय संविधान दिन कोणत्या दिवशी साजरा केला जातो?",o:["१५ ऑगस्ट","२६ नोव्हेंबर","२६ जानेवारी","२ ऑक्टोबर"],a:1,e:"२६ नोव्हेंबर १९४९ रोजी संविधान स्वीकारले गेले."},
+{q:"12 × 8 = ?",o:["84","92","96","108"],a:2,e:"12 × 8 = 96."},
+{q:"मालिकेतील पुढील संख्या ओळखा: 2, 4, 8, 16, __",o:["18","24","30","32"],a:3,e:"प्रत्येक संख्या दुप्पट होत आहे; पुढील संख्या 32."},
+{q:"'Brave' या शब्दाचा योग्य समानार्थी शब्द कोणता?",o:["Cowardly","Courageous","Weak","Lazy"],a:1,e:"Brave म्हणजे धाडसी; Courageous हा समानार्थी शब्द आहे."},
+{q:"भारताची राजधानी कोणती?",o:["मुंबई","नवी दिल्ली","कोलकाता","चेन्नई"],a:1,e:"भारताची राजधानी नवी दिल्ली आहे."}]},
+"Railway RRB NTPC":{label:"Railway RRB NTPC — Demo Practice Set 1",duration:10,questions:[
+{q:"भारतीय रेल्वेचे मुख्यालय कुठे आहे?",o:["मुंबई","नवी दिल्ली","चेन्नई","कोलकाता"],a:1,e:"भारतीय रेल्वेचे मुख्यालय नवी दिल्ली येथे आहे."},
+{q:"एका वस्तूची किंमत ₹200 आहे. 10% सूट दिल्यास विक्री किंमत किती?",o:["₹170","₹175","₹180","₹190"],a:2,e:"10% of 200 = 20; 200 − 20 = ₹180."},
+{q:"पाण्याचे रासायनिक सूत्र कोणते?",o:["CO2","H2O","O2","NaCl"],a:1,e:"पाण्याचे सूत्र H2O आहे."},
+{q:"मालिका पूर्ण करा: 5, 10, 20, 40, __",o:["45","60","70","80"],a:3,e:"प्रत्येक पद दुप्पट होते; पुढील पद 80."},
+{q:"भारतीय संविधानातील मूलभूत अधिकार कोणत्या भागात आहेत?",o:["भाग I","भाग II","भाग III","भाग IV"],a:2,e:"मूलभूत अधिकार संविधानाच्या भाग III मध्ये आहेत."}]}
+};
+let activePractice=null,practiceAnswers={},practiceSeconds=0,practiceInterval=null;
+
 const examPatterns={
 "NDA":{status:"verified",name:"NDA & Naval Academy written examination",sections:"Mathematics: 120 प्रश्न, 300 गुण; General Ability Test: English 50 प्रश्न (200 गुण) + General Knowledge 100 प्रश्न (400 गुण); लेखी परीक्षा एकूण 900 गुण",duration:"दोन्ही पेपर प्रत्येकी 2 तास 30 मिनिटे",marking:"चुकीच्या उत्तरासाठी त्या प्रश्नाच्या गुणांपैकी 1/3 गुण वजा; रिकाम्या उत्तराला दंड नाही",source:"https://www.upsc.gov.in/examinations/National%20Defence%20Academy%20and%20Naval%20Academy%20Examination%20%28II%29%2C%202026"},
 "SSC CGL":{status:"verified",name:"SSC CGL Tier-I (2026 notice)",sections:"Reasoning 25, General Awareness 25, Quantitative Aptitude 25, English 25",duration:"60 मिनिटे; प्रत्येक विभागासाठी sectional timer",marking:"प्रत्येक चुकीच्या उत्तरासाठी 0.50 गुण वजा",source:"https://ssc.gov.in/"},
@@ -175,6 +203,13 @@ const examPatterns={
 "IBPS PO":{status:"verified",name:"IBPS PO (CRP PO/MT-XV notice)",sections:"Prelims: English, Quantitative Aptitude, Reasoning; Mains मध्ये स्वतंत्र विभाग व descriptive paper",duration:"Prelims 1 तास; Mains चे वेळापत्रक अधिसूचनेनुसार",marking:"चुकीच्या उत्तरासाठी 1/4 गुण वजा",source:"https://www.ibps.in/"},
 "Railway RRB ALP":{status:"verified",name:"RRB ALP (CEN 01/2026)",sections:"CBT-1; CBT-2 Part A आणि qualifying Part B; पुढील टप्पे अधिसूचनेनुसार",duration:"प्रत्येक टप्प्याचा कालावधी अधिसूचनेनुसार",marking:"अधिकृत CEN नुसार तपासा",source:"https://www.rrbcdg.gov.in/"}
 };
+
+function openPractice(exam){document.getElementById("testTitle").textContent=exam+" Practice Test";document.getElementById("testIntro").style.display="block";document.getElementById("testArea").innerHTML="";document.getElementById("testResult").innerHTML="";window.practiceExam=exam;showPage("testroom");}
+function startPracticeTest(){const bank=practiceBanks[window.practiceExam];if(!bank){document.getElementById("testArea").innerHTML='<div class="notice">या परीक्षेसाठी demo प्रश्नसंच अजून तयार नाही. आधी SSC GD आणि Railway RRB NTPC चे संच उपलब्ध आहेत.</div>';return;}activePractice=bank;practiceAnswers={};practiceSeconds=bank.duration*60;document.getElementById("testIntro").style.display="none";renderPracticeQuestionPaper(true);clearInterval(practiceInterval);practiceInterval=setInterval(()=>{practiceSeconds--;const t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");if(practiceSeconds<=0)submitPracticeTest();},1000);}
+function renderPracticeQuestionPaper(interactive){const bank=activePractice;if(!bank)return;let html='<div class="test-top"><span>'+escapeHTML(bank.label)+'</span><span id="practiceTimer">10:00</span></div><p>प्रत्येक प्रश्नासाठी एक पर्याय निवडा.</p>';bank.questions.forEach((q,i)=>{html+='<div class="question"><b>प्रश्न '+(i+1)+'. '+escapeHTML(q.q)+'</b>';q.o.forEach((o,j)=>{html+='<label class="test-choice"><input type="radio" name="pq'+i+'" value="'+j+'" '+(practiceAnswers[i]===j?'checked':'')+' '+(interactive?'onchange="practiceAnswers['+i+']='+j+'"':'disabled')+'> '+String.fromCharCode(65+j)+'. '+escapeHTML(o)+'</label>';});html+='</div>';});if(interactive)html+='<button class="primary no-print" onclick="submitPracticeTest()">Submit Test</button>';document.getElementById("testArea").innerHTML=html;}
+function submitPracticeTest(){if(!activePractice)return;clearInterval(practiceInterval);let score=0,details='<h3>उत्तर आणि स्पष्टीकरण</h3>';activePractice.questions.forEach((q,i)=>{const chosen=practiceAnswers[i];if(chosen===q.a)score++;details+='<div class="card"><b>प्रश्न '+(i+1)+': '+escapeHTML(q.q)+'</b><p>योग्य उत्तर: '+escapeHTML(q.o[q.a])+'</p><p>'+escapeHTML(q.e)+'</p></div>';});document.getElementById("testArea").innerHTML="";document.getElementById("testResult").innerHTML='<div class="card"><h3>तुमचा निकाल</h3><p><b>'+score+' / '+activePractice.questions.length+'</b> बरोबर उत्तरे</p><p>Accuracy: '+Math.round(score/activePractice.questions.length*100)+'%</p></div>'+details+'<button class="primary no-print" onclick="openPractice(window.practiceExam)">Retake Test</button> <button class="primary no-print" onclick="printPracticePaper()">Print / Save PDF</button>';}
+function printPracticePaper(){if(!activePractice){const b=practiceBanks[window.practiceExam];if(!b){alert("या परीक्षेचा PDF प्रश्नसंच उपलब्ध नाही.");return;}activePractice=b;}const area=document.getElementById("testArea");const old=area.innerHTML;renderPracticeQuestionPaper(false);window.print();area.innerHTML=old;}
+
 function showPatternInfo(){
 const name=document.getElementById("mockExam").value;
 const p=examPatterns[name];
