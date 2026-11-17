@@ -18,9 +18,9 @@ header{position:relative;overflow:hidden;text-align:left;padding:27px max(22px,c
 header:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #ffffff20;border-radius:50%;right:8%;top:-170px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06}
 header h1{position:relative;z-index:1;margin:0;font-size:clamp(24px,4vw,34px);letter-spacing:1.5px;font-weight:850}
 header p{position:relative;z-index:1;margin:7px 0 0;color:#c7d5f4;font-size:14px}
-nav{position:sticky;top:0;z-index:10;background:#fffF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:8px;padding:10px 14px;box-shadow:0 5px 20px #16264b08}
+nav{position:sticky;top:0;z-index:10;background:#fffF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;padding:10px max(22px,calc((100% - 1120px)/2));box-shadow:0 5px 20px #16264b08}
 nav button{background:transparent;border:0;color:#53617b;padding:11px 17px;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px;transition:.2s}
-nav button:hover,nav button:focus{background:#edf2ff;color:var(--blue);outline:none}
+nav button:hover,nav button:focus{background:#edf2ff;color:var(--blue);outline:none}nav button.settings-nav{margin-left:auto;background:linear-gradient(110deg,var(--blue),#4779ff);color:#fff;padding:14px 25px;font-size:17px;border-radius:13px;box-shadow:0 7px 18px #315ee833}nav button.settings-nav:hover,nav button.settings-nav:focus{background:linear-gradient(110deg,#244bd0,#3569ef);color:#fff}
 .container{max-width:1120px;margin:auto;padding:28px 20px 54px;min-height:65vh}
 .page{display:none}.page.active{display:block;animation:rise .3s ease}
 @keyframes rise{from{opacity:.45;transform:translateY(7px)}to{opacity:1;transform:none}}
@@ -71,10 +71,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 </header>
 <nav>
 
-<button onclick="showPage('home')">Home</button>
-<button onclick="showPage('pyq')">PYQ Test</button>
-<button type="button" onclick="document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('mock').classList.add('active');window.scrollTo(0,0);">Mock Test</button>
-<button onclick="showPage('settings')">Settings</button>
+<button class="settings-nav" onclick="showPage('settings')">⚙ Settings</button>
 
 </nav>
 <div class="auth-modal" id="registerModal"><div class="auth-box"><h2>नोंदणी करा</h2><p>टेस्ट सुरू करण्यासाठी nickname देणे अनिवार्य आहे.</p><label for="regName">Nickname (अनिवार्य)</label><input id="regName" maxlength="30" required placeholder="तुमचे nickname लिहा"><div class="auth-actions"><button class="primary" onclick="saveRegistration()">नोंदणी करा</button></div><p class="small-note">ही प्राथमिक नोंदणी या डिव्हाइसच्या ब्राउझरमध्ये सेव्ह होईल. Shared account साठी online database जोडणे आवश्यक आहे.</p></div></div>
@@ -111,7 +108,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <div class="card" id="testIntro"><p>परीक्षा निवडा आणि सराव टेस्ट सुरू करा. PDF साठी प्रश्नपत्रिका Print / Save as PDF वापरा.</p><button class="primary" onclick="startPracticeTest()">Start Test</button> <button class="primary" onclick="printPracticePaper()">Question Paper PDF</button></div>
 <div id="testArea"></div><div id="testResult"></div>
 </section>
-<section id="mock" class="page"><h2>SSC GD — Mock Tests</h2><div class="notice" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span><b id="gdMockCount">एकूण 5000 Mock Tests उपलब्ध</b><br><small>Mock Test 1 ते Mock Test 5000</small></span><span style="font-size:28px;font-weight:900;color:var(--blue)">5000</span></div><div class="card"><h3>Paper Language / पेपर की भाषा</h3><select id="mockLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select><h3>Mock Test निवडा (एकूण 5000)</h3><select id="gdMockNumber" class="search" aria-label="Select one of 5000 SSC GD mock tests"></select><div class="notice">80 प्रश्न • 160 गुण • 60 मिनिटे<br>गणित 20 • Reasoning 20 • हिंदी व्याकरण 20 • GK/GS 20<br>बरोबर +2 • चुकीचे −0.25 • न सोडवलेले 0</div><p>हे सरावासाठी तयार केलेले प्रश्न आहेत; अधिकृत SSC प्रश्नपत्रिका नाहीत.</p><button class="primary" onclick="startGDMock()">Start Mock Test</button></div></section>
+<section id="mock" class="page"><h2>SSC GD — Mock Tests</h2><div class="notice" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span><b id="gdMockCount">एकूण 5000 Mock Tests उपलब्ध</b><br><small>Mock Test 1 ते Mock Test 5000</small></span><span style="font-size:28px;font-weight:900;color:var(--blue)">5000</span></div><div class="card"><h3>Paper Language / पेपर की भाषा</h3><select id="mockLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select><h3>Mock Test 1 — थेट सुरू करा</h3><p>खालील बटण दाबल्यावर Mock Test 1 सुरू होईल.</p><div class="notice">80 प्रश्न • 160 गुण • 60 मिनिटे<br>गणित 20 • Reasoning 20 • हिंदी व्याकरण 20 • GK/GS 20<br>बरोबर +2 • चुकीचे −0.25 • न सोडवलेले 0</div><p>हे सरावासाठी तयार केलेले प्रश्न आहेत; अधिकृत SSC प्रश्नपत्रिका नाहीत.</p><button class="primary" onclick="startGDMock()">Start Mock Test</button></div></section>
 </main>
 <footer>© 2026 SSC EXAM.IN | Website by Prajwal Tarare | Learn • Practice • Succeed</footer>
 <script>
@@ -275,7 +272,7 @@ for(let i=0;i<20;i++){const q=gdHG[(i+no*7-1)%gdHG.length];add("हिंदी 
 for(let i=0;i<20;i++){const q=gdGK[(i+no*7-1)%gdGK.length];add("सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
 return {label:"SSC GD Mock Test "+no,duration:60,questions:out};
 }
-function startGDMock(){isGDMock=true;window.practiceExam="SSC GD";if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}let no=Number(document.getElementById("gdMockNumber").value)||1;activePractice=buildGDMock(no,selectedPaperLanguage);practiceAnswers={};practiceSeconds=3600;document.getElementById("testIntro").style.display="none";document.getElementById("testTitle").textContent=activePractice.label;showPage("testroom");renderPracticeQuestionPaper(true);clearInterval(practiceInterval);practiceInterval=setInterval(()=>{practiceSeconds--;let t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");if(practiceSeconds<=0)submitPracticeTest();},1000);}
+function startGDMock(){isGDMock=true;window.practiceExam="SSC GD";if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}let no=1;activePractice=buildGDMock(no,selectedPaperLanguage);practiceAnswers={};practiceSeconds=3600;document.getElementById("testIntro").style.display="none";document.getElementById("testTitle").textContent=activePractice.label;showPage("testroom");renderPracticeQuestionPaper(true);clearInterval(practiceInterval);practiceInterval=setInterval(()=>{practiceSeconds--;let t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");if(practiceSeconds<=0)submitPracticeTest();},1000);}
 
 function localizedPracticeBank(bank,lang){if(lang==="mr")return bank;const translations={hi:{label:"SSC GD — डेमो अभ्यास सेट 1",questions:[["भारतीय संविधान दिवस किस दिन मनाया जाता है?",["15 अगस्त","26 नवंबर","26 जनवरी","2 अक्टूबर"],"26 नवंबर 1949 को संविधान अपनाया गया था।"],["12 × 8 = ?",["84","92","96","108"],"12 × 8 = 96।"],["श्रृंखला की अगली संख्या पहचानें: 2, 4, 8, 16, __",["18","24","30","32"],"हर संख्या दोगुनी हो रही है; अगली संख्या 32 है।"],["'Brave' शब्द का सही समानार्थी शब्द कौन-सा है?",["Cowardly","Courageous","Weak","Lazy"],"Brave का अर्थ साहसी है; Courageous इसका समानार्थी है।"],["भारत की राजधानी कौन-सी है?",["मुंबई","नई दिल्ली","कोलकाता","चेन्नई"],"भारत की राजधानी नई दिल्ली है।"]]},en:{label:"SSC GD — Demo Practice Set 1",questions:[["On which day is Constitution Day of India celebrated?",["15 August","26 November","26 January","2 October"],"The Constitution was adopted on 26 November 1949."],["12 × 8 = ?",["84","92","96","108"],"12 × 8 = 96."],["Find the next number in the series: 2, 4, 8, 16, __",["18","24","30","32"],"Each number is doubled; the next number is 32."],["Choose the correct synonym of 'Brave'.",["Cowardly","Courageous","Weak","Lazy"],"Brave means courageous."],["What is the capital of India?",["Mumbai","New Delhi","Kolkata","Chennai"],"The capital of India is New Delhi."]]}};const t=translations[lang];return {...bank,label:t.label,questions:bank.questions.map((q,i)=>({q:t.questions[i][0],o:t.questions[i][1],a:q.a,e:t.questions[i][2]}))};}
 function renderPracticeQuestionPaper(interactive){const bank=activePractice;if(!bank)return;let html='<div class="test-top"><span>'+escapeHTML(bank.label)+'</span><span id="practiceTimer">'+Math.floor(practiceSeconds/60)+':'+String(practiceSeconds%60).padStart(2,'0')+'</span></div><p>'+(selectedPaperLanguage==='en'?'80 questions • 60 minutes • Correct +2 • Wrong −0.25':'80 प्रश्न • 60 मिनट • सही उत्तर +2 अंक • गलत उत्तर −0.25 अंक')+'</p>';let currentSection='';bank.questions.forEach((q,i)=>{if(q.section&&q.section!==currentSection){currentSection=q.section;html+='<h3 class="card">'+escapeHTML(currentSection)+(selectedPaperLanguage==='en'?' — 20 Questions':' — 20 प्रश्न')+'</h3>';}html+='<div class="question"><b>'+(selectedPaperLanguage==='en'?'Question ':'प्रश्न ')+(i+1)+'. '+escapeHTML(q.q)+'</b>';q.o.forEach((o,j)=>{html+='<label class="test-choice"><input type="radio" name="pq'+i+'" value="'+j+'" '+(practiceAnswers[i]===j?'checked':'')+' '+(interactive?'onchange="practiceAnswers['+i+']='+j+'"':'disabled')+'> '+String.fromCharCode(65+j)+'. '+escapeHTML(o)+'</label>';});html+='</div>';});if(interactive)html+='<button class="primary no-print" onclick="submitPracticeTest()">Submit Test</button>';document.getElementById("testArea").innerHTML=html;}
@@ -299,10 +296,7 @@ if(!target){console.error("Page not found:",id);return;}
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 target.classList.add("active");
 if(id==="pyq")renderPYQ();
-if(id==="mock"){
-const gd=document.getElementById("gdMockNumber");
-if(gd&&!gd.options.length)gd.innerHTML=Array.from({length:5000},(_,i)=>'<option value="'+(i+1)+'">Mock Test '+(i+1)+'</option>').join("");
-}
+
 }
 function getOfficialSourceForExam(exam){
 return exam.startsWith("SSC") ? officialSources[0] : null;
@@ -321,7 +315,7 @@ function saveTestRecord(score,total,correctCount){const student=getStudent();if(
 function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}const visits=Number(localStorage.getItem("aei-visits")||"0");const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};set("statTests",h.length);set("statBest",h.length?Math.max(...h.map(x=>x.score)):"0");set("statVisitors",visits);const lb=document.getElementById("localLeaderboard"),hist=document.getElementById("testHistory");if(lb){const sorted=[...h].sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy).slice(0,10);lb.innerHTML=sorted.length?sorted.map((x,i)=>"<p>"+(i+1)+". "+escapeHTML(x.name)+" — "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून निकाल उपलब्ध नाही.</p>";}if(hist)hist.innerHTML=h.length?h.map(x=>"<p>"+escapeHTML(x.date)+" — "+escapeHTML(x.exam)+": "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून टेस्ट दिलेली नाही.</p>";}
 try{const n=Number(localStorage.getItem("aei-visits")||"0")+1;localStorage.setItem("aei-visits",String(n));}catch(e){}
 
-initNewFeatures();renderStudentStats();const gd=document.getElementById("gdMockNumber");if(gd)gd.innerHTML=Array.from({length:5000},(_,i)=>"<option value=\""+(i+1)+"\">Mock Test "+(i+1)+"</option>").join("");
+initNewFeatures();renderStudentStats();
 </script>
 </body>
 </html>
