@@ -48,6 +48,49 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 .owner-profile{display:flex;align-items:center;gap:22px;padding:24px}.owner-brand{flex:0 0 120px}.owner-brand svg{display:block;width:120px;height:120px}.owner-profile h3{font-size:22px;margin:0 0 5px;color:var(--ink)}.owner-profile p{line-height:1.65;color:var(--muted)}.owner-name{font-size:20px;font-weight:800;color:var(--blue)!important;margin:5px 0}.owner-tagline{font-weight:800;letter-spacing:.5px;color:var(--blue)!important}@media(max-width:600px){.owner-profile{flex-direction:column;align-items:flex-start}.owner-brand{flex-basis:auto}}
 .test-choice{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer}
 .test-choice input{margin-right:8px}.test-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:800}
+.exam-paper{background:#fff;border:1px solid #dce3ef;border-radius:18px;padding:clamp(14px,2.5vw,26px);box-shadow:0 12px 34px #18294b12;color:#17233d}
+.exam-paper-head{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:2px solid #e8edf6;padding-bottom:15px;margin-bottom:15px}
+.exam-paper-head h3{margin:4px 0;font-size:20px}.exam-paper-head small{color:#68748b;font-weight:700}
+.exam-paper-timer{font-size:20px;font-weight:900;color:#c43d45;white-space:nowrap}
+.test-status{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.test-status span,.question-legend span{background:#f2f5fb;border:1px solid #e1e7f1;border-radius:9px;padding:7px 10px;font-size:12px;font-weight:700}
+.question-layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:18px;align-items:start}
+.question-panel{border:1px solid #e0e6f0;border-radius:15px;padding:clamp(15px,2.5vw,24px);min-height:260px}
+.question-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#53617b;font-size:13px;font-weight:800;margin-bottom:16px}
+.question-panel h3{font-size:19px;line-height:1.6;margin:0 0 18px;color:#17233d}
+.question-panel .test-choice{padding:14px;border:1px solid #dfe5ef;border-radius:11px;margin:10px 0;line-height:1.5}
+.question-panel .test-choice:has(input:checked){border-color:#315ee8;background:#eef3ff}
+.question-controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
+.question-controls button{border:1px solid #d6deeb;background:#fff;color:#233451;border-radius:10px;padding:11px 14px;font-weight:750;cursor:pointer}
+.question-controls button:disabled{opacity:.4;cursor:not-allowed}
+.question-controls .mark-button{background:#fff7df;border-color:#efd58b;color:#77530a}
+.question-controls .skip-button{background:#f2f5fa}
+.question-controls .submit-button{background:#315ee8;border-color:#315ee8;color:#fff;margin-left:auto}
+.question-sidebar{border:1px solid #e0e6f0;border-radius:15px;padding:14px;position:sticky;top:88px}
+.question-sidebar h3{margin:2px 0 12px;font-size:16px}
+.question-number-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.question-number{padding:8px 2px;border:1px solid #dce3ef;border-radius:8px;background:#fff;color:#243451;font-weight:800;cursor:pointer}
+.question-number.current{outline:2px solid #315ee8;outline-offset:1px}
+.question-number.answered{background:#dcf5e8;border-color:#8bd0a7;color:#17633a}
+.question-number.marked{background:#fff0c5;border-color:#e7c45b;color:#785600}
+.question-number.skipped{background:#ffe4e4;border-color:#e7a0a0;color:#9b2828}
+.question-number.visited{background:#e9eef8;border-color:#c4cfe2}
+.question-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.question-legend span{font-size:11px;padding:5px 7px}
+body.dark .exam-paper{background:#14213a;color:#e8eefb;border-color:#2b3b59}
+body.dark .exam-paper-head,body.dark .question-panel,body.dark .question-sidebar{border-color:#2b3b59}
+body.dark .question-panel h3{color:#e8eefb}
+body.dark .question-panel .test-choice,body.dark .question-controls button,body.dark .question-number{background:#192a48;color:#e8eefb;border-color:#34496d}
+body.dark .question-panel .test-choice:has(input:checked){background:#233b68;border-color:#7795ff}
+body.dark .question-controls .mark-button{background:#493c1b;color:#ffe6a0}
+body.dark .question-controls .submit-button{background:#315ee8;color:#fff}
+body.dark .test-status span,body.dark .question-legend span{background:#192a48;border-color:#34496d;color:#d8e3f7}
+.print-paper{background:#fff;color:#111;padding:10px}
+.print-paper .print-question{padding:14px 0;border-bottom:1px solid #bbb;break-inside:avoid}
+.print-paper .print-question b{display:block;margin-bottom:8px}
+.print-paper .print-option{margin:5px 0 5px 16px}
+@media(max-width:760px){.question-layout{grid-template-columns:1fr}.question-sidebar{position:static;order:-1}.question-number-grid{grid-template-columns:repeat(8,minmax(0,1fr))}.question-controls button{flex:1}.question-controls .submit-button{margin-left:0}}
+@media print{.exam-paper,.print-paper{box-shadow:none;border:0}.question-sidebar,.question-controls,.test-status{display:none!important}.print-paper{display:block!important}}
 @media print{body:after,header,nav,footer,.no-print{display:none!important}body{background:#fff!important;color:#000!important}.container{max-width:none;padding:0}.page{display:none!important}#testroom.page.active{display:block!important}.card,.question{box-shadow:none;border:1px solid #bbb;break-inside:avoid}}
 @media(max-width:600px){header{padding:23px 20px}nav{gap:3px;padding:8px 5px}nav button{padding:10px 9px;font-size:12px}.container{padding:22px 14px 40px}.hero{border-radius:18px}.grid{grid-template-columns:1fr;gap:8px}.card{padding:17px}}
 
@@ -128,6 +171,7 @@ const practiceBanks={
 {q:"भारताची राजधानी कोणती?",o:["मुंबई","नवी दिल्ली","कोलकाता","चेन्नई"],a:1,e:"भारताची राजधानी नवी दिल्ली आहे."}]},
 };
 let activePractice=null,practiceAnswers={},practiceSeconds=0,practiceInterval=null;
+let activeQuestionIndex=0,markedForReview={},skippedQuestions={},visitedQuestions={};
 let pendingPracticeStart=false; let isGDMock=false;
 let selectedPaperLanguage="hi";
 function setPaperLanguage(lang){selectedPaperLanguage=lang;["pyqLanguage","testLanguage","mockLanguage"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=lang;});}
@@ -137,8 +181,32 @@ const examPatterns={
 
 };
 
-function openPractice(exam){clearInterval(practiceInterval);activePractice=null;practiceAnswers={};isGDMock=false;window.practiceExam=exam;document.getElementById("testTitle").textContent=exam+" Practice Test";document.getElementById("testIntro").style.display="block";document.getElementById("testArea").innerHTML="";document.getElementById("testResult").innerHTML="";showPage("testroom");}
-function startPracticeTest(){isGDMock=false;if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}const bank=practiceBanks[window.practiceExam];if(!bank){document.getElementById("testArea").innerHTML='<div class="notice">या परीक्षेसाठी demo प्रश्नसंच अजून तयार नाही. सध्या SSC GD demo प्रश्नसंच उपलब्ध आहे.</div>';return;}activePractice=localizedPracticeBank(bank,selectedPaperLanguage);practiceAnswers={};practiceSeconds=bank.duration*60;document.getElementById("testIntro").style.display="none";renderPracticeQuestionPaper(true);clearInterval(practiceInterval);practiceInterval=setInterval(()=>{practiceSeconds--;const t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");if(practiceSeconds<=0)submitPracticeTest();},1000);}
+function resetPracticeState(){practiceAnswers={};markedForReview={};skippedQuestions={};visitedQuestions={};activeQuestionIndex=0;}
+function startPracticeClock(){
+clearInterval(practiceInterval);
+const update=()=>{const t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");};
+update();practiceInterval=setInterval(()=>{practiceSeconds--;update();if(practiceSeconds<=0)submitPracticeTest();},1000);
+}
+function openPractice(exam){
+clearInterval(practiceInterval);activePractice=null;resetPracticeState();isGDMock=false;window.practiceExam=exam;
+document.getElementById("testTitle").textContent=exam+" Practice Test";
+document.getElementById("testIntro").style.display="block";
+document.getElementById("testArea").innerHTML="";
+document.getElementById("testResult").innerHTML="";
+showPage("testroom");
+}
+function openPYQPractice(exam){openPractice(exam);startPracticeTest();}
+function startPracticeTest(){
+isGDMock=false;
+if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}
+const bank=practiceBanks[window.practiceExam];
+if(!bank){document.getElementById("testArea").innerHTML='<div class="notice">या परीक्षेसाठी पडताळलेला प्रश्नसंच अजून उपलब्ध नाही. सध्या SSC GD साठी AI-created demo practice set उपलब्ध आहे; तो अधिकृत PYQ नाही.</div>';showPage("testroom");return;}
+activePractice=localizedPracticeBank(bank,selectedPaperLanguage);
+resetPracticeState();practiceSeconds=activePractice.duration*60;
+document.getElementById("testIntro").style.display="none";document.getElementById("testResult").innerHTML="";
+document.getElementById("testTitle").textContent=activePractice.label;
+showPage("testroom");renderPracticeQuestionPaper(true);startPracticeClock();
+}
 
 function gdRand(seed){let x=seed;return function(){x=(x*9301+49297)%233280;return x/233280;};}
 const gdGK=[
@@ -272,12 +340,61 @@ for(let i=0;i<20;i++){const q=gdHG[(i+no*7-1)%gdHG.length];add("हिंदी 
 for(let i=0;i<20;i++){const q=gdGK[(i+no*7-1)%gdGK.length];add("सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
 return {label:"SSC GD Mock Test "+no,duration:60,questions:out};
 }
-function startGDMock(){isGDMock=true;window.practiceExam="SSC GD";if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}let no=1;activePractice=buildGDMock(no,selectedPaperLanguage);practiceAnswers={};practiceSeconds=3600;document.getElementById("testIntro").style.display="none";document.getElementById("testTitle").textContent=activePractice.label;showPage("testroom");renderPracticeQuestionPaper(true);clearInterval(practiceInterval);practiceInterval=setInterval(()=>{practiceSeconds--;let t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");if(practiceSeconds<=0)submitPracticeTest();},1000);}
-
+function startGDMock(){
+isGDMock=true;window.practiceExam="SSC GD";
+if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}
+activePractice=buildGDMock(1,selectedPaperLanguage);
+resetPracticeState();practiceSeconds=activePractice.duration*60;
+document.getElementById("testIntro").style.display="none";document.getElementById("testResult").innerHTML="";
+document.getElementById("testTitle").textContent=activePractice.label;
+showPage("testroom");renderPracticeQuestionPaper(true);startPracticeClock();
+}
 function localizedPracticeBank(bank,lang){if(lang==="mr")return bank;const translations={hi:{label:"SSC GD — डेमो अभ्यास सेट 1",questions:[["भारतीय संविधान दिवस किस दिन मनाया जाता है?",["15 अगस्त","26 नवंबर","26 जनवरी","2 अक्टूबर"],"26 नवंबर 1949 को संविधान अपनाया गया था।"],["12 × 8 = ?",["84","92","96","108"],"12 × 8 = 96।"],["श्रृंखला की अगली संख्या पहचानें: 2, 4, 8, 16, __",["18","24","30","32"],"हर संख्या दोगुनी हो रही है; अगली संख्या 32 है।"],["'Brave' शब्द का सही समानार्थी शब्द कौन-सा है?",["Cowardly","Courageous","Weak","Lazy"],"Brave का अर्थ साहसी है; Courageous इसका समानार्थी है।"],["भारत की राजधानी कौन-सी है?",["मुंबई","नई दिल्ली","कोलकाता","चेन्नई"],"भारत की राजधानी नई दिल्ली है।"]]},en:{label:"SSC GD — Demo Practice Set 1",questions:[["On which day is Constitution Day of India celebrated?",["15 August","26 November","26 January","2 October"],"The Constitution was adopted on 26 November 1949."],["12 × 8 = ?",["84","92","96","108"],"12 × 8 = 96."],["Find the next number in the series: 2, 4, 8, 16, __",["18","24","30","32"],"Each number is doubled; the next number is 32."],["Choose the correct synonym of 'Brave'.",["Cowardly","Courageous","Weak","Lazy"],"Brave means courageous."],["What is the capital of India?",["Mumbai","New Delhi","Kolkata","Chennai"],"The capital of India is New Delhi."]]}};const t=translations[lang];return {...bank,label:t.label,questions:bank.questions.map((q,i)=>({q:t.questions[i][0],o:t.questions[i][1],a:q.a,e:t.questions[i][2]}))};}
-function renderPracticeQuestionPaper(interactive){const bank=activePractice;if(!bank)return;let html='<div class="test-top"><span>'+escapeHTML(bank.label)+'</span><span id="practiceTimer">'+Math.floor(practiceSeconds/60)+':'+String(practiceSeconds%60).padStart(2,'0')+'</span></div><p>'+(selectedPaperLanguage==='en'?'80 questions • 60 minutes • Correct +2 • Wrong −0.25':'80 प्रश्न • 60 मिनट • सही उत्तर +2 अंक • गलत उत्तर −0.25 अंक')+'</p>';let currentSection='';bank.questions.forEach((q,i)=>{if(q.section&&q.section!==currentSection){currentSection=q.section;html+='<h3 class="card">'+escapeHTML(currentSection)+(selectedPaperLanguage==='en'?' — 20 Questions':' — 20 प्रश्न')+'</h3>';}html+='<div class="question"><b>'+(selectedPaperLanguage==='en'?'Question ':'प्रश्न ')+(i+1)+'. '+escapeHTML(q.q)+'</b>';q.o.forEach((o,j)=>{html+='<label class="test-choice"><input type="radio" name="pq'+i+'" value="'+j+'" '+(practiceAnswers[i]===j?'checked':'')+' '+(interactive?'onchange="practiceAnswers['+i+']='+j+'"':'disabled')+'> '+String.fromCharCode(65+j)+'. '+escapeHTML(o)+'</label>';});html+='</div>';});if(interactive)html+='<button class="primary no-print" onclick="submitPracticeTest()">Submit Test</button>';document.getElementById("testArea").innerHTML=html;}
-function submitPracticeTest(){if(!activePractice)return;clearInterval(practiceInterval);let score=0,correct=0,wrong=0,unanswered=0,details=(selectedPaperLanguage==='en'?'<h3>Answers and Explanations</h3>':'<h3>उत्तर आणि स्पष्टीकरण</h3>');activePractice.questions.forEach((q,i)=>{const chosen=practiceAnswers[i];if(chosen===q.a){correct++;score+=isGDMock?2:1;}else if(chosen===undefined||chosen===null){unanswered++;}else{wrong++;score-=isGDMock?0.25:0;}details+='<div class="card"><b>'+(selectedPaperLanguage==='en'?'Question ':'प्रश्न ')+(i+1)+': '+escapeHTML(q.q)+'</b><p>'+(selectedPaperLanguage==='en'?'Your answer: ':'तुमचे उत्तर: ')+(chosen===undefined?(selectedPaperLanguage==='en'?'Unanswered':'न सोडवलेले'):escapeHTML(q.o[chosen]))+'</p><p>'+(selectedPaperLanguage==='en'?'Correct answer: ':'योग्य उत्तर: ')+escapeHTML(q.o[q.a])+'</p><p>'+escapeHTML(q.e)+'</p></div>';});const used=(activePractice.duration*60)-practiceSeconds,mm=Math.floor(used/60),ss=used%60;document.getElementById("testArea").innerHTML="";saveTestRecord(score,activePractice.questions.length,correct);document.getElementById("testResult").innerHTML='<div class="card"><h3>'+(selectedPaperLanguage==='en'?'Your Result':'तुमचा निकाल')+'</h3><p><b>'+score.toFixed(2)+' / '+(isGDMock?160:activePractice.questions.length)+(selectedPaperLanguage==='en'?' marks':' गुण')+'</b></p><p>'+(selectedPaperLanguage==='en'?'Correct: ':'बरोबर: ')+correct+' | '+(selectedPaperLanguage==='en'?'Wrong: ':'चुकीचे: ')+wrong+' | '+(selectedPaperLanguage==='en'?'Unanswered: ':'न सोडवलेले: ')+unanswered+'</p><p>Accuracy: '+Math.round(correct/activePractice.questions.length*100)+'%</p><p>Negative marking: '+(isGDMock?(wrong*0.25).toFixed(2):'0')+'</p><p>'+(selectedPaperLanguage==='en'?'Time used: ':'वेळ: ')+mm+(selectedPaperLanguage==='en'?' min ':' मिनिटे ')+ss+(selectedPaperLanguage==='en'?' sec':' सेकंद')+'</p></div>'+details+'<button class="primary no-print" onclick="showPage(\'mock\')">'+(selectedPaperLanguage==='en'?'Choose another mock test':'दुसरी Mock Test निवडा')+'</button> <button class="primary no-print" onclick="printPracticePaper()">Print / Save PDF</button>';}
-function printPracticePaper(){if(!activePractice){const b=practiceBanks[window.practiceExam];if(!b){alert("या परीक्षेचा PDF प्रश्नसंच उपलब्ध नाही.");return;}activePractice=b;}const area=document.getElementById("testArea");const old=area.innerHTML;renderPracticeQuestionPaper(false);window.print();area.innerHTML=old;}
+function selectPracticeAnswer(questionIndex,optionIndex){practiceAnswers[questionIndex]=optionIndex;delete skippedQuestions[questionIndex];renderPracticeQuestionPaper(true);}
+function goToPracticeQuestion(index){if(!activePractice||index<0||index>=activePractice.questions.length)return;visitedQuestions[activeQuestionIndex]=true;activeQuestionIndex=index;visitedQuestions[index]=true;renderPracticeQuestionPaper(true);}
+function previousPracticeQuestion(){goToPracticeQuestion(activeQuestionIndex-1);}
+function nextPracticeQuestion(){goToPracticeQuestion(activeQuestionIndex+1);}
+function toggleMarkForReview(){if(markedForReview[activeQuestionIndex])delete markedForReview[activeQuestionIndex];else markedForReview[activeQuestionIndex]=true;visitedQuestions[activeQuestionIndex]=true;renderPracticeQuestionPaper(true);}
+function skipPracticeQuestion(){delete practiceAnswers[activeQuestionIndex];skippedQuestions[activeQuestionIndex]=true;visitedQuestions[activeQuestionIndex]=true;if(activeQuestionIndex<activePractice.questions.length-1)activeQuestionIndex++;visitedQuestions[activeQuestionIndex]=true;renderPracticeQuestionPaper(true);}
+function renderPracticeQuestionPaper(interactive){
+const bank=activePractice;if(!bank)return;
+if(!interactive){
+let paper='<div class="print-paper"><h2>'+escapeHTML(bank.label)+'</h2><p>'+(selectedPaperLanguage==='en'?'Question paper':'प्रश्नपत्रिका')+'</p>';
+bank.questions.forEach((q,i)=>{paper+='<div class="print-question"><b>'+(selectedPaperLanguage==='en'?'Question ':'प्रश्न ')+(i+1)+'. '+escapeHTML(q.q)+'</b>';q.o.forEach((o,j)=>{paper+='<div class="print-option">'+String.fromCharCode(65+j)+'. '+escapeHTML(o)+'</div>';});paper+='</div>';});
+paper+='</div>';document.getElementById("testArea").innerHTML=paper;return;
+}
+const q=bank.questions[activeQuestionIndex],total=bank.questions.length;
+const answered=Object.keys(practiceAnswers).length,marked=Object.keys(markedForReview).length,skipped=Object.keys(skippedQuestions).length;
+let html='<div class="exam-paper"><div class="exam-paper-head"><div><small>'+(selectedPaperLanguage==='en'?'ONLINE EXAMINATION':'ऑनलाइन परीक्षा')+'</small><h3>'+escapeHTML(bank.label)+'</h3></div><div class="exam-paper-timer" id="practiceTimer">'+Math.floor(practiceSeconds/60)+':'+String(practiceSeconds%60).padStart(2,'0')+'</div></div>';
+html+='<div class="test-status"><span>'+(selectedPaperLanguage==='en'?'Answered':'सोडवलेले')+': <b>'+answered+'</b></span><span>'+(selectedPaperLanguage==='en'?'Marked':'Mark केलेले')+': <b>'+marked+'</b></span><span>'+(selectedPaperLanguage==='en'?'Skipped':'Skip केलेले')+': <b>'+skipped+'</b></span><span>'+(selectedPaperLanguage==='en'?'Remaining':'बाकी')+': <b>'+(total-answered)+'</b></span></div>';
+html+='<div class="question-layout"><div class="question-main"><div class="question-panel"><div class="question-meta"><span>'+(selectedPaperLanguage==='en'?'Question ':'प्रश्न ')+(activeQuestionIndex+1)+' / '+total+'</span><span>'+escapeHTML(q.section||'')+'</span></div><h3>'+escapeHTML(q.q)+'</h3>';
+q.o.forEach((o,j)=>{html+='<label class="test-choice"><input type="radio" name="currentQuestion" value="'+j+'" '+(practiceAnswers[activeQuestionIndex]===j?'checked':'')+' onchange="selectPracticeAnswer('+activeQuestionIndex+','+j+')"> '+String.fromCharCode(65+j)+'. '+escapeHTML(o)+'</label>';});
+html+='</div><div class="question-controls"><button onclick="previousPracticeQuestion()" '+(activeQuestionIndex===0?'disabled':'')+'>'+(selectedPaperLanguage==='en'?'Previous':'मागील प्रश्न')+'</button><button class="mark-button" onclick="toggleMarkForReview()">'+(markedForReview[activeQuestionIndex]?(selectedPaperLanguage==='en'?'Marked ✓':'Mark केले ✓'):(selectedPaperLanguage==='en'?'Mark for Review':'Mark करा'))+'</button><button class="skip-button" onclick="skipPracticeQuestion()">'+(selectedPaperLanguage==='en'?'Skip':'प्रश्न सोडा')+'</button><button onclick="nextPracticeQuestion()" '+(activeQuestionIndex===total-1?'disabled':'')+'>'+(selectedPaperLanguage==='en'?'Next':'पुढील प्रश्न')+'</button><button class="submit-button" onclick="submitPracticeTest()">'+(selectedPaperLanguage==='en'?'Submit Test':'टेस्ट Submit करा')+'</button></div></div>';
+html+='<aside class="question-sidebar"><h3>'+(selectedPaperLanguage==='en'?'Question Palette':'प्रश्न क्रमांक')+'</h3><div class="question-number-grid">';
+bank.questions.forEach((item,i)=>{let cls='';if(i===activeQuestionIndex)cls+=' current';if(markedForReview[i])cls+=' marked';else if(practiceAnswers[i]!==undefined)cls+=' answered';else if(skippedQuestions[i])cls+=' skipped';else if(visitedQuestions[i])cls+=' visited';html+='<button class="question-number'+cls+'" onclick="goToPracticeQuestion('+i+')" aria-label="Question '+(i+1)+'">'+(i+1)+'</button>';});
+html+='</div><div class="question-legend"><span>हिरवा: सोडवलेले</span><span>पिवळा: Mark</span><span>लाल: Skip</span><span>करडा: पाहिलेले</span></div><p class="small-note">'+(selectedPaperLanguage==='en'?'Tap a number to jump to that question.':'प्रश्नावर थेट जाण्यासाठी क्रमांकावर टॅप करा.')+'</p></aside></div></div>';
+document.getElementById("testArea").innerHTML=html;
+}
+function returnFromTest(){showPage(isGDMock?'mock':'pyq');}
+function submitPracticeTest(){
+if(!activePractice)return;
+const total=activePractice.questions.length,unanswered=total-Object.keys(practiceAnswers).length;
+if(unanswered>0&&!window.confirm((selectedPaperLanguage==='en'?'You have ':'तुमचे ')+unanswered+(selectedPaperLanguage==='en'?' unanswered questions. Submit anyway?':' प्रश्न अनुत्तरित आहेत. तरी टेस्ट Submit करायची का?')))return;
+clearInterval(practiceInterval);
+let score=0,correct=0,wrong=0,skipped=0;
+let details=(selectedPaperLanguage==='en'?'<h3>Answers and Explanations</h3>':'<h3>उत्तरे आणि स्पष्टीकरण</h3>');
+activePractice.questions.forEach((q,i)=>{
+const chosen=practiceAnswers[i];
+if(chosen===q.a){correct++;score+=isGDMock?2:1;}
+else if(chosen===undefined||chosen===null){skipped++;}
+else{wrong++;score-=isGDMock?0.25:0;}
+details+='<div class="card"><b>'+(selectedPaperLanguage==='en'?'Question ':'प्रश्न ')+(i+1)+': '+escapeHTML(q.q)+'</b><p>'+(selectedPaperLanguage==='en'?'Your answer: ':'तुमचे उत्तर: ')+(chosen===undefined?(selectedPaperLanguage==='en'?'Unanswered':'अनुत्तरित'):escapeHTML(q.o[chosen]))+'</p><p>'+(selectedPaperLanguage==='en'?'Correct answer: ':'योग्य उत्तर: ')+escapeHTML(q.o[q.a])+'</p><p>'+escapeHTML(q.e)+'</p></div>';
+});
+const used=(activePractice.duration*60)-practiceSeconds,mm=Math.floor(used/60),ss=used%60;
+document.getElementById("testArea").innerHTML="";saveTestRecord(score,total,correct);
+document.getElementById("testResult").innerHTML='<div class="card"><h3>'+(selectedPaperLanguage==='en'?'Your Result':'तुमचा निकाल')+'</h3><p><b>'+score.toFixed(2)+' / '+(isGDMock?160:total)+(selectedPaperLanguage==='en'?' marks':' गुण')+'</b></p><p>'+(selectedPaperLanguage==='en'?'Correct: ':'बरोबर: ')+correct+' | '+(selectedPaperLanguage==='en'?'Wrong: ':'चुकीचे: ')+wrong+' | '+(selectedPaperLanguage==='en'?'Unanswered: ':'अनुत्तरित: ')+skipped+'</p><p>Accuracy: '+Math.round(correct/total*100)+'%</p><p>Negative marking: '+(isGDMock?(wrong*0.25).toFixed(2):'0')+'</p><p>'+(selectedPaperLanguage==='en'?'Time used: ':'वेळ: ')+mm+(selectedPaperLanguage==='en'?' min ':' मिनिटे ')+ss+(selectedPaperLanguage==='en'?' sec':' सेकंद')+'</p></div>'+details+'<button class="primary no-print" onclick="returnFromTest()">'+(selectedPaperLanguage==='en'?'Back':'मागे जा')+'</button> <button class="primary no-print" onclick="printPracticePaper()">Print / Save PDF</button>';
+}
+function printPracticePaper(){if(!activePractice){const b=practiceBanks[window.practiceExam];if(!b){alert("या परीक्षेचा PDF प्रश्नसंच उपलब्ध नाही.");return;}activePractice=localizedPracticeBank(b,selectedPaperLanguage);}renderPracticeQuestionPaper(false);window.print();if(activePractice)renderPracticeQuestionPaper(true);}
 
 function showPatternInfo(){
 const name=document.getElementById("mockExam").value;
@@ -304,7 +421,10 @@ return exam.startsWith("SSC") ? officialSources[0] : null;
 function renderPYQ(){
 const q=(document.getElementById("pyqSearch").value||"").toLowerCase();
 const filtered=exams.filter(name=>name.toLowerCase().includes(q));
-document.getElementById("pyqList").innerHTML=filtered.map(name=>"<div class=\"card\"><h3>"+escapeHTML(name)+"</h3><p>या परीक्षेचे पेपर आणि टेस्ट आपल्या वेबसाइटमध्येच उपलब्ध होतील.</p></div>").join("")||"<p class=\"notice\">या नावाची परीक्षा सापडली नाही.</p>";
+document.getElementById("pyqList").innerHTML=filtered.map(name=>{
+if(name==="SSC GD")return '<div class="card"><h3>SSC GD — PYQ-style Practice Demo</h3><p>सध्या उपलब्ध प्रश्न हे AI-created सराव प्रश्न आहेत; अधिकृत मागील वर्षांचे PYQ नाहीत.</p><button class="primary" onclick="openPYQPractice(\\'SSC GD\\')">Start Practice Test</button></div>';
+return '<div class="card"><h3>'+escapeHTML(name)+'</h3><p>या परीक्षेचा पडताळलेला PYQ प्रश्नसंच अजून जोडलेला नाही.</p></div>';
+}).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
 }
 
 function getStudent(){try{return JSON.parse(localStorage.getItem("aei-student")||"null")}catch(e){return null}}
