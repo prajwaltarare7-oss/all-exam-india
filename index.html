@@ -45,7 +45,8 @@ nav button:hover,nav button:focus{background:#edf2ff;color:var(--blue);outline:n
 a{color:var(--blue);font-weight:700;text-decoration:none}a:hover{text-decoration:underline}
 footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid var(--line);background:#fff;font-size:13px}
 
-.owner-profile{display:flex;align-items:center;gap:22px;padding:24px}.owner-brand{flex:0 0 120px}.owner-brand svg{display:block;width:120px;height:120px}.owner-profile h3{font-size:22px;margin:0 0 5px;color:var(--ink)}.owner-profile p{line-height:1.65;color:var(--muted)}.owner-name{font-size:14px;font-weight:700;color:var(--blue)!important;margin:5px 0}.owner-tagline{font-weight:800;letter-spacing:.5px;color:var(--blue)!important}@media(max-width:600px){.owner-profile{flex-direction:column;align-items:flex-start}.owner-brand{flex-basis:auto}}\n.test-choice{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer}
+.owner-profile{display:flex;align-items:center;gap:22px;padding:24px}.owner-brand{flex:0 0 120px}.owner-brand svg{display:block;width:120px;height:120px}.owner-profile h3{font-size:22px;margin:0 0 5px;color:var(--ink)}.owner-profile p{line-height:1.65;color:var(--muted)}.owner-name{font-size:14px;font-weight:700;color:var(--blue)!important;margin:5px 0}.owner-tagline{font-weight:800;letter-spacing:.5px;color:var(--blue)!important}@media(max-width:600px){.owner-profile{flex-direction:column;align-items:flex-start}.owner-brand{flex-basis:auto}}
+.test-choice{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer}
 .test-choice input{margin-right:8px}.test-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:800}
 @media print{body:after,header,nav,footer,.no-print{display:none!important}body{background:#fff!important;color:#000!important}.container{max-width:none;padding:0}.page{display:none!important}#testroom.page.active{display:block!important}.card,.question{box-shadow:none;border:1px solid #bbb;break-inside:avoid}}
 @media(max-width:600px){header{padding:23px 20px}nav{gap:3px;padding:8px 5px}nav button{padding:10px 9px;font-size:12px}.container{padding:22px 14px 40px}.hero{border-radius:18px}.grid{grid-template-columns:1fr;gap:8px}.card{padding:17px}}
@@ -129,7 +130,10 @@ const practiceBanks={
 {q:"'Brave' या शब्दाचा योग्य समानार्थी शब्द कोणता?",o:["Cowardly","Courageous","Weak","Lazy"],a:1,e:"Brave म्हणजे धाडसी; Courageous हा समानार्थी शब्द आहे."},
 {q:"भारताची राजधानी कोणती?",o:["मुंबई","नवी दिल्ली","कोलकाता","चेन्नई"],a:1,e:"भारताची राजधानी नवी दिल्ली आहे."}]},
 };
-let activePractice=null,practiceAnswers={},practiceSeconds=0,practiceInterval=null;\nlet pendingPracticeStart=false; let isGDMock=false;\nlet selectedPaperLanguage="hi";\nfunction setPaperLanguage(lang){selectedPaperLanguage=lang;["pyqLanguage","testLanguage","mockLanguage"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=lang;});}
+let activePractice=null,practiceAnswers={},practiceSeconds=0,practiceInterval=null;
+let pendingPracticeStart=false; let isGDMock=false;
+let selectedPaperLanguage="hi";
+function setPaperLanguage(lang){selectedPaperLanguage=lang;["pyqLanguage","testLanguage","mockLanguage"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=lang;});}
 
 const examPatterns={
 "SSC CGL":{status:"verified",name:"SSC CGL Tier-I",sections:"Reasoning, General Awareness, Quantitative Aptitude आणि English",duration:"अधिकृत अधिसूचनेनुसार",marking:"अधिकृत अधिसूचनेनुसार",source:"https://ssc.gov.in/"}
@@ -306,7 +310,8 @@ function saveRegistration(){const name=document.getElementById("regName").value.
 function saveTestRecord(score,total,correctCount){const student=getStudent();if(!student)return;let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}h.unshift({name:student.name,exam:window.practiceExam,score:score,total:total,accuracy:Math.round((correctCount===undefined?score:correctCount)/total*100),date:new Date().toLocaleString()});localStorage.setItem("aei-history",JSON.stringify(h.slice(0,50)));renderStudentStats();}
 function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}const visits=Number(localStorage.getItem("aei-visits")||"0");const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};set("statTests",h.length);set("statBest",h.length?Math.max(...h.map(x=>x.score)):"0");set("statVisitors",visits);const lb=document.getElementById("localLeaderboard"),hist=document.getElementById("testHistory");if(lb){const sorted=[...h].sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy).slice(0,10);lb.innerHTML=sorted.length?sorted.map((x,i)=>"<p>"+(i+1)+". "+escapeHTML(x.name)+" — "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून निकाल उपलब्ध नाही.</p>";}if(hist)hist.innerHTML=h.length?h.map(x=>"<p>"+escapeHTML(x.date)+" — "+escapeHTML(x.exam)+": "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून टेस्ट दिलेली नाही.</p>";}
 try{const n=Number(localStorage.getItem("aei-visits")||"0")+1;localStorage.setItem("aei-visits",String(n));}catch(e){}
-\ninitNewFeatures();renderStudentStats();const gd=document.getElementById("gdMockNumber");if(gd)gd.innerHTML=Array.from({length:5000},(_,i)=>"<option value=\""+(i+1)+"\">Mock Test "+(i+1)+"</option>").join("");
+
+initNewFeatures();renderStudentStats();const gd=document.getElementById("gdMockNumber");if(gd)gd.innerHTML=Array.from({length:5000},(_,i)=>"<option value=\""+(i+1)+"\">Mock Test "+(i+1)+"</option>").join("");
 </script>
 </body>
 </html>
