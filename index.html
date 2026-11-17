@@ -223,6 +223,16 @@ body.dark .account-auth-tabs{background:#192a48}
 body.dark .account-auth-tabs button{color:#b8c5db}
 body.dark .account-auth-tabs button.active{background:#263a60;color:#dbe6ff}
 
+
+/* App home hero remains visible inside the native Android shell. */
+body:has(#home.page.active) .hero{display:grid!important;margin-bottom:16px}
+#pyqList .exam-pyq-card{min-height:190px;display:flex;flex-direction:column;align-items:flex-start}
+#pyqList .exam-pyq-card p{flex:1}
+#pyqList .exam-pyq-actions{display:flex;gap:8px;flex-wrap:wrap;width:100%;margin-top:10px}
+#pyqList .exam-pyq-actions button{flex:1;min-width:125px}
+#mockExamCards .mock-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#mockExamCards .mock-card-actions button{flex:1;min-width:112px}
+
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#website","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","name":"SSC EXAM.IN","alternateName":"ALL EXAM INDIA","description":"Free mock tests, free PYQ practice tests and current affairs for SSC examinations.","inLanguage":["mr","hi","en"]},{"@type":"EducationalOrganization","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#organization","name":"SSC EXAM.IN","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","description":"Online practice resources for Indian SSC competitive examinations."}]}</script>
@@ -314,10 +324,10 @@ body.dark .account-auth-tabs button.active{background:#263a60;color:#dbe6ff}
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
 </section>
 <section id="pyq" class="page">
-<h2>SSC Previous Year Question Papers</h2>
-<p>SSC च्या मागील वर्षांच्या प्रश्नपत्रिका येथे शोधा. अधिकृत प्रश्नपत्रिकांसाठी SSC पोर्टल वापरा.</p>
-<div class="notice"><a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC Official Website — Question Papers & Notices</a></div>
-<div class="card"><h3>पेपरची भाषा निवडा / Choose Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="SSC GD / वर्ष / तारीख / Shift शोधा..." oninput="renderPYQ()">
+<h2>Exam-wise PYQ & Practice Tests</h2>
+<p>प्रत्येक परीक्षेचे PYQ विभाग वेगळे निवडा. ज्या परीक्षांचे अधिकृत प्रश्नपत्रिका स्रोत उपलब्ध नाहीत, त्यांना बनावट PYQ म्हणून दाखवले जाणार नाही.</p>
+<div class="notice">SSC GD साठी 2023–2024 च्या वर्ष/Shift संदर्भावर आधारित 61 स्वतंत्र सराव संच उपलब्ध आहेत. हे अधिकृत प्रश्नपत्रिकेतील तंतोतंत प्रश्न नाहीत. इतर परीक्षांचे अधिकृत पेपर जोडले जातील. <a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC Official Website</a></div>
+<div class="card"><h3>पेपरची भाषा निवडा / Choose Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="परीक्षेचे नाव / वर्ष / तारीख / Shift शोधा..." oninput="renderPYQ()">
 <div id="pyqList"></div>
 
 </section>
@@ -329,8 +339,8 @@ body.dark .account-auth-tabs button.active{background:#263a60;color:#dbe6ff}
 <div id="caContent"></div>
 </section>
 <section id="settings" class="page">
-<h2>Settings</h2>
-<div class="card"><h3>👤 Account</h3><p id="accountDetails">तुमचे account या डिव्हाइसवर सेव्ह आहे.</p><button class="primary" type="button" onclick="logoutAccount()">Logout</button></div>
+<h2>Profile & Settings</h2>
+<div class="card"><h3>👤 Profile</h3><p id="accountDetails">तुमचे account या डिव्हाइसवर सेव्ह आहे.</p><p>तुमची Profile माहिती आणि Login या डिव्हाइसवर सुरक्षितपणे सेव्ह आहे.</p><button class="primary" type="button" onclick="logoutAccount()">Logout</button></div>
 <div class="card"><h3>📦 Backup &amp; Restore</h3><p>नवीन APK install करण्यापूर्वी तुमचे Profile, Test History, PYQ attempts आणि Mock Test attempts यांचा backup तयार करा. नवीन app मध्ये हाच code Restore करता येईल.</p><button class="primary" type="button" onclick="createAeiBackup()">Create Backup</button><textarea id="aeiBackupCode" class="search" rows="5" placeholder="Backup code येथे दिसेल. Restore करायचा असल्यास code येथे paste करा." style="width:100%;margin-top:10px;resize:vertical"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="primary" type="button" onclick="copyAeiBackup()">Copy Backup</button><button class="primary" type="button" onclick="restoreAeiBackup()">Restore Backup</button></div><p id="aeiBackupStatus" class="small-note" aria-live="polite">Backup code सुरक्षित ठेवा. यात तुमचे नाव आणि टेस्टचे निकाल असू शकतात.</p></div>
 <div class="card"><h3>Appearance</h3><p>वेबसाइटचा रंग निवडा.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
 <div class="card"><h3>Refresh Website</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" type="button" onclick="location.reload()">↻ Refresh Now</button></div>
@@ -859,7 +869,7 @@ function updateMockProfile(){const exam=document.getElementById("mockExamSelect"
 function renderMockCards(){
  const el=document.getElementById("mockExamCards"),sel=document.getElementById("mockExamSelect");
  if(sel)sel.innerHTML=exams.map(x=>'<option value="'+escapeHTML(x)+'">'+escapeHTML(x)+'</option>').join("");
- if(el)el.innerHTML=exams.map(x=>{const p=examProfiles[x];return '<div class="card"><h3>'+escapeHTML(x)+'</h3><p>5,000 Hard Mock Tests • '+p.sections.reduce((a,b)=>a+b[1],0)+' प्रश्न • '+p.duration+' मिनिटे</p><button class="primary" onclick="selectMockExam(&quot;'+escapeHTML(x)+'&quot;)">Select '+escapeHTML(x)+'</button></div>';}).join("");
+ if(el)el.innerHTML=exams.map(x=>{const p=examProfiles[x],safe=escapeHTML(x);return '<div class="card"><h3>🎯 '+safe+'</h3><p>5,000 exam-wise Mock Tests • '+p.sections.reduce((a,b)=>a+b[1],0)+' प्रश्न • '+p.duration+' मिनिटे</p><div class="mock-card-actions"><button class="primary" type="button" onclick="selectMockExam(\''+safe+'\')">Select Exam</button><button class="primary" type="button" onclick="selectMockExam(\''+safe+'\');startExamMock(\''+safe+'\')">Start Mock</button></div></div>';}).join("");
  if(sel)sel.value="SSC CGL";updateMockProfile();
 }
 function selectMockExam(exam){const sel=document.getElementById("mockExamSelect");if(sel)sel.value=exam;updateMockProfile();}
@@ -1047,13 +1057,21 @@ function startGDSessionPractice(sessionId){
  startPracticeClock();
 }
 
+function showPYQExam(exam){window.selectedPYQExam=exam;renderPYQ();}
 function renderPYQ(){
- const q=(document.getElementById("pyqSearch").value||"").trim().toLowerCase();
- const matchingSessions=gdPracticeSessions.filter(x=>(x.label+" ssc gd").toLowerCase().includes(q));
- const showGD=!q||"ssc gd".includes(q)||matchingSessions.length>0;
- let html="";
- if(showGD){
-  html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>उपलब्ध वर्ष आणि शिफ्टनुसार 61 SSC GD सराव संच. प्रत्येक टेस्टमध्ये 80 प्रश्न, 60 मिनिटांचा Timer आणि Professional Result आहे.</p></div>';
+ const q=(document.getElementById("pyqSearch")?.value||"").trim().toLowerCase();
+ const matchingSessions=gdPracticeSessions.filter(x=>(x.label+" ssc gd "+x.year+" shift "+x.shift).toLowerCase().includes(q));
+ const examMatches=exams.filter(name=>name.toLowerCase().includes(q)||(name==="SSC GD"&&matchingSessions.length>0));
+ let html='<div class="grid">';
+ examMatches.forEach(name=>{
+  const isGD=name==="SSC GD";
+  const count=isGD?gdPracticeSessions.length:0;
+  html+='<article class="card exam-pyq-card"><h3>📘 '+escapeHTML(name)+'</h3><p>'+(isGD?count+' year/shift-wise independent practice sets उपलब्ध • 80 प्रश्न • 60 मिनिटे':'या परीक्षेचे अधिकृत PYQ पेपर अजून जोडलेले नाहीत. अधिकृत पेपर उपलब्ध झाल्यावर येथे वर्षानुसार दिसतील.')+'</p><div class="exam-pyq-actions"><button class="primary" type="button" onclick="showPYQExam(\''+escapeHTML(name)+'\')">'+(isGD?'View PYQ Practice':'View PYQ Status')+'</button>'+(isGD?'':'<button class="primary" type="button" onclick="selectMockExam(\''+escapeHTML(name)+'\');showPage(\'mock\')">Open Mock Tests</button>')+'</div></article>';
+ });
+ html+='</div>';
+ const selected=window.selectedPYQExam&&examMatches.includes(window.selectedPYQExam)?window.selectedPYQExam:"";
+ if(selected==="SSC GD"){
+  html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>61 स्वतंत्र सराव संच. वर्ष आणि Shift हे संदर्भासाठी आहेत; प्रश्न अधिकृत PYQ मधून तंतोतंत घेतलेले नाहीत.</p></div>';
   [2024,2023].forEach(year=>{
    const group=gdPracticeSessions.filter(x=>x.year===year&&(!q||matchingSessions.includes(x)));
    if(!group.length)return;
@@ -1063,9 +1081,9 @@ function renderPYQ(){
    });
    html+='</div></details>';
   });
+ }else if(selected){
+  html+='<div class="card"><h3>'+escapeHTML(selected)+' — PYQ Status</h3><p>या परीक्षेचे सत्यापित मागील वर्षांचे प्रश्नपत्रिका संच अजून जोडलेले नाहीत. चुकीचे किंवा बनावट PYQ दाखवण्याऐवजी अधिकृत SSC स्रोत वापरा.</p><p><a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC Official Website — Question Papers & Notices</a></p><button class="primary" type="button" onclick="selectMockExam(\''+escapeHTML(selected)+'\');showPage(\'mock\')">Start '+escapeHTML(selected)+' Mock Test</button></div>';
  }
- const filtered=exams.filter(name=>name!=="SSC GD"&&name.toLowerCase().includes(q));
- filtered.forEach(name=>{html+='<div class="card"><h3>'+escapeHTML(name)+'</h3><p>या परीक्षेचे स्वतंत्र प्रश्नसंच पुढील टप्प्यात जोडले जातील.</p></div>';});
  document.getElementById("pyqList").innerHTML=html||"<p class='notice'>या नावाची परीक्षा किंवा वर्ष/शिफ्ट सापडली नाही.</p>";
 }
 
