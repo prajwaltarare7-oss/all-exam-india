@@ -181,11 +181,11 @@ const examPatterns={
 
 };
 
-function resetPracticeState(){practiceAnswers={};markedForReview={};skippedQuestions={};visitedQuestions={};activeQuestionIndex=0;}
+function resetPracticeState(){practiceAnswers={};markedForReview={};skippedQuestions={};visitedQuestions={0:true};activeQuestionIndex=0;}
 function startPracticeClock(){
 clearInterval(practiceInterval);
 const update=()=>{const t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");};
-update();practiceInterval=setInterval(()=>{practiceSeconds--;update();if(practiceSeconds<=0)submitPracticeTest();},1000);
+update();practiceInterval=setInterval(()=>{practiceSeconds--;update();if(practiceSeconds<=0)submitPracticeTest(true);},1000);
 }
 function openPractice(exam){
 clearInterval(practiceInterval);activePractice=null;resetPracticeState();isGDMock=false;window.practiceExam=exam;
@@ -376,10 +376,10 @@ html+='</div><div class="question-legend"><span>हिरवा: सोडवल
 document.getElementById("testArea").innerHTML=html;
 }
 function returnFromTest(){showPage(isGDMock?'mock':'pyq');}
-function submitPracticeTest(){
+function submitPracticeTest(forceSubmit){
 if(!activePractice)return;
 const total=activePractice.questions.length,unanswered=total-Object.keys(practiceAnswers).length;
-if(unanswered>0&&!window.confirm((selectedPaperLanguage==='en'?'You have ':'तुमचे ')+unanswered+(selectedPaperLanguage==='en'?' unanswered questions. Submit anyway?':' प्रश्न अनुत्तरित आहेत. तरी टेस्ट Submit करायची का?')))return;
+if(!forceSubmit&&unanswered>0&&!window.confirm((selectedPaperLanguage==='en'?'You have ':'तुमचे ')+unanswered+(selectedPaperLanguage==='en'?' unanswered questions. Submit anyway?':' प्रश्न अनुत्तरित आहेत. तरी टेस्ट Submit करायची का?')))return;
 clearInterval(practiceInterval);
 let score=0,correct=0,wrong=0,skipped=0;
 let details=(selectedPaperLanguage==='en'?'<h3>Answers and Explanations</h3>':'<h3>उत्तरे आणि स्पष्टीकरण</h3>');
