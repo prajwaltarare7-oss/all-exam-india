@@ -540,6 +540,10 @@ function addChoice(sec,qh,qe,correct,distractors,eh,ee){
  vals=shuffle(vals.slice(0,4));
  add(sec,qh,qe,vals,vals,vals.indexOf(String(correct)),eh,ee);
 }
+function addChoiceDual(sec,qh,qe,correctHi,distractorsHi,correctEn,distractorsEn,eh,ee){
+ addChoice(sec,qh,qe,lang==="hi"?correctHi:correctEn,lang==="hi"?distractorsHi:distractorsEn,eh,ee);
+}
+
 const M="गणित / Mathematics";
 const R="तर्कशक्ति / Reasoning";
 const H="हिंदी व्याकरण / Hindi Grammar";
@@ -641,12 +645,13 @@ reasoningTypes.forEach(kind=>{
   const base=10+2*pick(10),even=[base,base+20,base+40],odd=base+51,opts=shuffle([...even,odd]);
   addChoice(R,"निम्नलिखित में से भिन्न संख्या चुनें: "+opts.join(", "),"Choose the number that is different: "+opts.join(", "),String(odd),opts.filter(x=>x!==odd).map(String),"तीन संख्याएँ सम हैं, जबकि "+odd+" विषम है।","Three numbers are even; "+odd+" is odd.");
  }else if(kind===5){
-  addChoice(R,"अनीता, भरत की बहन है। भरत, चारु का पिता है। अनीता का चारु से क्या संबंध है?","Anita is Bharat's sister. Bharat is Charu's father. How is Anita related to Charu?","पैतृक बुआ",["माता","बहन","दादी"],"पिता की बहन को पैतृक बुआ कहते हैं।","A father's sister is a paternal aunt.");
+  addChoiceDual(R,"अनीता, भरत की बहन है। भरत, चारु का पिता है। अनीता का चारु से क्या संबंध है?","Anita is Bharat's sister. Bharat is Charu's father. How is Anita related to Charu?","पैतृक बुआ",["माता","बहन","दादी"],"Paternal aunt",["Mother","Sister","Grandmother"],"पिता की बहन को पैतृक बुआ कहते हैं।","A father's sister is a paternal aunt.");
  }else if(kind===6){
   let east=1+pick(12),north=1+pick(12),west=1+pick(12),south=1+pick(12);if(east===west)east++;if(north===south)north++;
   const dx=east-west,dy=north-south;
   ans=dy>0?(dx>0?"उत्तर-पूर्व":dx<0?"उत्तर-पश्चिम":"उत्तर"):dy<0?(dx>0?"दक्षिण-पूर्व":dx<0?"दक्षिण-पश्चिम":"दक्षिण"):(dx>0?"पूर्व":"पश्चिम");
-  addChoice(R,"एक व्यक्ति "+east+" किमी पूर्व, फिर "+north+" किमी उत्तर, फिर "+west+" किमी पश्चिम और "+south+" किमी दक्षिण चलता है। वह प्रारंभिक स्थान से किस दिशा में है?","A person walks "+east+" km east, "+north+" km north, "+west+" km west and "+south+" km south. In which direction is the person from the starting point?",ans,["उत्तर","दक्षिण","पूर्व"].filter(x=>x!==ans).concat(["पश्चिम","उत्तर-पूर्व","दक्षिण-पश्चिम"].filter(x=>x!==ans)).slice(0,3),"पूर्व-पश्चिम और उत्तर-दक्षिण की शेष दूरियों की तुलना करने पर दिशा "+ans+" मिलती है।","Compare the remaining east-west and north-south distances; the final direction is "+ans+".");
+  const dirHi=["उत्तर","दक्षिण","पूर्व","पश्चिम","उत्तर-पूर्व","उत्तर-पश्चिम","दक्षिण-पूर्व","दक्षिण-पश्चिम"],dirEn=["north","south","east","west","north-east","north-west","south-east","south-west"],dirIndex=dirHi.indexOf(ans),otherDirs=shuffle([0,1,2,3,4,5,6,7].filter(x=>x!==dirIndex)).slice(0,3);
+  addChoiceDual(R,"एक व्यक्ति "+east+" किमी पूर्व, फिर "+north+" किमी उत्तर, फिर "+west+" किमी पश्चिम और "+south+" किमी दक्षिण चलता है। वह प्रारंभिक स्थान से किस दिशा में है?","A person walks "+east+" km east, "+north+" km north, "+west+" km west and "+south+" km south. In which direction is the person from the starting point?",dirHi[dirIndex],otherDirs.map(x=>dirHi[x]),dirEn[dirIndex],otherDirs.map(x=>dirEn[x]),"पूर्व-पश्चिम और उत्तर-दक्षिण की शेष दूरियों की तुलना करने पर दिशा "+ans+" मिलती है।","Compare the remaining east-west and north-south distances; the final direction is "+dirEn[dirIndex]+".");
  }else if(kind===7){
   a=5+pick(12);b=8+pick(12);ans=a+b-1;
   addNum(R,"एक पंक्ति में मोहन बाएँ से "+a+"वें और दाएँ से "+b+"वें स्थान पर है। पंक्ति में कुल कितने व्यक्ति हैं?","Mohan is "+a+"th from the left and "+b+"th from the right in a row. How many people are there?",ans,"कुल व्यक्ति = बाएँ से स्थान + दाएँ से स्थान − 1 = "+a+" + "+b+" − 1 = "+ans+".","Total = left position + right position − 1 = "+a+" + "+b+" − 1 = "+ans+".");
@@ -654,7 +659,7 @@ reasoningTypes.forEach(kind=>{
   const names=shuffle(["A","B","C","D","E"]),left=names[0],next=names[1],mid=names[2],prev=names[3],right=names[4];
   addChoice(R,"पाँच व्यक्ति एक पंक्ति में बैठे हैं। "+left+" सबसे बाएँ है, "+next+" उसके ठीक दाएँ है, "+right+" सबसे दाएँ है और "+prev+" उसके ठीक बाएँ है। बीच में कौन बैठा है?","Five people sit in a row. "+left+" is at the extreme left, "+next+" is immediately to the right of "+left+", "+right+" is at the extreme right and "+prev+" is immediately to the left of "+right+". Who sits in the middle?",mid,[left,next,prev],"बाएँ से क्रम "+left+", "+next+", "+mid+", "+prev+", "+right+" बनता है।","The order from left to right is "+left+", "+next+", "+mid+", "+prev+", "+right+".");
  }else if(kind===9){
-  addChoice(R,"कथन: सभी गुलाब फूल हैं। कोई भी फूल धातु नहीं है। निष्कर्ष: I. कोई गुलाब धातु नहीं है। II. कुछ फूल गुलाब हैं। सही विकल्प चुनें।","Statements: All roses are flowers. No flower is a metal. Conclusions: I. No rose is a metal. II. Some flowers are roses. Choose the correct option.","केवल निष्कर्ष I अनुसरण करता है",["केवल निष्कर्ष II अनुसरण करता है","दोनों निष्कर्ष अनुसरण करते हैं","कोई निष्कर्ष अनुसरण नहीं करता"],"पहला निष्कर्ष निश्चित रूप से निकलता है। दूसरे के लिए अस्तित्व की जानकारी नहीं दी गई है।","Conclusion I follows. The statements do not establish the existence required for conclusion II.");
+  addChoiceDual(R,"कथन: सभी गुलाब फूल हैं। कोई भी फूल धातु नहीं है। निष्कर्ष: I. कोई गुलाब धातु नहीं है। II. कुछ फूल गुलाब हैं। सही विकल्प चुनें।","Statements: All roses are flowers. No flower is a metal. Conclusions: I. No rose is a metal. II. Some flowers are roses. Choose the correct option.","केवल निष्कर्ष I अनुसरण करता है",["केवल निष्कर्ष II अनुसरण करता है","दोनों निष्कर्ष अनुसरण करते हैं","कोई निष्कर्ष अनुसरण नहीं करता"],"Only conclusion I follows",["Only conclusion II follows","Both conclusions follow","Neither conclusion follows"],"पहला निष्कर्ष निश्चित रूप से निकलता है। दूसरे के लिए अस्तित्व की जानकारी नहीं दी गई है।","Conclusion I follows. The statements do not establish the existence required for conclusion II.");
  }else if(kind===10){
   a=6+pick(10);b=2+pick(8);c=2+pick(5);ans=a+b*c-4;
   addNum(R,"यदि @ का अर्थ +, # का अर्थ × और $ का अर्थ − है, तो "+a+" @ "+b+" # "+c+" $ 4 का मान ज्ञात करें।","If @ means +, # means × and $ means −, evaluate "+a+" @ "+b+" # "+c+" $ 4.",ans,"चिह्न बदलने पर "+a+" + "+b+" × "+c+" − 4 = "+ans+"।","After replacing the symbols: "+a+" + "+b+" × "+c+" − 4 = "+ans+".");
@@ -667,7 +672,7 @@ reasoningTypes.forEach(kind=>{
   addNum(R,"यदि A=1, B=2, ... Z=26 हो, तो '"+word+"' के अक्षरों के स्थानों का योग कितना होगा?","If A=1, B=2, ... Z=26, what is the sum of the letter positions in '"+word+"'?",ans,""+word+" = "+word.split("").map(ch=>letters.indexOf(ch)+1).join(" + ")+" = "+ans+".",""+word+" = "+word.split("").map(ch=>letters.indexOf(ch)+1).join(" + ")+" = "+ans+".");
  }else if(kind===13){
   const days=["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],eng=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],base=pick(7),n=8+pick(20),idx=(base+n)%7;
-  addChoice(R,"यदि आज "+days[base]+" है, तो "+n+" दिन बाद कौन-सा दिन होगा?","If today is "+eng[base]+", what day will it be after "+n+" days?",days[idx],[days[(idx+1)%7],days[(idx+2)%7],days[(idx+6)%7]],n+" को 7 से भाग देने पर शेष "+(n%7)+" है; "+(n%7)+" दिन आगे बढ़ें।","Divide "+n+" by 7; the remainder is "+(n%7)+". Move "+(n%7)+" days forward.");
+  addChoiceDual(R,"यदि आज "+days[base]+" है, तो "+n+" दिन बाद कौन-सा दिन होगा?","If today is "+eng[base]+", what day will it be after "+n+" days?",days[idx],[days[(idx+1)%7],days[(idx+2)%7],days[(idx+6)%7]],eng[idx],[eng[(idx+1)%7],eng[(idx+2)%7],eng[(idx+6)%7]],n+" को 7 से भाग देने पर शेष "+(n%7)+" है; "+(n%7)+" दिन आगे बढ़ें।","Divide "+n+" by 7; the remainder is "+(n%7)+". Move "+(n%7)+" days forward.");
  }else if(kind===14){
   addChoice(R,"दर्पण को दाईं ओर रखने पर ↗ का दर्पण प्रतिबिंब कौन-सा होगा?","What is the mirror image of ↗ when the mirror is placed on its right?", "↖",["↘","↙","↗"],"ऊर्ध्वाधर दर्पण में बायाँ और दायाँ उलटते हैं।","A vertical mirror reverses left and right.");
  }else if(kind===15){
@@ -676,7 +681,7 @@ reasoningTypes.forEach(kind=>{
   a=3+pick(7);b=a*(a+1);c=5+pick(5);ans=c*(c+1);
   addNum(R,"यदि  "+a+" : "+b+" :: "+c+" : ?  है, तो रिक्त स्थान भरें।","If "+a+" : "+b+" :: "+c+" : ?, find the missing number.",ans,"नियम n × (n+1) है; "+c+" × "+(c+1)+" = "+ans+".","The rule is n × (n+1); "+c+" × "+(c+1)+" = "+ans+".");
  }else if(kind===17){
-  addChoice(R,"निम्नलिखित में से भिन्न शब्द चुनें: तांबा, लोहा, चाँदी, प्लास्टिक।","Choose the odd word: Copper, Iron, Silver, Plastic.","प्लास्टिक",["तांबा","लोहा","चाँदी"],"तीन धातुएँ हैं; प्लास्टिक धातु नहीं है।","Three are metals; plastic is not a metal.");
+  addChoiceDual(R,"निम्नलिखित में से भिन्न शब्द चुनें: तांबा, लोहा, चाँदी, प्लास्टिक।","Choose the odd word: Copper, Iron, Silver, Plastic.","प्लास्टिक",["तांबा","लोहा","चाँदी"],"Plastic",["Copper","Iron","Silver"],"तीन धातुएँ हैं; प्लास्टिक धातु नहीं है।","Three are metals; plastic is not a metal.");
  }else if(kind===18){
   addChoice(R,"P, Q से लंबा है। R, Q से छोटा है। S, P से लंबा है। सबसे लंबा कौन है?","P is taller than Q. R is shorter than Q. S is taller than P. Who is the tallest?","S",["P","Q","R"],"क्रम S > P > Q > R है।","The order is S > P > Q > R.");
  }else{
