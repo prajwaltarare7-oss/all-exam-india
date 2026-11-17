@@ -136,7 +136,7 @@ const examPatterns={
 
 };
 
-function openPractice(exam){document.getElementById("testTitle").textContent=exam+" Practice Test";document.getElementById("testIntro").style.display="block";document.getElementById("testArea").innerHTML="";saveTestRecord(Math.max(0,score),activePractice.questions.length);document.getElementById("testResult").innerHTML="";window.practiceExam=exam;showPage("testroom");}
+function openPractice(exam){clearInterval(practiceInterval);activePractice=null;practiceAnswers={};isGDMock=false;window.practiceExam=exam;document.getElementById("testTitle").textContent=exam+" Practice Test";document.getElementById("testIntro").style.display="block";document.getElementById("testArea").innerHTML="";document.getElementById("testResult").innerHTML="";showPage("testroom");}
 function startPracticeTest(){isGDMock=false;if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}const bank=practiceBanks[window.practiceExam];if(!bank){document.getElementById("testArea").innerHTML='<div class="notice">या परीक्षेसाठी demo प्रश्नसंच अजून तयार नाही. सध्या फक्त SSC GD चा demo प्रश्नसंच उपलब्ध आहे.</div>';return;}activePractice=localizedPracticeBank(bank,selectedPaperLanguage);practiceAnswers={};practiceSeconds=bank.duration*60;document.getElementById("testIntro").style.display="none";renderPracticeQuestionPaper(true);clearInterval(practiceInterval);practiceInterval=setInterval(()=>{practiceSeconds--;const t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");if(practiceSeconds<=0)submitPracticeTest();},1000);}
 
 function gdRand(seed){let x=seed;return function(){x=(x*9301+49297)%233280;return x/233280;};}
