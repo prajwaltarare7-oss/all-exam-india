@@ -1,6 +1,6 @@
 {
   "title": "ALL EXAM INDIA",
-  "version": 1,
+  "version": 2,
   "exams": [
     {
       "name": "UPSC",
@@ -51,6 +51,48 @@
       "name": "MAHA TET",
       "category": "Teaching",
       "source": "https://mahatet.in/"
+    }
+  ],
+  "collections": [
+    {
+      "exam": "MPSC Rajyaseva",
+      "years": {
+        "from": 2009,
+        "to": 2026
+      },
+      "stages": [
+        "Prelims",
+        "Mains"
+      ],
+      "discoveredCatalogs": [
+        {
+          "claimedPaperCount": 344,
+          "sourceType": "third-party index reporting MPSC-origin PDFs",
+          "status": "not individually verified; not imported",
+          "notes": "Count includes prelims and mains paper entries; may include multiple subjects/papers per exam cycle."
+        },
+        {
+          "claimedPaperCount": 178,
+          "sourceType": "third-party index",
+          "status": "conflicting count; not imported",
+          "notes": "Another catalog reports 178 papers for 2010–2026; counting scope differs."
+        },
+        {
+          "claimedPaperCount": 55,
+          "sourceType": "third-party index",
+          "status": "partial recent-years listing; not imported",
+          "notes": "2019–2025 listing reports 55 PDFs."
+        }
+      ],
+      "importStatus": "0 PDFs imported; 0 question sets converted to tests",
+      "validationPlan": [
+        "match each item to MPSC official notice or original PDF",
+        "deduplicate by advertisement, exam year, stage, subject and paper number",
+        "verify final answer key and revised/cancelled questions",
+        "check reuse permission before hosting"
+      ],
+      "testStatus": "not yet playable",
+      "officialPortal": "https://mpsc.gov.in/"
     }
   ]
 }
