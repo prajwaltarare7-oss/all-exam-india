@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
         card.addView(heading, matchWrap());
 
         TextView intro = new TextView(this);
-        intro.setText("App सुरू करण्यासाठी तुमची माहिती भरा");
+        intro.setText("Enter your details to start using the app");
         intro.setTextColor(MUTED);
         intro.setTextSize(14);
         intro.setGravity(Gravity.CENTER);
@@ -123,19 +123,19 @@ public class MainActivity extends Activity {
         introParams.bottomMargin = dp(18);
         card.addView(intro, introParams);
 
-        addFieldLabel(card, "नाव / Nickname");
-        EditText nameInput = makeInput("तुमचे नाव लिहा",
+        addFieldLabel(card, "Full Name");
+        EditText nameInput = makeInput("Enter your name",
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         nameInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(30)});
         card.addView(nameInput, fieldParams());
 
-        addFieldLabel(card, "वय (वर्षांत)");
+        addFieldLabel(card, "Age (in years)");
         EditText ageInput = makeInput("उदा. 17.5",
                 InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         card.addView(ageInput, fieldParams());
 
         TextView ageNote = new TextView(this);
-        ageNote.setText("किमान वय: 17.5 वर्षे (17 वर्षे 6 महिने)");
+        ageNote.setText("Minimum age: 17.5 years (17 years and 6 months)");
         ageNote.setTextColor(BLUE);
         ageNote.setTextSize(13);
         LinearLayout.LayoutParams ageNoteParams = matchWrap();
@@ -154,7 +154,7 @@ public class MainActivity extends Activity {
         card.addView(continueButton, continueParams);
 
         TextView privacyNote = new TextView(this);
-        privacyNote.setText("नाव आणि वय फक्त या फोनमध्ये सेव्ह राहील.");
+        privacyNote.setText("Your name and age will be saved only on this phone.");
         privacyNote.setTextColor(MUTED);
         privacyNote.setTextSize(12);
         privacyNote.setGravity(Gravity.CENTER);
@@ -166,7 +166,7 @@ public class MainActivity extends Activity {
             String name = nameInput.getText().toString().trim();
             String ageText = ageInput.getText().toString().trim();
             if (name.isEmpty()) {
-                nameInput.setError("नाव लिहा");
+                nameInput.setError("Enter your name");
                 nameInput.requestFocus();
                 return;
             }
@@ -174,14 +174,14 @@ public class MainActivity extends Activity {
             try {
                 age = Double.parseDouble(ageText);
             } catch (Exception e) {
-                ageInput.setError("वय 17.5 अशा स्वरूपात लिहा");
+                ageInput.setError("Enter age in a format such as 17.5");
                 ageInput.requestFocus();
                 return;
             }
             if (age < MINIMUM_AGE || age > 120) {
-                ageInput.setError("किमान वय 17.5 वर्षे असणे आवश्यक आहे");
+                ageInput.setError("Minimum age must be 17.5 years");
                 ageInput.requestFocus();
-                Toast.makeText(this, "या अॅपसाठी किमान वय 17.5 वर्षे आहे.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "The minimum age for this app is 17.5 years.", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -243,18 +243,6 @@ public class MainActivity extends Activity {
 
         toolbar.addView(brandStack, new LinearLayout.LayoutParams(0,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-
-        TextView profileButton = new TextView(this);
-        profileButton.setText("👤");
-        profileButton.setTextSize(21);
-        profileButton.setGravity(Gravity.CENTER);
-        profileButton.setContentDescription("Profile");
-        GradientDrawable profileBg = new GradientDrawable();
-        profileBg.setColor(Color.rgb(49, 94, 232));
-        profileBg.setCornerRadius(dp(15));
-        profileButton.setBackground(profileBg);
-        profileButton.setOnClickListener(v -> showProfileDialog());
-        toolbar.addView(profileButton, new LinearLayout.LayoutParams(dp(44), dp(44)));
 
         shell.addView(toolbar, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, dp(62)));
@@ -429,7 +417,7 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             } catch (Exception e) {
                 Toast.makeText(MainActivity.this,
-                        "हा डाउनलोड उघडण्यासाठी अॅप उपलब्ध नाही.", Toast.LENGTH_LONG).show();
+                        "No app is available to open this download.", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -496,27 +484,27 @@ public class MainActivity extends Activity {
         form.setOrientation(LinearLayout.VERTICAL);
         form.setPadding(dp(20), dp(8), dp(20), dp(4));
 
-        addFieldLabel(form, "नाव / Nickname");
-        EditText nameInput = makeInput("तुमचे नाव लिहा",
+        addFieldLabel(form, "Full Name");
+        EditText nameInput = makeInput("Enter your name",
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         nameInput.setText(preferences.getString("name", ""));
         nameInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(30)});
         form.addView(nameInput, fieldParams());
 
-        addFieldLabel(form, "वय (वर्षांत)");
+        addFieldLabel(form, "Age (in years)");
         EditText ageInput = makeInput("उदा. 17.5",
                 InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         ageInput.setText(preferences.getString("age", ""));
         form.addView(ageInput, fieldParams());
 
         TextView note = new TextView(this);
-        note.setText("किमान वय: 17.5 वर्षे (17 वर्षे 6 महिने)");
+        note.setText("Minimum age: 17.5 years (17 years and 6 months)");
         note.setTextColor(BLUE);
         note.setTextSize(13);
         form.addView(note, matchWrap());
 
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("तुमचे Profile")
+                .setTitle("Your Profile")
                 .setView(form)
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Save", null)
@@ -526,18 +514,18 @@ public class MainActivity extends Activity {
             String name = nameInput.getText().toString().trim();
             String ageText = ageInput.getText().toString().trim();
             if (name.isEmpty()) {
-                nameInput.setError("नाव लिहा");
+                nameInput.setError("Enter your name");
                 return;
             }
             double age;
             try {
                 age = Double.parseDouble(ageText);
             } catch (Exception e) {
-                ageInput.setError("वय 17.5 अशा स्वरूपात लिहा");
+                ageInput.setError("Enter age in a format such as 17.5");
                 return;
             }
             if (age < MINIMUM_AGE || age > 120) {
-                ageInput.setError("किमान वय 17.5 वर्षे असणे आवश्यक आहे");
+                ageInput.setError("Minimum age must be 17.5 years");
                 Toast.makeText(this, "किमान वय 17.5 वर्षे आहे.", Toast.LENGTH_LONG).show();
                 return;
             }
@@ -545,7 +533,7 @@ public class MainActivity extends Activity {
             preferences.edit().putString("name", name).putString("age", ageText).apply();
             applyProfileToWebsite();
             dialog.dismiss();
-            Toast.makeText(this, "Profile सेव्ह झाले.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Profile saved.", Toast.LENGTH_SHORT).show();
         }));
         dialog.show();
     }
@@ -602,7 +590,7 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(this, "ही लिंक उघडता आली नाही.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Could not open this link.", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -612,14 +600,14 @@ public class MainActivity extends Activity {
         showingError = true;
 
         TextView message = new TextView(this);
-        message.setText("इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.\n\nAll Exam India");
+        message.setText("Check your internet connection and try again.\n\nAll Exam India");
         message.setTextColor(Color.WHITE);
         message.setTextSize(18);
         message.setGravity(Gravity.CENTER);
         message.setPadding(dp(28), dp(24), dp(28), dp(24));
 
         Button retry = new Button(this);
-        retry.setText("पुन्हा प्रयत्न करा");
+        retry.setText("Try Again");
         retry.setTextColor(Color.WHITE);
         retry.setAllCaps(false);
         retry.setBackgroundTintList(ColorStateList.valueOf(BLUE));
