@@ -79,10 +79,10 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 </section>
 <section id="pyq" class="page">
 <h2>Previous Year Question Papers</h2>
-<p>परीक्षेनुसार अधिकृत प्रश्नपत्रिका स्रोत शोधा.</p>
+<p>सर्व प्रश्नपत्रिका आणि टेस्ट याच वेबसाइटमध्ये उपलब्ध होतील.</p>
 <input class="search" id="pyqSearch" placeholder="परीक्षा शोधा..." oninput="renderPYQ()">
 <div id="pyqList"></div>
-<div class="notice">सध्या अधिकृत वेबसाइटचे दुवे उपलब्ध आहेत. पडताळलेले PDF मिळाल्यावरच डाउनलोड जोडले जातील.</div>
+
 </section>
 <section id="police" class="page">
 <h2>Police Bharti — State-wise</h2>
@@ -196,22 +196,12 @@ renderExamResources(name);
 showPage("examDetail");
 }
 function renderExamResources(name){
-document.getElementById("detailTitle").textContent=name+" — 15-Year PYQ Archive & Practice";
+document.getElementById("detailTitle").textContent=name+" — PYQ Papers & Online Tests";
 const box=document.getElementById("examResources");
-const official=getOfficialSourceForExam(name);
-let html="<div class=\"notice\"><b>Archive target:</b> 2011–2026 (15 पूर्ण मागील वर्षे + चालू वर्ष). प्रत्येक वर्षात पेपर झाला असेलच असे नाही; उपलब्धता परीक्षा व आयोगानुसार तपासली जाईल.</div>";
-html+="<div class=\"card\"><h3>Official exam source</h3>";
-if(official){html+="<p>"+escapeHTML(official.category||"Official source")+"</p><a href=\""+official.source+"\" target=\"_blank\" rel=\"noopener\">Official website / papers</a>";}
-else{html+="<p>या परीक्षेचा अधिकृत पेपर संग्रह अजून स्वतंत्रपणे पडताळलेला नाही.</p>";}
-html+="</div>";
-html+="<div class=\"card\"><h3>Year-wise PYQ collections</h3>";
-html+="<p><a href=\"https://www.upsc.gov.in/examinations/previous-question-papers\" target=\"_blank\" rel=\"noopener\">UPSC official question papers</a> · <a href=\"https://cms.upsc.gov.in/archived-exam-documents/question-papers/\" target=\"_blank\" rel=\"noopener\">UPSC official archive</a></p>";
-html+="<p><a href=\"https://ssc.gov.in/home/archives\" target=\"_blank\" rel=\"noopener\">SSC official archives</a></p>";
-html+="<p><a href=\"https://examudaan.in/mpsc-pyq\" target=\"_blank\" rel=\"noopener\">MPSC year-wise papers and keys (third-party index; check original MPSC notice)</a></p>";
-html+="<p><a href=\"https://examudaan.in/question-papers\" target=\"_blank\" rel=\"noopener\">Maharashtra Police / Talathi / ZP / multi-exam paper index (third-party)</a></p>";
-html+="<p><a href=\"https://previousyearquestions.app/\" target=\"_blank\" rel=\"noopener\">Multi-exam PYQ practice directory (third-party)</a></p></div>";
-html+="<div class=\"card\"><h3>Online test on our website</h3><p>प्रत्येक वर्षाचा पेपर इथेच test म्हणून सुरू करण्यासाठी प्रश्न, चार पर्याय, योग्य उत्तर, स्पष्टीकरण आणि पेपरचा मूळ स्रोत एकेक करून जोडणे आवश्यक आहे. हे पूर्ण होईपर्यंत बाह्य पेपरला आमचा स्वतःचा online test म्हणून दाखवणार नाही.</p></div>";
-html+="<div class=\"notice\"><b>Accuracy & copyright:</b> Official PDF/answer key उपलब्ध असल्यासच Official PYQ; memory-based प्रश्न वेगळे. ज्या PDF चे पुनर्प्रकाशन परवानगीशिवाय करता येत नाही ते आपल्या server वर copy न करता अधिकृत स्रोताचा दुवा दिला जाईल.</div>";
+let html="<div class=\"notice\"><b>ALL EXAM INDIA — स्वतःची PYQ Library</b><br>सर्व पेपर आणि टेस्ट याच वेबसाइटमध्ये दिसतील. बाहेरील वेबसाइटचे पेज येथे दाखवले जाणार नाही.</div>";
+html+="<div class=\"card\"><h3>"+escapeHTML(name)+" — वर्षानुसार पेपर</h3><p>2011 ते 2026 या कालावधीतील पडताळलेले पेपर आपल्या library मध्ये जोडले जातील.</p><p>सध्या या परीक्षेचा पडताळलेला PDF/प्रश्नसंच येथे जोडलेला नाही.</p></div>";
+html+="<div class=\"card\"><h3>Online Test</h3><p>पेपर आणि उत्तरतालिका पडताळून आपल्या वेबसाइटमध्ये जोडल्यावर इथेच timed test देता येईल.</p></div>";
+html+="<div class=\"notice\">फक्त उपलब्ध आणि वापरण्याची परवानगी असलेले प्रश्नसंच जोडले जातील. पेपर, वर्ष किंवा प्रश्नसंख्या बनवून दाखवली जाणार नाही.</div>";
 box.innerHTML=html;
 }
 function getOfficialSourceForExam(exam){
@@ -234,13 +224,7 @@ return null;
 function renderPYQ(){
 const q=(document.getElementById("pyqSearch").value||"").toLowerCase();
 const filtered=exams.filter(name=>name.toLowerCase().includes(q));
-document.getElementById("pyqList").innerHTML=filtered.map(name=>{
-const src=getOfficialSourceForExam(name);
-if(!src) return `<div class="card"><h3>${name}</h3><p>अधिकृत प्रश्नपत्रिका स्रोत अजून पडताळलेला नाही.</p></div>`;
-return `<div class="card"><h3>${name}</h3><p>${src.category}</p>
-<p class="notice">हा अधिकृत पोर्टलचा दुवा आहे; येथे थेट PDF उपलब्ध असल्याची हमी नाही. PDF पडताळल्यानंतरच ती PYQ म्हणून दाखवली जाईल.</p>
-<a href="${src.source}" target="_blank" rel="noopener">अधिकृत स्रोत उघडा</a></div>`;
-}).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
+document.getElementById("pyqList").innerHTML=filtered.map(name=>"<div class=\"card\"><h3>"+escapeHTML(name)+"</h3><p>या परीक्षेचे पेपर आणि टेस्ट आपल्या वेबसाइटमध्येच उपलब्ध होतील.</p></div>").join("")||"<p class=\"notice\">या नावाची परीक्षा सापडली नाही.</p>";
 }
 renderExams();renderPolice();initNewFeatures();
 </script>
