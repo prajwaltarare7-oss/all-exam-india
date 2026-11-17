@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,8 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#17233c}
 header{background:linear-gradient(120deg,#101d49,#1559a5);color:white;padding:25px 16px;text-align:center}
-header h1{margin:5px;font-size:30px}
-header p{margin:8px}
-nav{background:#fff;padding:12px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;box-shadow:0 2px 8px #0001}
+header h1{font-size:30px}
+nav{background:white;padding:12px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;box-shadow:0 2px 8px #0001}
 button,select,input{padding:11px;border:1px solid #d5dceb;border-radius:8px;font-size:15px}
 button{background:#1559a5;color:white;border:0;cursor:pointer}
 main{max-width:1100px;margin:auto;padding:18px}
@@ -19,11 +19,12 @@ h2{color:#153c75}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
 .card{background:white;padding:18px;border-radius:12px;box-shadow:0 3px 12px #0001;cursor:pointer;text-align:center;border:1px solid #e4eaf5}
 .card:hover{border-color:#1559a5}
-.card h3{margin:8px 0;color:#153c75}
+.card h3{color:#153c75}
 .section{background:white;padding:18px;margin:18px 0;border-radius:12px}
-.item{padding:12px;border-bottom:1px solid #eee}
-.item button{float:right}
-#details{display:none}
+.resource{padding:15px;border-bottom:1px solid #eee}
+.resource p{color:#536078}
+.notice{background:#fff5d9;padding:13px;border-radius:8px;color:#725500}
+#details,#otherSection{display:none}
 footer{text-align:center;padding:25px;background:#101d49;color:white;margin-top:30px}
 </style>
 </head>
@@ -75,8 +76,8 @@ footer{text-align:center;padding:25px;background:#101d49;color:white;margin-top:
 </div>
 </div>
 
-<div class="section" id="otherSection" style="display:none">
-<button onclick="home()">← Back to Home</button>
+<div class="section" id="otherSection">
+<button onclick="backToExam()">← Back</button>
 <h2 id="sectionTitle"></h2>
 <div id="sectionContent"></div>
 </div>
@@ -105,11 +106,27 @@ const exams=[
 ];
 
 let selectedExam="";
+let currentSection="";
 
 const translations={
-en:{heading:"Explore All Competitive Exams",study:"Study Zone",search:"Search exams...",tag:"One Platform for Every Competitive Exam"},
-mr:{heading:"सर्व स्पर्धा परीक्षा शोधा",study:"अभ्यास विभाग",search:"परीक्षा शोधा...",tag:"प्रत्येक स्पर्धा परीक्षेसाठी एक व्यासपीठ"},
-hi:{heading:"सभी प्रतियोगी परीक्षाएँ देखें",study:"अध्ययन विभाग",search:"परीक्षा खोजें...",tag:"हर प्रतियोगी परीक्षा के लिए एक मंच"}
+en:{
+heading:"Explore All Competitive Exams",
+study:"Study Zone",
+search:"Search exams...",
+tag:"One Platform for Every Competitive Exam"
+},
+mr:{
+heading:"सर्व स्पर्धा परीक्षा शोधा",
+study:"अभ्यास विभाग",
+search:"परीक्षा शोधा...",
+tag:"प्रत्येक स्पर्धा परीक्षेसाठी एक व्यासपीठ"
+},
+hi:{
+heading:"सभी प्रतियोगी परीक्षाएँ देखें",
+study:"अध्ययन विभाग",
+search:"परीक्षा खोजें...",
+tag:"हर प्रतियोगी परीक्षा के लिए एक मंच"
+}
 };
 
 function changeLanguage(){
@@ -124,24 +141,27 @@ renderExams();
 function renderExams(){
 let q=document.getElementById("search").value.toLowerCase();
 let lang=document.getElementById("language").value;
-document.getElementById("examGrid").innerHTML="";
+let grid=document.getElementById("examGrid");
+grid.innerHTML="";
+
 exams.filter(e=>e.join(" ").toLowerCase().includes(q)).forEach(e=>{
 let name=lang==="mr"?e[1]:lang==="hi"?e[2]:e[0];
 let div=document.createElement("div");
 div.className="card";
-div.innerHTML="<h3>"+name+"</h3><p>Explore exam details</p>";
-div.onclick=()=>openExam(name);
-document.getElementById("examGrid").appendChild(div);
+div.innerHTML="<h3>"+name+"</h3><p>View exam resources</p>";
+div.onclick=()=>openExam(e[0],name);
+grid.appendChild(div);
 });
 }
 
-function openExam(name){
-selectedExam=name;
+function openExam(id,name){
+selectedExam=id;
 document.getElementById("homePage").style.display="none";
 document.getElementById("otherSection").style.display="none";
 document.getElementById("details").style.display="block";
 document.getElementById("examTitle").innerText=name;
-document.getElementById("examDescription").innerText="Explore information, syllabus, previous papers and practice tests for "+name+".";
+document.getElementById("examDescription").innerText=
+"Find verified resources for "+name+".";
 }
 
 function home(){
@@ -150,42 +170,72 @@ document.getElementById("details").style.display="none";
 document.getElementById("otherSection").style.display="none";
 }
 
+function backToExam(){
+if(selectedExam){
+document.getElementById("otherSection").style.display="none";
+document.getElementById("details").style.display="block";
+}else{
+home();
+}
+}
+
 function showSection(type){
+currentSection=type;
 document.getElementById("homePage").style.display="none";
 document.getElementById("details").style.display="none";
 document.getElementById("otherSection").style.display="block";
-let title={
+
+let titles={
 study:"Study Material",
-syllabus:"Exam Syllabus",
-pyq:"Previous Year Question Papers",
-mock:"Mock Test",
+syllabus:"Official Syllabus",
+pyq:"Previous Year Papers",
+mock:"Mock Tests",
 current:"Current Affairs"
 };
-document.getElementById("sectionTitle").innerText=title[type];
+
+document.getElementById("sectionTitle").innerText=titles[type];
+
 let content=document.getElementById("sectionContent");
-content.innerHTML="";
+content.innerHTML=`
+<div class="resource">
+<h3>${selectedExam||"All Exams"}</h3>
+<div class="notice">
+Verified resources are not added yet. No sample or unverified questions are displayed.
+</div>
+</div>
+`;
+
+if(type==="syllabus"){
+content.innerHTML+=`
+<div class="resource">
+<h3>Official Syllabus</h3>
+<p>Official syllabus and exam pattern will be published here after verification from the exam authority.</p>
+</div>`;
+}
+
+if(type==="pyq"){
+content.innerHTML+=`
+<div class="resource">
+<h3>Previous Year Question Papers</h3>
+<p>Only verified previous year papers and official answer keys will be added here.</p>
+</div>`;
+}
 
 if(type==="mock"){
-content.innerHTML=`
-<h3>Sample General Knowledge Test</h3>
-<p>1. What is the capital of India?</p>
-<label><input type="radio" name="answer" value="Mumbai"> Mumbai</label><br>
-<label><input type="radio" name="answer" value="New Delhi"> New Delhi</label><br>
-<label><input type="radio" name="answer" value="Pune"> Pune</label><br><br>
-<button onclick="checkAnswer()">Submit Answer</button>
-<p id="result"></p>`;
-}else{
-content.innerHTML=`
-<p><b>${selectedExam||"All Exams"}</b></p>
-<p>This section is ready for verified study resources and exam-wise content.</p>
-<p>Question papers, syllabus and study material will be added in the next development stage.</p>`;
-}
+content.innerHTML+=`
+<div class="resource">
+<h3>Mock Test</h3>
+<p>Exam-wise test system is under development. No fake questions are included.</p>
+</div>`;
 }
 
-function checkAnswer(){
-let a=document.querySelector('input[name="answer"]:checked');
-document.getElementById("result").innerText=
-!a?"Please select an answer.":a.value==="New Delhi"?"Correct! Well done!":"Not quite. The correct answer is New Delhi.";
+if(type==="current"){
+content.innerHTML+=`
+<div class="resource">
+<h3>Current Affairs</h3>
+<p>Verified current affairs will be added with their sources and dates.</p>
+</div>`;
+}
 }
 
 renderExams();
