@@ -131,7 +131,6 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <footer>© 2026 ALL EXAM INDIA | Learn • Practice • Succeed</footer>
 <script>
 const exams=[
-"MPSC Rajyaseva","MPSC Group B","MPSC Group C","UPSC Civil Services",
 "SSC CGL","SSC CHSL","SSC MTS","SSC GD","Railway RRB NTPC","Railway Group D","Railway RRB ALP","Railway RRB Technician",
 "IBPS PO","IBPS Clerk","SBI PO","SBI Clerk","Police Bharti",
 "NDA","CDS","Agniveer","CTET","MAHA TET","NEET UG","JEE Main",
@@ -140,8 +139,6 @@ const exams=[
 ];
 const policeRecruitment=[{"state":"Maharashtra","kind":"state","exam":"Police Constable / SRPF / Driver","board":"Maharashtra Police","url":"https://www.mahapolice.gov.in/"},{"state":"Uttar Pradesh","kind":"state","exam":"Police Constable / SI","board":"UP Police Recruitment Board","url":"https://uppbpb.gov.in/"},{"state":"Delhi","kind":"ut","exam":"Police Constable / Head Constable / SI","board":"SSC / Delhi Police","url":"https://ssc.gov.in/"},{"state":"Bihar","kind":"state","exam":"Police Constable / SI","board":"CSBC / BPSSC","url":"https://csbc.bihar.gov.in/"},{"state":"Rajasthan","kind":"state","exam":"Police Constable / SI","board":"Rajasthan Police","url":"https://police.rajasthan.gov.in/"},{"state":"Madhya Pradesh","kind":"state","exam":"Police Constable / SI","board":"MPESB","url":"https://esb.mp.gov.in/"},{"state":"Gujarat","kind":"state","exam":"Police Constable / PSI","board":"OJAS Gujarat","url":"https://ojas.gujarat.gov.in/"},{"state":"Haryana","kind":"state","exam":"Police Constable / SI","board":"HSSC","url":"https://www.hssc.gov.in/"},{"state":"Punjab","kind":"state","exam":"Police Constable / SI","board":"Punjab Police","url":"https://www.punjabpolice.gov.in/"},{"state":"Himachal Pradesh","kind":"state","exam":"Police Constable","board":"HP Police","url":"https://citizenportal.hppolice.gov.in/citizen"},{"state":"Uttarakhand","kind":"state","exam":"Police Constable / SI","board":"Uttarakhand Police","url":"https://uttarakhandpolice.uk.gov.in/"},{"state":"Jharkhand","kind":"state","exam":"Police Constable / SI","board":"Jharkhand Police","url":"https://www.jhpolice.gov.in/"},{"state":"Chhattisgarh","kind":"state","exam":"Police Constable / SI","board":"Chhattisgarh Police","url":"https://cgpolice.gov.in/"},{"state":"Odisha","kind":"state","exam":"Police Constable / SI","board":"Odisha Police","url":"https://odishapolice.gov.in/"},{"state":"West Bengal","kind":"state","exam":"Police Constable / SI","board":"WB Police Recruitment Board","url":"https://prb.wb.gov.in/"},{"state":"Assam","kind":"state","exam":"Police Constable / SI","board":"SLPRB Assam","url":"https://slprbassam.in/"},{"state":"Arunachal Pradesh","kind":"state","exam":"Police Recruitment","board":"Arunachal Police","url":"http://arunpol.nic.in/"},{"state":"Andhra Pradesh","kind":"state","exam":"Police Constable / SI","board":"AP SLPRB","url":"https://slprb.ap.gov.in/"},{"state":"Telangana","kind":"state","exam":"Police Constable / SI","board":"Telangana SLPRB","url":"https://www.tslprb.in/"},{"state":"Karnataka","kind":"state","exam":"Police Constable / PSI","board":"Karnataka Police Recruitment","url":"https://ksp-recruitment.in/"},{"state":"Kerala","kind":"state","exam":"Police Constable / SI","board":"Kerala PSC","url":"https://www.keralapsc.gov.in/"},{"state":"Tamil Nadu","kind":"state","exam":"Police Constable / SI","board":"TNUSRB","url":"https://tnusrb.tn.gov.in/"},{"state":"Goa","kind":"state","exam":"Police Constable / SI","board":"Goa Police","url":"https://citizen.goapolice.gov.in/"},{"state":"Sikkim","kind":"state","exam":"Police Recruitment","board":"Sikkim Police","url":"https://police.sikkim.gov.in/"},{"state":"Manipur","kind":"state","exam":"Police Recruitment","board":"Manipur Police","url":"http://www.manipurpolice.gov.in/"},{"state":"Meghalaya","kind":"state","exam":"Police Recruitment","board":"Meghalaya Police","url":"https://megpolice.gov.in/"},{"state":"Mizoram","kind":"state","exam":"Police Recruitment","board":"Mizoram Police","url":"https://police.mizoram.gov.in/"},{"state":"Nagaland","kind":"state","exam":"Police Recruitment","board":"Nagaland Police","url":"https://police.nagaland.gov.in/"},{"state":"Tripura","kind":"state","exam":"Police Recruitment","board":"Tripura Police","url":"https://tripurapolice.gov.in/"},{"state":"Jammu and Kashmir","kind":"ut","exam":"Police Constable / SI","board":"J&K Police","url":"http://www.jkpolice.gov.in/"},{"state":"Ladakh","kind":"ut","exam":"Police Recruitment","board":"Ladakh Police","url":"https://police.ladakh.gov.in/"},{"state":"Chandigarh","kind":"ut","exam":"Police Constable","board":"Chandigarh Police","url":"https://chandigarhpolice.gov.in/"},{"state":"Andaman and Nicobar Islands","kind":"ut","exam":"Police Recruitment","board":"Andaman Police","url":"https://police.andaman.gov.in/"},{"state":"Puducherry","kind":"ut","exam":"Police Recruitment","board":"Puducherry Police","url":"https://police.py.gov.in/"},{"state":"Lakshadweep","kind":"ut","exam":"Police Recruitment","board":"Lakshadweep Police","url":"https://lakshadweeppolice.gov.in/"},{"state":"Dadra and Nagar Haveli and Daman and Diu","kind":"ut","exam":"Police Recruitment","board":"UT Police","url":"https://dnhpolice.gov.in/"}];
 const officialSources=[
-{name:"UPSC",category:"Central Government",source:"https://www.upsc.gov.in/examinations/previous-question-papers"},
-{name:"MPSC",category:"Maharashtra Government",source:"https://mpsc.gov.in/"},
 {name:"SSC",category:"Central Government",source:"https://ssc.gov.in/"},
 {name:"Railway RRB",category:"Railway",source:"https://www.rrbcdg.gov.in/"},
 {name:"IBPS",category:"Banking",source:"https://www.ibps.in/"},
@@ -152,7 +149,6 @@ const officialSources=[
 {name:"MAHA TET",category:"Teaching",source:"https://mahatet.in/"}
 ];
 const examPatterns={
-"UPSC Civil Services":{status:"verified",name:"UPSC Civil Services Preliminary",sections:"General Studies-I: 100 प्रश्न, 200 गुण; CSAT: 80 प्रश्न, 200 गुण",duration:"प्रत्येक पेपर 2 तास",marking:"GS-I मध्ये चुकीच्या उत्तरासाठी 1/3 गुण वजा; CSAT qualifying (33%)",source:"https://www.upsc.gov.in/examinations/previous-question-papers"},
 "SSC CGL":{status:"verified",name:"SSC CGL Tier-I (2026 notice)",sections:"Reasoning 25, General Awareness 25, Quantitative Aptitude 25, English 25",duration:"60 मिनिटे; प्रत्येक विभागासाठी sectional timer",marking:"प्रत्येक चुकीच्या उत्तरासाठी 0.50 गुण वजा",source:"https://ssc.gov.in/"},
 "NEET UG":{status:"verified",name:"NEET UG 2026",sections:"Physics 45, Chemistry 45, Biology 90; एकूण 180 अनिवार्य प्रश्न",duration:"180 मिनिटे",marking:"+4 बरोबर, −1 चुकीचे, 0 न सोडवलेले",source:"https://neet.nta.nic.in/"},
 "JEE Main":{status:"verified",name:"JEE Main Paper 1 (2027 information)",sections:"Physics 25, Chemistry 25, Mathematics 25; एकूण 75 प्रश्न",duration:"3 तास",marking:"+4 बरोबर, −1 चुकीचे, 0 न सोडवलेले",source:"https://jeemain.nta.nic.in/"},
@@ -205,8 +201,6 @@ html+="<div class=\"notice\">फक्त उपलब्ध आणि वाप
 box.innerHTML=html;
 }
 function getOfficialSourceForExam(exam){
-if(exam.startsWith("MPSC")) return officialSources.find(s=>s.name==="MPSC");
-if(exam.startsWith("UPSC")) return officialSources.find(s=>s.name==="UPSC");
 if(exam.startsWith("SSC")) return officialSources.find(s=>s.name==="SSC");
 if(exam.startsWith("Railway")) return officialSources.find(s=>s.name==="Railway RRB");
 if(exam.startsWith("IBPS")) return officialSources.find(s=>s.name==="IBPS");
@@ -217,7 +211,6 @@ if(exam==="CTET") return officialSources.find(s=>s.name==="CTET");
 if(exam==="MAHA TET") return officialSources.find(s=>s.name==="MAHA TET");
 if(["UPPSC","BPSC","RPSC","MPPSC","HPSC","GPSC","TNPSC","KPSC","WBPSC","APPSC","TSPSC","OSSC","JKPSC"].includes(exam)) return null;
 if(["Police Bharti"].includes(exam)) return {name:" महाराष्ट्र पोलीस भरती पोर्टल",category:"State Police Recruitment",source:"https://www.mahapolice.gov.in/"};
-if(["NDA","CDS"].includes(exam)) return {name:"UPSC NDA / CDS examination papers",category:"Defence examinations",source:"https://www.upsc.gov.in/examinations/previous-question-papers"};
 if(exam==="Agniveer") return {name:"Join Indian Army",category:"Defence recruitment",source:"https://joinindianarmy.nic.in/"}; 
 return null;
 }
