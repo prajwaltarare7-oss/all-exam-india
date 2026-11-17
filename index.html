@@ -572,7 +572,7 @@ mathTypes.forEach(kind=>{
   const p=1000+pick(20)*500,r=4+pick(5)*2,t=2+pick(3);ans=p*r*t/100;
   addNum(M,"₹"+p+" पर "+r+"% वार्षिक दर से "+t+" वर्षों का साधारण ब्याज ज्ञात करें।","Find the simple interest on ₹"+p+" at "+r+"% per annum for "+t+" years.",ans,"साधारण ब्याज = P × R × T/100 = "+p+" × "+r+" × "+t+"/100 = ₹"+ans+".","Simple interest = P × R × T/100 = "+p+" × "+r+" × "+t+"/100 = ₹"+ans+".");
  }else if(kind===6){
-  const pairs=[[6,12],[8,8],[10,15],[12,20],[9,18],[15,30],[12,24],[8,24]];
+  const pairs=[[6,12],[8,8],[10,15],[9,18],[15,30],[12,24],[8,24],[6,18]];
   const pair=pairs[pick(pairs.length)];a=pair[0];b=pair[1];ans=a*b/(a+b);
   addNum(M,"A किसी काम को "+a+" दिनों में और B उसी काम को "+b+" दिनों में पूरा करता है। दोनों मिलकर कितने दिनों में काम करेंगे?","A can complete a job in "+a+" days and B in "+b+" days. How many days will they take together?",ans,"एक दिन का काम = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; समय = "+ans+" दिन।","One day's work = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; time = "+ans+" days.");
  }else if(kind===7){
