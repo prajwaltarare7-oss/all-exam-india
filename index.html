@@ -118,32 +118,6 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <h2>Login / Register</h2>
 <div class="notice">सुरक्षित Login/Register, password reset आणि वेगवेगळ्या डिव्हाइसवर profile sync करण्यासाठी server-side authentication व database आवश्यक आहे. ही सुविधा backend जोडल्यावरच सुरू होईल.</div>
 <div class="grid"><div class="card"><h3>Login</h3><p>Secure sign-in — backend required.</p><button class="primary" disabled>Login unavailable</button></div><div class="card"><h3>Register</h3><p>Create your student account — backend required.</p><button class="primary" disabled>Register unavailable</button></div></div>
-</section><section id="free" class="page">
-<h2>Free Tests</h2>
-<div class="notice">Free practice tests हा PYQ आणि full-length Mock Tests पासून वेगळा विभाग आहे. पडताळलेले प्रश्नसंच तयार झाल्यावर विषयानुसार येथे उपलब्ध होतील.</div>
-<div class="grid"><div class="card"><h3>Daily Practice</h3><p>दररोजचे लहान सराव संच.</p></div><div class="card"><h3>Topic-wise Practice</h3><p>गणित, बुद्धिमत्ता, सामान्यज्ञान आणि भाषा.</p></div><div class="card"><h3>Quick Revision</h3><p>वेगवान पुनरावृत्तीसाठी छोटे संच.</p></div></div>
-</section>
-<section id="notes" class="page">
-<h2>Study Notes</h2>
-<p>तुमच्या अभ्यासाच्या नोट्स या डिव्हाइसवर सेव्ह करू शकता.</p>
-<div class="card"><label for="noteTitle">Note title</label><input id="noteTitle" class="search" placeholder="उदा. भारतीय राज्यघटना"><label for="noteBody">Notes</label><textarea id="noteBody" class="search" rows="7" placeholder="तुमच्या नोट्स येथे लिहा..."></textarea><button class="primary" onclick="saveNote()">Save Note</button></div>
-<div id="notesList"></div>
-<div class="notice">या नोट्स फक्त या ब्राउझरमध्ये सेव्ह होतील. दुसऱ्या डिव्हाइसवर आपोआप दिसणार नाहीत.</div>
-</section>
-<section id="profile" class="page">
-<h2>Student Profile</h2>
-<div class="card"><label for="studentName">तुमचे नाव</label><input id="studentName" class="search" placeholder="नाव"><label for="targetExam">Target exam</label><select id="targetExam" class="search"></select><button class="primary" onclick="saveProfile()">Save Profile</button><p id="profileStatus" class="notice">प्रोफाइल माहिती या डिव्हाइसवरच सेव्ह होईल.</p></div>
-</section>
-<section id="settings" class="page">
-<h2>Settings</h2>
-<div class="card"><h3>Appearance</h3><p>वेबसाइटचा रंग निवडा.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
-<div class="card"><h3>Refresh</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" onclick="location.reload()">Refresh Website</button></div>
-<div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
-</section>
-<section id="account" class="page">
-<h2>Login / Register</h2>
-<div class="notice">सुरक्षित Login/Register, password reset आणि वेगवेगळ्या डिव्हाइसवर profile sync करण्यासाठी server-side authentication व database आवश्यक आहे. ही सुविधा backend जोडल्यावरच सुरू होईल.</div>
-<div class="grid"><div class="card"><h3>Login</h3><p>Secure sign-in — backend required.</p><button class="primary" disabled>Login unavailable</button></div><div class="card"><h3>Register</h3><p>Create your student account — backend required.</p><button class="primary" disabled>Register unavailable</button></div></div>
 </section><section id="mock" class="page">
 <h2>Exam-wise Mock Tests</h2>
 <div class="card"><h3>Choose your exam</h3><select id="mockExam" class="search" onchange="showPatternInfo()"></select><div id="patternInfo" class="notice">परीक्षा निवडा. उपलब्ध अधिकृत पॅटर्न दाखवला जाईल.</div><p>प्रश्नसंच पडताळणी पूर्ण झाल्यावरच timed mock सुरू करता येईल.</p></div>
