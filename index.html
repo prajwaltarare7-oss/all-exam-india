@@ -54,6 +54,7 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <button onclick="showPage('exams')">All Exams</button>
 <button onclick="showPage('pyq')">PYQ Papers</button>
 <button onclick="showPage('mock')">Mock Tests</button>
+<button onclick="showPage('police')">Police Bharti</button>
 </nav>
 <main class="container">
 <section id="home" class="page active">
@@ -77,6 +78,14 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <div id="pyqList"></div>
 <div class="notice">सध्या अधिकृत वेबसाइटचे दुवे उपलब्ध आहेत. पडताळलेले PDF मिळाल्यावरच डाउनलोड जोडले जातील.</div>
 </section>
+<section id="police" class="page">
+<h2>Police Bharti — State-wise</h2>
+<div class="hero"><h3>भारतभरातील पोलीस भरती एकाच ठिकाणी</h3><p>राज्य किंवा केंद्रशासित प्रदेश निवडा. अधिकृत भरती पोर्टलवर जाहिरात, पात्रता आणि परीक्षेचा पॅटर्न तपासा.</p></div>
+<input class="search" id="policeSearch" placeholder="राज्य किंवा भरती शोधा..." oninput="renderPolice()">
+<select id="policeRegion" onchange="renderPolice()"><option value="all">सर्व राज्ये आणि UT</option><option value="state">फक्त राज्ये</option><option value="ut">केंद्रशासित प्रदेश</option></select>
+<div class="grid" id="policeList"></div>
+<div class="notice">हे अधिकृत पोर्टलचे दुवे आहेत. सध्या भरती सुरू आहे किंवा परीक्षा पॅटर्न पडताळलेला आहे असा याचा अर्थ नाही.</div>
+</section>
 <section id="mock" class="page">
 <h2>Exam-wise Mock Tests</h2>
 <div class="card">
@@ -97,6 +106,7 @@ const exams=[
 "UPPSC","BPSC","RPSC","MPPSC","HPSC","GPSC","TNPSC","KPSC",
 "WBPSC","APPSC","TSPSC","OSSC","JKPSC"
 ];
+const policeRecruitment=[{"state":"Maharashtra","kind":"state","exam":"Police Constable / SRPF / Driver","board":"Maharashtra Police","url":"https://www.mahapolice.gov.in/"},{"state":"Uttar Pradesh","kind":"state","exam":"Police Constable / SI","board":"UP Police Recruitment Board","url":"https://uppbpb.gov.in/"},{"state":"Delhi","kind":"ut","exam":"Police Constable / Head Constable / SI","board":"SSC / Delhi Police","url":"https://ssc.gov.in/"},{"state":"Bihar","kind":"state","exam":"Police Constable / SI","board":"CSBC / BPSSC","url":"https://csbc.bihar.gov.in/"},{"state":"Rajasthan","kind":"state","exam":"Police Constable / SI","board":"Rajasthan Police","url":"https://police.rajasthan.gov.in/"},{"state":"Madhya Pradesh","kind":"state","exam":"Police Constable / SI","board":"MPESB","url":"https://esb.mp.gov.in/"},{"state":"Gujarat","kind":"state","exam":"Police Constable / PSI","board":"OJAS Gujarat","url":"https://ojas.gujarat.gov.in/"},{"state":"Haryana","kind":"state","exam":"Police Constable / SI","board":"HSSC","url":"https://www.hssc.gov.in/"},{"state":"Punjab","kind":"state","exam":"Police Constable / SI","board":"Punjab Police","url":"https://www.punjabpolice.gov.in/"},{"state":"Himachal Pradesh","kind":"state","exam":"Police Constable","board":"HP Police","url":"https://citizenportal.hppolice.gov.in/citizen"},{"state":"Uttarakhand","kind":"state","exam":"Police Constable / SI","board":"Uttarakhand Police","url":"https://uttarakhandpolice.uk.gov.in/"},{"state":"Jharkhand","kind":"state","exam":"Police Constable / SI","board":"Jharkhand Police","url":"https://www.jhpolice.gov.in/"},{"state":"Chhattisgarh","kind":"state","exam":"Police Constable / SI","board":"Chhattisgarh Police","url":"https://cgpolice.gov.in/"},{"state":"Odisha","kind":"state","exam":"Police Constable / SI","board":"Odisha Police","url":"https://odishapolice.gov.in/"},{"state":"West Bengal","kind":"state","exam":"Police Constable / SI","board":"WB Police Recruitment Board","url":"https://prb.wb.gov.in/"},{"state":"Assam","kind":"state","exam":"Police Constable / SI","board":"SLPRB Assam","url":"https://slprbassam.in/"},{"state":"Arunachal Pradesh","kind":"state","exam":"Police Recruitment","board":"Arunachal Police","url":"http://arunpol.nic.in/"},{"state":"Andhra Pradesh","kind":"state","exam":"Police Constable / SI","board":"AP SLPRB","url":"https://slprb.ap.gov.in/"},{"state":"Telangana","kind":"state","exam":"Police Constable / SI","board":"Telangana SLPRB","url":"https://www.tslprb.in/"},{"state":"Karnataka","kind":"state","exam":"Police Constable / PSI","board":"Karnataka Police Recruitment","url":"https://ksp-recruitment.in/"},{"state":"Kerala","kind":"state","exam":"Police Constable / SI","board":"Kerala PSC","url":"https://www.keralapsc.gov.in/"},{"state":"Tamil Nadu","kind":"state","exam":"Police Constable / SI","board":"TNUSRB","url":"https://tnusrb.tn.gov.in/"},{"state":"Goa","kind":"state","exam":"Police Constable / SI","board":"Goa Police","url":"https://citizen.goapolice.gov.in/"},{"state":"Sikkim","kind":"state","exam":"Police Recruitment","board":"Sikkim Police","url":"https://police.sikkim.gov.in/"},{"state":"Manipur","kind":"state","exam":"Police Recruitment","board":"Manipur Police","url":"http://www.manipurpolice.gov.in/"},{"state":"Meghalaya","kind":"state","exam":"Police Recruitment","board":"Meghalaya Police","url":"https://megpolice.gov.in/"},{"state":"Mizoram","kind":"state","exam":"Police Recruitment","board":"Mizoram Police","url":"https://police.mizoram.gov.in/"},{"state":"Nagaland","kind":"state","exam":"Police Recruitment","board":"Nagaland Police","url":"https://police.nagaland.gov.in/"},{"state":"Tripura","kind":"state","exam":"Police Recruitment","board":"Tripura Police","url":"https://tripurapolice.gov.in/"},{"state":"Jammu and Kashmir","kind":"ut","exam":"Police Constable / SI","board":"J&K Police","url":"http://www.jkpolice.gov.in/"},{"state":"Ladakh","kind":"ut","exam":"Police Recruitment","board":"Ladakh Police","url":"https://police.ladakh.gov.in/"},{"state":"Chandigarh","kind":"ut","exam":"Police Constable","board":"Chandigarh Police","url":"https://chandigarhpolice.gov.in/"},{"state":"Andaman and Nicobar Islands","kind":"ut","exam":"Police Recruitment","board":"Andaman Police","url":"https://police.andaman.gov.in/"},{"state":"Puducherry","kind":"ut","exam":"Police Recruitment","board":"Puducherry Police","url":"https://police.py.gov.in/"},{"state":"Lakshadweep","kind":"ut","exam":"Police Recruitment","board":"Lakshadweep Police","url":"https://lakshadweeppolice.gov.in/"},{"state":"Dadra and Nagar Haveli and Daman and Diu","kind":"ut","exam":"Police Recruitment","board":"UT Police","url":"https://dnhpolice.gov.in/"}];
 const officialSources=[
 {name:"UPSC",category:"Central Government",source:"https://www.upsc.gov.in/examinations/previous-question-papers"},
 {name:"MPSC",category:"Maharashtra Government",source:"https://mpsc.gov.in/"},
@@ -125,10 +135,11 @@ document.getElementById("patternInfo").innerHTML=p
 ? `<b>${p.name}</b><br>${p.sections}<br><b>कालावधी:</b> ${p.duration}<br><b>Marking:</b> ${p.marking}<br><a href="${p.source}" target="_blank" rel="noopener">अधिकृत अधिसूचना / स्रोत</a>`
 : `<b>${name}</b><br>या परीक्षेचा नवीनतम अधिकृत पॅटर्न अजून पडताळलेला नाही. त्यामुळे चुकीचे प्रश्नसंख्या/वेळ/negative marking दाखवले जाणार नाही. <a href="https://www.google.com/search?q=${encodeURIComponent(name+" official exam notification pattern")}" target="_blank" rel="noopener">अधिकृत पॅटर्न शोधा</a>`;
 }
+function renderPolice(){const q=(document.getElementById('policeSearch').value||'').toLowerCase();const region=document.getElementById('policeRegion').value;const list=policeRecruitment.filter(p=>(region==='all'||p.kind===region)&&[p.state,p.exam,p.board].join(' ').toLowerCase().includes(q));document.getElementById('policeList').innerHTML=list.map(p=>'<div class="card"><small style="color:#315ee8;font-weight:bold">'+(p.kind==='state'?'STATE POLICE':'UNION TERRITORY')+'</small><h3>'+p.state+'</h3><p>'+p.exam+'</p><p>Recruiting body: '+p.board+'</p><a class="primary" href="'+p.url+'" target="_blank" rel="noopener">Official portal</a></div>').join('')||'<div class="notice">या नावाची भरती सापडली नाही.</div>';}
 function showPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-if(id==="pyq")renderPYQ();
+if(id==="pyq")renderPYQ();if(id==="police")renderPolice();
 }
 function examCard(name){
 return `<div class="card"><h3>${name}</h3><p>Study • PYQ • Mock Test</p><button class="primary" onclick="selectExam('${name}')">Open Exam</button></div>`;
@@ -172,7 +183,7 @@ return `<div class="card"><h3>${name}</h3><p>${src.category}</p>
 <a href="${src.source}" target="_blank" rel="noopener">अधिकृत स्रोत उघडा</a></div>`;
 }).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
 }
-renderExams();
+renderExams();renderPolice();
 </script>
 </body>
 </html>
