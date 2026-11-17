@@ -396,6 +396,12 @@ const update=()=>{const t=document.getElementById("practiceTimer");if(t)t.textCo
 update();practiceInterval=setInterval(()=>{practiceSeconds--;update();if(practiceSeconds<=0)submitPracticeTest(true);},1000);
 }
 function openPractice(exam){
+const currentPage=document.querySelector(".page.active");
+if(currentPage&&currentPage.id==="testroom"&&activePractice&&!practiceSubmitted){
+ const examSelect=document.getElementById("testExam");if(examSelect)examSelect.value=window.practiceExam||"";
+ alert(selectedPaperLanguage==='en'?'Submit the test before changing exams.':'टेस्ट Submit केल्याशिवाय परीक्षा बदलता येणार नाही.');
+ return;
+}
 clearInterval(practiceInterval);activePractice=null;resetPracticeState();isGDMock=false;window.practiceExam=exam;
 document.getElementById("testTitle").textContent=exam+" Practice Test";
 document.getElementById("testIntro").style.display="block";
@@ -618,7 +624,7 @@ shuffle(mathTypes).forEach(kind=>{
 
 /* 20 अलग-अलग reasoning प्रकार */
 const reasoningTypes=shuffle(Array.from({length:20},(_,i)=>i)).slice(0,18);
-const repeatableReasoningTypes=[0,1,2,3,4,6,7,8,10,11,12,13,16];
+const repeatableReasoningTypes=[0,1,2,6,7,8,10,11,12,13,16];
 while(reasoningTypes.length<20)reasoningTypes.push(repeatableReasoningTypes[pick(repeatableReasoningTypes.length)]);
 const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const letterWord=(word,shift)=>word.split("").map(ch=>letters[(letters.indexOf(ch)+shift)%26]).join("");
