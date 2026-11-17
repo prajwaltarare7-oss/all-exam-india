@@ -59,13 +59,22 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 </header>
 <nav>
 
-<button onclick="showPage('pyq')">PYQ</button>
-<button onclick="showPage('testroom')">Test</button>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('pyq')">PYQ Test</button>
 <button onclick="showPage('mock')">Mock Test</button>
 <button onclick="showPage('settings')">Settings</button>
 
 </nav>
 <main class="container">
+<section id="home" class="page active">
+<div class="hero">
+<h2>Welcome to SSC EXAM.IN</h2>
+<p>SSC परीक्षांची तयारी करा. मागील वर्षांचे प्रश्न (PYQ) आणि Mock Test एकाच ठिकाणी.</p>
+<button class="primary" onclick="showPage('pyq')">Start PYQ Test</button>
+<button class="primary" onclick="showPage('mock')">Start Mock Test</button>
+</div>
+<div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
+</section>
 <section id="pyq" class="page">
 <h2>SSC Previous Year Question Papers</h2>
 <p>SSC च्या मागील वर्षांच्या प्रश्नपत्रिका येथे शोधा. अधिकृत प्रश्नपत्रिकांसाठी SSC पोर्टल वापरा.</p>
