@@ -553,7 +553,7 @@ mathTypes.forEach(kind=>{
   const base=500+pick(20)*100,pct=10+pick(9)*5;ans=base*pct/100;
   addNum(M,"₹"+base+" का "+pct+"% कितना होगा?","What is "+pct+"% of ₹"+base+"?",ans,"प्रतिशत = "+base+" × "+pct+"/100 = ₹"+ans+".","Percentage = "+base+" × "+pct+"/100 = ₹"+ans+".");
  }else if(kind===1){
-  const mp=1000+pick(20)*100,d1=10+pick(4)*5,d2=5+pick(4)*5;ans=mp*(100-d1)*(100-d2)/10000;
+  const mp=1000+pick(20)*100,d1=10+pick(4)*10,d2=10+pick(4)*10;ans=mp*(100-d1)*(100-d2)/10000;
   addNum(M,"एक वस्तु का अंकित मूल्य ₹"+mp+" है। पहले "+d1+"% और फिर "+d2+"% छूट दी जाती है। अंतिम मूल्य कितना होगा?","An item is marked at ₹"+mp+". Successive discounts of "+d1+"% and "+d2+"% are given. Find the final price.",ans,"अंतिम मूल्य = "+mp+" × "+(100-d1)+"/100 × "+(100-d2)+"/100 = ₹"+ans+".","Final price = "+mp+" × "+(100-d1)+"/100 × "+(100-d2)+"/100 = ₹"+ans+".");
  }else if(kind===2){
   a=2+pick(8);b=2+pick(8);c=10+pick(30);ans=c*a;
@@ -629,7 +629,7 @@ reasoningTypes.forEach(kind=>{
   a=5+pick(30);b=2+pick(8);ans=a+4*b;
   addNum(R,"संख्या श्रृंखला पूरी करें: "+a+", "+(a+b)+", "+(a+2*b)+", "+(a+3*b)+", ?","Complete the number series: "+a+", "+(a+b)+", "+(a+2*b)+", "+(a+3*b)+", ?",ans,"प्रत्येक पद में "+b+" जोड़ा गया है। अगला पद "+ans+" है。".replace("。","."),"The common difference is "+b+". The next term is "+ans+".");
  }else if(kind===1){
-  const step=2+pick(4),startIndex=pick(8),seq=[0,1,2,3].map(i=>letters[startIndex+i*step]),next=letters[startIndex+4*step];
+  const step=2+pick(4),startIndex=pick(26-4*step),seq=[0,1,2,3].map(i=>letters[startIndex+i*step]),next=letters[startIndex+4*step];
   addChoice(R,"अक्षर श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the letter series: "+seq.join(", ")+", ?",next,[letters[(startIndex+4*step+1)%26],letters[(startIndex+4*step+2)%26],letters[(startIndex+4*step+3)%26]],"हर अक्षर के बाद "+step+" स्थान आगे बढ़ा है। अगला अक्षर "+next+" है।","Each letter moves forward by "+step+" places. The next letter is "+next+".");
  }else if(kind===2){
   const words=["MIND","COLD","RING","STAR","LAMP","FISH","ROAD"],word=words[pick(words.length)],shift=1+pick(4),coded=letterWord(word,shift),target=["GAME","NOTE","SHIP","FARM","WIND"][pick(5)],correct=letterWord(target,shift);
@@ -638,12 +638,12 @@ reasoningTypes.forEach(kind=>{
   const p=analogies[pick(analogies.length)];
   addChoice(R,p[0]+" : "+p[1]+" :: "+p[2]+" : ?",""+p[0]+" : "+p[1]+" :: "+p[2]+" : ?",p[3],[p[4],p[5],p[6]],p[0]+" और "+p[1]+" के बीच वही संबंध "+p[2]+" और "+p[3]+" के बीच है।","The relationship between "+p[0]+" and "+p[1]+" is the same as between "+p[2]+" and "+p[3]+".");
  }else if(kind===4){
-  const even=[12+2*pick(8),22+2*pick(8),32+2*pick(8)],odd=31+2*pick(10),opts=shuffle([...even,odd]);
+  const base=10+2*pick(10),even=[base,base+20,base+40],odd=base+51,opts=shuffle([...even,odd]);
   addChoice(R,"निम्नलिखित में से भिन्न संख्या चुनें: "+opts.join(", "),"Choose the number that is different: "+opts.join(", "),String(odd),opts.filter(x=>x!==odd).map(String),"तीन संख्याएँ सम हैं, जबकि "+odd+" विषम है।","Three numbers are even; "+odd+" is odd.");
  }else if(kind===5){
   addChoice(R,"अनीता, भरत की बहन है। भरत, चारु का पिता है। अनीता का चारु से क्या संबंध है?","Anita is Bharat's sister. Bharat is Charu's father. How is Anita related to Charu?","पैतृक बुआ",["माता","बहन","दादी"],"पिता की बहन को पैतृक बुआ कहते हैं।","A father's sister is a paternal aunt.");
  }else if(kind===6){
-  const east=5+pick(8),north=4+pick(7),west=1+pick(east-1),south=1+pick(north-1);
+  let east=1+pick(12),north=1+pick(12),west=1+pick(12),south=1+pick(12);if(east===west)east++;if(north===south)north++;
   const dx=east-west,dy=north-south;
   ans=dy>0?(dx>0?"उत्तर-पूर्व":dx<0?"उत्तर-पश्चिम":"उत्तर"):dy<0?(dx>0?"दक्षिण-पूर्व":dx<0?"दक्षिण-पश्चिम":"दक्षिण"):(dx>0?"पूर्व":"पश्चिम");
   addChoice(R,"एक व्यक्ति "+east+" किमी पूर्व, फिर "+north+" किमी उत्तर, फिर "+west+" किमी पश्चिम और "+south+" किमी दक्षिण चलता है। वह प्रारंभिक स्थान से किस दिशा में है?","A person walks "+east+" km east, "+north+" km north, "+west+" km west and "+south+" km south. In which direction is the person from the starting point?",ans,["उत्तर","दक्षिण","पूर्व"].filter(x=>x!==ans).concat(["पश्चिम","उत्तर-पूर्व","दक्षिण-पश्चिम"].filter(x=>x!==ans)).slice(0,3),"पूर्व-पश्चिम और उत्तर-दक्षिण की शेष दूरियों की तुलना करने पर दिशा "+ans+" मिलती है।","Compare the remaining east-west and north-south distances; the final direction is "+ans+".");
@@ -667,7 +667,7 @@ reasoningTypes.forEach(kind=>{
   addNum(R,"यदि A=1, B=2, ... Z=26 हो, तो '"+word+"' के अक्षरों के स्थानों का योग कितना होगा?","If A=1, B=2, ... Z=26, what is the sum of the letter positions in '"+word+"'?",ans,""+word+" = "+word.split("").map(ch=>letters.indexOf(ch)+1).join(" + ")+" = "+ans+".",""+word+" = "+word.split("").map(ch=>letters.indexOf(ch)+1).join(" + ")+" = "+ans+".");
  }else if(kind===13){
   const days=["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],eng=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],base=pick(7),n=8+pick(20),idx=(base+n)%7;
-  addChoice(R,"यदि आज "+days[base]+" है, तो "+n+" दिन बाद कौन-सा दिन होगा?","If today is "+eng[base]+", what day will it be after "+n+" days?",days[idx],[days[(idx+1)%7],days[(idx+2)%7],days[(idx+6)%7]],n+" को 7 से भाग देने पर शेष "+(n%7)+" है; "+(n%7)+" दिन आगे बढ़ें।","Divide "+n+" by 7; the remainder is "+(n%7), " days ahead.");
+  addChoice(R,"यदि आज "+days[base]+" है, तो "+n+" दिन बाद कौन-सा दिन होगा?","If today is "+eng[base]+", what day will it be after "+n+" days?",days[idx],[days[(idx+1)%7],days[(idx+2)%7],days[(idx+6)%7]],n+" को 7 से भाग देने पर शेष "+(n%7)+" है; "+(n%7)+" दिन आगे बढ़ें।","Divide "+n+" by 7; the remainder is "+(n%7)+". Move "+(n%7)+" days forward.");
  }else if(kind===14){
   addChoice(R,"दर्पण को दाईं ओर रखने पर ↗ का दर्पण प्रतिबिंब कौन-सा होगा?","What is the mirror image of ↗ when the mirror is placed on its right?", "↖",["↘","↙","↗"],"ऊर्ध्वाधर दर्पण में बायाँ और दायाँ उलटते हैं।","A vertical mirror reverses left and right.");
  }else if(kind===15){
