@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prajwaltarare7-oss.github.io/all-exam-india/sitemap.xml
