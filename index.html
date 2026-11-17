@@ -61,14 +61,15 @@ footer{text-align:center;padding:25px;color:#667085}
 <h2>Mock Tests</h2>
 <div id="mockSetup" class="card">
 <p>तुमची परीक्षा निवडा:</p>
-<select id="mockExam"></select>
+<select id="mockExam" onchange="showPatternInfo()"></select>
+<div id="patternInfo" class="notice">परीक्षा निवडल्यानंतर तिचा उपलब्ध पॅटर्न येथे दिसेल.</div>
 <p>प्रश्नांची संख्या:</p>
 <select id="questionCount">
-<option value="5">5 Questions</option>
-<option value="10">10 Questions</option>
+<option value="5">5 Questions (Quick Practice)</option>
+<option value="10">10 Questions (Quick Practice)</option>
 </select>
-<button class="primary" onclick="startTest()">Start Mock Test</button>
-<p>हे सरावासाठीचे प्रश्न आहेत; अधिकृत PYQ नाहीत.</p>
+<button class="primary" onclick="startTest()">Start Practice</button>
+<p>सूचना: हे सध्या विषयानुसार सराव प्रश्न आहेत; अधिकृत PYQ किंवा पूर्ण लांबीची परीक्षा नाहीत. नवीन अधिकृत अधिसूचनेनुसार पॅटर्न बदलू शकतो.</p>
 </div>
 <div id="testArea" style="display:none">
 <div class="card"><span id="testTitle"></span><span id="timer">05:00</span></div>
@@ -100,6 +101,22 @@ const officialSources=[
 {name:"CTET",category:"Teaching",source:"https://ctet.nic.in/"},
 {name:"MAHA TET",category:"Teaching",source:"https://mahatet.in/"}
 ];
+const examPatterns={
+"UPSC Civil Services":{status:"verified",name:"UPSC Civil Services Preliminary",sections:"General Studies-I: 100 प्रश्न, 200 गुण; CSAT: 80 प्रश्न, 200 गुण",duration:"प्रत्येक पेपर 2 तास",marking:"GS-I मध्ये चुकीच्या उत्तरासाठी 1/3 गुण वजा; CSAT qualifying (33%)",source:"https://www.upsc.gov.in/examinations/previous-question-papers"},
+"SSC CGL":{status:"verified",name:"SSC CGL Tier-I (2026 notice)",sections:"Reasoning 25, General Awareness 25, Quantitative Aptitude 25, English 25",duration:"60 मिनिटे; प्रत्येक विभागासाठी sectional timer",marking:"प्रत्येक चुकीच्या उत्तरासाठी 0.50 गुण वजा",source:"https://ssc.gov.in/"},
+"NEET UG":{status:"verified",name:"NEET UG 2026",sections:"Physics 45, Chemistry 45, Biology 90; एकूण 180 अनिवार्य प्रश्न",duration:"180 मिनिटे",marking:"+4 बरोबर, −1 चुकीचे, 0 न सोडवलेले",source:"https://neet.nta.nic.in/"},
+"JEE Main":{status:"verified",name:"JEE Main Paper 1 (2027 information)",sections:"Physics 25, Chemistry 25, Mathematics 25; एकूण 75 प्रश्न",duration:"3 तास",marking:"+4 बरोबर, −1 चुकीचे, 0 न सोडवलेले",source:"https://jeemain.nta.nic.in/"},
+"CTET":{status:"verified",name:"CTET (latest bulletin should be checked)",sections:"Paper I / Paper II; प्रत्येक पेपरमध्ये 150 MCQ, 150 गुण",duration:"2 तास 30 मिनिटे",marking:"चुकीच्या उत्तरासाठी negative marking नाही",source:"https://ctet.nic.in/information-bulletin/"},
+"IBPS PO":{status:"verified",name:"IBPS PO (CRP PO/MT-XV notice)",sections:"Prelims: English, Quantitative Aptitude, Reasoning; Mains मध्ये स्वतंत्र विभाग व descriptive paper",duration:"Prelims 1 तास; Mains चे वेळापत्रक अधिसूचनेनुसार",marking:"चुकीच्या उत्तरासाठी 1/4 गुण वजा",source:"https://www.ibps.in/"},
+"Railway RRB ALP":{status:"verified",name:"RRB ALP (CEN 01/2026)",sections:"CBT-1; CBT-2 Part A आणि qualifying Part B; पुढील टप्पे अधिसूचनेनुसार",duration:"प्रत्येक टप्प्याचा कालावधी अधिसूचनेनुसार",marking:"अधिकृत CEN नुसार तपासा",source:"https://www.rrbcdg.gov.in/"}
+};
+function showPatternInfo(){
+const name=document.getElementById("mockExam").value;
+const p=examPatterns[name];
+document.getElementById("patternInfo").innerHTML=p
+? `<b>${p.name}</b><br>${p.sections}<br><b>कालावधी:</b> ${p.duration}<br><b>Marking:</b> ${p.marking}<br><a href="${p.source}" target="_blank" rel="noopener">अधिकृत अधिसूचना / स्रोत</a>`
+: `<b>${name}</b><br>या परीक्षेचा नवीनतम अधिकृत पॅटर्न अजून पडताळलेला नाही. त्यामुळे चुकीचे प्रश्नसंख्या/वेळ/negative marking दाखवले जाणार नाही. <a href="https://www.google.com/search?q=${encodeURIComponent(name+" official exam notification pattern")}" target="_blank" rel="noopener">अधिकृत पॅटर्न शोधा</a>`;
+}
 const practiceQuestions=[
 {q:"भारताची राजधानी कोणती?",o:["मुंबई","नवी दिल्ली","पुणे","चेन्नई"],a:1,ex:"भारताची राजधानी नवी दिल्ली आहे."},
 {q:"भारतीय संविधान कधी लागू झाले?",o:["15 ऑगस्ट 1947","26 जानेवारी 1950","2 ऑक्टोबर 1950","26 नोव्हेंबर 1949"],a:1,ex:"संविधान 26 जानेवारी 1950 रोजी लागू झाले."},
@@ -190,7 +207,7 @@ document.getElementById("resultArea").innerHTML=`<div class="card"><h2>Test Resu
 <p>बरोबर: ${score} | चुकीचे किंवा न सोडवलेले: ${questions.length-score}</p>
 <button class="primary" onclick="startTest()">Try Again</button></div><h3>Answer Explanations</h3>${details}`;
 }
-exams.forEach(e=>document.getElementById("mockExam").innerHTML+=`<option>${e}</option>`);
+exams.forEach(e=>document.getElementById("mockExam").innerHTML+=`<option>${e}</option>`);\nshowPatternInfo();
 renderExams();
 </script>
 </body>
