@@ -130,7 +130,7 @@ public class MainActivity extends Activity {
         card.addView(nameInput, fieldParams());
 
         addFieldLabel(card, "Age (in years)");
-        EditText ageInput = makeInput("उदा. 17.5",
+        EditText ageInput = makeInput("e.g. 17.5",
                 InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         card.addView(ageInput, fieldParams());
 
@@ -526,7 +526,7 @@ public class MainActivity extends Activity {
             }
             if (age < MINIMUM_AGE || age > 120) {
                 ageInput.setError("Minimum age must be 17.5 years");
-                Toast.makeText(this, "किमान वय 17.5 वर्षे आहे.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Minimum age is 17.5 years.", Toast.LENGTH_LONG).show();
                 return;
             }
 
