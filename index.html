@@ -114,6 +114,64 @@ body.dark .test-status span,body.dark .question-legend span{background:#192a48;b
 @media(max-width:760px){.question-layout{grid-template-columns:1fr}.question-sidebar{position:static;order:-1}.question-number-grid{grid-template-columns:repeat(8,minmax(0,1fr))}.question-controls button{flex:1}.question-controls .submit-button{margin-left:0}}
 @media print{.exam-paper,.print-paper{box-shadow:none;border:0}.question-sidebar,.question-controls,.test-status{display:none!important}.print-paper{display:block!important}}
 @media print{body:after,header,nav,footer,.no-print{display:none!important}body{background:#fff!important;color:#000!important}.container{max-width:none;padding:0}.page{display:none!important}#testroom.page.active{display:block!important}.card,.question{box-shadow:none;border:1px solid #bbb;break-inside:avoid}}
+
+/* Professional shared result screen for Mock Tests and future PYQ sets */
+.result-wrap{background:linear-gradient(145deg,#fff 0%,#f7f9ff 100%);border:1px solid #dfe6f2;border-radius:22px;padding:clamp(17px,3vw,30px);box-shadow:0 14px 38px #172d5812;color:#17233d;margin:10px 0 22px}
+.result-hero{display:grid;grid-template-columns:minmax(0,1fr) 150px;align-items:center;gap:20px;padding-bottom:22px;border-bottom:1px solid #e5eaf3}
+.result-kicker{display:inline-flex;align-items:center;padding:7px 11px;border-radius:30px;background:#eaf0ff;color:#3155bd;font-size:11px;font-weight:900;letter-spacing:1px}
+.result-hero h2{font-size:clamp(23px,4vw,31px);margin:12px 0 6px;color:#17233d}
+.result-hero h2:after{display:none}
+.result-hero p{color:#68748b;margin:0;line-height:1.6}
+.result-grade{display:inline-flex;margin-top:13px;padding:8px 12px;border-radius:9px;background:#e9f8ef;color:#17633a;font-size:13px;font-weight:850}
+.result-score-ring{width:138px;height:138px;border-radius:50%;background:conic-gradient(#315ee8 0deg var(--result-angle),#e7edf8 var(--result-angle) 360deg);display:grid;place-items:center;margin:auto}
+.result-score-inner{width:108px;height:108px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px #e7edf6}
+.result-score-inner strong{font-size:27px;line-height:1.1;color:#17233d}
+.result-score-inner small{font-size:12px;color:#7b879b;font-weight:750;margin-top:4px}
+.result-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:18px 0}
+.result-metric{padding:15px;border:1px solid #e3e9f3;border-radius:14px;background:#fff;min-width:0}
+.result-metric span{display:block;color:#68748b;font-size:12px;font-weight:750}
+.result-metric b{display:block;font-size:25px;line-height:1.2;margin-top:7px;color:#17233d}
+.result-metric.correct b{color:#16804a}.result-metric.wrong b{color:#c13d48}.result-metric.unanswered b{color:#9a6b10}.result-metric.accuracy b{color:#315ee8}
+.result-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+.result-summary-item{padding:13px 14px;border-radius:12px;background:#f0f4fb;border:1px solid #e4eaf4}
+.result-summary-item span{display:block;font-size:11px;color:#68748b;font-weight:750}
+.result-summary-item b{display:block;font-size:16px;color:#17233d;margin-top:5px}
+.result-progress-wrap{margin:17px 0 5px}
+.result-progress-label{display:flex;justify-content:space-between;gap:10px;color:#68748b;font-size:12px;font-weight:800;margin-bottom:8px}
+.result-progress{height:10px;border-radius:20px;background:#e7edf7;overflow:hidden}
+.result-progress>span{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#315ee8,#25b8c8)}
+.result-review{margin-top:20px}
+.result-review details{border:1px solid #dfe6f1;border-radius:15px;background:#fff;overflow:hidden}
+.result-review summary{cursor:pointer;padding:16px 18px;font-weight:850;color:#203252;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.result-review summary::-webkit-details-marker{display:none}
+.result-review summary:after{content:"＋";font-size:20px;color:#315ee8}
+.result-review details[open] summary:after{content:"−"}
+.result-review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 14px 14px}
+.result-answer-card{border:1px solid #e2e8f1;border-radius:12px;padding:14px;min-width:0;background:#fbfcff}
+.result-answer-card.correct{border-left:4px solid #25a66a}.result-answer-card.wrong{border-left:4px solid #d85b63}.result-answer-card.unanswered{border-left:4px solid #d6a23a}
+.result-answer-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.result-answer-top b{font-size:12px;color:#52617b}
+.result-status{padding:5px 8px;border-radius:20px;font-size:10px;font-weight:900;white-space:nowrap}
+.result-status.correct{background:#e6f7ed;color:#17633a}.result-status.wrong{background:#ffebec;color:#a52d37}.result-status.unanswered{background:#fff4d9;color:#8a5b08}
+.result-question{font-weight:800;line-height:1.55;color:#17233d;margin:0 0 12px}
+.result-answer-pair{display:grid;grid-template-columns:1fr;gap:8px}
+.result-answer-pair>div{padding:9px 10px;border-radius:9px;background:#f1f4f9}
+.result-answer-pair small{display:block;color:#68748b;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.result-answer-pair p{margin:0;font-size:13px;line-height:1.5;color:#263752}
+.result-explanation{font-size:13px;line-height:1.6;color:#52617b;margin:11px 0 0;padding-top:10px;border-top:1px solid #e6ebf3}
+.result-explanation b{color:#203252}
+.result-action-bar{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 4px}
+.result-action-bar button{min-width:140px}
+body.dark .result-wrap{background:linear-gradient(145deg,#14213a,#101b30);border-color:#2b3b59;color:#e8eefb}
+body.dark .result-hero{border-color:#2b3b59}body.dark .result-hero h2,body.dark .result-score-inner strong,body.dark .result-metric b,body.dark .result-summary-item b,body.dark .result-question{color:#e8eefb}
+body.dark .result-hero p,body.dark .result-metric span,body.dark .result-summary-item span{color:#aab6cc}
+body.dark .result-score-inner,body.dark .result-metric,body.dark .result-review details{background:#192a48;border-color:#34496d}
+body.dark .result-summary-item,body.dark .result-answer-pair>div,body.dark .result-answer-card{background:#192a48;border-color:#34496d}
+body.dark .result-review summary,body.dark .result-answer-top b,body.dark .result-answer-pair p,body.dark .result-explanation{color:#d8e3f7}
+body.dark .result-review details{border-color:#34496d}
+@media(max-width:700px){.result-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.result-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.result-review-grid{grid-template-columns:1fr}}
+@media(max-width:460px){.result-hero{grid-template-columns:1fr;text-align:center}.result-score-ring{width:124px;height:124px}.result-score-inner{width:96px;height:96px}.result-action-bar button{flex:1}.result-review summary{padding:14px}}
+@media print{.result-action-bar{display:none!important}.result-wrap{box-shadow:none;border:0;padding:0}.result-review details{break-inside:auto}.result-review-grid{grid-template-columns:1fr 1fr}.result-review details>summary{display:none}.result-review details:not([open]) .result-review-grid{display:grid!important}}
 @media(max-width:600px){header{padding:23px 20px}nav{gap:3px;padding:8px 5px}nav button{padding:10px 9px;font-size:12px}.container{padding:22px 14px 40px}.hero{border-radius:18px}.grid{grid-template-columns:1fr;gap:8px}.card{padding:17px}}
 
 .auth-modal{position:fixed;inset:0;z-index:10001;background:#08142ddd;display:none;align-items:center;justify-content:center;padding:18px}.auth-box{width:min(100%,430px);background:var(--paper);color:var(--ink);border-radius:20px;padding:24px;box-shadow:0 20px 70px #0005}.auth-box h2{margin-top:0}.auth-box input{width:100%;padding:13px;border:1px solid var(--line);border-radius:10px;margin:7px 0 14px;background:transparent;color:var(--ink);font:inherit}.auth-actions{display:flex;gap:10px;flex-wrap:wrap}.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.stat{padding:15px;border:1px solid var(--line);border-radius:12px}.stat b{display:block;font-size:24px;color:var(--blue)}.small-note{font-size:12px;color:var(--muted)}
@@ -592,18 +650,31 @@ const total=activePractice.questions.length,unanswered=total-Object.keys(practic
 if(!forceSubmit&&unanswered>0&&!window.confirm((selectedPaperLanguage==='en'?'You have ':'तुमचे ')+unanswered+(selectedPaperLanguage==='en'?' unanswered questions. Submit anyway?':' प्रश्न अनुत्तरित आहेत. तरी टेस्ट Submit करायची का?')))return;
 clearInterval(practiceInterval);
 let score=0,correct=0,wrong=0,skipped=0,negativeDeducted=0;
-let details=(selectedPaperLanguage==='en'?'<h3>Answers and Explanations</h3>':'<h3>उत्तरे आणि स्पष्टीकरण</h3>');
+let reviewHtml='<section class="result-review"><details><summary>'+(selectedPaperLanguage==='en'?'View answer analysis and explanations':'उत्तरे आणि स्पष्टीकरण पाहा')+' ('+total+')</summary><div class="result-review-grid">';
 activePractice.questions.forEach((q,i)=>{
 const chosen=practiceAnswers[i];
 if(chosen===q.a){correct++;score+=q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:(isGDMock?2:1));}
 else if(chosen===undefined||chosen===null){skipped++;}
 else{wrong++;const penalty=q.negativeMarks!==undefined?q.negativeMarks:(activePractice.negativeMarks!==undefined?activePractice.negativeMarks:(isGDMock?0.25:0));score-=penalty;negativeDeducted+=penalty;}
-details+='<div class="card"><b>'+(selectedPaperLanguage==='en'?'Question ':'प्रश्न ')+(i+1)+': '+escapeHTML(q.q)+'</b><p>'+(selectedPaperLanguage==='en'?'Your answer: ':'तुमचे उत्तर: ')+(chosen===undefined?(selectedPaperLanguage==='en'?'Unanswered':'अनुत्तरित'):escapeHTML(q.o[chosen]))+'</p><p>'+(selectedPaperLanguage==='en'?'Correct answer: ':'योग्य उत्तर: ')+escapeHTML(q.o[q.a])+'</p><p>'+escapeHTML(q.e)+'</p></div>';
+const state=chosen===q.a?'correct':(chosen===undefined||chosen===null?'unanswered':'wrong');
+const status=state==='correct'?(selectedPaperLanguage==='en'?'Correct':'बरोबर'):state==='wrong'?(selectedPaperLanguage==='en'?'Incorrect':'चुकीचे'):(selectedPaperLanguage==='en'?'Unanswered':'अनुत्तरित');
+const yourAnswer=chosen===undefined||chosen===null?(selectedPaperLanguage==='en'?'Not attempted':'उत्तर दिले नाही'):escapeHTML(q.o[chosen]);
+reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'प्रश्न ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'तुमचे उत्तर')+'</small><p>'+yourAnswer+'</p></div><div><small>'+(selectedPaperLanguage==='en'?'Correct answer':'योग्य उत्तर')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><p class="result-explanation"><b>'+(selectedPaperLanguage==='en'?'Explanation: ':'स्पष्टीकरण: ')+'</b>'+escapeHTML(q.e||'—')+'</p></article>';
 });
-const used=(activePractice.duration*60)-practiceSeconds,mm=Math.floor(used/60),ss=used%60;
-document.getElementById("testArea").innerHTML="";saveTestRecord(score,total,correct);
-document.getElementById("testResult").innerHTML='<div class="card"><h3>'+(selectedPaperLanguage==='en'?'Your Result':'तुमचा निकाल')+'</h3><p><b>'+score.toFixed(2)+' / '+(activePractice.maxMarks||total)+(selectedPaperLanguage==='en'?' marks':' गुण')+'</b></p><p>'+(selectedPaperLanguage==='en'?'Correct: ':'बरोबर: ')+correct+' | '+(selectedPaperLanguage==='en'?'Wrong: ':'चुकीचे: ')+wrong+' | '+(selectedPaperLanguage==='en'?'Unanswered: ':'अनुत्तरित: ')+skipped+'</p><p>Accuracy: '+Math.round(correct/total*100)+'%</p><p>Negative marking: '+negativeDeducted.toFixed(2)+'</p><p>'+(selectedPaperLanguage==='en'?'Time used: ':'वेळ: ')+mm+(selectedPaperLanguage==='en'?' min ':' मिनिटे ')+ss+(selectedPaperLanguage==='en'?' sec':' सेकंद')+'</p></div>'+details+'<button class="primary no-print" onclick="returnFromTest()">'+(selectedPaperLanguage==='en'?'Back':'मागे जा')+'</button> <button class="primary no-print" onclick="printPracticePaper()">Print / Save PDF</button>';
+reviewHtml+='</div></details></section>';
+const maxMarks=activePractice.maxMarks||activePractice.questions.reduce((sum,q)=>sum+(q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:1)),0);
+const scorePercent=maxMarks>0?Math.max(0,Math.min(100,score/maxMarks*100)):0;
+const attempted=correct+wrong,accuracy=attempted?Math.round(correct/attempted*100):0,completion=Math.round(attempted/total*100);
+const used=Math.max(0,(activePractice.duration*60)-practiceSeconds),mm=Math.floor(used/60),ss=used%60;
+const timeText=mm+(selectedPaperLanguage==='en'?' min ':' मिनिटे ')+ss+(selectedPaperLanguage==='en'?' sec':' सेकंद');
+const grade=scorePercent>=85?(selectedPaperLanguage==='en'?'Excellent performance':'उत्कृष्ट कामगिरी'):scorePercent>=70?(selectedPaperLanguage==='en'?'Very good performance':'खूप चांगली कामगिरी'):scorePercent>=55?(selectedPaperLanguage==='en'?'Good effort — keep improving':'चांगला प्रयत्न — सराव सुरू ठेवा'):(selectedPaperLanguage==='en'?'Keep practising — you can improve':'सराव सुरू ठेवा — नक्की सुधारणा होईल');
+const tag=isGDMock?'MOCK TEST':'PYQ / PRACTICE TEST';
+const resultHtml='<section class="result-wrap" aria-live="polite"><div class="result-hero"><div><span class="result-kicker">'+tag+' • RESULT</span><h2>'+(selectedPaperLanguage==='en'?'Test Completed':'टेस्ट पूर्ण झाली')+'</h2><p>'+escapeHTML(activePractice.label||window.practiceExam||'Practice Test')+'</p><span class="result-grade">'+grade+'</span></div><div class="result-score-ring" style="--result-angle:'+(scorePercent*3.6).toFixed(1)+'deg"><div class="result-score-inner"><strong>'+score.toFixed(2)+'</strong><small>/ '+Number(maxMarks).toFixed(2)+'</small></div></div></div><div class="result-metrics"><div class="result-metric correct"><span>'+(selectedPaperLanguage==='en'?'Correct':'बरोबर')+'</span><b>'+correct+'</b></div><div class="result-metric wrong"><span>'+(selectedPaperLanguage==='en'?'Incorrect':'चुकीचे')+'</span><b>'+wrong+'</b></div><div class="result-metric unanswered"><span>'+(selectedPaperLanguage==='en'?'Unanswered':'अनुत्तरित')+'</span><b>'+skipped+'</b></div><div class="result-metric accuracy"><span>'+(selectedPaperLanguage==='en'?'Accuracy':'अचूकता')+'</span><b>'+accuracy+'%</b></div></div><div class="result-summary-grid"><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Attempted':'सोडवलेले')+'</span><b>'+attempted+' / '+total+'</b></div><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Completion':'पूर्णता')+'</span><b>'+completion+'%</b></div><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Negative marks':'वजा गुण')+'</span><b>'+negativeDeducted.toFixed(2)+'</b></div><div class="result-summary-item"><span>'+(selectedPaperLanguage==='en'?'Time taken':'लागलेला वेळ')+'</span><b>'+timeText+'</b></div></div><div class="result-progress-wrap"><div class="result-progress-label"><span>'+(selectedPaperLanguage==='en'?'Score percentage':'गुणांची टक्केवारी')+'</span><b>'+scorePercent.toFixed(1)+'%</b></div><div class="result-progress"><span style="width:'+scorePercent.toFixed(1)+'%"></span></div></div></section>';
+document.getElementById("testArea").innerHTML="";
+saveTestRecord(score,total,correct);
+document.getElementById("testResult").innerHTML=resultHtml+reviewHtml+'<div class="result-action-bar no-print"><button class="primary" onclick="returnFromTest()">'+(selectedPaperLanguage==='en'?'Back':'मागे जा')+'</button><button class="primary" onclick="printProfessionalResult()">'+(selectedPaperLanguage==='en'?'Print / Save Result PDF':'निकाल Print / Save PDF')+'</button></div>';
 }
+function printProfessionalResult(){window.print();}
 function printPracticePaper(){if(!activePractice){const b=practiceBanks[window.practiceExam];if(!b){alert("या परीक्षेचा PDF प्रश्नसंच उपलब्ध नाही.");return;}activePractice=localizedPracticeBank(b,selectedPaperLanguage);}renderPracticeQuestionPaper(false);window.print();if(activePractice)renderPracticeQuestionPaper(true);}
 
 function showPatternInfo(){
