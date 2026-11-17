@@ -10,4 +10,4 @@ The GitHub Actions workflow builds a debug APK automatically when Android projec
 
 The APK is uploaded as the workflow artifact named **all-exam-india-apk**.
 
-This first APK requires an internet connection because it loads the live website. It does not change the website source or its design.
+The APK build runs automatically whenever files under `android/` change.\n\nThis first APK requires an internet connection because it loads the live website. It does not change the website source or its design.
