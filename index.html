@@ -1051,7 +1051,7 @@ function restoreAeiBackup(){
  if(!field||!field.value.trim()){if(status)status.textContent="आधीचा Backup code paste करा.";return;}
  try{
   const raw=field.value.trim();if(!raw.startsWith("AEI-BACKUP-1:"))throw new Error("Invalid backup");
-  const payload=JSON.parse(decodeURIComponent(escape(atob(raw.slice(14)))));
+  const payload=JSON.parse(decodeURIComponent(escape(atob(raw.slice(13)))));
   if(!payload||payload.app!=="All Exam India"||payload.version!==1||!payload.data)throw new Error("Invalid backup");
   const backup=payload.data;
   let currentHistory=[];let oldHistory=[];try{currentHistory=JSON.parse(localStorage.getItem("aei-history")||"[]");}catch(e){}
