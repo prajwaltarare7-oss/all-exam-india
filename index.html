@@ -577,7 +577,7 @@ mathTypes.forEach(kind=>{
   addNum(M,"A किसी काम को "+a+" दिनों में और B उसी काम को "+b+" दिनों में पूरा करता है। दोनों मिलकर कितने दिनों में काम करेंगे?","A can complete a job in "+a+" days and B in "+b+" days. How many days will they take together?",ans,"एक दिन का काम = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; समय = "+ans+" दिन।","One day's work = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; time = "+ans+" days.");
  }else if(kind===7){
   const speeds=[36,45,54,60,72,90],times=[20,40,60];a=speeds[pick(speeds.length)];b=times[pick(times.length)];ans=a*b/60;
-  addNum(M,"एक वाहन "+a+" किमी/घंटा की चाल से "+b+" मिनट चलता है। तय दूरी कितनी है?","A vehicle travels at "+a+" km/h for "+b+" minutes. Find the distance travelled.",ans,"समय = "+b+"/60+" घंटे; दूरी = "+a+" × "+b+"/60 = "+ans+" किमी।","Time = "+b+"/60 hours; distance = speed × time = "+ans+" km.");
+  addNum(M,"एक वाहन "+a+" किमी/घंटा की चाल से "+b+" मिनट चलता है। तय दूरी कितनी है?","A vehicle travels at "+a+" km/h for "+b+" minutes. Find the distance travelled.",ans,"समय = "+b+"/60 घंटे; दूरी = "+a+" × "+b+"/60 = "+ans+" किमी।","Time = "+b+"/60 hours; distance = speed × time = "+ans+" km.");
  }else if(kind===8||kind===9){
   const base=2+pick(9),m=2+pick(8),n=2+pick(8),x=base*m,y=base*n;
   let u=x,v=y;while(v){const z=v;v=u%v;u=z;}
