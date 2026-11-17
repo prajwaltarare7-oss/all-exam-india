@@ -122,9 +122,24 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
 </section>
 <section id="account" class="page">
-<h2>Login / Register</h2>
-<div class="notice">सुरक्षित Login/Register, password reset आणि वेगवेगळ्या डिव्हाइसवर profile sync करण्यासाठी server-side authentication व database आवश्यक आहे. ही सुविधा backend जोडल्यावरच सुरू होईल.</div>
-<div class="grid"><div class="card"><h3>Login</h3><p>Secure sign-in — backend required.</p><button class="primary" disabled>Login unavailable</button></div><div class="card"><h3>Register</h3><p>Create your student account — backend required.</p><button class="primary" disabled>Register unavailable</button></div></div>
+<h2>Student Login / Register</h2>
+<div class="notice"><b>Login पद्धत: Email + Password</b><br>एकाच account ने वेगवेगळ्या डिव्हाइसवर प्रवेश करता येईल. Account सुरक्षित ठेवण्यासाठी password authentication, database आणि password reset सेवा जोडणे आवश्यक आहे.</div>
+<div class="grid">
+<div class="card">
+<h3>Login</h3>
+<label for="loginEmail">Email address</label><input id="loginEmail" class="search" type="email" autocomplete="email" placeholder="तुमचा ईमेल">
+<label for="loginPassword">Password</label><input id="loginPassword" class="search" type="password" autocomplete="current-password" placeholder="पासवर्ड">
+<button class="primary" disabled>Login (backend जोडणे बाकी)</button>
+</div>
+<div class="card">
+<h3>Create account</h3>
+<label for="registerName">Full name</label><input id="registerName" class="search" type="text" autocomplete="name" placeholder="तुमचे नाव">
+<label for="registerEmail">Email address</label><input id="registerEmail" class="search" type="email" autocomplete="email" placeholder="तुमचा ईमेल">
+<label for="registerPassword">Create password</label><input id="registerPassword" class="search" type="password" autocomplete="new-password" placeholder="नवीन पासवर्ड">
+<button class="primary" disabled>Register (backend जोडणे बाकी)</button>
+</div>
+</div>
+<div class="notice">महत्त्वाचे: हा Login/Register फॉर्मचा पुढचा टप्पा आहे; तो अजून account तयार किंवा sign in करत नाही. खरे सुरक्षित login सुरू करण्यासाठी Firebase/Supabase सारखी authentication सेवा जोडून तिची project configuration आवश्यक आहे. ती जोडल्याशिवाय तुमचा पासवर्ड कुठेही पाठवला किंवा साठवला जाणार नाही.</div>
 </section><section id="mock" class="page">
 <h2>Exam-wise Mock Tests</h2>
 <div class="card"><h3>Choose your exam</h3><select id="mockExam" class="search" onchange="showPatternInfo()"></select><div id="patternInfo" class="notice">परीक्षा निवडा. उपलब्ध अधिकृत पॅटर्न दाखवला जाईल.</div><p>प्रश्नसंच पडताळणी पूर्ण झाल्यावरच timed mock सुरू करता येईल.</p></div>
