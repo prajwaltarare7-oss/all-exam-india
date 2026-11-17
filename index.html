@@ -6,22 +6,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALL EXAM INDIA</title>
 <style>
+:root{--navy:#101b35;--blue:#315ee8;--cyan:#25b8c8;--ink:#17233d;--muted:#68748b;--paper:#f5f7fc;--line:#e4e9f2}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
-header{background:#101d3a;color:white;text-align:center;padding:24px}
-nav{background:#172b50;display:flex;justify-content:center;flex-wrap:wrap}
-nav button{background:none;border:0;color:white;padding:14px;cursor:pointer}
-.container{max-width:1100px;margin:auto;padding:18px}
-.page{display:none}.page.active{display:block}
-.hero{background:linear-gradient(120deg,#183b70,#2879bd);color:white;padding:30px;border-radius:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.card,.question{background:white;padding:18px;border-radius:12px;margin:12px 0;box-shadow:0 3px 12px #17203312}
-.search,select{width:100%;padding:13px;border:1px solid #ccd4df;border-radius:8px;margin:10px 0}
-.primary{background:#1765bd;color:white;border:0;border-radius:7px;padding:11px 16px;cursor:pointer}
-.option{display:block;padding:12px;margin:8px 0;border:1px solid #d6deea;border-radius:7px}
-.notice{padding:14px;background:#fff5d9;border-radius:7px;margin:12px 0}
-#timer{float:right;color:#bd342d;font-weight:bold}
-footer{text-align:center;padding:25px;color:#667085}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink)}
+header{position:relative;overflow:hidden;text-align:left;padding:27px max(22px,calc((100% - 1120px)/2));color:white;background:radial-gradient(circle at 85% 15%,#3e73ff66,transparent 28%),linear-gradient(125deg,#0c1730,#172d58 65%,#174b70)}
+header:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #ffffff20;border-radius:50%;right:8%;top:-170px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06}
+header h1{position:relative;z-index:1;margin:0;font-size:clamp(24px,4vw,34px);letter-spacing:1.5px;font-weight:850}
+header p{position:relative;z-index:1;margin:7px 0 0;color:#c7d5f4;font-size:14px}
+nav{position:sticky;top:0;z-index:10;background:#fffF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:8px;padding:10px 14px;box-shadow:0 5px 20px #16264b08}
+nav button{background:transparent;border:0;color:#53617b;padding:11px 17px;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px;transition:.2s}
+nav button:hover,nav button:focus{background:#edf2ff;color:var(--blue);outline:none}
+.container{max-width:1120px;margin:auto;padding:28px 20px 54px;min-height:65vh}
+.page{display:none}.page.active{display:block;animation:rise .3s ease}
+@keyframes rise{from{opacity:.45;transform:translateY(7px)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#172c59,#315ee8 68%,#218fae);color:white;padding:clamp(27px,5vw,52px);border-radius:24px;box-shadow:0 18px 40px #264dba25}
+.hero:after{content:"";position:absolute;right:-55px;bottom:-150px;width:310px;height:310px;border:1px solid #ffffff35;border-radius:50%;box-shadow:0 0 0 32px #ffffff0c,0 0 0 68px #ffffff0a}
+.hero h2{position:relative;z-index:1;font-size:clamp(25px,4vw,39px);line-height:1.2;max-width:650px;margin:0 0 12px}
+.hero p{position:relative;z-index:1;color:#e0eaff;max-width:560px;line-height:1.7;margin:0 0 23px}
+.primary{position:relative;z-index:1;background:linear-gradient(110deg,var(--blue),#4779ff);color:white;border:0;border-radius:11px;padding:12px 18px;cursor:pointer;font-weight:750;box-shadow:0 7px 18px #315ee833;transition:transform .2s,box-shadow .2s}
+.primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px #315ee844}
+.container h2{font-size:25px;letter-spacing:-.4px;margin:8px 0 10px}
+.container h2:after{content:"";display:block;width:42px;height:4px;border-radius:8px;background:linear-gradient(90deg,var(--blue),var(--cyan));margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:16px}
+.card,.question{background:white;padding:20px;border:1px solid var(--line);border-radius:17px;margin:13px 0;box-shadow:0 7px 24px #18294b08;transition:transform .2s,border-color .2s,box-shadow .2s}
+.grid .card:hover{transform:translateY(-3px);border-color:#cbd7ff;box-shadow:0 12px 28px #243e7812}
+.card h3{margin:0 0 9px;font-size:17px;color:#1b2b4a}
+.card p{color:var(--muted);line-height:1.65}
+.search,select{width:100%;padding:14px 16px;border:1px solid #dce3ef;border-radius:12px;margin:16px 0 8px;background:white;color:var(--ink);font:inherit;outline:none;box-shadow:0 4px 14px #18294b05}
+.search:focus,select:focus{border-color:#7795ff;box-shadow:0 0 0 4px #315ee815}
+.option{display:block;padding:13px;margin:8px 0;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+.notice{padding:16px;background:#f0f5ff;border:1px solid #dce7ff;color:#425477;border-radius:12px;margin:14px 0;line-height:1.65}
+#timer{float:right;color:#c43d45;font-weight:800}
+a{color:var(--blue);font-weight:700;text-decoration:none}a:hover{text-decoration:underline}
+footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid var(--line);background:#fff;font-size:13px}
+@media(max-width:600px){header{padding:23px 20px}nav{gap:3px;padding:8px 5px}nav button{padding:10px 9px;font-size:12px}.container{padding:22px 14px 40px}.hero{border-radius:18px}.grid{grid-template-columns:1fr;gap:8px}.card{padding:17px}}
 </style>
 </head>
 <body>
