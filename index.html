@@ -10,6 +10,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink)}
+body.dark{--paper:#0c1425;--ink:#e8eefb;--muted:#aab6cc;--line:#273550}body.dark nav,body.dark footer,body.dark .card,body.dark .question,body.dark .search,body.dark select{background:#14213a;color:#e8eefb;border-color:#2b3b59}body.dark .card h3{color:#e8eefb}body.dark .notice{background:#1a2a49;border-color:#30476e;color:#d5e2ff}body.dark nav button{color:#d0dcf2}body.dark nav button:hover{background:#24385e}textarea{font:inherit;resize:vertical}button:disabled{opacity:.55;cursor:not-allowed}
 header{position:relative;overflow:hidden;text-align:left;padding:27px max(22px,calc((100% - 1120px)/2));color:white;background:radial-gradient(circle at 85% 15%,#3e73ff66,transparent 28%),linear-gradient(125deg,#0c1730,#172d58 65%,#174b70)}
 header:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #ffffff20;border-radius:50%;right:8%;top:-170px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06}
 header h1{position:relative;z-index:1;margin:0;font-size:clamp(24px,4vw,34px);letter-spacing:1.5px;font-weight:850}
@@ -53,7 +54,12 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <button onclick="showPage('home')">Home</button>
 <button onclick="showPage('exams')">All Exams</button>
 <button onclick="showPage('pyq')">PYQ Papers</button>
+<button onclick="showPage('free')">Free Tests</button>
 <button onclick="showPage('mock')">Mock Tests</button>
+<button onclick="showPage('notes')">Notes</button>
+<button onclick="showPage('profile')">Profile</button>
+<button onclick="showPage('settings')">Settings</button>
+<button onclick="showPage('account')">Login / Register</button>
 <button onclick="showPage('police')">Police Bharti</button>
 </nav>
 <main class="container">
@@ -86,14 +92,62 @@ footer{text-align:center;padding:27px 16px;color:#8993a7;border-top:1px solid va
 <div class="grid" id="policeList"></div>
 <div class="notice">हे अधिकृत पोर्टलचे दुवे आहेत. सध्या भरती सुरू आहे किंवा परीक्षा पॅटर्न पडताळलेला आहे असा याचा अर्थ नाही.</div>
 </section>
-<section id="mock" class="page">
+<section id="free" class="page">
+<h2>Free Tests</h2>
+<div class="notice">Free practice tests हा PYQ आणि full-length Mock Tests पासून वेगळा विभाग आहे. पडताळलेले प्रश्नसंच तयार झाल्यावर विषयानुसार येथे उपलब्ध होतील.</div>
+<div class="grid"><div class="card"><h3>Daily Practice</h3><p>दररोजचे लहान सराव संच.</p></div><div class="card"><h3>Topic-wise Practice</h3><p>गणित, बुद्धिमत्ता, सामान्यज्ञान आणि भाषा.</p></div><div class="card"><h3>Quick Revision</h3><p>वेगवान पुनरावृत्तीसाठी छोटे संच.</p></div></div>
+</section>
+<section id="notes" class="page">
+<h2>Study Notes</h2>
+<p>तुमच्या अभ्यासाच्या नोट्स या डिव्हाइसवर सेव्ह करू शकता.</p>
+<div class="card"><label for="noteTitle">Note title</label><input id="noteTitle" class="search" placeholder="उदा. भारतीय राज्यघटना"><label for="noteBody">Notes</label><textarea id="noteBody" class="search" rows="7" placeholder="तुमच्या नोट्स येथे लिहा..."></textarea><button class="primary" onclick="saveNote()">Save Note</button></div>
+<div id="notesList"></div>
+<div class="notice">या नोट्स फक्त या ब्राउझरमध्ये सेव्ह होतील. दुसऱ्या डिव्हाइसवर आपोआप दिसणार नाहीत.</div>
+</section>
+<section id="profile" class="page">
+<h2>Student Profile</h2>
+<div class="card"><label for="studentName">तुमचे नाव</label><input id="studentName" class="search" placeholder="नाव"><label for="targetExam">Target exam</label><select id="targetExam" class="search"></select><button class="primary" onclick="saveProfile()">Save Profile</button><p id="profileStatus" class="notice">प्रोफाइल माहिती या डिव्हाइसवरच सेव्ह होईल.</p></div>
+</section>
+<section id="settings" class="page">
+<h2>Settings</h2>
+<div class="card"><h3>Appearance</h3><p>वेबसाइटचा रंग निवडा.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
+<div class="card"><h3>Refresh</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" onclick="location.reload()">Refresh Website</button></div>
+<div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
+</section>
+<section id="account" class="page">
+<h2>Login / Register</h2>
+<div class="notice">सुरक्षित Login/Register, password reset आणि वेगवेगळ्या डिव्हाइसवर profile sync करण्यासाठी server-side authentication व database आवश्यक आहे. ही सुविधा backend जोडल्यावरच सुरू होईल.</div>
+<div class="grid"><div class="card"><h3>Login</h3><p>Secure sign-in — backend required.</p><button class="primary" disabled>Login unavailable</button></div><div class="card"><h3>Register</h3><p>Create your student account — backend required.</p><button class="primary" disabled>Register unavailable</button></div></div>
+</section><section id="free" class="page">
+<h2>Free Tests</h2>
+<div class="notice">Free practice tests हा PYQ आणि full-length Mock Tests पासून वेगळा विभाग आहे. पडताळलेले प्रश्नसंच तयार झाल्यावर विषयानुसार येथे उपलब्ध होतील.</div>
+<div class="grid"><div class="card"><h3>Daily Practice</h3><p>दररोजचे लहान सराव संच.</p></div><div class="card"><h3>Topic-wise Practice</h3><p>गणित, बुद्धिमत्ता, सामान्यज्ञान आणि भाषा.</p></div><div class="card"><h3>Quick Revision</h3><p>वेगवान पुनरावृत्तीसाठी छोटे संच.</p></div></div>
+</section>
+<section id="notes" class="page">
+<h2>Study Notes</h2>
+<p>तुमच्या अभ्यासाच्या नोट्स या डिव्हाइसवर सेव्ह करू शकता.</p>
+<div class="card"><label for="noteTitle">Note title</label><input id="noteTitle" class="search" placeholder="उदा. भारतीय राज्यघटना"><label for="noteBody">Notes</label><textarea id="noteBody" class="search" rows="7" placeholder="तुमच्या नोट्स येथे लिहा..."></textarea><button class="primary" onclick="saveNote()">Save Note</button></div>
+<div id="notesList"></div>
+<div class="notice">या नोट्स फक्त या ब्राउझरमध्ये सेव्ह होतील. दुसऱ्या डिव्हाइसवर आपोआप दिसणार नाहीत.</div>
+</section>
+<section id="profile" class="page">
+<h2>Student Profile</h2>
+<div class="card"><label for="studentName">तुमचे नाव</label><input id="studentName" class="search" placeholder="नाव"><label for="targetExam">Target exam</label><select id="targetExam" class="search"></select><button class="primary" onclick="saveProfile()">Save Profile</button><p id="profileStatus" class="notice">प्रोफाइल माहिती या डिव्हाइसवरच सेव्ह होईल.</p></div>
+</section>
+<section id="settings" class="page">
+<h2>Settings</h2>
+<div class="card"><h3>Appearance</h3><p>वेबसाइटचा रंग निवडा.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
+<div class="card"><h3>Refresh</h3><p>पेज पुन्हा लोड करा.</p><button class="primary" onclick="location.reload()">Refresh Website</button></div>
+<div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
+</section>
+<section id="account" class="page">
+<h2>Login / Register</h2>
+<div class="notice">सुरक्षित Login/Register, password reset आणि वेगवेगळ्या डिव्हाइसवर profile sync करण्यासाठी server-side authentication व database आवश्यक आहे. ही सुविधा backend जोडल्यावरच सुरू होईल.</div>
+<div class="grid"><div class="card"><h3>Login</h3><p>Secure sign-in — backend required.</p><button class="primary" disabled>Login unavailable</button></div><div class="card"><h3>Register</h3><p>Create your student account — backend required.</p><button class="primary" disabled>Register unavailable</button></div></div>
+</section><section id="mock" class="page">
 <h2>Exam-wise Mock Tests</h2>
-<div class="card">
-<h3>Mock tests are being rebuilt</h3>
-<p>आधीचे सर्वसाधारण आणि सोपे सराव प्रश्न काढून टाकले आहेत.</p>
-<p>आता प्रत्येक परीक्षेसाठी स्वतंत्र प्रश्नसंच, अधिकृत परीक्षेच्या पॅटर्ननुसार प्रश्नसंख्या, वेळ, विभाग आणि negative marking पडताळल्याशिवाय Mock Test प्रकाशित होणार नाही.</p>
-<p>PYQ Papers आणि Mock Tests वेगळे ठेवले जातील. बनावट प्रश्नांना PYQ म्हणून दाखवले जाणार नाही.</p>
-</div>
+<div class="card"><h3>Choose your exam</h3><select id="mockExam" class="search" onchange="showPatternInfo()"></select><div id="patternInfo" class="notice">परीक्षा निवडा. उपलब्ध अधिकृत पॅटर्न दाखवला जाईल.</div><p>प्रश्नसंच पडताळणी पूर्ण झाल्यावरच timed mock सुरू करता येईल.</p></div>
+<div class="notice">आधीचे सर्वसाधारण प्रश्न काढले आहेत. PYQ Papers आणि Mock Tests वेगळे ठेवले जातील. बनावट प्रश्नांना PYQ म्हणून दाखवले जाणार नाही.</div>
 </section>
 </main>
 <footer>© 2026 ALL EXAM INDIA | Learn • Practice • Succeed</footer>
@@ -136,10 +190,17 @@ document.getElementById("patternInfo").innerHTML=p
 : `<b>${name}</b><br>या परीक्षेचा नवीनतम अधिकृत पॅटर्न अजून पडताळलेला नाही. त्यामुळे चुकीचे प्रश्नसंख्या/वेळ/negative marking दाखवले जाणार नाही. <a href="https://www.google.com/search?q=${encodeURIComponent(name+" official exam notification pattern")}" target="_blank" rel="noopener">अधिकृत पॅटर्न शोधा</a>`;
 }
 function renderPolice(){const q=(document.getElementById('policeSearch').value||'').toLowerCase();const region=document.getElementById('policeRegion').value;const list=policeRecruitment.filter(p=>(region==='all'||p.kind===region)&&[p.state,p.exam,p.board].join(' ').toLowerCase().includes(q));document.getElementById('policeList').innerHTML=list.map(p=>'<div class="card"><small style="color:#315ee8;font-weight:bold">'+(p.kind==='state'?'STATE POLICE':'UNION TERRITORY')+'</small><h3>'+p.state+'</h3><p>'+p.exam+'</p><p>Recruiting body: '+p.board+'</p><a class="primary" href="'+p.url+'" target="_blank" rel="noopener">Official portal</a></div>').join('')||'<div class="notice">या नावाची भरती सापडली नाही.</div>';}
+function setTheme(mode){document.body.classList.toggle('dark',mode==='dark');try{localStorage.setItem('aei-theme',mode)}catch(e){}}
+function saveNote(){const title=document.getElementById('noteTitle').value.trim();const body=document.getElementById('noteBody').value.trim();if(!title||!body){alert('शीर्षक आणि नोट्स लिहा.');return;}let notes=[];try{notes=JSON.parse(localStorage.getItem('aei-notes')||'[]')}catch(e){}notes.unshift({title,body});localStorage.setItem('aei-notes',JSON.stringify(notes));document.getElementById('noteTitle').value='';document.getElementById('noteBody').value='';renderNotes();}
+function renderNotes(){let notes=[];try{notes=JSON.parse(localStorage.getItem('aei-notes')||'[]')}catch(e){}document.getElementById('notesList').innerHTML=notes.map((n,i)=>'<div class="card"><h3>'+escapeHTML(n.title)+'</h3><p style="white-space:pre-wrap">'+escapeHTML(n.body)+'</p><button class="primary" onclick="deleteNote('+i+')">Delete</button></div>').join('')||'<p class="notice">अजून नोट्स सेव्ह केलेल्या नाहीत.</p>';}
+function deleteNote(i){let notes=JSON.parse(localStorage.getItem('aei-notes')||'[]');notes.splice(i,1);localStorage.setItem('aei-notes',JSON.stringify(notes));renderNotes();}
+function escapeHTML(v){return String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function saveProfile(){const profile={name:document.getElementById('studentName').value.trim(),exam:document.getElementById('targetExam').value};localStorage.setItem('aei-profile',JSON.stringify(profile));document.getElementById('profileStatus').textContent='प्रोफाइल या डिव्हाइसवर सेव्ह झाले.';}
+function initNewFeatures(){const opts=exams.map(e=>'<option value="'+escapeHTML(e)+'">'+escapeHTML(e)+'</option>').join('');document.getElementById('targetExam').innerHTML='<option value="">परीक्षा निवडा</option>'+opts;document.getElementById('mockExam').innerHTML='<option value="">परीक्षा निवडा</option>'+opts;try{const p=JSON.parse(localStorage.getItem('aei-profile')||'{}');document.getElementById('studentName').value=p.name||'';document.getElementById('targetExam').value=p.exam||'';const t=localStorage.getItem('aei-theme');if(t==='dark')setTheme('dark');}catch(e){}renderNotes();}
 function showPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-if(id==="pyq")renderPYQ();if(id==="police")renderPolice();
+if(id==="pyq")renderPYQ();if(id==="police")renderPolice();if(id==="notes")renderNotes();
 }
 function examCard(name){
 return `<div class="card"><h3>${name}</h3><p>Study • PYQ • Mock Test</p><button class="primary" onclick="selectExam('${name}')">Open Exam</button></div>`;
@@ -152,7 +213,7 @@ function searchExams(value){
 renderExams(exams.filter(e=>e.toLowerCase().includes(value.toLowerCase())));
 }
 function selectExam(name){
-document.getElementById("mockExam").value=name;
+const selector=document.getElementById("mockExam");if(selector){selector.value=name;showPatternInfo();}
 showPage("mock");
 }
 function getOfficialSourceForExam(exam){
@@ -183,7 +244,7 @@ return `<div class="card"><h3>${name}</h3><p>${src.category}</p>
 <a href="${src.source}" target="_blank" rel="noopener">अधिकृत स्रोत उघडा</a></div>`;
 }).join("")||"<p class='notice'>या नावाची परीक्षा सापडली नाही.</p>";
 }
-renderExams();renderPolice();
+renderExams();renderPolice();initNewFeatures();
 </script>
 </body>
 </html>
