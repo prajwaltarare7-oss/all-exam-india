@@ -555,8 +555,7 @@ const H="हिंदी व्याकरण / Hindi Grammar";
 const G="सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS";
 
 /* 20 अलग-अलग गणितीय प्रकार — हर पेपर में सभी प्रकारों का मिश्रण */
-const mathTypes=shuffle(Array.from({length:20},(_,i)=>i)).slice(0,18);
-while(mathTypes.length<20)mathTypes.push(mathTypes[pick(mathTypes.length)]);
+const mathTypes=shuffle(Array.from({length:25},(_,i)=>i)).slice(0,20);
 shuffle(mathTypes).forEach(kind=>{
  let a,b,c,ans,exh,exe;
  if(kind===0){
@@ -616,16 +615,31 @@ shuffle(mathTypes).forEach(kind=>{
  }else if(kind===18){
   const speeds=[[30,60],[40,80],[45,90],[36,72],[24,48]],pair=speeds[pick(speeds.length)];a=pair[0];b=pair[1];ans=2*a*b/(a+b);
   addNum(M,"एक व्यक्ति समान दूरी "+a+" किमी/घंटा और "+b+" किमी/घंटा की चाल से तय करता है। औसत चाल कितनी होगी?","A person covers equal distances at "+a+" km/h and "+b+" km/h. Find the average speed.",ans,"समान दूरी के लिए औसत चाल = 2uv/(u+v) = 2 × "+a+" × "+b+"/("+a+" + "+b+") = "+ans+" किमी/घंटा।","For equal distances, average speed = 2uv/(u+v) = "+ans+" km/h.");
- }else{
+ }else if(kind===19){
   a=20+pick(50);b=3+pick(8);c=2+pick(7);ans=(a*a+b)%c;
   addNum(M,""+a+"² + "+b+" को "+c+" से भाग देने पर शेषफल कितना होगा?","What is the remainder when "+a+"² + "+b+" is divided by "+c+"?",ans,""+a+"² + "+b+" = "+(a*a+b)+"; "+(a*a+b)+" को "+c+" से भाग देने पर शेषफल "+ans+" है。".replace("。","."),""+a+"² + "+b+" = "+(a*a+b)+"; the remainder on division by "+c+" is "+ans+".");
+ }else if(kind===20){
+  const principal=(1+pick(10))*1000,rate=[10,20,30][pick(3)],years=2;
+  ans=principal*((1+rate/100)**years-1);
+  addNum(M,"₹"+principal+" पर "+rate+"% वार्षिक चक्रवृद्धि ब्याज की दर से "+years+" वर्षों का ब्याज कितना होगा?","Find the compound interest on ₹"+principal+" at "+rate+"% per annum for "+years+" years.",ans,"राशि = P(1 + R/100)²; ब्याज = राशि − मूलधन = ₹"+ans+".","Amount = P(1 + R/100)²; compound interest = amount − principal = ₹"+ans+".");
+ }else if(kind===21){
+  const side=3+pick(12);ans=side*side*side;
+  addNum(M,"एक घन की भुजा "+side+" सेमी है। उसका आयतन ज्ञात करें।","A cube has an edge of "+side+" cm. Find its volume.",ans,"आयतन = भुजा³ = "+side+"³ = "+ans+" घन सेमी।","Volume = edge³ = "+side+"³ = "+ans+" cm³.");
+ }else if(kind===22){
+  const radius=7*(1+pick(10));ans=2*(22/7)*radius;
+  addNum(M,"एक वृत्त की त्रिज्या "+radius+" सेमी है। परिधि ज्ञात करें (π = 22/7)।","A circle has radius "+radius+" cm. Find its circumference (π = 22/7).",ans,"परिधि = 2πr = 2 × 22/7 × "+radius+" = "+ans+" सेमी।","Circumference = 2πr = 2 × 22/7 × "+radius+" = "+ans+" cm.");
+ }else if(kind===23){
+  const radius=7*(1+pick(8));ans=(22/7)*radius*radius;
+  addNum(M,"एक वृत्त की त्रिज्या "+radius+" सेमी है। क्षेत्रफल ज्ञात करें (π = 22/7)।","A circle has radius "+radius+" cm. Find its area (π = 22/7).",ans,"क्षेत्रफल = πr² = 22/7 × "+radius+"² = "+ans+" वर्ग सेमी।","Area = πr² = 22/7 × "+radius+"² = "+ans+" cm².");
+ }else{
+  const unit=2+pick(8),workers=5+pick(6),days=3+pick(5),newWorkers=6+pick(8),newDays=2+pick(6);
+  const total=workers*days*unit;ans=newWorkers*newDays*unit;
+  addNum(M,workers+" मजदूर "+days+" दिनों में "+total+" वस्तुएँ बनाते हैं। उसी दर से "+newWorkers+" मजदूर "+newDays+" दिनों में कितनी वस्तुएँ बनाएँगे?",""+workers+" workers make "+total+" items in "+days+" days. At the same rate, how many items will "+newWorkers+" workers make in "+newDays+" days?",ans,"प्रति मजदूर प्रति दिन उत्पादन = "+unit+"; कुल = "+newWorkers+" × "+newDays+" × "+unit+" = "+ans+".","Output per worker per day = "+unit+"; total = "+newWorkers+" × "+newDays+" × "+unit+" = "+ans+".");
  }
 });
 
 /* 20 अलग-अलग reasoning प्रकार */
-const reasoningTypes=shuffle(Array.from({length:20},(_,i)=>i)).slice(0,18);
-const repeatableReasoningTypes=[0,1,2,6,7,8,10,11,12,13,16];
-while(reasoningTypes.length<20)reasoningTypes.push(repeatableReasoningTypes[pick(repeatableReasoningTypes.length)]);
+const reasoningTypes=shuffle(Array.from({length:25},(_,i)=>i)).slice(0,20);
 const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const letterWord=(word,shift)=>word.split("").map(ch=>letters[(letters.indexOf(ch)+shift)%26]).join("");
 const analogies=[
@@ -692,8 +706,23 @@ shuffle(reasoningTypes).forEach(kind=>{
   addChoiceDual(R,"निम्नलिखित में से भिन्न शब्द चुनें: तांबा, लोहा, चाँदी, प्लास्टिक।","Choose the odd word: Copper, Iron, Silver, Plastic.","प्लास्टिक",["तांबा","लोहा","चाँदी"],"Plastic",["Copper","Iron","Silver"],"तीन धातुएँ हैं; प्लास्टिक धातु नहीं है।","Three are metals; plastic is not a metal.");
  }else if(kind===18){
   addChoice(R,"P, Q से लंबा है। R, Q से छोटा है। S, P से लंबा है। सबसे लंबा कौन है?","P is taller than Q. R is shorter than Q. S is taller than P. Who is the tallest?","S",["P","Q","R"],"क्रम S > P > Q > R है।","The order is S > P > Q > R.");
- }else{
+ }else if(kind===19){
   addChoice(R,"प्रतीक श्रृंखला पूरी करें: ▲, ●, ■, ▲, ●, ?","Complete the symbol series: ▲, ●, ■, ▲, ●, ?", "■",["▲","●","◆"],"तीन प्रतीकों का क्रम बार-बार दोहराया जा रहा है।","The three-symbol pattern repeats.");
+ }else if(kind===20){
+  const n=3+pick(12),v=[n*n,(n+1)*(n+1),(n+2)*(n+2)];ans=(n+3)*(n+3);
+  addNum(R,"संख्या श्रृंखला पूरी करें: "+v.join(", ")+", ?","Complete the number series: "+v.join(", ")+", ?",ans,"क्रमागत पूर्णांकों के वर्ग दिए गए हैं; अगला वर्ग "+ans+" है।","The terms are consecutive squares; the next square is "+ans+".");
+ }else if(kind===21){
+  const words=["CAT","DOG","SUN","MAP","PEN","FISH","BOOK"],word=words[pick(words.length)],coded=word.split("").map(ch=>letters[25-letters.indexOf(ch)]).join("");
+  addChoice(R,"यदि वर्णमाला को उल्टा लिखकर हर अक्षर बदला जाए, तो "+word+" का कूट क्या होगा?","If each letter is replaced by its opposite in the alphabet, how is "+word+" coded?",coded,[letterWord(word,1),letterWord(word,2),letterWord(word,3)],"A↔Z, B↔Y आदि नियम से अक्षर बदले जाते हैं।","Each letter is replaced by its reverse-alphabet pair: A↔Z, B↔Y, and so on.");
+ }else if(kind===22){
+  const start=pick(10),steps=[2,3,4,5],seq=[0,1,2,3,4].map(i=>letters[start+i*(i+3)/2]),next=letters[start+14];
+  addChoice(R,"अक्षर श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the letter series: "+seq.join(", ")+", ?",next,[letters[(start+15)%26],letters[(start+16)%26],letters[(start+17)%26]],"अक्षरों के बीच क्रमशः 2, 3, 4, 5 और फिर 6 स्थान का अंतर है।","The gaps increase by one: +2, +3, +4, +5, then +6.");
+ }else if(kind===23){
+  const total=25+pick(16),left=5+pick(8),right=5+pick(8),rightPos=total-right+1;ans=Math.abs(rightPos-left)-1;
+  addNum(R,"एक पंक्ति में कुल "+total+" व्यक्ति हैं। रोहन बाएँ से "+left+"वें और दाएँ से "+right+"वें स्थान पर है। उसके और दाएँ छोर से गिनने पर "+right+"वें व्यक्ति के बीच कितने व्यक्ति हैं?","There are "+total+" people in a row. Rohan is "+left+"th from the left and "+right+"th from the right. How many people are between Rohan and the person "+right+"th from the right?",ans,"दाएँ से "+right+"वाँ स्थान बाएँ से "+rightPos+"वाँ है; बीच में "+ans+" व्यक्ति हैं।","The "+right+"th from the right is "+rightPos+"th from the left; "+ans+" people are between them.");
+ }else{
+  const turns=[0,1,2,3],start=pick(4),rot=1+pick(3),dirs=["उत्तर","पूर्व","दक्षिण","पश्चिम"],eng=["north","east","south","west"],final=(start+rot)%4;
+  addChoiceDual(R,"एक व्यक्ति "+dirs[start]+" की ओर मुँह करके खड़ा है। वह "+rot+" बार दाईं ओर 90° घूमता है। अब वह किस दिशा में है?","A person faces "+eng[start]+" and turns right by 90° "+rot+" times. Which direction is faced now?",dirs[final],[dirs[(final+1)%4],dirs[(final+2)%4],dirs[(final+3)%4]],eng[final],[eng[(final+1)%4],eng[(final+2)%4],eng[(final+3)%4]],"हर बार दाईं ओर 90° घूमने पर दिशा क्रम से बदलती है।","Each 90° right turn advances one direction clockwise.");
  }
 });
 
