@@ -492,7 +492,7 @@ public class MainActivity extends Activity {
         form.addView(nameInput, fieldParams());
 
         addFieldLabel(form, "Age (in years)");
-        EditText ageInput = makeInput("उदा. 17.5",
+        EditText ageInput = makeInput("e.g. 17.5",
                 InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         ageInput.setText(preferences.getString("age", ""));
         form.addView(ageInput, fieldParams());
