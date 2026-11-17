@@ -299,8 +299,8 @@ gdGK.push(
 ["संविधान की प्रारूप समिति के अध्यक्ष कौन थे?","Who chaired the Drafting Committee of the Constitution?",["डॉ. राजेंद्र प्रसाद","डॉ. बी. आर. आंबेडकर","जवाहरलाल नेहरू","सरदार पटेल"],["Dr Rajendra Prasad","Dr B. R. Ambedkar","Jawaharlal Nehru","Sardar Patel"],1,"प्रारूप समिति के अध्यक्ष डॉ. बी. आर. आंबेडकर थे।","Dr B. R. Ambedkar chaired the Drafting Committee."]
 );
 
-function buildGDMock(no,lang){
-const rnd=gdRand(no*7919+37),pick=n=>Math.floor(rnd()*n),out=[];
+function buildGDMock(no,lang,seed){
+const randomSeed=seed===undefined?no*7919+37:seed,questionOffset=randomSeed%Math.max(gdHG.length,gdGK.length),rnd=gdRand(randomSeed),pick=n=>Math.floor(rnd()*n),out=[];
 function add(sec,qh,qe,oh,oe,ans,eh,ee){
  const opts=(lang==="hi"?oh:oe).slice(),correct=opts[ans];
  for(let j=opts.length-1;j>0;j--){const k=pick(j+1);[opts[j],opts[k]]=[opts[k],opts[j]];}
@@ -336,14 +336,22 @@ for(let i=0;i<20;i++){
  const vals=options(ans,[1,2,3,4,5,6,7,8,9,10,12,15]),labels=vals.slice(),ci=pick(4);[labels[ci],labels[0]]=[labels[0],labels[ci]];
  add("तर्कशक्ति / Reasoning","कठिन संख्या श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the challenging number series: "+seq.join(", ")+", ?",labels,labels,labels.indexOf(String(ans)),why+" अगला पद "+ans+" है.",why+" The next term is "+ans+".");
 }
-for(let i=0;i<20;i++){const q=gdHG[(i+no*7-1)%gdHG.length];add("हिंदी व्याकरण / Hindi Grammar",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
-for(let i=0;i<20;i++){const q=gdGK[(i+no*7-1)%gdGK.length];add("सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
+for(let i=0;i<20;i++){const q=gdHG[(i+questionOffset)%gdHG.length];add("हिंदी व्याकरण / Hindi Grammar",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
+for(let i=0;i<20;i++){const q=gdGK[(i+questionOffset)%gdGK.length];add("सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
 return {label:"SSC GD Mock Test "+no,duration:60,questions:out};
+}
+function buildNextStudentGDMock(lang){
+const student=getStudent(),bucket=studentTestBucket(student,"SSC GD"),used=readUsedStudentTests(bucket),base=used.length+1;
+for(let attempt=base;attempt<base+500;attempt++){
+ const seed=studentTestSeed(student&&student.name,attempt),candidate=buildGDMock(attempt,lang,seed),signature=practiceTestSignature(candidate);
+ if(!used.some(x=>x&&(x.seed===seed||x.signature===signature))){candidate.testSeed=seed;candidate.testSignature=signature;return candidate;}
+}
+const fallbackSeed=studentTestSeed(student&&student.name,base+501),fallback=buildGDMock(base+501,lang,fallbackSeed);fallback.testSeed=fallbackSeed;fallback.testSignature=practiceTestSignature(fallback);return fallback;
 }
 function startGDMock(){
 isGDMock=true;window.practiceExam="SSC GD";
 if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}
-activePractice=buildGDMock(1,selectedPaperLanguage);
+activePractice=buildNextStudentGDMock(selectedPaperLanguage);
 resetPracticeState();practiceSeconds=activePractice.duration*60;
 document.getElementById("testIntro").style.display="none";document.getElementById("testResult").innerHTML="";
 document.getElementById("testTitle").textContent=activePractice.label;
@@ -432,7 +440,11 @@ function getStudent(){try{return JSON.parse(localStorage.getItem("aei-student")|
 function openRegistration(){document.getElementById("registerModal").style.display="flex";document.getElementById("regName").focus()}
 function closeRegistration(){document.getElementById("registerModal").style.display="none"}
 function saveRegistration(){const name=document.getElementById("regName").value.trim();if(!name){alert("कृपया नाव किंवा nickname लिहा.");return;}localStorage.setItem("aei-student",JSON.stringify({name:name}));closeRegistration();if(pendingPracticeStart){pendingPracticeStart=false;if(isGDMock)startGDMock();else startPracticeTest();}renderStudentStats();}
-function saveTestRecord(score,total,correctCount){const student=getStudent();if(!student)return;let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}h.unshift({name:student.name,exam:window.practiceExam,score:score,total:total,accuracy:Math.round((correctCount===undefined?score:correctCount)/total*100),date:new Date().toLocaleString()});localStorage.setItem("aei-history",JSON.stringify(h.slice(0,50)));renderStudentStats();}
+function studentTestBucket(student,exam){return String(student&&student.name||"").trim().toLowerCase()+"::"+String(exam||"");}
+function practiceTestSignature(bank){const raw=(bank&&bank.questions||[]).map(q=>q.q+"|"+(q.o||[]).join("|")+"|"+q.a).join("||");let h=2166136261;for(let i=0;i<raw.length;i++)h=Math.imul(h^raw.charCodeAt(i),16777619);return (h>>>0).toString(36);}
+function readUsedStudentTests(bucket){try{const all=JSON.parse(localStorage.getItem("aei-used-tests")||"{}");return Array.isArray(all[bucket])?all[bucket]:[];}catch(e){return [];}}
+function studentTestSeed(name,attempt){let h=2166136261;const value=String(name||"").trim().toLowerCase();for(let i=0;i<value.length;i++)h=Math.imul(h^value.charCodeAt(i),16777619);return ((h>>>0)+Math.imul(attempt,2654435761))>>>0;}
+function saveTestRecord(score,total,correctCount){const student=getStudent();if(!student)return;let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}h.unshift({name:student.name,exam:window.practiceExam,score:score,total:total,accuracy:Math.round((correctCount===undefined?score:correctCount)/total*100),date:new Date().toLocaleString()});localStorage.setItem("aei-history",JSON.stringify(h.slice(0,50)));if(activePractice&&activePractice.testSeed!==undefined){const bucket=studentTestBucket(student,window.practiceExam);let all={};try{all=JSON.parse(localStorage.getItem("aei-used-tests")||"{}")}catch(e){}const used=Array.isArray(all[bucket])?all[bucket]:[];const entry={seed:activePractice.testSeed,signature:activePractice.testSignature||practiceTestSignature(activePractice)};if(!used.some(x=>x&&x.seed===entry.seed)||!used.some(x=>x&&x.signature===entry.signature)){if(!used.some(x=>x&&x.seed===entry.seed&&x.signature===entry.signature))used.push(entry);}all[bucket]=used;localStorage.setItem("aei-used-tests",JSON.stringify(all));}renderStudentStats();}
 function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}const visits=Number(localStorage.getItem("aei-visits")||"0");const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};set("statTests",h.length);set("statBest",h.length?Math.max(...h.map(x=>x.score)):"0");set("statVisitors",visits);const lb=document.getElementById("localLeaderboard"),hist=document.getElementById("testHistory");if(lb){const sorted=[...h].sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy).slice(0,10);lb.innerHTML=sorted.length?sorted.map((x,i)=>"<p>"+(i+1)+". "+escapeHTML(x.name)+" — "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून निकाल उपलब्ध नाही.</p>";}if(hist)hist.innerHTML=h.length?h.map(x=>"<p>"+escapeHTML(x.date)+" — "+escapeHTML(x.exam)+": "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>अजून टेस्ट दिलेली नाही.</p>";}
 try{const n=Number(localStorage.getItem("aei-visits")||"0")+1;localStorage.setItem("aei-visits",String(n));}catch(e){}
 
