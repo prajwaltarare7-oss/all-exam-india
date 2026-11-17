@@ -207,7 +207,8 @@ document.getElementById("resultArea").innerHTML=`<div class="card"><h2>Test Resu
 <p>बरोबर: ${score} | चुकीचे किंवा न सोडवलेले: ${questions.length-score}</p>
 <button class="primary" onclick="startTest()">Try Again</button></div><h3>Answer Explanations</h3>${details}`;
 }
-exams.forEach(e=>document.getElementById("mockExam").innerHTML+=`<option>${e}</option>`);\nshowPatternInfo();
+exams.forEach(e=>document.getElementById("mockExam").innerHTML+=`<option>${e}</option>`);
+showPatternInfo();
 renderExams();
 </script>
 </body>
