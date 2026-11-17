@@ -590,14 +590,27 @@ document.getElementById("patternInfo").innerHTML=p
 function setTheme(mode){document.body.classList.toggle('dark',mode==='dark');try{localStorage.setItem('aei-theme',mode)}catch(e){}}
 function escapeHTML(v){return String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
 function initNewFeatures(){const opts=exams.map(e=>'<option value="'+escapeHTML(e)+'">'+escapeHTML(e)+'</option>').join('');const mockExam=document.getElementById('mockExam');if(mockExam)mockExam.innerHTML='<option value="">परीक्षा निवडा</option>'+opts;document.getElementById('testExam').innerHTML='<option value="">परीक्षा निवडा</option>'+opts;try{const t=localStorage.getItem('aei-theme');if(t==='dark')setTheme('dark');}catch(e){}}
-function showPage(id){
+function showPage(id,fromHistory=false){
 const target=document.getElementById(id);
 if(!target){console.error("Page not found:",id);return;}
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 target.classList.add("active");
 if(id==="pyq")renderPYQ();
-
+if(!fromHistory){
+const currentPage=history.state&&history.state.aeiPage;
+if(currentPage!==id)history.pushState({...((history.state&&typeof history.state==="object")?history.state:{}),aeiPage:id},"",location.href);
 }
+}
+(function initInSiteBackNavigation(){
+const active=document.querySelector(".page.active");
+const initialPage=active?active.id:"home";
+history.replaceState({...((history.state&&typeof history.state==="object")?history.state:{}),aeiPage:initialPage},"",location.href);
+window.addEventListener("popstate",event=>{
+const requested=event.state&&event.state.aeiPage;
+const target=requested&&document.getElementById(requested);
+showPage(target&&target.classList.contains("page")?requested:"home",true);
+});
+})();
 function getOfficialSourceForExam(exam){
 return exam.startsWith("SSC") ? officialSources[0] : null;
 }
