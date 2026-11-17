@@ -1,0 +1,56 @@
+{
+  "title": "ALL EXAM INDIA",
+  "version": 1,
+  "exams": [
+    {
+      "name": "UPSC",
+      "category": "Civil Services",
+      "source": "https://www.upsc.gov.in/examinations/previous-question-papers"
+    },
+    {
+      "name": "MPSC",
+      "category": "State Services",
+      "source": "https://mpsc.gov.in/"
+    },
+    {
+      "name": "SSC",
+      "category": "Staff Selection",
+      "source": "https://ssc.gov.in/"
+    },
+    {
+      "name": "Railway RRB",
+      "category": "Railway",
+      "source": "https://www.rrbcdg.gov.in/"
+    },
+    {
+      "name": "IBPS",
+      "category": "Banking",
+      "source": "https://www.ibps.in/"
+    },
+    {
+      "name": "SBI",
+      "category": "Banking",
+      "source": "https://sbi.co.in/web/careers"
+    },
+    {
+      "name": "JEE Main",
+      "category": "Engineering",
+      "source": "https://jeemain.nta.nic.in/"
+    },
+    {
+      "name": "NEET UG",
+      "category": "Medical",
+      "source": "https://neet.nta.nic.in/"
+    },
+    {
+      "name": "CTET",
+      "category": "Teaching",
+      "source": "https://ctet.nic.in/"
+    },
+    {
+      "name": "MAHA TET",
+      "category": "Teaching",
+      "source": "https://mahatet.in/"
+    }
+  ]
+}
