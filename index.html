@@ -1,258 +1,248 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALL EXAM INDIA</title>
+<meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
+<title>ALL EXAM INDIA | All Exams, One Platform</title>
+<meta name="description" content="ALL EXAM INDIA - Competitive exam preparation, mock tests and verified previous year papers.">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#17233c}
-header{background:linear-gradient(120deg,#101d49,#1559a5);color:white;text-align:center;padding:28px 15px}
-header h1{font-size:30px;margin:5px}
-nav{background:white;padding:12px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;box-shadow:0 2px 8px #0001}
-button,select,input{padding:11px;border:1px solid #d5dceb;border-radius:8px;font-size:15px}
-button{background:#1559a5;color:white;border:0;cursor:pointer}
-main{max-width:1100px;margin:auto;padding:18px}
-h2{color:#153c75}
-.search{width:100%;margin:15px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
-.card{background:white;padding:18px;border-radius:12px;box-shadow:0 3px 12px #0001;text-align:center;border:1px solid #e4eaf5;cursor:pointer}
-.card:hover{border-color:#1559a5}
-.card h3{color:#153c75}
-.section{background:white;padding:18px;margin:18px 0;border-radius:12px}
-.resource{background:#fff;padding:15px;margin:12px 0;border:1px solid #e4eaf5;border-radius:10px}
-.notice{background:#fff5d9;color:#725500;padding:13px;border-radius:8px}
-#examPage,#resourcePage{display:none}
-footer{text-align:center;padding:25px;background:#101d49;color:white;margin-top:30px}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
+header{background:#101d3a;color:white;padding:22px 16px;text-align:center}
+header h1{margin:0;font-size:29px}
+header p{margin:8px 0 0;color:#cbd5e1}
+nav{background:#172b50;display:flex;justify-content:center;flex-wrap:wrap}
+nav button{background:none;color:white;border:0;padding:14px;cursor:pointer;font-size:15px}
+nav button:hover{background:#294875}
+.container{max-width:1100px;margin:auto;padding:18px}
+.hero{background:linear-gradient(120deg,#183b70,#2769a8);color:white;padding:30px 22px;border-radius:14px;margin-bottom:20px}
+.hero h2{font-size:27px;margin-top:0}
+.search{width:100%;padding:13px;border:1px solid #ccd4df;border-radius:8px;font-size:16px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.card{background:white;padding:18px;border-radius:12px;box-shadow:0 3px 12px #17203312}
+.card h3{margin-top:0;color:#173c70}
+button.primary{background:#1765bd;color:white;border:0;border-radius:7px;padding:11px 16px;cursor:pointer}
+button.secondary{background:#e8eef8;color:#173c70;border:0;border-radius:7px;padding:10px 14px;cursor:pointer}
+button:disabled{opacity:.5}
+.page{display:none}
+.page.active{display:block}
+.muted{color:#68758a}
+.notice{padding:14px;background:#fff5d9;border-left:4px solid #e5a500;border-radius:7px;margin:12px 0}
+.question{background:white;padding:18px;border-radius:10px;margin:14px 0}
+.option{display:block;padding:10px;margin:8px 0;border:1px solid #d6deea;border-radius:7px;cursor:pointer}
+.option input{margin-right:8px}
+#timer{font-size:20px;font-weight:bold;color:#bd342d}
+footer{text-align:center;padding:25px;color:#667085}
 </style>
 </head>
 <body>
 
 <header>
 <h1>ALL EXAM INDIA</h1>
-<p>One Platform for Every Competitive Exam</p>
-<p>Study • Practice • Succeed</p>
+<p>One Platform • All Competitive Exams</p>
 </header>
 
 <nav>
-<button onclick="home()">Home</button>
-<select id="language" onchange="changeLanguage()">
-<option value="en">English</option>
-<option value="mr">मराठी</option>
-<option value="hi">हिंदी</option>
-</select>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('exams')">All Exams</button>
+<button onclick="showPage('pyq')">PYQ Papers</button>
+<button onclick="showPage('mock')">Mock Tests</button>
 </nav>
 
-<main>
-<div id="homePage">
-<h2 id="heading">Explore All Competitive Exams</h2>
-<input class="search" id="search" placeholder="Search any exam..." oninput="renderExams()">
-<div class="grid" id="examGrid"></div>
+<main class="container">
 
-<div class="section">
-<h2>Study Zone</h2>
-<div class="grid">
-<div class="card" onclick="openResource('Syllabus')">📚<h3>Syllabus</h3></div>
-<div class="card" onclick="openResource('Previous Year Papers')">📝<h3>PYQ Papers</h3></div>
-<div class="card" onclick="openResource('Answer Keys')">✅<h3>Answer Keys</h3></div>
-<div class="card" onclick="openResource('Mock Tests')">🎯<h3>Mock Tests</h3></div>
-<div class="card" onclick="openResource('Exam Pattern')">📋<h3>Exam Pattern</h3></div>
-<div class="card" onclick="openResource('Study Material')">📖<h3>Study Material</h3></div>
-<div class="card" onclick="openResource('Current Affairs')">📰<h3>Current Affairs</h3></div>
+<section id="home" class="page active">
+<div class="hero">
+<h2>तुमच्या यशाची तयारी इथून सुरू करा!</h2>
+<p>सर्व स्पर्धा परीक्षांसाठी एकच व्यासपीठ.</p>
+<button class="primary" onclick="showPage('exams')">Explore Exams</button>
 </div>
-</div>
-</div>
+<input class="search" id="homeSearch" placeholder="परीक्षा शोधा..." oninput="searchExams(this.value)">
+<div class="grid" id="homeExamList"></div>
+</section>
 
-<div id="examPage" class="section">
-<button onclick="home()">← Back to Home</button>
-<h2 id="examTitle"></h2>
-<p id="examDescription"></p>
-<div class="grid">
-<div class="card" onclick="openResource('Syllabus')">📚<h3>Syllabus</h3></div>
-<div class="card" onclick="openResource('Previous Year Papers')">📝<h3>PYQ Papers</h3></div>
-<div class="card" onclick="openResource('Answer Keys')">✅<h3>Answer Keys</h3></div>
-<div class="card" onclick="openResource('Mock Tests')">🎯<h3>Mock Tests</h3></div>
-<div class="card" onclick="openResource('Exam Pattern')">📋<h3>Exam Pattern</h3></div>
-<div class="card" onclick="openResource('Study Material')">📖<h3>Study Material</h3></div>
-</div>
-</div>
+<section id="exams" class="page">
+<h2>All Competitive Exams</h2>
+<input class="search" placeholder="परीक्षा शोधा..." oninput="searchExams(this.value)">
+<div class="grid" id="examList"></div>
+</section>
 
-<div id="resourcePage" class="section">
-<button onclick="backToExam()">← Back</button>
-<h2 id="resourceTitle"></h2>
-<div id="resourceContent"></div>
+<section id="pyq" class="page">
+<h2>Previous Year Question Papers</h2>
+<p class="muted">पडताळलेले मागील वर्षांचे प्रश्नपत्रिका येथे उपलब्ध होतील.</p>
+<input class="search" id="pyqSearch" placeholder="परीक्षा शोधा..." oninput="renderPYQ()">
+<div id="pyqList"></div>
+<div class="notice">सध्या पडताळलेले PDF पेपर जोडलेले नाहीत. अधिकृत आणि परवानगी असलेले पेपरच येथे जोडले जातील.</div>
+</section>
+
+<section id="mock" class="page">
+<h2>Mock Test</h2>
+<div id="mockSetup" class="card">
+<p>तुमची परीक्षा निवडा:</p>
+<select id="mockExam" class="search"></select>
+<p>प्रश्नांची संख्या:</p>
+<select id="questionCount" class="search">
+<option value="5">5 Questions</option>
+<option value="10">10 Questions</option>
+</select>
+<button class="primary" onclick="startTest()">Start Mock Test</button>
+<p class="muted">हे सरावासाठीचे प्रश्न आहेत; अधिकृत PYQ नाहीत.</p>
 </div>
+<div id="testArea" style="display:none">
+<div class="card">
+<span id="testTitle"></span>
+<span style="float:right" id="timer">05:00</span>
+</div>
+<div id="questions"></div>
+<button class="primary" onclick="submitTest()">Submit Test</button>
+</div>
+<div id="resultArea"></div>
+</section>
+
+<section id="about" class="page">
+<h2>About ALL EXAM INDIA</h2>
+<p>एकाच ठिकाणी विविध स्पर्धा परीक्षांची माहिती, पडताळलेले प्रश्नपत्रिका आणि सराव चाचण्या उपलब्ध करून देणे हा आमचा उद्देश आहे.</p>
+</section>
+
 </main>
 
-<footer>
-<h3>ALL EXAM INDIA</h3>
-<p>Learn Today • Lead Tomorrow</p>
-<p>Educational Platform</p>
-</footer>
+<footer>© 2026 ALL EXAM INDIA | Learn • Practice • Succeed</footer>
 
 <script>
-const exams=[
-["MPSC","Maharashtra","State Services, Group B, Group C"],
-["UPSC","National","Civil Services, NDA, CDS, CAPF"],
-["SSC","National","CGL, CHSL, MTS, GD, CPO"],
-["Railway","National","RRB NTPC, Group D, ALP, Technician"],
-["Banking","National","IBPS, SBI, RBI, RRB"],
-["Police Bharti","State","Police Constable and other recruitments"],
-["Defence","National","NDA, CDS, AFCAT, Agniveer"],
-["Teaching","National","CTET and other teaching recruitments"],
-["NEET","National","Medical Entrance Examination"],
-["JEE","National","JEE Main and Advanced"],
-["CTET","National","Central Teacher Eligibility Test"],
-["UPPSC","Uttar Pradesh","State Public Service Commission"],
-["BPSC","Bihar","State Public Service Commission"],
-["RPSC","Rajasthan","State Public Service Commission"],
-["MPPSC","Madhya Pradesh","State Public Service Commission"],
-["HPSC","Haryana","State Public Service Commission"],
-["GPSC","Gujarat","State Public Service Commission"],
-["TNPSC","Tamil Nadu","State Public Service Commission"],
-["KPSC","Karnataka","State Public Service Commission"],
-["WBPSC","West Bengal","State Public Service Commission"],
-["APPSC","Andhra Pradesh","State Public Service Commission"],
-["TSPSC","Telangana","State Public Service Commission"],
-["OSSC","Odisha","State Staff Selection Commission"],
-["JKPSC","Jammu and Kashmir","State Public Service Commission"],
-["Other Exams","India","Other government and entrance examinations"]
+const exams = [
+"MPSC Rajyaseva","MPSC Group B","MPSC Group C","UPSC Civil Services",
+"SSC CGL","SSC CHSL","SSC MTS","Railway RRB NTPC","Railway Group D",
+"Banking IBPS PO","Banking IBPS Clerk","SBI PO","SBI Clerk",
+"Police Bharti","Defence NDA","Defence CDS","Agniveer",
+"CTET","TET","NEET","JEE Main",
+"UPPSC","BPSC","RPSC","MPPSC","HPSC","GPSC","TNPSC","KPSC",
+"WBPSC","APPSC","TSPSC","OSSC","JKPSC"
 ];
 
-let selectedExam="";
+const practiceQuestions = [
+{q:"भारताची राजधानी कोणती?",o:["मुंबई","नवी दिल्ली","पुणे","चेन्नई"],a:1,ex:"भारताची राजधानी नवी दिल्ली आहे."},
+{q:"भारतीय संविधान कधी लागू झाले?",o:["15 ऑगस्ट 1947","26 जानेवारी 1950","2 ऑक्टोबर 1950","26 नोव्हेंबर 1949"],a:1,ex:"भारतीय संविधान 26 जानेवारी 1950 रोजी लागू झाले."},
+{q:"महाराष्ट्र राज्याची स्थापना कधी झाली?",o:["1 मे 1960","1 मे 1956","15 ऑगस्ट 1947","26 जानेवारी 1950"],a:0,ex:"महाराष्ट्र राज्याची स्थापना 1 मे 1960 रोजी झाली."},
+{q:"भारताचा राष्ट्रीय प्राणी कोणता?",o:["सिंह","वाघ","हत्ती","बिबट्या"],a:1,ex:"भारताचा राष्ट्रीय प्राणी वाघ आहे."},
+{q:"सौरमालेतील सर्वात मोठा ग्रह कोणता?",o:["पृथ्वी","मंगळ","गुरू","शुक्र"],a:2,ex:"गुरू हा सौरमालेतील सर्वात मोठा ग्रह आहे."},
+{q:"पाण्याचे रासायनिक सूत्र काय आहे?",o:["CO2","O2","H2O","NaCl"],a:2,ex:"पाण्याचे रासायनिक सूत्र H2O आहे."},
+{q:"भारताचे पहिले राष्ट्रपती कोण होते?",o:["डॉ. राजेंद्र प्रसाद","डॉ. राधाकृष्णन","जवाहरलाल नेहरू","सरदार पटेल"],a:0,ex:"डॉ. राजेंद्र प्रसाद हे भारताचे पहिले राष्ट्रपती होते."},
+{q:"महाराष्ट्राची राजधानी कोणती?",o:["नागपूर","नाशिक","मुंबई","पुणे"],a:2,ex:"महाराष्ट्राची राजधानी मुंबई आहे."},
+{q:"एका किलोमीटरमध्ये किती मीटर असतात?",o:["100","500","1000","10000"],a:2,ex:"एका किलोमीटरमध्ये 1000 मीटर असतात."},
+{q:"भारतीय संविधानाचे शिल्पकार म्हणून कोण ओळखले जातात?",o:["महात्मा गांधी","डॉ. बाबासाहेब आंबेडकर","लोकमान्य टिळक","सुभाषचंद्र बोस"],a:1,ex:"डॉ. बाबासाहेब आंबेडकर यांना भारतीय संविधानाचे शिल्पकार म्हटले जाते."}
+];
 
-const translations={
-en:{heading:"Explore All Competitive Exams",search:"Search any exam..."},
-mr:{heading:"सर्व स्पर्धा परीक्षा शोधा",search:"कोणतीही परीक्षा शोधा..."},
-hi:{heading:"सभी प्रतियोगी परीक्षाएँ देखें",search:"कोई भी परीक्षा खोजें..."}
-};
+// Verified PYQ entries will be added here after checking their sources.
+const pyqPapers = [];
 
-function changeLanguage(){
-let lang=document.getElementById("language").value;
-document.getElementById("heading").innerText=translations[lang].heading;
-document.getElementById("search").placeholder=translations[lang].search;
-renderExams();
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+if(id==="pyq") renderPYQ();
 }
 
-function renderExams(){
-let q=document.getElementById("search").value.toLowerCase();
-let grid=document.getElementById("examGrid");
-grid.innerHTML="";
-exams.filter(e=>e.join(" ").toLowerCase().includes(q)).forEach(e=>{
-let div=document.createElement("div");
-div.className="card";
-div.innerHTML="<h3>"+e[0]+"</h3><p>"+e[1]+"</p><small>"+e[2]+"</small>";
-div.onclick=()=>openExam(e);
-grid.appendChild(div);
+function examCard(name){
+return `<div class="card"><h3>${name}</h3>
+<p class="muted">Study material • PYQ • Mock Test</p>
+<button class="primary" onclick="selectExam('${name}')">Open Exam</button></div>`;
+}
+
+function renderExams(list=exams){
+document.getElementById("examList").innerHTML=list.map(examCard).join("");
+document.getElementById("homeExamList").innerHTML=list.slice(0,8).map(examCard).join("");
+}
+
+function searchExams(value){
+const filtered=exams.filter(e=>e.toLowerCase().includes(value.toLowerCase()));
+renderExams(filtered);
+}
+
+function selectExam(name){
+document.getElementById("mockExam").value=name;
+showPage("mock");
+}
+
+function renderPYQ(){
+const q=(document.getElementById("pyqSearch")?.value||"").toLowerCase();
+const filtered=pyqPapers.filter(p=>p.exam.toLowerCase().includes(q));
+const area=document.getElementById("pyqList");
+if(!filtered.length){
+area.innerHTML="<p class='notice'>या शोधासाठी सध्या पडताळलेले पेपर उपलब्ध नाहीत.</p>";
+return;
+}
+area.innerHTML=filtered.map(p=>`
+<div class="card">
+<h3>${p.exam} - ${p.year}</h3>
+<p>${p.title}</p>
+<a href="${p.url}" target="_blank" rel="noopener">View PDF</a>
+</div>`).join("");
+}
+
+let questions=[],answers={},timeLeft=300,clock;
+
+function startTest(){
+const count=Number(document.getElementById("questionCount").value);
+questions=practiceQuestions.slice(0,count);
+answers={};
+timeLeft=300;
+document.getElementById("mockSetup").style.display="none";
+document.getElementById("resultArea").innerHTML="";
+document.getElementById("testArea").style.display="block";
+document.getElementById("testTitle").textContent=document.getElementById("mockExam").value+" • Practice Test";
+document.getElementById("questions").innerHTML=questions.map((q,i)=>`
+<div class="question">
+<h3>Q${i+1}. ${q.q}</h3>
+${q.o.map((option,j)=>`
+<label class="option">
+<input type="radio" name="q${i}" value="${j}" onchange="answers[${i}]=${j}">
+${option}
+</label>`).join("")}
+</div>`).join("");
+updateTimer();
+clearInterval(clock);
+clock=setInterval(()=>{
+timeLeft--;
+updateTimer();
+if(timeLeft<=0) submitTest();
+},1000);
+}
+
+function updateTimer(){
+const m=Math.floor(timeLeft/60);
+const s=timeLeft%60;
+document.getElementById("timer").textContent=
+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+
+function submitTest(){
+clearInterval(clock);
+let score=0;
+let details=questions.map((q,i)=>{
+const correct=answers[i]===q.a;
+if(correct) score++;
+return `<div class="question">
+<h3>Q${i+1}. ${q.q}</h3>
+<p>Your answer: ${answers[i]===undefined?"Not answered":q.o[answers[i]]}</p>
+<p>Correct answer: <b>${q.o[q.a]}</b></p>
+<p class="muted">${q.ex}</p>
+</div>`;
+}).join("");
+document.getElementById("testArea").style.display="none";
+document.getElementById("mockSetup").style.display="block";
+document.getElementById("resultArea").innerHTML=`
+<div class="card">
+<h2>Test Result</h2>
+<h1>${score} / ${questions.length}</h1>
+<p>Correct: ${score} | Incorrect or unanswered: ${questions.length-score}</p>
+<button class="primary" onclick="showPage('mock')">Try Again</button>
+</div>
+<h3>Answer Explanations</h3>${details}`;
+}
+
+exams.forEach(e=>{
+document.getElementById("mockExam").innerHTML+=`<option>${e}</option>`;
 });
-}
-
-function openExam(exam){
-selectedExam=exam[0];
-document.getElementById("homePage").style.display="none";
-document.getElementById("resourcePage").style.display="none";
-document.getElementById("examPage").style.display="block";
-document.getElementById("examTitle").innerText=exam[0];
-document.getElementById("examDescription").innerText=exam[2]+" — "+exam[1];
-}
-
-
-
-async function openResource(type){
-
-document.getElementById("homePage").style.display="none";
-document.getElementById("examPage").style.display="none";
-document.getElementById("resourcePage").style.display="block";
-document.getElementById("resourceTitle").innerText=type;
-
-let content=document.getElementById("resourceContent");
-
-if(type==="Previous Year Papers"){
-
-content.innerHTML="<p>Loading question papers...</p>";
-
-try{
-let response=await fetch("/all-exam-india/papers/library.json");
-let data=await response.json();
-
-let papers=data.papers.filter(p=>
-!selectedExam || p.exam===selectedExam
-);
-
-if(papers.length===0){
-content.innerHTML=`
-<div class="notice">
-अजून कोणतेही पडताळलेले PDF पेपर अपलोड केलेले नाहीत.
-खरे पेपर जोडल्यावर ते येथे दिसतील.
-</div>`;
-return;
-}
-
-content.innerHTML=papers.map((p,i)=>`
-<div class="resource">
-<h3>${p.exam} - ${p.year}</h3>
-<p>${p.title} ${p.stage || ""}</p>
-<button onclick="showPaper(${i})">View PDF</button>
-</div>
-`).join("");
-
-window.currentPapers=papers;
-return;
-
-}catch(error){
-content.innerHTML="<div class='notice'>PDF Library लोड झाली नाही. पुन्हा प्रयत्न करा.</div>";
-return;
-}
-}
-
-content.innerHTML=`
-<div class="resource">
-<h3>${selectedExam || "All Exams"}</h3>
-<p>Section: ${type}</p>
-<div class="notice">
-Verified official resources have not been added yet.
-</div>
-</div>`;
-}
-
-function showPaper(index){
-let p=window.currentPapers[index];
-let content=document.getElementById("resourceContent");
-
-content.innerHTML=`
-<div class="resource">
-<h3>${p.exam} - ${p.year}</h3>
-<button onclick="openResource('Previous Year Papers')">← Back to Papers</button>
-<iframe src="${p.url}" width="100%" height="650"
-style="border:1px solid #ccc;border-radius:8px;margin-top:15px">
-</iframe>
-<br><br>
-<a href="${p.url}" download>
-<button>Download PDF</button>
-</a>
-</div>`;
-}
-  
-  
-
-function backToExam(){
-document.getElementById("resourcePage").style.display="none";
-if(selectedExam){
-document.getElementById("examPage").style.display="block";
-}else{
-home();
-}
-}
-
-function home(){
-selectedExam="";
-document.getElementById("homePage").style.display="block";
-document.getElementById("examPage").style.display="none";
-document.getElementById("resourcePage").style.display="none";
-}
-
 renderExams();
 </script>
 </body>
