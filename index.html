@@ -192,6 +192,7 @@ body.dark .home-action-card{background:#14213a;border-color:#2b3b59}
 <div class="card"><h3>तुमची Test माहिती</h3><div class="stat-grid"><div class="stat"><b id="statTests">0</b>Tests पूर्ण</div><div class="stat"><b id="statBest">0</b>Best score</div><div class="stat"><b id="statVisitors">1</b>या डिव्हाइसवरील भेटी</div></div><p class="small-note">ही माहिती सध्या फक्त या ब्राउझरमध्ये दिसते; सर्व विद्यार्थ्यांची एकत्रित आकडेवारी व leaderboard साठी database जोडणे बाकी आहे.</p><h3>Leaderboard (या डिव्हाइसवरील)</h3><div id="localLeaderboard"></div><h3>Test History</h3><div id="testHistory"></div></div><div class="card"><h3>Language</h3><p>सध्या मुख्य इंटरफेस मराठी आणि इंग्रजी मिश्र स्वरूपात आहे. इतर भाषा पर्याय पुढील टप्प्यात जोडता येतील.</p></div>
 </section>
 <section id="testroom" class="page">
+<button class="primary no-print" type="button" onclick="returnFromTest()">← मागे जा</button>
 <h2 id="testTitle">SSC Online Test</h2>
 <div class="card"><h3>पेपरची भाषा / Paper Language</h3><select id="testLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select><label for="testExam">SSC परीक्षा निवडा</label><select id="testExam" class="search" onchange="openPractice(this.value)"></select><p>उपलब्ध प्रश्नसंच निवडून सराव टेस्ट सुरू करा.</p></div>
 <div class="notice">हे AI-created original practice questions आहेत; अधिकृत PYQ नाहीत. Demo test मध्ये कमी प्रश्न आहेत.</div>
@@ -558,7 +559,11 @@ bank.questions.forEach((item,i)=>{let cls='';if(i===activeQuestionIndex)cls+=' c
 html+='</div><div class="question-legend"><span>हिरवा: सोडवलेले</span><span>पिवळा: Mark</span><span>लाल: Skip</span><span>करडा: पाहिलेले</span></div><p class="small-note">'+(selectedPaperLanguage==='en'?'Tap a number to jump to that question.':'प्रश्नावर थेट जाण्यासाठी क्रमांकावर टॅप करा.')+'</p></aside></div></div>';
 document.getElementById("testArea").innerHTML=html;
 }
-function returnFromTest(){showPage(isGDMock?'mock':'pyq');}
+function returnFromTest(){
+const target=isGDMock?'mock':'pyq';
+if(history.state&&history.state.aeiPage==="testroom"&&history.length>1){history.back();}
+else{showPage(target);}
+}
 function submitPracticeTest(forceSubmit){
 if(!activePractice)return;
 const total=activePractice.questions.length,unanswered=total-Object.keys(practiceAnswers).length;
@@ -593,18 +598,19 @@ function initNewFeatures(){const opts=exams.map(e=>'<option value="'+escapeHTML(
 function showPage(id,fromHistory=false){
 const target=document.getElementById(id);
 if(!target){console.error("Page not found:",id);return;}
+const active=document.querySelector(".page.active");
+if(!fromHistory&&(!active||active.id!==id)){
+const pageUrl=location.pathname+location.search+"#page="+encodeURIComponent(id);
+history.pushState({aeiPage:id}, "", pageUrl);
+}
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 target.classList.add("active");
 if(id==="pyq")renderPYQ();
-if(!fromHistory){
-const currentPage=history.state&&history.state.aeiPage;
-if(currentPage!==id)history.pushState({...((history.state&&typeof history.state==="object")?history.state:{}),aeiPage:id},"",location.href);
-}
 }
 (function initInSiteBackNavigation(){
 const active=document.querySelector(".page.active");
 const initialPage=active?active.id:"home";
-history.replaceState({...((history.state&&typeof history.state==="object")?history.state:{}),aeiPage:initialPage},"",location.href);
+history.replaceState({aeiPage:initialPage}, "", location.pathname+location.search);
 window.addEventListener("popstate",event=>{
 const requested=event.state&&event.state.aeiPage;
 const target=requested&&document.getElementById(requested);
