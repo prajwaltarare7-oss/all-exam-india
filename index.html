@@ -243,29 +243,33 @@ function add(sec,qh,qe,oh,oe,ans,eh,ee){
 }
 function options(answer,steps=[1,2,3]){const vals=[answer];steps.forEach(v=>{[answer+v,answer-v].forEach(n=>{if(!vals.includes(n))vals.push(n);});});while(vals.length<4)vals.push(answer+vals.length*7+11);return vals.slice(0,4).map(String);}
 for(let i=0;i<20;i++){
- const kind=i%8,a=pick(45)+15,b=pick(18)+3;let ans,qh,qe,ex;
- if(kind===0){ans=a*b;qh=a+" वस्तुओं के "+b+" समूहों में कुल कितनी वस्तुएँ होंगी?";qe="How many items are there in "+a+" groups of "+b+"?";ex=a+" × "+b+" = "+ans;}
- else if(kind===1){const p=pick(5)+5;ans=a*p/100;ans=Number.isInteger(ans)?ans:Math.round(ans*100)/100;qh=a+" का "+p+"% कितना है?";qe="Find "+p+"% of "+a+".";ex=a+" × "+p+"/100 = "+ans;}
- else if(kind===2){const c=pick(12)+4;ans=a+b+c;qh="तीन संख्याओं "+a+", "+b+" और "+c+" का औसत कितना है?";qe="Find the average of "+a+", "+b+" and "+c+".";ex="("+a+" + "+b+" + "+c+") ÷ 3 = "+ans/3;ans=ans/3;}
- else if(kind===3){const rate=pick(8)+4,t=pick(4)+2;ans=a*rate*t/100;qh="₹"+a+" पर "+rate+"% वार्षिक दर से "+t+" वर्ष का साधारण ब्याज कितना होगा?";qe="Find simple interest on ₹"+a+" at "+rate+"% per annum for "+t+" years.";ex="SI = P × R × T ÷ 100 = "+a+" × "+rate+" × "+t+" ÷ 100 = "+ans;}
- else if(kind===4){const speed=pick(6)+4,time=pick(3)+2;ans=speed*time;qh="एक वाहन "+speed+" किमी/घंटा की चाल से "+time+" घंटे चलता है। दूरी कितनी होगी?";qe="A vehicle travels at "+speed+" km/h for "+time+" hours. Find the distance.";ex="दूरी = चाल × समय = "+speed+" × "+time+" = "+ans+" किमी।";}
- else if(kind===5){const x=pick(8)+2;ans=x*(x+1)/2;qh="पहली "+x+" प्राकृतिक संख्याओं का योग कितना है?";qe="Find the sum of the first "+x+" natural numbers.";ex="योग = n(n+1)/2 = "+x+" × "+(x+1)+" ÷ 2 = "+ans;}
- else if(kind===6){const x=pick(12)+5;ans=x*x;qh=x+" का वर्ग कितना है?";qe="What is the square of "+x+"?";ex=x+" × "+x+" = "+ans;}
- else {const x=pick(20)+30,y=pick(15)+5;ans=x-y;qh=x+" में से "+y+" घटाने पर क्या मिलेगा?";qe="Subtract "+y+" from "+x+".";ex=x+" − "+y+" = "+ans;}
- const vals=options(ans,[1,2,5,10,20,25,50].map(v=>Math.max(1,v)));
- const labels=vals.slice();const ci=pick(4);[labels[ci],labels[0]]=[labels[0],labels[ci]];
- const answerIndex=labels.indexOf(String(ans));
- add("गणित / Mathematics",qh,qe,labels,labels,answerIndex,ex,ex);
+ const kind=i%10;let qh,qe,ans,ex;
+ if(kind===0){const cp=pick(5)+15,profit=pick(4)+10;const sp=1000+pick(20)*50;ans=sp*(100+profit)/100;qh="एक वस्तु का क्रय मूल्य ₹"+sp+" है। उसे "+profit+"% लाभ पर बेचा गया। विक्रय मूल्य कितना होगा?";qe="An item costs ₹"+sp+". It is sold at a profit of "+profit+"%. Find its selling price.";ex="विक्रय मूल्य = "+sp+" × "+(100+profit)+"/100 = ₹"+ans+".";}
+ else if(kind===1){const x=pick(5)+20,p=pick(4)+10;const marked=1000+pick(15)*100;ans=marked*(100-p)/100;qh="एक वस्तु का अंकित मूल्य ₹"+marked है। "+p+"% छूट देने पर विक्रय मूल्य कितना होगा?";qe="An item is marked at ₹"+marked+". Find its price after a "+p+"% discount.";ex="विक्रय मूल्य = "+marked+" × "+(100-p)+"/100 = ₹"+ans+".";}
+ else if(kind===2){const a=pick(5)+2,b=pick(5)+2,total=(a+b)*(pick(12)+5);ans=total/(a+b)*a;qh="₹"+total+" को A और B में "+a+":"+b+" के अनुपात में बाँटा गया। A का हिस्सा कितना है?";qe="₹"+total+" is divided between A and B in the ratio "+a+":"+b+". Find A's share.";ex="A का हिस्सा = "+total+" × "+a+"/"+(a+b)+" = ₹"+ans+".";}
+ else if(kind===3){const x=pick(6)+4,y=pick(6)+4,z=pick(6)+4;const total=x+y+z;ans=total/3;qh="तीन संख्याओं का औसत "+ans+" है। दो संख्याएँ "+x+" और "+y+" हैं। तीसरी संख्या कितनी है?";qe="The average of three numbers is "+ans+". Two numbers are "+x+" and "+y+". Find the third.";ans=3*ans-x-y;ex="तीसरी संख्या = 3 × औसत − "+x+" − "+y+" = "+ans+".";}
+ else if(kind===4){const a=pick(8)+4,b=pick(8)+4;const days=a*b/(a+b);ans=Number.isInteger(days)?days:Math.round(days*10)/10;qh="A एक काम "+a+" दिनों में और B वही काम "+b+" दिनों में करता है। दोनों मिलकर कितने दिनों में काम पूरा करेंगे?";qe="A can finish a job in "+a+" days and B in "+b+" days. How long will they take together?";ex="एक दिन का काम = 1/"+a+" + 1/"+b+" = "+(a+b)+"/"+(a*b)+"; समय = "+ans+" दिन.";}
+ else if(kind===5){const speed=pick(6)+12,time=pick(5)+2;ans=speed*time;qh="एक ट्रेन "+speed+" किमी/घंटा की चाल से "+time+" घंटे चलती है। तय दूरी कितनी है?";qe="A train travels at "+speed+" km/h for "+time+" hours. Find the distance.";ex="दूरी = चाल × समय = "+speed+" × "+time+" = "+ans+" किमी.";}
+ else if(kind===6){const p=pick(8)+5,r=pick(5)+5,t=2,principal=1000+pick(10)*500;ans=principal*(1+r/100)**t;ans=Math.round(ans*100)/100;qh="₹"+principal+" पर "+r+"% वार्षिक चक्रवृद्धि ब्याज की दर से 2 वर्ष बाद मिश्रधन कितना होगा?";qe="Find the amount on ₹"+principal+" at "+r+"% compound interest per annum for 2 years.";ex="मिश्रधन = P(1 + R/100)² = "+principal+" × (1+"+r+"/100)² = ₹"+ans+".";}
+ else if(kind===7){const a=pick(20)+20,b=pick(15)+5,c=pick(12)+3;ans=a*b/c;ans=Number.isInteger(ans)?ans:Math.round(ans*100)/100;qh=a+" मजदूर एक काम "+c+" दिनों में करते हैं। समान क्षमता वाले "+b+" मजदूर वही काम कितने दिनों में करेंगे?";qe=a+" workers complete a job in "+c+" days. How many days will "+b+" equally efficient workers take?";ex="कुल कार्य = "+a+" × "+c+" = "+(a*c)+" मजदूर-दिन; समय = "+(a*c)+"/"+b+" = "+ans+" दिन.";}
+ else if(kind===8){const n=pick(8)+3,m=pick(8)+3;ans=n*m;qh=n+" और "+m+" का लघुत्तम समापवर्त्य (LCM) ज्ञात करें।";qe="Find the LCM of "+n+" and "+m+".";let aa=n,bb=m;while(bb){const t=bb;bb=aa%bb;aa=t;}ans=n*m/aa;ex="LCM × HCF = दोनों संख्याओं का गुणनफल; HCF = "+aa+", इसलिए LCM = "+ans+".";}
+ else {const n=pick(12)+4;ans=n*(n+1)/2;qh="किसी पंक्ति में "+n+" व्यक्तियों के बीच प्रत्येक व्यक्ति अन्य प्रत्येक से एक बार हाथ मिलाता है। कुल हाथ मिलाने कितने होंगे?";qe="Each of "+n+" people shakes hands once with every other person. How many handshakes occur?";ans=n*(n-1)/2;ex="कुल जोड़े = n(n−1)/2 = "+n+" × "+(n-1)+" ÷ 2 = "+ans+".";}
+ const vals=options(ans,[2,3,5,7,10,12,15,20,25,30,40,50,100].map(v=>Math.max(1,v)));
+ const labels=vals.slice(),ci=pick(4);[labels[ci],labels[0]]=[labels[0],labels[ci]];
+ add("गणित / Mathematics",qh,qe,labels,labels,labels.indexOf(String(ans)),ex,ex);
 }
 for(let i=0;i<20;i++){
- const kind=i%5,base=pick(20)+3,d=pick(8)+2;let seq,ans,why;
- if(kind===0){seq=[base,base+d,base+2*d,base+3*d];ans=base+4*d;why="हर बार "+d+" जोड़ा गया है।";}
- else if(kind===1){const m=pick(3)+2;seq=[base,base*m,base*m*m,base*m*m*m];ans=base*m*m*m*m;why="हर पद को "+m+" से गुणा किया गया है।";}
- else if(kind===2){const n=pick(10)+3;seq=[n*n,(n+1)**2,(n+2)**2,(n+3)**2];ans=(n+4)**2;why="क्रमागत प्राकृतिक संख्याओं के वर्ग हैं।";}
- else if(kind===3){seq=[base,base+2,base+2+d,base+4+d];ans=base+4+2*d;why="बारी-बारी से 2 और "+d+" जोड़ा गया है।";}
- else {seq=[base,base+3,base+8,base+15];ans=base+24;why="अंतर 3, 5, 7 है; अगला अंतर 9 होगा।";}
- const vals=options(ans,[1,2,3,4,5,6,8]),labels=vals.slice(),ci=pick(4);[labels[ci],labels[0]]=[labels[0],labels[ci]];
- add("तर्कशक्ति / Reasoning","श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the series: "+seq.join(", ")+", ?",labels,labels,labels.indexOf(String(ans)),why+" अगला पद "+ans+" है.",why+" The next term is "+ans+".");
+ const kind=i%8,base=pick(15)+4,d=pick(6)+3;let seq,ans,why;
+ if(kind===0){const d1=pick(5)+2,d2=d1+pick(4)+2;seq=[base,base+d1,base+d1+d2,base+d1+d2+d1];ans=seq[3]+d2;why="अंतर बारी-बारी से "+d1+" और "+d2+" है।";}
+ else if(kind===1){const n=pick(5)+2;seq=[n,n*n,n*n*n,(n+1)**2];ans=(n+1)**3;why="क्रम में संख्या, उसका वर्ग, घन और अगली संख्या का वर्ग/घन का पैटर्न है; अगला पद "+ans+" है।";}
+ else if(kind===2){const n=pick(8)+3;seq=[n,n*2+1,(n*2+1)*2+1,((n*2+1)*2+1)*2+1];ans=seq[3]*2+1;why="हर पद को 2 से गुणा करके 1 जोड़ा गया है।";}
+ else if(kind===3){const n=pick(8)+2;seq=[n*n,n*n+3,(n+1)**2,(n+1)**2+5];ans=(n+2)**2;why="वर्गों के बीच क्रमशः विषम संख्याएँ जोड़ी गई हैं।";}
+ else if(kind===4){const n=pick(6)+3;seq=[n,n+2,n*2+2,(n*2+2)+4];ans=(n*2+6)*2;why="बारी-बारी से +2 और ×2 का नियम है।";}
+ else if(kind===5){const n=pick(5)+2;seq=[n,n*3,n*3+4,(n*3+4)*3];ans=seq[3]+4;why="बारी-बारी से ×3 और +4 किया गया है।";}
+ else if(kind===6){const n=pick(10)+3;seq=[n,n+5,n+5+7,n+5+7+9];ans=n+5+7+9+11;why="लगातार विषम अंतर 5, 7, 9, अगला 11 है।";}
+ else {const n=pick(8)+2;seq=[n,n*n,n*n-n,n*n-n+(n+1)**2];ans=n*n-n+(n+1)**2-(n+1);why="बारी-बारी से वर्ग बनता है और फिर उसी आधार संख्या को घटाया जाता है।";}
+ const vals=options(ans,[1,2,3,4,5,6,7,8,9,10,12,15]),labels=vals.slice(),ci=pick(4);[labels[ci],labels[0]]=[labels[0],labels[ci]];
+ add("तर्कशक्ति / Reasoning","कठिन संख्या श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the challenging number series: "+seq.join(", ")+", ?",labels,labels,labels.indexOf(String(ans)),why+" अगला पद "+ans+" है.",why+" The next term is "+ans+".");
 }
 for(let i=0;i<20;i++){const q=gdHG[(i+no*7-1)%gdHG.length];add("हिंदी व्याकरण / Hindi Grammar",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
 for(let i=0;i<20;i++){const q=gdGK[(i+no*7-1)%gdGK.length];add("सामान्य ज्ञान एवं सामान्य विज्ञान / GK & GS",q[0],q[1],q[2],q[3],q[4],q[5],q[6]);}
