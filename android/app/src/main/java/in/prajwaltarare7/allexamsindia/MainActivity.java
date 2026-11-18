@@ -378,7 +378,9 @@ public class MainActivity extends Activity {
         if (webView == null) return;
         String name = preferences.getString("name", "");
         String script = "(function(){try{"
-                + "document.querySelectorAll('a.download-app-nav').forEach(function(el){el.style.display='none';});"
+                + "function hideAppDownload(){document.querySelectorAll('a.download-app-nav,a[href*=\\\"/releases/latest/download/\\\"],a[download]').forEach(function(el){el.remove();});}"
+                + "hideAppDownload();"
+                + "if(!window.__aeiHideDownloadObserver){window.__aeiHideDownloadObserver=new MutationObserver(hideAppDownload);window.__aeiHideDownloadObserver.observe(document.documentElement,{childList:true,subtree:true});}"
                 + (name.isEmpty() ? "" : "var n=" + JSONObject.quote(name) + ";"
                 + "localStorage.setItem('aei-student',JSON.stringify({name:n}));"
                 + "var input=document.getElementById('regName');if(input)input.value=n;"
