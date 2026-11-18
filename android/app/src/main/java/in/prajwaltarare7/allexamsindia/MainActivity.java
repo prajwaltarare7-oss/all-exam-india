@@ -59,11 +59,8 @@ public class MainActivity extends Activity {
         root.setBackgroundColor(Color.rgb(16, 27, 53));
         setContentView(root);
 
-        if (preferences.getBoolean("profile_complete", false)) {
-            showMainApp();
-        } else {
-            showRegistrationScreen();
-        }
+        // Open the main app directly; keep the website's own phone/name/password login unchanged.
+        showMainApp();
     }
 
     private void showRegistrationScreen() {
