@@ -327,12 +327,13 @@ public class MainActivity extends Activity {
     private void applyProfileToWebsite() {
         if (webView == null) return;
         String name = preferences.getString("name", "");
-        if (name.isEmpty()) return;
-        String script = "(function(){try{var n=" + JSONObject.quote(name) + ";"
+        String script = "(function(){try{"
+                + "document.querySelectorAll('a.download-app-nav').forEach(function(el){el.style.display='none';});"
+                + (name.isEmpty() ? "" : "var n=" + JSONObject.quote(name) + ";"
                 + "localStorage.setItem('aei-student',JSON.stringify({name:n}));"
                 + "var input=document.getElementById('regName');if(input)input.value=n;"
                 + "var modal=document.getElementById('registerModal');if(modal)modal.style.display='none';"
-                + "if(typeof renderStudentStats==='function')renderStudentStats();"
+                + "if(typeof renderStudentStats==='function')renderStudentStats();")
                 + "}catch(e){}})();";
         webView.evaluateJavascript(script, null);
     }
