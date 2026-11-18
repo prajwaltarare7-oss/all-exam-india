@@ -37,7 +37,11 @@ header h1{position:relative;z-index:1;margin:0;font-size:clamp(24px,4vw,34px);le
 header p{position:relative;z-index:1;margin:7px 0 0;color:#c7d5f4;font-size:14px}
 nav{position:sticky;top:0;z-index:10;background:#fffF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;padding:10px max(22px,calc((100% - 1120px)/2));box-shadow:0 5px 20px #16264b08}
 nav button{background:transparent;border:0;color:#53617b;padding:11px 17px;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px;transition:.2s}
-nav button:hover,nav button:focus{background:#edf2ff;color:var(--blue);outline:none}nav button.settings-nav{margin-left:auto;background:linear-gradient(110deg,var(--blue),#4779ff);color:#fff;padding:14px 25px;font-size:17px;border-radius:13px;box-shadow:0 7px 18px #315ee833}nav button.settings-nav:hover,nav button.settings-nav:focus{background:linear-gradient(110deg,#244bd0,#3569ef);color:#fff}
+nav button:hover,nav button:focus{background:#edf2ff;color:var(--blue);outline:none}
+nav a.download-app-nav{display:inline-flex;align-items:center;justify-content:center;margin-right:auto;padding:13px 21px;border-radius:13px;background:linear-gradient(110deg,#16834a,#20a464);color:#fff;text-decoration:none;font-weight:800;font-size:15px;box-shadow:0 7px 18px #16834a33;transition:transform .2s,box-shadow .2s}
+nav a.download-app-nav:hover,nav a.download-app-nav:focus{background:linear-gradient(110deg,#116b3c,#16834a);color:#fff;transform:translateY(-1px);outline:2px solid #b8f1d1;outline-offset:2px}
+@media(max-width:480px){nav{gap:6px;padding:8px 12px}nav a.download-app-nav{padding:11px 12px;font-size:13px}nav button.settings-nav{padding:11px 13px;font-size:14px}}
+nav button.settings-nav{margin-left:auto;background:linear-gradient(110deg,var(--blue),#4779ff);color:#fff;padding:14px 25px;font-size:17px;border-radius:13px;box-shadow:0 7px 18px #315ee833}nav button.settings-nav:hover,nav button.settings-nav:focus{background:linear-gradient(110deg,#244bd0,#3569ef);color:#fff}
 .container{max-width:1120px;margin:auto;padding:28px 20px 54px;min-height:65vh}
 .page{display:none}.page.active{display:block;animation:rise .3s ease}
 @keyframes rise{from{opacity:.45;transform:translateY(7px)}to{opacity:1;transform:none}}
@@ -309,9 +313,8 @@ html body:has(#pyq.page.active) #pyqList .pyq-session-card button{font-size:10px
 <p>Free Available Tests • PYQ Practice • Mock Tests • Solutions • Current Affairs 2026</p>
 </header>
 <nav>
-
+<a class="download-app-nav" href="downloads/all-exam-india.apk" download="All-Exam-India.apk">⬇ Download App</a>
 <button class="settings-nav" onclick="showPage('settings')">⚙ Settings</button>
-
 </nav>
 <div class="auth-modal" id="registerModal"><div class="auth-box"><h2>Create Account</h2><p>Register to start your tests.</p><label for="regName">Nickname (Required)</label><input id="regName" maxlength="30" required placeholder="Enter your nickname"><div class="auth-actions"><button class="primary" onclick="saveRegistration()">Register</button></div><p class="small-note">This account is stored in this device's browser. A shared account requires an online database.</p></div></div>
 
