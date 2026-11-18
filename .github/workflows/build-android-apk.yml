@@ -58,13 +58,17 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-      - name: Prepare permanent website download
+      - name: Prepare APK for release
         run: |
-          mkdir -p downloads
-          cp android/app/build/outputs/apk/debug/app-debug.apk downloads/all-exam-india.apk
+          mkdir -p release
+          cp android/app/build/outputs/apk/debug/app-debug.apk release/all-exam-india.apk
 
-      - name: Publish APK to website repository
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Publish latest APK release
+        uses: softprops/action-gh-release@v2
         with:
-          commit_message: "Publish latest All Exam India APK"
-          file_pattern: downloads/all-exam-india.apk
+          tag_name: latest
+          name: All Exam India - Latest APK
+          body: Latest installable Android APK for All Exam India.
+          files: release/all-exam-india.apk
+          overwrite_files: true
+          make_latest: true
