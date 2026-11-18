@@ -1042,7 +1042,7 @@ saveTestRecord(score,total,correct,{
  label:activePractice.label||window.practiceExam,
  sessionId:activePractice.sessionId||"",attemptNumber:activePractice.attemptNumber||1
 });
-document.getElementById("testResult").innerHTML=resultHtml+reviewHtml+'<div class="result-action-bar no-print"><button class="primary" onclick="returnFromTest()">'+('Back')+'</button>'+(activePractice.sessionId?'<button class="primary" onclick="reattemptCurrentPractice()">'+('Reattempt with New Questions')+'</button>':'')+'<button class="primary" onclick="printProfessionalResult()">'+('Print / Save Result PDF')+'</button></div>';
+document.getElementById("testResult").innerHTML=resultHtml+reviewHtml+'<div class="result-action-bar no-print"><button class="primary" onclick="returnFromTest()">'+('Back')+'</button>'+(activePractice?'<button class="primary" onclick="reattemptCurrentPractice()">'+('Reattempt Test')+'</button>':'')+'<button class="primary" onclick="printProfessionalResult()">'+('Print / Save Result PDF')+'</button></div>';
 }
 function printProfessionalResult(){window.print();}
 function printPracticePaper(){if(!activePractice){const b=practiceBanks[window.practiceExam];if(!b){alert("A PDF question set is not available for this exam.");return;}activePractice=localizedPracticeBank(b,selectedPaperLanguage);}renderPracticeQuestionPaper(false);window.print();if(activePractice)renderPracticeQuestionPaper(true);}
