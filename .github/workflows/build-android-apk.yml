@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -57,3 +57,14 @@ jobs:
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
+
+      - name: Prepare permanent website download
+        run: |
+          mkdir -p downloads
+          cp android/app/build/outputs/apk/debug/app-debug.apk downloads/all-exam-india.apk
+
+      - name: Publish APK to website repository
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Publish latest All Exam India APK"
+          file_pattern: downloads/all-exam-india.apk
