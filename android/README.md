@@ -1,13 +1,15 @@
-# All Exam India Android APK
+# All Exam India Android App
 
-This Android app is a lightweight WebView wrapper for the live All Exam India website:
+The Android app has a native home screen, native bottom navigation, native profile/settings, and a Light/Dark theme.
+
+The Mock Test, PYQ Practice, and Current Affairs sections load their content from the live All Exam India website:
 
 https://prajwaltarare7-oss.github.io/all-exam-india/
 
+This keeps the website content as the source of truth. Updates published on the website appear in the app when the relevant section is refreshed. The website source and design are not modified by Android-only changes.
+
 ## Build
 
-The GitHub Actions workflow builds a debug APK automatically when Android project files change or when manually started.
+GitHub Actions builds a debug APK when files under `android/` change or when the workflow is manually started. The APK is uploaded as the artifact **all-exam-india-apk**.
 
-The APK is uploaded as the workflow artifact named **all-exam-india-apk**.
-
-The APK build uses the Android SDK and Java 17 and Android SDK toolchains provided by GitHub Actions, and runs automatically whenever files under `android/` change.\n\nThis first APK requires an internet connection because it loads the live website. It does not change the website source or its design.
+The build uses Android SDK 35, Gradle 8.9, and Java 17. Internet access is required to load live exam content; WebView's normal cache may make previously visited resources available temporarily while offline.
