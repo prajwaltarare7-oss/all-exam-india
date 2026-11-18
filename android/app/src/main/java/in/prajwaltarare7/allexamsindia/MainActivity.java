@@ -32,12 +32,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class MainActivity extends Activity {
     private static final String HOME_URL =
             "https://prajwaltarare7-oss.github.io/all-exam-india/";
     private static final double MINIMUM_AGE = 17.5;
     private static final String PREFS = "all_exam_india_profile";
+    private static final String UPDATE_JSON = HOME_URL + "app-update.json";
+    private static final String WEBSITE_DOWNLOAD_PAGE = HOME_URL + "?app-update=1";
 
     private FrameLayout root;
     private FrameLayout webContainer;
@@ -59,8 +65,55 @@ public class MainActivity extends Activity {
         root.setBackgroundColor(Color.rgb(16, 27, 53));
         setContentView(root);
 
-        // Open the main app directly; keep the website's own phone/name/password login unchanged.
-        showMainApp();
+        // Check the published minimum app version before opening the app.
+        checkForMandatoryUpdate();
+    }
+
+    private void checkForMandatoryUpdate() {
+        new Thread(() -> {
+            int latestVersion = -1;
+            String updateUrl = WEBSITE_DOWNLOAD_PAGE;
+            HttpURLConnection connection = null;
+            try {
+                connection = (HttpURLConnection) new URL(UPDATE_JSON + "?t=" + System.currentTimeMillis()).openConnection();
+                connection.setConnectTimeout(7000);
+                connection.setReadTimeout(7000);
+                connection.setRequestProperty("Cache-Control", "no-cache");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+                StringBuilder body = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) body.append(line);
+                reader.close();
+                JSONObject data = new JSONObject(body.toString());
+                latestVersion = data.optInt("latestVersionCode", -1);
+                updateUrl = data.optString("websiteUrl", WEBSITE_DOWNLOAD_PAGE);
+            } catch (Exception ignored) {
+                // If update service is unreachable, allow app to open.
+            } finally {
+                if (connection != null) connection.disconnect();
+            }
+            final int remoteVersion = latestVersion;
+            final String finalUpdateUrl = updateUrl;
+            runOnUiThread(() -> {
+                int installedVersion = 1;
+                try { installedVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode; }
+                catch (Exception ignored) {}
+                if (remoteVersion > installedVersion) showMandatoryUpdateDialog(finalUpdateUrl, remoteVersion);
+                else showMainApp();
+            });
+        }).start();
+    }
+
+    private void showMandatoryUpdateDialog(String updateUrl, int latestVersion) {
+        new AlertDialog.Builder(this)
+                .setTitle("All Exam India Update आवश्यक")
+                .setMessage("या अॅपची नवीन आवृत्ती उपलब्ध आहे. अॅप वापरण्यासाठी अपडेट डाउनलोड करा.\n\nनवीन आवृत्ती: " + latestVersion)
+                .setCancelable(false)
+                .setPositiveButton("Update", (dialog, which) -> {
+                    try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(updateUrl))); }
+                    catch (Exception e) { Toast.makeText(this, "Website उघडता आली नाही.", Toast.LENGTH_LONG).show(); }
+                })
+                .show();
     }
 
     private void showRegistrationScreen() {
