@@ -175,7 +175,19 @@ public class MainActivity extends Activity {
 
     private void navigateToPage(String page) {
         if ("home".equals(page) || "settings".equals(page)) {
-            showNativePage(page);
+            if ("testroom".equals(activePage) && webView != null) {
+                webView.evaluateJavascript(
+                        "!(document.querySelector('.page.active')&&" +
+                        "document.querySelector('.page.active').id==='testroom'&&" +
+                        "typeof activePractice!=='undefined'&&activePractice&&!practiceSubmitted)",
+                        result -> {
+                            if ("true".equals(result)) showNativePage(page);
+                            else Toast.makeText(this,
+                                    "चालू टेस्ट आधी Submit करा.", Toast.LENGTH_LONG).show();
+                        });
+            } else {
+                showNativePage(page);
+            }
         } else {
             showWebsiteSection(page);
         }
@@ -653,7 +665,8 @@ public class MainActivity extends Activity {
                 "if(!window.__aeiNativePageHook&&typeof window.showPage==='function'){" +
                 "var originalShowPage=window.showPage;" +
                 "window.showPage=function(id,fromHistory){var result=originalShowPage.apply(this,arguments);" +
-                "try{if(window.AndroidApp)window.AndroidApp.onPageChanged(id);}catch(e){}" +
+                "try{var a=document.querySelector('.page.active');" +
+                "if(a&&window.AndroidApp)window.AndroidApp.onPageChanged(a.id);}catch(e){}" +
                 "return result;};window.__aeiNativePageHook=true;}" +
                 "}catch(e){}})();";
         webView.evaluateJavascript(script, null);
