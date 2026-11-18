@@ -10,11 +10,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.security.keystore.KeyGenParameterSpec;
-import android.security.keystore.KeyProperties;
-import android.util.Base64;
-import android.text.InputFilter;
-import android.text.InputType;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,719 +26,113 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.security.KeyStore;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.GCMParameterSpec;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends Activity {
     private static final String HOME_URL =
             "https://prajwaltarare7-oss.github.io/all-exam-india/";
-    private static final double MINIMUM_AGE = 17.5;
-    private static final String PREFS = "all_exam_india_profile";
-    private static final String SUPABASE_URL = "https://qutfsjeczixgnadpyrls.supabase.co";
-    private static final String SUPABASE_PUBLISHABLE_KEY = "sb_publishable_KIYCIMCasEY6_9QE5VS1Fg_uXL8_pPf";
-    private static final String AUTH_PREFS = "all_exam_india_auth";
-    private static final String AUTH_TOKEN_KEY = "refresh_token_encrypted";
-    private static final String KEY_ALIAS = "all_exam_india_auth_key";
+    private static final String PREFS = "all_exam_india_native";
     private static final int NAVY = Color.rgb(16, 27, 53);
     private static final int BLUE = Color.rgb(49, 94, 232);
+    private static final int LIGHT_BG = Color.rgb(245, 247, 252);
     private static final int INK = Color.rgb(23, 35, 61);
     private static final int MUTED = Color.rgb(112, 124, 145);
 
+    private final String[] navPages = {"home", "pyq", "mock", "currentaffairs", "settings"};
+    private final String[] navLabels = {"Home", "PYQ", "Mock", "Current", "More"};
+    private final String[] navIcons = {"⌂", "▤", "◎", "▣", "☰"};
+    private final List<String> sscExams = Arrays.asList(
+            "SSC CGL", "SSC CHSL", "SSC MTS", "SSC GD", "SSC CPO",
+            "SSC Stenographer", "SSC JE", "SSC JHT", "SSC Selection Post",
+            "SSC Scientific Assistant");
+
+    private SharedPreferences preferences;
     private FrameLayout root;
-    private FrameLayout webContainer;
+    private FrameLayout contentContainer;
     private WebView webView;
     private ProgressBar progressBar;
     private View errorView;
-    private SharedPreferences preferences;
     private LinearLayout bottomNav;
     private final TextView[] navItems = new TextView[5];
-    private final String[] navPages = {"home", "pyq", "mock", "currentaffairs", "settings"};
-    private boolean showingError = false;
     private String activePage = "home";
-    private boolean authEmailMode = true;
-    private boolean otpPending = false;
-    private String pendingContact = "";
+    private String pendingWebPage = "mock";
+    private String pendingExam = "";
+    private boolean webLoaded = false;
+    private boolean showingError = false;
+    private boolean darkMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferences = getSharedPreferences(PREFS, MODE_PRIVATE);
+        darkMode = preferences.getBoolean("dark_mode", false);
+        buildAppShell();
+        showNativePage("home");
+    }
 
-        getWindow().setStatusBarColor(NAVY);
-        getWindow().setNavigationBarColor(Color.WHITE);
-        getWindow().getDecorView().setSystemUiVisibility(0);
-
+    private void buildAppShell() {
         root = new FrameLayout(this);
-        root.setBackgroundColor(Color.rgb(245, 247, 252));
+        root.setBackgroundColor(pageBackground());
         setContentView(root);
-
-        String savedRefreshToken = getSavedRefreshToken();
-        if (savedRefreshToken == null) {
-            showAuthScreen("");
-        } else {
-            refreshSavedSession(savedRefreshToken);
-        }
-    }
-
-
-    private void continueAfterAuthentication() {
-        otpPending = false;
-        pendingContact = "";
-        if (preferences.getBoolean("profile_complete", false)) {
-            showMainApp();
-        } else {
-            showRegistrationScreen();
-        }
-    }
-
-    private void showAuthScreen(String statusMessage) {
-        root.removeAllViews();
-
-        ScrollView scroll = new ScrollView(this);
-        scroll.setFillViewport(true);
-        scroll.setBackgroundColor(NAVY);
-
-        LinearLayout outer = new LinearLayout(this);
-        outer.setOrientation(LinearLayout.VERTICAL);
-        outer.setGravity(Gravity.CENTER);
-        outer.setPadding(dp(22), dp(28), dp(22), dp(28));
-
-        LinearLayout card = new LinearLayout(this);
-        card.setOrientation(LinearLayout.VERTICAL);
-        card.setGravity(Gravity.CENTER_HORIZONTAL);
-        card.setPadding(dp(22), dp(22), dp(22), dp(24));
-        GradientDrawable cardBg = new GradientDrawable();
-        cardBg.setColor(Color.WHITE);
-        cardBg.setCornerRadius(dp(22));
-        card.setBackground(cardBg);
-
-        ImageView logo = new ImageView(this);
-        logo.setImageResource(R.drawable.website_hero_logo);
-        logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        LinearLayout.LayoutParams logoParams = new LinearLayout.LayoutParams(dp(132), dp(142));
-        logoParams.bottomMargin = dp(8);
-        card.addView(logo, logoParams);
-
-        TextView heading = new TextView(this);
-        heading.setText("All Exam India Login");
-        heading.setTextColor(INK);
-        heading.setTextSize(22);
-        heading.setGravity(Gravity.CENTER);
-        heading.setTypeface(null, Typeface.BOLD);
-        card.addView(heading, matchWrap());
-
-        TextView intro = new TextView(this);
-        intro.setText(otpPending
-                ? "Enter the one-time password sent to your contact."
-                : "Continue with your email address or mobile number.");
-        intro.setTextColor(MUTED);
-        intro.setTextSize(14);
-        intro.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams introParams = matchWrap();
-        introParams.topMargin = dp(7);
-        introParams.bottomMargin = dp(18);
-        card.addView(intro, introParams);
-
-        if (!otpPending) {
-            LinearLayout modes = new LinearLayout(this);
-            modes.setOrientation(LinearLayout.HORIZONTAL);
-            modes.setGravity(Gravity.CENTER);
-            Button emailMode = new Button(this);
-            emailMode.setText("Email OTP");
-            emailMode.setAllCaps(false);
-            emailMode.setTextSize(14);
-            emailMode.setTextColor(authEmailMode ? Color.WHITE : INK);
-            emailMode.setBackgroundTintList(ColorStateList.valueOf(
-                    authEmailMode ? BLUE : Color.rgb(232, 237, 247)));
-            Button phoneMode = new Button(this);
-            phoneMode.setText("Mobile OTP");
-            phoneMode.setAllCaps(false);
-            phoneMode.setTextSize(14);
-            phoneMode.setTextColor(authEmailMode ? INK : Color.WHITE);
-            phoneMode.setBackgroundTintList(ColorStateList.valueOf(
-                    authEmailMode ? Color.rgb(232, 237, 247) : BLUE));
-            LinearLayout.LayoutParams modeParams = new LinearLayout.LayoutParams(0, dp(48), 1);
-            modeParams.setMargins(dp(3), 0, dp(3), 0);
-            modes.addView(emailMode, modeParams);
-            modes.addView(phoneMode, modeParams);
-            card.addView(modes, matchWrap());
-            emailMode.setOnClickListener(v -> {
-                authEmailMode = true;
-                showAuthScreen("");
-            });
-            phoneMode.setOnClickListener(v -> {
-                authEmailMode = false;
-                showAuthScreen("");
-            });
-
-            addFieldLabel(card, authEmailMode ? "Email address" : "Mobile number");
-            EditText contactInput = makeInput(
-                    authEmailMode ? "Enter your email address" : "10-digit mobile number",
-                    authEmailMode
-                            ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                            : InputType.TYPE_CLASS_PHONE);
-            card.addView(contactInput, fieldParams());
-
-            if (authEmailMode) {
-                TextView emailHint = new TextView(this);
-                emailHint.setText("We will send a one-time code to your email.");
-                emailHint.setTextColor(MUTED);
-                emailHint.setTextSize(12);
-                card.addView(emailHint, matchWrap());
-            } else {
-                TextView phoneHint = new TextView(this);
-                phoneHint.setText("For an Indian number, enter your 10-digit mobile number.");
-                phoneHint.setTextColor(MUTED);
-                phoneHint.setTextSize(12);
-                card.addView(phoneHint, matchWrap());
-            }
-
-            Button sendButton = new Button(this);
-            sendButton.setText("Send OTP");
-            sendButton.setTextColor(Color.WHITE);
-            sendButton.setTextSize(16);
-            sendButton.setAllCaps(false);
-            sendButton.setBackgroundTintList(ColorStateList.valueOf(BLUE));
-            LinearLayout.LayoutParams sendParams = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, dp(52));
-            sendParams.topMargin = dp(20);
-            card.addView(sendButton, sendParams);
-
-            sendButton.setOnClickListener(v -> {
-                String contact = contactInput.getText().toString().trim();
-                if (authEmailMode) {
-                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(contact).matches()) {
-                        contactInput.setError("Enter a valid email address");
-                        contactInput.requestFocus();
-                        return;
-                    }
-                } else {
-                    contact = normalizePhoneNumber(contact);
-                    if (contact == null) {
-                        contactInput.setError("Enter a valid mobile number with country code");
-                        contactInput.requestFocus();
-                        return;
-                    }
-                }
-                pendingContact = contact;
-                sendButton.setEnabled(false);
-                sendButton.setText("Sending...");
-                final boolean useEmail = authEmailMode;
-                final String destination = contact;
-                new Thread(() -> {
-                    try {
-                        JSONObject body = new JSONObject();
-                        if (useEmail) body.put("email", destination);
-                        else body.put("phone", destination);
-                        body.put("create_user", true);
-                        postAuth("/otp", body);
-
-                        runOnUiThread(() -> {
-                            otpPending = true;
-                            pendingContact = destination;
-                            showAuthScreen("OTP sent to " + destination + ". Check your inbox or messages.");
-                        });
-                    } catch (Exception e) {
-                        runOnUiThread(() -> {
-                            sendButton.setEnabled(true);
-                            sendButton.setText("Send OTP");
-                            Toast.makeText(MainActivity.this,
-                                    friendlyAuthError(e), Toast.LENGTH_LONG).show();
-                        });
-                    }
-                }).start();
-            });
-        } else {
-            TextView destination = new TextView(this);
-            destination.setText((authEmailMode ? "Email: " : "Mobile: ") + pendingContact);
-            destination.setTextColor(MUTED);
-            destination.setTextSize(13);
-            destination.setGravity(Gravity.CENTER);
-            card.addView(destination, matchWrap());
-
-            addFieldLabel(card, "One-time password");
-            EditText otpInput = makeInput("Enter the OTP", InputType.TYPE_CLASS_NUMBER);
-            otpInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
-            card.addView(otpInput, fieldParams());
-
-            TextView changeContact = new TextView(this);
-            changeContact.setText("Change email / mobile number");
-            changeContact.setTextColor(BLUE);
-            changeContact.setTextSize(13);
-            changeContact.setGravity(Gravity.CENTER);
-            LinearLayout.LayoutParams changeParams = matchWrap();
-            changeParams.topMargin = dp(8);
-            card.addView(changeContact, changeParams);
-            changeContact.setOnClickListener(v -> {
-                otpPending = false;
-                pendingContact = "";
-                showAuthScreen("");
-            });
-
-            Button verifyButton = new Button(this);
-            verifyButton.setText("Verify OTP");
-            verifyButton.setTextColor(Color.WHITE);
-            verifyButton.setTextSize(16);
-            verifyButton.setAllCaps(false);
-            verifyButton.setBackgroundTintList(ColorStateList.valueOf(BLUE));
-            LinearLayout.LayoutParams verifyParams = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, dp(52));
-            verifyParams.topMargin = dp(20);
-            card.addView(verifyButton, verifyParams);
-
-            verifyButton.setOnClickListener(v -> {
-                String token = otpInput.getText().toString().trim();
-                if (token.length() < 4) {
-                    otpInput.setError("Enter the OTP you received");
-                    otpInput.requestFocus();
-                    return;
-                }
-                verifyButton.setEnabled(false);
-                verifyButton.setText("Verifying...");
-                new Thread(() -> {
-                    try {
-                        JSONObject body = new JSONObject();
-                        body.put("type", authEmailMode ? "email" : "sms");
-                        body.put(authEmailMode ? "email" : "phone", pendingContact);
-                        body.put("token", token);
-                        JSONObject response = postAuth("/verify", body);
-                        String refreshToken = response.optString("refresh_token", "");
-                        if (refreshToken.isEmpty()) {
-                            throw new Exception("Supabase did not return a login session.");
-                        }
-                        saveRefreshToken(refreshToken);
-                        runOnUiThread(() -> {
-                            Toast.makeText(MainActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
-                            continueAfterAuthentication();
-                        });
-                    } catch (Exception e) {
-                        runOnUiThread(() -> {
-                            verifyButton.setEnabled(true);
-                            verifyButton.setText("Verify OTP");
-                            Toast.makeText(MainActivity.this,
-                                    friendlyAuthError(e), Toast.LENGTH_LONG).show();
-                        });
-                    }
-                }).start();
-            });
-        }
-
-        if (statusMessage != null && !statusMessage.isEmpty()) {
-            TextView status = new TextView(this);
-            status.setText(statusMessage);
-            status.setTextColor(BLUE);
-            status.setTextSize(12);
-            status.setGravity(Gravity.CENTER);
-            LinearLayout.LayoutParams statusParams = matchWrap();
-            statusParams.topMargin = dp(14);
-            card.addView(status, statusParams);
-        }
-
-        TextView privacyNote = new TextView(this);
-        privacyNote.setText("A one-time password keeps your account secure. Never share your OTP.");
-        privacyNote.setTextColor(MUTED);
-        privacyNote.setTextSize(11);
-        privacyNote.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams privacyParams = matchWrap();
-        privacyParams.topMargin = dp(16);
-        card.addView(privacyNote, privacyParams);
-
-        outer.addView(card, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        scroll.addView(outer, new ScrollView.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        root.addView(scroll, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-    }
-
-    private String normalizePhoneNumber(String raw) {
-        if (raw == null) return null;
-        String phone = raw.replaceAll("[\\s()-]", "");
-        if (phone.matches("\\d{10}")) phone = "+91" + phone;
-        else if (phone.matches("91\\d{10}")) phone = "+" + phone;
-        if (!phone.matches("\\+[1-9]\\d{7,14}")) return null;
-        return phone;
-    }
-
-    private void showAuthLoadingScreen(String message) {
-        root.removeAllViews();
-        LinearLayout panel = new LinearLayout(this);
-        panel.setOrientation(LinearLayout.VERTICAL);
-        panel.setGravity(Gravity.CENTER);
-        panel.setPadding(dp(28), dp(28), dp(28), dp(28));
-        panel.setBackgroundColor(NAVY);
-
-        ImageView logo = new ImageView(this);
-        logo.setImageResource(R.drawable.website_hero_logo);
-        logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        panel.addView(logo, new LinearLayout.LayoutParams(dp(132), dp(142)));
-
-        TextView label = new TextView(this);
-        label.setText(message);
-        label.setTextColor(Color.WHITE);
-        label.setTextSize(16);
-        label.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams labelParams = matchWrap();
-        labelParams.topMargin = dp(12);
-        panel.addView(label, labelParams);
-
-        Button retry = new Button(this);
-        retry.setText("Try Again");
-        retry.setAllCaps(false);
-        retry.setTextColor(Color.WHITE);
-        retry.setBackgroundTintList(ColorStateList.valueOf(BLUE));
-        LinearLayout.LayoutParams retryParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, dp(48));
-        retryParams.topMargin = dp(18);
-        panel.addView(retry, retryParams);
-        retry.setOnClickListener(v -> {
-            String token = getSavedRefreshToken();
-            if (token == null) showAuthScreen("");
-            else refreshSavedSession(token);
-        });
-
-        root.addView(panel, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-    }
-
-    private void refreshSavedSession(String refreshToken) {
-        showAuthLoadingScreen("Checking your secure login...");
-        new Thread(() -> {
-            try {
-                JSONObject body = new JSONObject();
-                body.put("refresh_token", refreshToken);
-                JSONObject response = postAuth("/token?grant_type=refresh_token", body);
-                String newRefreshToken = response.optString("refresh_token", refreshToken);
-                saveRefreshToken(newRefreshToken);
-                runOnUiThread(this::continueAfterAuthentication);
-            } catch (Exception e) {
-                runOnUiThread(() -> {
-                    if (e instanceof AuthRequestException
-                            && (((AuthRequestException) e).statusCode == 400
-                            || ((AuthRequestException) e).statusCode == 401
-                            || ((AuthRequestException) e).statusCode == 403)) {
-                        clearSavedAuth();
-                        showAuthScreen("Your previous login session expired. Please sign in again.");
-                    } else {
-                        showAuthLoadingScreen("Could not check your login. Check your internet connection and try again.");
-                    }
-                });
-            }
-        }).start();
-    }
-
-    private JSONObject postAuth(String path, JSONObject body) throws Exception {
-        HttpURLConnection connection = null;
-        try {
-            URL url = new URL(SUPABASE_URL + "/auth/v1" + path);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setConnectTimeout(15000);
-            connection.setReadTimeout(15000);
-            connection.setRequestProperty("apikey", SUPABASE_PUBLISHABLE_KEY);
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
-
-            byte[] requestBytes = body.toString().getBytes(StandardCharsets.UTF_8);
-            try (OutputStream output = connection.getOutputStream()) {
-                output.write(requestBytes);
-            }
-
-            int statusCode = connection.getResponseCode();
-            InputStream input = statusCode >= 200 && statusCode < 300
-                    ? connection.getInputStream() : connection.getErrorStream();
-            ByteArrayOutputStream result = new ByteArrayOutputStream();
-            if (input != null) {
-                try (InputStream stream = input) {
-                    byte[] buffer = new byte[4096];
-                    int count;
-                    while ((count = stream.read(buffer)) != -1) result.write(buffer, 0, count);
-                }
-            }
-            String responseText = result.toString("UTF-8");
-            JSONObject response = responseText.isEmpty() ? new JSONObject() : new JSONObject(responseText);
-            if (statusCode < 200 || statusCode >= 300) {
-                String message = response.optString("msg", "");
-                if (message.isEmpty()) message = response.optString("message", "");
-                if (message.isEmpty()) message = response.optString("error_description", "");
-                if (message.isEmpty()) message = response.optString("error", "");
-                if (message.isEmpty()) message = "Authentication request failed (HTTP " + statusCode + ").";
-                throw new AuthRequestException(statusCode, message);
-            }
-            return response;
-        } finally {
-            if (connection != null) connection.disconnect();
-        }
-    }
-
-    private String friendlyAuthError(Exception error) {
-        String message = error.getMessage();
-        if (message == null || message.trim().isEmpty()) return "Something went wrong. Please try again.";
-        if (message.toLowerCase().contains("email address not authorized")) {
-            return "Supabase email delivery is not configured for this address yet. Set up custom SMTP in Supabase.";
-        }
-        if (message.toLowerCase().contains("phone provider")
-                || message.toLowerCase().contains("sms provider")) {
-            return "Mobile OTP needs an SMS provider configured in Supabase Auth settings.";
-        }
-        return message;
-    }
-
-    private static class AuthRequestException extends Exception {
-        final int statusCode;
-        AuthRequestException(int statusCode, String message) {
-            super(message);
-            this.statusCode = statusCode;
-        }
-    }
-
-    private void saveRefreshToken(String refreshToken) throws Exception {
-        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-        keyStore.load(null);
-        if (!keyStore.containsAlias(KEY_ALIAS)) {
-            KeyGenerator generator = KeyGenerator.getInstance(
-                    KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
-            generator.init(new KeyGenParameterSpec.Builder(KEY_ALIAS,
-                    KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                    .setRandomizedEncryptionRequired(true)
-                    .build());
-            generator.generateKey();
-        }
-        SecretKey secretKey = (SecretKey) keyStore.getKey(KEY_ALIAS, null);
-        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] encrypted = cipher.doFinal(refreshToken.getBytes(StandardCharsets.UTF_8));
-        byte[] iv = cipher.getIV();
-        byte[] combined = new byte[iv.length + encrypted.length];
-        System.arraycopy(iv, 0, combined, 0, iv.length);
-        System.arraycopy(encrypted, 0, combined, iv.length, encrypted.length);
-        getSharedPreferences(AUTH_PREFS, MODE_PRIVATE).edit()
-                .putString(AUTH_TOKEN_KEY, Base64.encodeToString(combined, Base64.NO_WRAP))
-                .apply();
-    }
-
-    private String getSavedRefreshToken() {
-        String stored = getSharedPreferences(AUTH_PREFS, MODE_PRIVATE)
-                .getString(AUTH_TOKEN_KEY, null);
-        if (stored == null || stored.isEmpty()) return null;
-        try {
-            byte[] combined = Base64.decode(stored, Base64.NO_WRAP);
-            if (combined.length <= 12) return null;
-            byte[] iv = new byte[12];
-            byte[] encrypted = new byte[combined.length - 12];
-            System.arraycopy(combined, 0, iv, 0, 12);
-            System.arraycopy(combined, 12, encrypted, 0, encrypted.length);
-
-            KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-            keyStore.load(null);
-            SecretKey secretKey = (SecretKey) keyStore.getKey(KEY_ALIAS, null);
-            if (secretKey == null) return null;
-            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey, new GCMParameterSpec(128, iv));
-            return new String(cipher.doFinal(encrypted), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            clearSavedAuth();
-            return null;
-        }
-    }
-
-    private void clearSavedAuth() {
-        getSharedPreferences(AUTH_PREFS, MODE_PRIVATE).edit().clear().apply();
-    }
-
-    private void showRegistrationScreen() {
-        root.removeAllViews();
-
-        ScrollView scroll = new ScrollView(this);
-        scroll.setFillViewport(true);
-        scroll.setBackgroundColor(NAVY);
-
-        LinearLayout outer = new LinearLayout(this);
-        outer.setOrientation(LinearLayout.VERTICAL);
-        outer.setGravity(Gravity.CENTER);
-        outer.setPadding(dp(22), dp(28), dp(22), dp(28));
-
-        LinearLayout card = new LinearLayout(this);
-        card.setOrientation(LinearLayout.VERTICAL);
-        card.setGravity(Gravity.CENTER_HORIZONTAL);
-        card.setPadding(dp(22), dp(22), dp(22), dp(24));
-        GradientDrawable cardBg = new GradientDrawable();
-        cardBg.setColor(Color.WHITE);
-        cardBg.setCornerRadius(dp(22));
-        card.setBackground(cardBg);
-
-        ImageView logo = new ImageView(this);
-        logo.setImageResource(R.drawable.website_hero_logo);
-        logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        LinearLayout.LayoutParams logoParams = new LinearLayout.LayoutParams(dp(172), dp(185));
-        logoParams.bottomMargin = dp(8);
-        card.addView(logo, logoParams);
-
-        TextView heading = new TextView(this);
-        heading.setText("Welcome to SSC EXAM.IN");
-        heading.setTextColor(INK);
-        heading.setTextSize(22);
-        heading.setGravity(Gravity.CENTER);
-        heading.setTypeface(null, Typeface.BOLD);
-        card.addView(heading, matchWrap());
-
-        TextView intro = new TextView(this);
-        intro.setText("Enter your details to start using the app");
-        intro.setTextColor(MUTED);
-        intro.setTextSize(14);
-        intro.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams introParams = matchWrap();
-        introParams.topMargin = dp(7);
-        introParams.bottomMargin = dp(18);
-        card.addView(intro, introParams);
-
-        addFieldLabel(card, "Full Name");
-        EditText nameInput = makeInput("Enter your name",
-                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        nameInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(30)});
-        card.addView(nameInput, fieldParams());
-
-        addFieldLabel(card, "Age (in years)");
-        EditText ageInput = makeInput("e.g. 17.5",
-                InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        card.addView(ageInput, fieldParams());
-
-        TextView ageNote = new TextView(this);
-        ageNote.setText("Minimum age: 17.5 years (17 years and 6 months)");
-        ageNote.setTextColor(BLUE);
-        ageNote.setTextSize(13);
-        LinearLayout.LayoutParams ageNoteParams = matchWrap();
-        ageNoteParams.topMargin = dp(4);
-        card.addView(ageNote, ageNoteParams);
-
-        Button continueButton = new Button(this);
-        continueButton.setText("Continue");
-        continueButton.setTextColor(Color.WHITE);
-        continueButton.setTextSize(16);
-        continueButton.setAllCaps(false);
-        continueButton.setBackgroundTintList(ColorStateList.valueOf(BLUE));
-        LinearLayout.LayoutParams continueParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(52));
-        continueParams.topMargin = dp(20);
-        card.addView(continueButton, continueParams);
-
-        TextView privacyNote = new TextView(this);
-        privacyNote.setText("Your name and age will be saved only on this phone.");
-        privacyNote.setTextColor(MUTED);
-        privacyNote.setTextSize(12);
-        privacyNote.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams privacyParams = matchWrap();
-        privacyParams.topMargin = dp(12);
-        card.addView(privacyNote, privacyParams);
-
-        continueButton.setOnClickListener(v -> {
-            String name = nameInput.getText().toString().trim();
-            String ageText = ageInput.getText().toString().trim();
-            if (name.isEmpty()) {
-                nameInput.setError("Enter your name");
-                nameInput.requestFocus();
-                return;
-            }
-            double age;
-            try {
-                age = Double.parseDouble(ageText);
-            } catch (Exception e) {
-                ageInput.setError("Enter age in a format such as 17.5");
-                ageInput.requestFocus();
-                return;
-            }
-            if (age < MINIMUM_AGE || age > 120) {
-                ageInput.setError("Minimum age must be 17.5 years");
-                ageInput.requestFocus();
-                Toast.makeText(this, "The minimum age for this app is 17.5 years.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            preferences.edit()
-                    .putString("name", name)
-                    .putString("age", ageText)
-                    .putBoolean("profile_complete", true)
-                    .apply();
-            showMainApp();
-        });
-
-        outer.addView(card, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        scroll.addView(outer, new ScrollView.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        root.addView(scroll, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-    }
-
-    private void showMainApp() {
-        root.removeAllViews();
 
         LinearLayout shell = new LinearLayout(this);
         shell.setOrientation(LinearLayout.VERTICAL);
-        shell.setBackgroundColor(Color.rgb(245, 247, 252));
+        shell.setBackgroundColor(pageBackground());
 
         LinearLayout toolbar = new LinearLayout(this);
         toolbar.setOrientation(LinearLayout.HORIZONTAL);
         toolbar.setGravity(Gravity.CENTER_VERTICAL);
-        toolbar.setPadding(dp(15), dp(5), dp(13), dp(5));
+        toolbar.setPadding(dp(16), dp(6), dp(14), dp(6));
         GradientDrawable toolbarBg = new GradientDrawable(
                 GradientDrawable.Orientation.LEFT_RIGHT,
                 new int[]{NAVY, Color.rgb(25, 55, 102)});
+        toolbarBg.setCornerRadius(0);
         toolbar.setBackground(toolbarBg);
-
-        ImageView logo = new ImageView(this);
-        logo.setImageResource(R.drawable.website_hero_logo);
-        logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        toolbar.addView(logo, new LinearLayout.LayoutParams(dp(43), dp(48)));
 
         LinearLayout brandStack = new LinearLayout(this);
         brandStack.setOrientation(LinearLayout.VERTICAL);
         brandStack.setGravity(Gravity.CENTER_VERTICAL);
-        brandStack.setPadding(dp(10), 0, 0, 0);
-
         TextView brand = new TextView(this);
-        brand.setText("SSC EXAM.IN");
+        brand.setText("ALL EXAM INDIA");
         brand.setTextColor(Color.WHITE);
-        brand.setTextSize(16);
+        brand.setTextSize(17);
         brand.setTypeface(null, Typeface.BOLD);
-        brandStack.addView(brand, matchWrap());
-
+        brandStack.addView(brand, wrapParams());
         TextView subtitle = new TextView(this);
-        subtitle.setText("ALL EXAM INDIA  •  FREE PRACTICE");
+        subtitle.setText("SMART PREPARATION • BETTER RESULTS");
         subtitle.setTextColor(Color.rgb(194, 210, 239));
         subtitle.setTextSize(9);
         subtitle.setLetterSpacing(0.06f);
-        brandStack.addView(subtitle, matchWrap());
-
+        LinearLayout.LayoutParams subParams = wrapParams();
+        subParams.topMargin = dp(2);
+        brandStack.addView(subtitle, subParams);
         toolbar.addView(brandStack, new LinearLayout.LayoutParams(0,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
-        shell.addView(toolbar, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(62)));
+        TextView profile = new TextView(this);
+        profile.setText("👤");
+        profile.setTextSize(20);
+        profile.setGravity(Gravity.CENTER);
+        profile.setTextColor(Color.WHITE);
+        profile.setBackground(roundDrawable(Color.rgb(42, 70, 119), dp(18)));
+        toolbar.addView(profile, new LinearLayout.LayoutParams(dp(42), dp(42)));
+        profile.setOnClickListener(v -> showProfileDialog());
 
-        webContainer = new FrameLayout(this);
-        shell.addView(webContainer, new LinearLayout.LayoutParams(
+        shell.addView(toolbar, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(64)));
+
+        contentContainer = new FrameLayout(this);
+        shell.addView(contentContainer, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
 
         bottomNav = buildBottomNavigation();
@@ -750,47 +141,21 @@ public class MainActivity extends Activity {
 
         root.addView(shell, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-        initializeWebView();
-        if (webView.getParent() != null) {
-            ((ViewGroup) webView.getParent()).removeView(webView);
-        }
-        webContainer.addView(webView, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-        progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
-        progressBar.setMax(100);
-        progressBar.setProgressTintList(ColorStateList.valueOf(BLUE));
-        FrameLayout.LayoutParams progressParams = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(3), Gravity.TOP);
-        webContainer.addView(progressBar, progressParams);
-
-        updateNavigation(activePage);
-        if (webView.getUrl() == null) {
-            webView.loadUrl(HOME_URL);
-        } else {
-            applyNativeAppAppearance();
-        }
+        updateSystemBars();
     }
 
     private LinearLayout buildBottomNavigation() {
         LinearLayout bar = new LinearLayout(this);
         bar.setOrientation(LinearLayout.HORIZONTAL);
         bar.setGravity(Gravity.CENTER);
-        bar.setPadding(dp(7), dp(5), dp(7), dp(5));
-
-        GradientDrawable barBg = new GradientDrawable();
-        barBg.setColor(Color.WHITE);
-        barBg.setStroke(dp(1), Color.rgb(229, 234, 243));
-        bar.setBackground(barBg);
+        bar.setPadding(dp(6), dp(5), dp(6), dp(5));
+        bar.setBackgroundColor(darkMode ? Color.rgb(17, 27, 46) : Color.WHITE);
         bar.setElevation(dp(12));
 
-        String[] icons = {"⌂", "▤", "◎", "▣", "⚙"};
-        String[] labels = {"Home", "PYQ", "Mock", "Current", "Settings"};
         for (int i = 0; i < navPages.length; i++) {
             final String page = navPages[i];
             TextView item = new TextView(this);
-            item.setText(icons[i] + "\n" + labels[i]);
+            item.setText(navIcons[i] + "\n" + navLabels[i]);
             item.setGravity(Gravity.CENTER);
             item.setTextSize(10);
             item.setLineSpacing(0, 0.92f);
@@ -799,7 +164,6 @@ public class MainActivity extends Activity {
             item.setClickable(true);
             item.setFocusable(true);
             item.setOnClickListener(v -> navigateToPage(page));
-
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
             params.setMargins(dp(3), 0, dp(3), 0);
@@ -810,34 +174,370 @@ public class MainActivity extends Activity {
     }
 
     private void navigateToPage(String page) {
-        if (webView == null) return;
-        String safePage = JSONObject.quote(page);
-        webView.evaluateJavascript(
-                "if(typeof showPage==='function'){showPage(" + safePage + ");}", null);
+        if ("home".equals(page) || "settings".equals(page)) {
+            showNativePage(page);
+        } else {
+            showWebsiteSection(page);
+        }
     }
 
-    private void updateNavigation(String page) {
-        if (page == null) return;
+    private void showNativePage(String page) {
         activePage = page;
-        String selectedPage = page.equals("testroom") ? "mock" : page;
-        for (int i = 0; i < navItems.length; i++) {
-            TextView item = navItems[i];
-            if (item == null) continue;
-            boolean selected = navPages[i].equals(selectedPage);
-            item.setTextColor(selected ? BLUE : Color.rgb(112, 124, 145));
-            item.setTypeface(null, selected ? Typeface.BOLD : Typeface.NORMAL);
-            GradientDrawable bg = new GradientDrawable();
-            bg.setCornerRadius(dp(13));
-            bg.setColor(selected ? Color.rgb(235, 241, 255) : Color.TRANSPARENT);
-            item.setBackground(bg);
+        contentContainer.removeAllViews();
+        if ("settings".equals(page)) {
+            contentContainer.addView(buildSettingsPage(),
+                    new FrameLayout.LayoutParams(-1, -1));
+        } else {
+            contentContainer.addView(buildHomePage(),
+                    new FrameLayout.LayoutParams(-1, -1));
+        }
+        updateNavigation(page);
+    }
+
+    private View buildHomePage() {
+        ScrollView scroll = new ScrollView(this);
+        scroll.setFillViewport(true);
+        scroll.setBackgroundColor(pageBackground());
+
+        LinearLayout body = new LinearLayout(this);
+        body.setOrientation(LinearLayout.VERTICAL);
+        body.setPadding(dp(17), dp(18), dp(17), dp(24));
+
+        String name = preferences.getString("name", "").trim();
+        TextView greeting = makeText(name.isEmpty() ? "नमस्कार! 👋" : "नमस्कार, " + name + " 👋",
+                20, textPrimary(), true);
+        body.addView(greeting, wrapParams());
+
+        TextView intro = makeText("तुमच्या परीक्षेची तयारी आता एका ठिकाणी.", 13,
+                textMuted(), false);
+        LinearLayout.LayoutParams introParams = wrapParams();
+        introParams.topMargin = dp(5);
+        body.addView(intro, introParams);
+
+        LinearLayout hero = new LinearLayout(this);
+        hero.setOrientation(LinearLayout.VERTICAL);
+        hero.setPadding(dp(18), dp(18), dp(18), dp(18));
+        hero.setBackground(roundDrawable(
+                darkMode ? Color.rgb(30, 53, 91) : Color.rgb(231, 239, 255), dp(20)));
+        LinearLayout.LayoutParams heroParams = new LinearLayout.LayoutParams(-1, -2);
+        heroParams.topMargin = dp(18);
+        body.addView(hero, heroParams);
+
+        TextView heroTitle = makeText("तयारीला द्या नवी दिशा!", 21,
+                darkMode ? Color.WHITE : NAVY, true);
+        hero.addView(heroTitle, wrapParams());
+        TextView heroDesc = makeText(
+                "Mock Test सोडवा, PYQ सराव करा आणि Current Affairs वाचा.",
+                13, darkMode ? Color.rgb(218, 228, 247) : Color.rgb(69, 87, 119), false);
+        LinearLayout.LayoutParams descParams = wrapParams();
+        descParams.topMargin = dp(7);
+        hero.addView(heroDesc, descParams);
+
+        Button start = primaryButton("आता सराव सुरू करा");
+        LinearLayout.LayoutParams startParams = new LinearLayout.LayoutParams(-1, dp(47));
+        startParams.topMargin = dp(14);
+        hero.addView(start, startParams);
+        start.setOnClickListener(v -> showWebsiteSection("mock"));
+
+        TextView section = makeText("तुमच्यासाठी अभ्यास विभाग", 17, textPrimary(), true);
+        LinearLayout.LayoutParams sectionParams = wrapParams();
+        sectionParams.topMargin = dp(22);
+        sectionParams.bottomMargin = dp(10);
+        body.addView(section, sectionParams);
+
+        LinearLayout row1 = new LinearLayout(this);
+        row1.setOrientation(LinearLayout.HORIZONTAL);
+        row1.addView(actionCard("📝", "Mock Tests", "परीक्षेच्या पद्धतीने टेस्ट",
+                Color.rgb(49, 94, 232), () -> showWebsiteSection("mock")),
+                new LinearLayout.LayoutParams(0, dp(132), 1));
+        View gap1 = new View(this);
+        row1.addView(gap1, new LinearLayout.LayoutParams(dp(10), 1));
+        row1.addView(actionCard("📚", "PYQ Practice", "मागील प्रश्नांचा सराव",
+                Color.rgb(12, 139, 112), () -> showWebsiteSection("pyq")),
+                new LinearLayout.LayoutParams(0, dp(132), 1));
+        body.addView(row1, wrapParams());
+
+        LinearLayout row2 = new LinearLayout(this);
+        row2.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams row2Params = wrapParams();
+        row2Params.topMargin = dp(10);
+        row2.addView(actionCard("📰", "Current Affairs", "चालू घडामोडी व MCQ",
+                Color.rgb(193, 112, 24), () -> showWebsiteSection("currentaffairs")),
+                new LinearLayout.LayoutParams(0, dp(132), 1));
+        View gap2 = new View(this);
+        row2.addView(gap2, new LinearLayout.LayoutParams(dp(10), 1));
+        row2.addView(actionCard("⚙️", "App Settings", "Theme आणि Profile",
+                Color.rgb(103, 77, 170), () -> showNativePage("settings")),
+                new LinearLayout.LayoutParams(0, dp(132), 1));
+        body.addView(row2, row2Params);
+
+        TextView examHeading = makeText("SSC परीक्षांसाठी थेट जा", 17, textPrimary(), true);
+        LinearLayout.LayoutParams examHeadingParams = wrapParams();
+        examHeadingParams.topMargin = dp(23);
+        examHeadingParams.bottomMargin = dp(9);
+        body.addView(examHeading, examHeadingParams);
+
+        EditText search = new EditText(this);
+        search.setSingleLine(true);
+        search.setTextSize(14);
+        search.setHint("परीक्षेचे नाव शोधा...");
+        search.setTextColor(textPrimary());
+        search.setHintTextColor(textMuted());
+        search.setPadding(dp(13), dp(8), dp(13), dp(8));
+        search.setBackground(roundDrawable(
+                darkMode ? Color.rgb(27, 40, 63) : Color.WHITE, dp(12)));
+        body.addView(search, new LinearLayout.LayoutParams(-1, dp(48)));
+
+        LinearLayout examList = new LinearLayout(this);
+        examList.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams listParams = wrapParams();
+        listParams.topMargin = dp(7);
+        body.addView(examList, listParams);
+        renderExamShortcuts(examList, "");
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
+            @Override public void onTextChanged(CharSequence s, int st, int before, int count) {
+                renderExamShortcuts(examList, s.toString());
+            }
+            @Override public void afterTextChanged(Editable e) {}
+        });
+
+        TextView sourceNote = makeText(
+                "Mock Test, PYQ आणि Current Affairs चा मजकूर तुझ्या Live Website वरून घेतला जातो. नवीन अपडेटसाठी इंटरनेट आवश्यक आहे.",
+                11, textMuted(), false);
+        sourceNote.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams noteParams = wrapParams();
+        noteParams.topMargin = dp(19);
+        body.addView(sourceNote, noteParams);
+
+        scroll.addView(body, new ScrollView.LayoutParams(-1, -2));
+        return scroll;
+    }
+
+    private void renderExamShortcuts(LinearLayout host, String query) {
+        host.removeAllViews();
+        String q = query == null ? "" : query.trim().toLowerCase();
+        int count = 0;
+        for (String exam : sscExams) {
+            if (!exam.toLowerCase().contains(q)) continue;
+            Button item = new Button(this);
+            item.setText("🎯  " + exam + "     ›");
+            item.setAllCaps(false);
+            item.setTextSize(13);
+            item.setGravity(Gravity.CENTER_VERTICAL);
+            item.setTextColor(textPrimary());
+            item.setBackgroundTintList(ColorStateList.valueOf(
+                    darkMode ? Color.rgb(27, 40, 63) : Color.WHITE));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, dp(47));
+            params.topMargin = dp(5);
+            host.addView(item, params);
+            item.setOnClickListener(v -> {
+                pendingExam = exam;
+                showWebsiteSection("mock");
+            });
+            count++;
+        }
+        if (count == 0) {
+            TextView empty = makeText("या नावाची परीक्षा सापडली नाही.", 13, textMuted(), false);
+            host.addView(empty, wrapParams());
+        }
+    }
+
+    private View actionCard(String icon, String title, String subtitle,
+                            int accent, Runnable action) {
+        LinearLayout card = new LinearLayout(this);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setGravity(Gravity.CENTER_VERTICAL);
+        card.setPadding(dp(13), dp(12), dp(11), dp(12));
+        card.setBackground(roundDrawable(
+                darkMode ? Color.rgb(24, 37, 59) : Color.WHITE, dp(16)));
+        card.setElevation(dp(2));
+        TextView symbol = makeText(icon, 25, accent, true);
+        card.addView(symbol, wrapParams());
+        TextView heading = makeText(title, 14, textPrimary(), true);
+        LinearLayout.LayoutParams headingParams = wrapParams();
+        headingParams.topMargin = dp(5);
+        card.addView(heading, headingParams);
+        TextView detail = makeText(subtitle, 11, textMuted(), false);
+        LinearLayout.LayoutParams detailParams = wrapParams();
+        detailParams.topMargin = dp(2);
+        card.addView(detail, detailParams);
+        card.setClickable(true);
+        card.setFocusable(true);
+        card.setOnClickListener(v -> action.run());
+        return card;
+    }
+
+    private View buildSettingsPage() {
+        ScrollView scroll = new ScrollView(this);
+        scroll.setBackgroundColor(pageBackground());
+        LinearLayout body = new LinearLayout(this);
+        body.setOrientation(LinearLayout.VERTICAL);
+        body.setPadding(dp(18), dp(20), dp(18), dp(25));
+
+        body.addView(makeText("App Settings", 22, textPrimary(), true), wrapParams());
+        TextView sub = makeText("अॅप तुमच्या सोयीनुसार सेट करा.", 13, textMuted(), false);
+        LinearLayout.LayoutParams subParams = wrapParams();
+        subParams.topMargin = dp(4);
+        body.addView(sub, subParams);
+
+        LinearLayout themeCard = settingsCard();
+        TextView themeTitle = makeText("🌙  Dark Mode", 16, textPrimary(), true);
+        themeCard.addView(themeTitle, wrapParams());
+        TextView themeDesc = makeText("अॅपचा Light किंवा Dark look निवडा.", 12, textMuted(), false);
+        LinearLayout.LayoutParams td = wrapParams();
+        td.topMargin = dp(4);
+        themeCard.addView(themeDesc, td);
+        Switch themeSwitch = new Switch(this);
+        themeSwitch.setText("Dark theme");
+        themeSwitch.setTextColor(textPrimary());
+        themeSwitch.setChecked(darkMode);
+        LinearLayout.LayoutParams sw = wrapParams();
+        sw.topMargin = dp(8);
+        themeCard.addView(themeSwitch, sw);
+        themeSwitch.setOnCheckedChangeListener((button, checked) -> {
+            darkMode = checked;
+            preferences.edit().putBoolean("dark_mode", checked).apply();
+            updateSystemBars();
+            showNativePage("settings");
+        });
+        addSettingsCard(body, themeCard);
+
+        LinearLayout profileCard = settingsCard();
+        profileCard.addView(makeText("👤  Student Profile", 16, textPrimary(), true), wrapParams());
+        TextView profileDesc = makeText(
+                preferences.getString("name", "").isEmpty()
+                        ? "तुमचे नाव सेट करा."
+                        : "नाव: " + preferences.getString("name", ""),
+                12, textMuted(), false);
+        LinearLayout.LayoutParams pd = wrapParams();
+        pd.topMargin = dp(4);
+        profileCard.addView(profileDesc, pd);
+        Button editProfile = secondaryButton("Edit Profile");
+        LinearLayout.LayoutParams ep = new LinearLayout.LayoutParams(-1, dp(44));
+        ep.topMargin = dp(10);
+        profileCard.addView(editProfile, ep);
+        editProfile.setOnClickListener(v -> showProfileDialog());
+        addSettingsCard(body, profileCard);
+
+        LinearLayout dataCard = settingsCard();
+        dataCard.addView(makeText("🔄  Website Content Sync", 16, textPrimary(), true), wrapParams());
+        TextView dataDesc = makeText(
+                "Mock Test, PYQ आणि Current Affairs Live Website मधून उघडतात. नवीन मजकूर पाहण्यासाठी इंटरनेट कनेक्शन ठेवा.",
+                12, textMuted(), false);
+        LinearLayout.LayoutParams dd = wrapParams();
+        dd.topMargin = dp(5);
+        dataCard.addView(dataDesc, dd);
+        Button refresh = secondaryButton("Refresh Website Content");
+        LinearLayout.LayoutParams rp = new LinearLayout.LayoutParams(-1, dp(44));
+        rp.topMargin = dp(10);
+        dataCard.addView(refresh, rp);
+        refresh.setOnClickListener(v -> {
+            if (webView != null) {
+                webLoaded = false;
+                webView.reload();
+                Toast.makeText(this, "Website content refreshing...", Toast.LENGTH_SHORT).show();
+            } else {
+                showWebsiteSection("mock");
+            }
+        });
+        addSettingsCard(body, dataCard);
+
+        LinearLayout aboutCard = settingsCard();
+        aboutCard.addView(makeText("ℹ️  About All Exam India", 16, textPrimary(), true), wrapParams());
+        TextView about = makeText(
+                "Native Android interface with website-powered exam content. Website design and data remain separate from this app.",
+                12, textMuted(), false);
+        LinearLayout.LayoutParams ap = wrapParams();
+        ap.topMargin = dp(5);
+        aboutCard.addView(about, ap);
+        addSettingsCard(body, aboutCard);
+
+        scroll.addView(body, new ScrollView.LayoutParams(-1, -2));
+        return scroll;
+    }
+
+    private LinearLayout settingsCard() {
+        LinearLayout card = new LinearLayout(this);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setPadding(dp(15), dp(14), dp(15), dp(14));
+        card.setBackground(roundDrawable(
+                darkMode ? Color.rgb(24, 37, 59) : Color.WHITE, dp(15)));
+        return card;
+    }
+
+    private void addSettingsCard(LinearLayout parent, View card) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
+        params.topMargin = dp(13);
+        parent.addView(card, params);
+    }
+
+    private void showProfileDialog() {
+        LinearLayout form = new LinearLayout(this);
+        form.setOrientation(LinearLayout.VERTICAL);
+        form.setPadding(dp(20), dp(8), dp(20), dp(4));
+        TextView label = makeText("तुमचे नाव", 13, textPrimary(), true);
+        form.addView(label, wrapParams());
+        EditText name = new EditText(this);
+        name.setSingleLine(true);
+        name.setText(preferences.getString("name", ""));
+        name.setHint("तुमचे नाव लिहा");
+        name.setTextSize(15);
+        form.addView(name, new LinearLayout.LayoutParams(-1, dp(50)));
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Student Profile")
+                .setView(form)
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Save", null)
+                .create();
+        dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                .setOnClickListener(v -> {
+                    String value = name.getText().toString().trim();
+                    if (value.isEmpty()) {
+                        name.setError("नाव लिहा");
+                        return;
+                    }
+                    preferences.edit().putString("name", value).apply();
+                    dialog.dismiss();
+                    if ("home".equals(activePage)) showNativePage("home");
+                    else if ("settings".equals(activePage)) showNativePage("settings");
+                    Toast.makeText(this, "Profile saved.", Toast.LENGTH_SHORT).show();
+                }));
+        dialog.show();
+    }
+
+    private void showWebsiteSection(String page) {
+        pendingWebPage = page;
+        activePage = page;
+        contentContainer.removeAllViews();
+        initializeWebView();
+        if (webView.getParent() != null) {
+            ((ViewGroup) webView.getParent()).removeView(webView);
+        }
+        contentContainer.addView(webView, new FrameLayout.LayoutParams(-1, -1));
+        if (progressBar == null) {
+            progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+            progressBar.setMax(100);
+            progressBar.setProgressTintList(ColorStateList.valueOf(BLUE));
+        }
+        FrameLayout.LayoutParams pp = new FrameLayout.LayoutParams(-1, dp(3), Gravity.TOP);
+        contentContainer.addView(progressBar, pp);
+        progressBar.setVisibility(webLoaded ? View.GONE : View.VISIBLE);
+        updateNavigation(page);
+
+        if (!webLoaded && webView.getUrl() == null) {
+            webView.loadUrl(HOME_URL);
+        } else if (webLoaded) {
+            showWebsitePage(page);
         }
     }
 
     private void initializeWebView() {
         if (webView != null) return;
-
         webView = new WebView(this);
-        webView.setBackgroundColor(Color.rgb(245, 247, 252));
+        webView.setBackgroundColor(pageBackground());
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         WebSettings settings = webView.getSettings();
@@ -855,6 +555,7 @@ public class MainActivity extends Activity {
         settings.setAllowFileAccess(false);
         settings.setAllowContentAccess(true);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webView.addJavascriptInterface(new AndroidAppBridge(), "AndroidApp");
 
         webView.setWebViewClient(new WebViewClient() {
@@ -871,8 +572,8 @@ public class MainActivity extends Activity {
             @Override
             public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
                 showingError = false;
-                if (errorView != null && webContainer != null) {
-                    webContainer.removeView(errorView);
+                if (errorView != null && contentContainer != null) {
+                    contentContainer.removeView(errorView);
                     errorView = null;
                 }
                 if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
@@ -880,17 +581,16 @@ public class MainActivity extends Activity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                webLoaded = true;
                 if (progressBar != null) progressBar.setVisibility(View.GONE);
-                applyNativeAppAppearance();
-                applyProfileToWebsite();
+                applyNativeWebStyle();
+                showWebsitePage(pendingWebPage);
             }
 
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request,
                                         WebResourceError error) {
-                if (request.isForMainFrame()) {
-                    showConnectionError();
-                }
+                if (request.isForMainFrame()) showConnectionError();
             }
         });
 
@@ -906,8 +606,7 @@ public class MainActivity extends Activity {
 
         webView.setDownloadListener((url, userAgent, contentDisposition, mimeType, contentLength) -> {
             try {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             } catch (Exception e) {
                 Toast.makeText(MainActivity.this,
                         "No app is available to open this download.", Toast.LENGTH_LONG).show();
@@ -915,19 +614,26 @@ public class MainActivity extends Activity {
         });
     }
 
-    private class AndroidAppBridge {
-        @JavascriptInterface
-        public void onPageChanged(String page) {
-            runOnUiThread(() -> updateNavigation(page));
-        }
+    private void showWebsitePage(String page) {
+        if (webView == null || !webLoaded) return;
+        String safePage = JSONObject.quote(page);
+        String exam = JSONObject.quote(pendingExam);
+        String script = "(function(){try{" +
+                "if(typeof window.showPage==='function')window.showPage(" + safePage + ");" +
+                "if(" + exam + "&&typeof window.selectMockExam==='function'){" +
+                "window.selectMockExam(" + exam + ");}" +
+                "if(window.AndroidApp)window.AndroidApp.onPageChanged(" + safePage + ");" +
+                "}catch(e){console.log(e);}})();";
+        webView.evaluateJavascript(script, null);
+        pendingExam = "";
     }
 
-    private void applyNativeAppAppearance() {
+    private void applyNativeWebStyle() {
         if (webView == null) return;
-
         String css =
-                "body{background:#f5f7fc!important;overscroll-behavior-y:contain}" +
-                "body:after,body>header,body>nav,body>footer,.hero{display:none!important}" +
+                "body{background:" + (darkMode ? "#0c1425" : "#f5f7fc") +
+                "!important;overscroll-behavior-y:contain}" +
+                "body>header,body>nav,body>footer,.hero{display:none!important}" +
                 "main.container{max-width:none!important;width:100%!important;margin:0!important;" +
                 "padding:15px 13px 22px!important;min-height:100%!important}" +
                 ".page.active{animation:rise .18s ease}" +
@@ -935,197 +641,164 @@ public class MainActivity extends Activity {
                 ".container h2:after{width:34px;height:3px;margin-top:7px}" +
                 ".home-actions{gap:11px;margin:7px 0 15px}" +
                 ".home-action-card{min-height:185px;padding:18px;border-radius:17px}" +
-                ".home-action-card h3{font-size:19px}" +
-                ".home-action-icon{font-size:32px}" +
                 ".card,.question{border-radius:15px;box-shadow:0 5px 18px #18294b0a}" +
                 ".search,select{border-radius:11px}" +
-                ".question-sidebar{top:8px}" +
-                "body.dark{background:#0c1425!important}" +
-                "body.dark main.container{background:#0c1425!important}";
-
+                (darkMode ? "body.dark,body.dark main.container{background:#0c1425!important}" : "");
         String script = "(function(){try{" +
                 "var style=document.getElementById('aei-native-app-style');" +
                 "if(!style){style=document.createElement('style');style.id='aei-native-app-style';" +
-                "style.textContent=" + JSONObject.quote(css) + ";document.head.appendChild(style);}" +
+                "document.head.appendChild(style);}" +
+                "style.textContent=" + JSONObject.quote(css) + ";" +
+                "document.body.classList.toggle('dark'," + darkMode + ");" +
                 "if(!window.__aeiNativePageHook&&typeof window.showPage==='function'){" +
                 "var originalShowPage=window.showPage;" +
                 "window.showPage=function(id,fromHistory){var result=originalShowPage.apply(this,arguments);" +
-                "try{var active=document.querySelector('.page.active');" +
-                "if(active&&window.AndroidApp)AndroidApp.onPageChanged(active.id);}catch(e){}" +
+                "try{if(window.AndroidApp)window.AndroidApp.onPageChanged(id);}catch(e){}" +
                 "return result;};window.__aeiNativePageHook=true;}" +
-                "var active=document.querySelector('.page.active');" +
-                "if(active&&window.AndroidApp)AndroidApp.onPageChanged(active.id);" +
                 "}catch(e){}})();";
         webView.evaluateJavascript(script, null);
     }
 
-    private void applyProfileToWebsite() {
-        if (webView == null) return;
-        String name = preferences.getString("name", "");
-        if (name.isEmpty()) return;
-        String script = "(function(){try{var n=" + JSONObject.quote(name) + ";"
-                + "localStorage.setItem('aei-student',JSON.stringify({name:n}));"
-                + "var input=document.getElementById('regName');if(input)input.value=n;"
-                + "var modal=document.getElementById('registerModal');if(modal)modal.style.display='none';"
-                + "if(typeof renderStudentStats==='function')renderStudentStats();"
-                + "}catch(e){}})();";
-        webView.evaluateJavascript(script, null);
+    private class AndroidAppBridge {
+        @JavascriptInterface
+        public void onPageChanged(String page) {
+            runOnUiThread(() -> {
+                if (page != null && !page.isEmpty()) {
+                    activePage = page;
+                    updateNavigation(page);
+                }
+            });
+        }
     }
 
-    private void showProfileDialog() {
-        LinearLayout form = new LinearLayout(this);
-        form.setOrientation(LinearLayout.VERTICAL);
-        form.setPadding(dp(20), dp(8), dp(20), dp(4));
-
-        addFieldLabel(form, "Full Name");
-        EditText nameInput = makeInput("Enter your name",
-                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        nameInput.setText(preferences.getString("name", ""));
-        nameInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(30)});
-        form.addView(nameInput, fieldParams());
-
-        addFieldLabel(form, "Age (in years)");
-        EditText ageInput = makeInput("e.g. 17.5",
-                InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        ageInput.setText(preferences.getString("age", ""));
-        form.addView(ageInput, fieldParams());
-
-        TextView note = new TextView(this);
-        note.setText("Minimum age: 17.5 years (17 years and 6 months)");
-        note.setTextColor(BLUE);
-        note.setTextSize(13);
-        form.addView(note, matchWrap());
-
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("Your Profile")
-                .setView(form)
-                .setNegativeButton("Cancel", null)
-                .setPositiveButton("Save", null)
-                .create();
-
-        dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-            String name = nameInput.getText().toString().trim();
-            String ageText = ageInput.getText().toString().trim();
-            if (name.isEmpty()) {
-                nameInput.setError("Enter your name");
-                return;
-            }
-            double age;
-            try {
-                age = Double.parseDouble(ageText);
-            } catch (Exception e) {
-                ageInput.setError("Enter age in a format such as 17.5");
-                return;
-            }
-            if (age < MINIMUM_AGE || age > 120) {
-                ageInput.setError("Minimum age must be 17.5 years");
-                Toast.makeText(this, "Minimum age is 17.5 years.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            preferences.edit().putString("name", name).putString("age", ageText).apply();
-            applyProfileToWebsite();
-            dialog.dismiss();
-            Toast.makeText(this, "Profile saved.", Toast.LENGTH_SHORT).show();
-        }));
-        dialog.show();
+    private void updateNavigation(String page) {
+        if (page == null) return;
+        String selectedPage = page.equals("testroom") ? "mock" : page;
+        for (int i = 0; i < navItems.length; i++) {
+            TextView item = navItems[i];
+            if (item == null) continue;
+            boolean selected = navPages[i].equals(selectedPage);
+            item.setTextColor(selected ? BLUE : (darkMode
+                    ? Color.rgb(172, 185, 207) : MUTED));
+            item.setTypeface(null, selected ? Typeface.BOLD : Typeface.NORMAL);
+            item.setBackground(roundDrawable(selected
+                    ? (darkMode ? Color.rgb(34, 54, 88) : Color.rgb(235, 241, 255))
+                    : Color.TRANSPARENT, dp(12)));
+        }
     }
 
-    private void addFieldLabel(LinearLayout parent, String value) {
-        TextView label = new TextView(this);
-        label.setText(value);
-        label.setTextColor(Color.rgb(35, 48, 72));
-        label.setTextSize(14);
-        label.setTypeface(null, Typeface.BOLD);
-        LinearLayout.LayoutParams params = matchWrap();
-        params.topMargin = dp(9);
-        params.bottomMargin = dp(4);
-        parent.addView(label, params);
-    }
-
-    private EditText makeInput(String hint, int inputType) {
-        EditText input = new EditText(this);
-        input.setSingleLine(true);
-        input.setHint(hint);
-        input.setInputType(inputType);
-        input.setTextSize(15);
-        input.setTextColor(INK);
-        input.setHintTextColor(Color.rgb(145, 153, 168));
-        input.setPadding(dp(13), dp(10), dp(13), dp(10));
-        input.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(190, 201, 219)));
-        return input;
-    }
-
-    private LinearLayout.LayoutParams fieldParams() {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(50));
-        params.bottomMargin = dp(5);
-        return params;
-    }
-
-    private LinearLayout.LayoutParams matchWrap() {
-        return new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    private void showConnectionError() {
+        if (showingError || contentContainer == null) return;
+        showingError = true;
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        panel.setGravity(Gravity.CENTER);
+        panel.setPadding(dp(25), dp(25), dp(25), dp(25));
+        panel.setBackgroundColor(NAVY);
+        TextView message = makeText(
+                "इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.\n\nAll Exam India",
+                17, Color.WHITE, true);
+        message.setGravity(Gravity.CENTER);
+        panel.addView(message, wrapParams());
+        Button retry = primaryButton("Try Again");
+        LinearLayout.LayoutParams rp = new LinearLayout.LayoutParams(-2, dp(46));
+        rp.topMargin = dp(15);
+        panel.addView(retry, rp);
+        retry.setOnClickListener(v -> {
+            showingError = false;
+            if (errorView != null) contentContainer.removeView(errorView);
+            errorView = null;
+            webLoaded = false;
+            webView.loadUrl(HOME_URL);
+        });
+        errorView = panel;
+        contentContainer.addView(errorView, new FrameLayout.LayoutParams(-1, -1));
+        if (progressBar != null) progressBar.setVisibility(View.GONE);
     }
 
     private boolean handleUrl(String url) {
         Uri uri = Uri.parse(url);
         String scheme = uri.getScheme() == null ? "" : uri.getScheme();
-
         if ("https".equalsIgnoreCase(scheme) || "http".equalsIgnoreCase(scheme)) {
             String host = uri.getHost() == null ? "" : uri.getHost().toLowerCase();
-            if (host.equals("prajwaltarare7-oss.github.io")) {
-                return false;
-            }
+            if (host.equals("prajwaltarare7-oss.github.io")) return false;
         }
-
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
         } catch (Exception e) {
             Toast.makeText(this, "Could not open this link.", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
 
-    private void showConnectionError() {
-        if (showingError || webContainer == null) return;
-        showingError = true;
+    private TextView makeText(String value, int size, int color, boolean bold) {
+        TextView text = new TextView(this);
+        text.setText(value);
+        text.setTextSize(size);
+        text.setTextColor(color);
+        if (bold) text.setTypeface(null, Typeface.BOLD);
+        return text;
+    }
 
-        TextView message = new TextView(this);
-        message.setText("Check your internet connection and try again.\n\nAll Exam India");
-        message.setTextColor(Color.WHITE);
-        message.setTextSize(18);
-        message.setGravity(Gravity.CENTER);
-        message.setPadding(dp(28), dp(24), dp(28), dp(24));
+    private Button primaryButton(String label) {
+        Button button = new Button(this);
+        button.setText(label);
+        button.setAllCaps(false);
+        button.setTextSize(14);
+        button.setTextColor(Color.WHITE);
+        button.setBackgroundTintList(ColorStateList.valueOf(BLUE));
+        return button;
+    }
 
-        Button retry = new Button(this);
-        retry.setText("Try Again");
-        retry.setTextColor(Color.WHITE);
-        retry.setAllCaps(false);
-        retry.setBackgroundTintList(ColorStateList.valueOf(BLUE));
-        retry.setOnClickListener(v -> {
-            showingError = false;
-            if (errorView != null) webContainer.removeView(errorView);
-            errorView = null;
-            webView.loadUrl(HOME_URL);
-        });
+    private Button secondaryButton(String label) {
+        Button button = new Button(this);
+        button.setText(label);
+        button.setAllCaps(false);
+        button.setTextSize(13);
+        button.setTextColor(darkMode ? Color.WHITE : INK);
+        button.setBackgroundTintList(ColorStateList.valueOf(
+                darkMode ? Color.rgb(43, 62, 91) : Color.rgb(232, 237, 247)));
+        return button;
+    }
 
-        LinearLayout content = new LinearLayout(this);
-        content.setOrientation(LinearLayout.VERTICAL);
-        content.setGravity(Gravity.CENTER);
-        content.setPadding(dp(24), dp(24), dp(24), dp(24));
-        content.setBackgroundColor(NAVY);
-        content.addView(message, matchWrap());
-        LinearLayout.LayoutParams retryParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        retryParams.topMargin = dp(12);
-        content.addView(retry, retryParams);
+    private GradientDrawable roundDrawable(int color, int radius) {
+        GradientDrawable bg = new GradientDrawable();
+        bg.setColor(color);
+        bg.setCornerRadius(radius);
+        return bg;
+    }
 
-        errorView = content;
-        webContainer.addView(errorView, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        if (progressBar != null) progressBar.setVisibility(View.GONE);
+    private int pageBackground() {
+        return darkMode ? Color.rgb(12, 20, 37) : LIGHT_BG;
+    }
+
+    private int textPrimary() {
+        return darkMode ? Color.rgb(239, 243, 250) : INK;
+    }
+
+    private int textMuted() {
+        return darkMode ? Color.rgb(166, 180, 204) : MUTED;
+    }
+
+    private LinearLayout.LayoutParams wrapParams() {
+        return new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+    private void updateSystemBars() {
+        getWindow().setStatusBarColor(NAVY);
+        getWindow().setNavigationBarColor(darkMode
+                ? Color.rgb(17, 27, 46) : Color.WHITE);
+        getWindow().getDecorView().setSystemUiVisibility(
+                darkMode ? 0 : View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        if (bottomNav != null) {
+            bottomNav.setBackgroundColor(darkMode
+                    ? Color.rgb(17, 27, 46) : Color.WHITE);
+        }
+        if (webView != null) {
+            webView.setBackgroundColor(pageBackground());
+            applyNativeWebStyle();
+        }
     }
 
     private int dp(int value) {
@@ -1133,17 +806,11 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        if (webView != null) webView.saveState(outState);
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
     public void onBackPressed() {
-        if (webView != null && webView.canGoBack()) {
+        if (webView != null && webView.getParent() != null && webView.canGoBack()) {
             webView.goBack();
         } else if (!"home".equals(activePage)) {
-            navigateToPage("home");
+            showNativePage("home");
         } else {
             super.onBackPressed();
         }
