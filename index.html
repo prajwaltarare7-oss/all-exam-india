@@ -1368,7 +1368,7 @@ function buildPoliceHardSection(type,count,seed,lang){
     case 7:{
      const V=60+10*Math.floor(r()*7),x=10+5*Math.floor(r()*5),percent=100*Math.pow(1-x/V,2);
      ans=percent;q=M(V+" लिटरच्या दुधाने भरलेल्या भांड्यातून "+x+" लिटर दूध काढून तेवढेच पाणी भरले. ही प्रक्रिया पुन्हा एकदा केली. शेवटी दुधाचे प्रमाण किती टक्के?","A "+V+" L vessel is full of milk. "+x+" L is removed and replaced with water. The same operation is repeated once. What percentage of the final mixture is milk?");
-     w=[100*(1-x/V),100*Math.pow(1-x/V,1),100*(1-2*x/V)];e=M("प्रत्येक वेळी दुधाचा उरलेला अंश "+(V-x)+"/"+V+". दोन वेळा केल्यावर अंशाचा वर्ग होतो.","The milk fraction remaining after each operation is (V−x)/V. After two operations, square that fraction.");break;
+     w=[100*(1-x/V),100*Math.pow(1-x/V,3),100*(1-2*x/V)];e=M("प्रत्येक वेळी दुधाचा उरलेला अंश "+(V-x)+"/"+V+". दोन वेळा केल्यावर अंशाचा वर्ग होतो.","The milk fraction remaining after each operation is (V−x)/V. After two operations, square that fraction.");break;
     }
     case 8:{
      const boat=14+Math.floor(r()*9),stream=2+Math.floor(r()*5),dist=boat*2;
@@ -1383,7 +1383,7 @@ function buildPoliceHardSection(type,count,seed,lang){
     case 10:{
      const fill=5+Math.floor(r()*5),leak=fill+4+Math.floor(r()*8);
      ans=1/(1/fill-1/leak);q=M("एक नळ टाकी "+fill+" तासांत भरतो आणि गळतीमुळे पूर्ण टाकी "+leak+" तासांत रिकामी होते. दोन्ही एकाच वेळी सुरू असल्यास टाकी किती तासांत भरेल?","An inlet fills a tank in "+fill+" hours while a leak empties a full tank in "+leak+" hours. If both operate together, how long will filling take?");
-     w=[1/(1/fill+1/leak),leak-fill,fill*leak/(leak-fill)];e=M("निव्वळ दर = 1/"+fill+" − 1/"+leak+". वेळ = 1 ÷ निव्वळ दर.","Net rate = 1/"+fill+" − 1/"+leak+". Time is the reciprocal of the net rate.");break;
+     w=[1/(1/fill+1/leak),leak-fill,fill*leak/(leak-fill+1)];e=M("निव्वळ दर = 1/"+fill+" − 1/"+leak+". वेळ = 1 ÷ निव्वळ दर.","Net rate = 1/"+fill+" − 1/"+leak+". Time is the reciprocal of the net rate.");break;
     }
     case 11:{
      const age=24+Math.floor(r()*9),gap=8+Math.floor(r()*7),years=3+Math.floor(r()*6),young=age,old=age+gap;
