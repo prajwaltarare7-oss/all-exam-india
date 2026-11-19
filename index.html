@@ -1249,7 +1249,34 @@ function buildPoliceBhartiSectionLegacy(type,count,seed,lang){
  ["‘निरुपयोगी’ या शब्दाचा विरुद्धार्थी शब्द कोणता?",["उपयुक्त","निरर्थक","व्यर्थ","अनावश्यक"],0,"निरुपयोगीचा विरुद्धार्थी उपयुक्त."],
  ["‘सूर्यास्त’ या शब्दाची योग्य संधी-विग्रह रचना कोणती?",["सूर्य + अस्त","सूर्यः + अस्त","सूर्य + आस्त","सुर्य + अस्त"],0,"‘सूर्य’ आणि ‘अस्त’ यांच्या संयोगातून सूर्यास्त."]
 );
-const bank=mr?mrBank:enBank,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
+const enMarathiBank=[
+ ["In the word 'yathashakti' (according to one's ability), which type of compound is used?",["Avyayibhava","Dvandva","Bahuvrihi","Karmadharaya"],0,"The expression means 'according to ability', with an indeclinable sense."],
+ ["Choose the correct expansion and compound type of 'rajputra'.",["Son of a king — Shashthi Tatpurusha","King and son — Dvandva","Son like a king — Karmadharaya","One whose son is a king — Bahuvrihi"],0,"The relation is 'the king's son', a genitive Tatpurusha compound."],
+ ["When 'Neelkanth' refers to Shiva, which compound is it?",["Bahuvrihi","Karmadharaya","Dvigu","Avyayibhava"],0,"It refers to one whose throat is blue, an external referent."],
+ ["In 'Ram killed Ravana', which voice construction is used?",["Kartari (active)","Karmani (passive)","Bhave","Mixed"],0,"The subject Ram performs the action and governs the verb."],
+ ["In 'The letter was written by the students', which Marathi prayog does the construction represent?",["Karmani","Kartari","Bhave","Compound"],0,"The object is foregrounded in the passive construction."],
+ ["In 'Had he come, I would have gone', which sentence mood is expressed?",["Conditional","Assertive","Imperative","Interrogative"],0,"The sentence expresses a condition and its possible consequence."],
+ ["What is the intended meaning of the proverb 'Ati tithe mati'?",["Excess ultimately causes harm","Success comes without effort","One should abandon courage in difficulty","Time management is unimportant"],0,"The proverb warns that excess leads to a damaging result."],
+ ["Choose the closest synonym of 'ashru' (tears).",["Netrajal (eye-water)","Flame","Sky","Wind"],0,"Netrajal is a word for the water in one's eyes."],
+ ["Choose the antonym of 'krutajna' (grateful).",["Krutaghna (ungrateful)","Indebted","Thankful","Obliged"],0,"Krutaghna describes someone who does not acknowledge a favour."],
+ ["Identify the prefix in the word 'paropakaar'.",["Para","Upa","Kaar","Pa"],0,"Para- is the prefix in this formation."],
+ ["Choose the correct sandhi split of 'Girish'.",["Giri + Isha","Gira + Isha","Giri + Sha","Giri + Isha with no vowel change"],0,"The final i and initial ī combine to form a long ī sound."],
+ ["In 'He walks slowly', what is the grammatical function of 'slowly'?",["Adverb","Adjective","Noun","Conjunction"],0,"It describes the manner of walking."],
+ ["Choose the one-word expression for 'that which has no limit'.",["Aseem (boundless)","Seemit (limited)","Maryadit (restricted)","Saseem (bounded)"],0,"Aseem means without a boundary or limit."],
+ ["What does the idiom 'to watch with oil in one's eyes' mean?",["To remain extremely alert","To fall asleep","To cry","To ignore"],0,"The idiom means to stay very watchful and cautious."],
+ ["In 'Students should obey the rules', what sense is conveyed by 'should obey'?",["Duty or prescription","Past tense","Negation","Question"],0,"The verb expresses an expected or prescribed action."],
+ ["Which word means 'one who remembers and acknowledges a favour'?",["Grateful","Ungrateful","Shameless","Arrogant"],0,"A grateful person acknowledges help received."],
+ ["In 'He read the book and then slept', which word expresses the earlier action?",["After reading","Slept","He","Book"],0,"The first action is completed before the main action."],
+ ["In context, what does the idiom 'to become water-water' mean?",["To feel deeply embarrassed","To become thirsty","To feel delighted","To run away in fear"],0,"The idiom is used for becoming very embarrassed."],
+ ["Identify the prefix and base in 'durjan'.",["Dur + jan","Du + rjan","Durj + an","Dur + ajan"],0,"Dur- is the prefix attached to jan."],
+ ["What does the idiom 'to reach for the sky' mean?",["To attempt a very ambitious goal","To look at the sky","To travel","To speak meaninglessly"],0,"It refers to attempting something exceptionally ambitious."],
+ ["Which compound type is found in 'aai-vadil' (mother and father)?",["Dvandva","Tatpurusha","Bahuvrihi","Avyayibhava"],0,"Both members have equal importance in a Dvandva compound."],
+ ["What type of sentence is 'Although it rained, the match continued'?",["Complex sentence","Simple sentence","Compound sentence","Exclamatory sentence"],0,"A subordinate concessive clause makes it a complex sentence."],
+ ["In 'He gave me a book', which case relation is expressed by 'me'?",["Dative (Chaturthi)","Accusative (Dvitiya)","Instrumental (Tritiya)","Genitive (Shashthi)"],0,"The recipient of the book is expressed by the dative case."],
+ ["Choose the antonym of 'useless'.",["Useful","Meaningless","Worthless","Unnecessary"],0,"Useful is the direct opposite of useless."],
+ ["Choose the correct formation of 'suryasta' (sunset).",["Surya + asta","Suryah + asta","Surya + asta with no joining","Surya + aasta"],0,"The compound is formed from surya and asta."]
+];
+const bank=mr?mrBank:enMarathiBank,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
   }else{
    const mrGK=[
     ["भारतीय संविधानातील राज्याच्या धोरणनिर्देशक तत्त्वांचा समावेश कोणत्या भागात आहे?",["भाग IV","भाग III","भाग IVA","भाग V"],0,"धोरणनिर्देशक तत्त्वे भाग IV मध्ये आहेत."],
