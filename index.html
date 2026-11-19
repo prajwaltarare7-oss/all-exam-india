@@ -1043,7 +1043,7 @@ function mockBuildSection(type,count,seed,lang,stream){const r=gdRand(seed);let 
  const finalPool=mockShuffle(out,r).slice(0,count),seenQuestions={};finalPool.forEach((q,i)=>{if(seenQuestions[q.q])q.q=q.q+" — Version "+(i+1);seenQuestions[q.q]=true;});return finalPool;
 }
 
-function buildPoliceBhartiSection(type,count,seed,lang){
+function buildPoliceBhartiSectionLegacy(type,count,seed,lang){
  const r=gdRand(seed),out=[],mr=lang==="mr";
  const pick=a=>a[Math.floor(r()*a.length)];
  const shuffle=a=>mockShuffle(a,r);
@@ -1315,6 +1315,57 @@ const bank=mr?mrGK:enGK,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2
  const seen=new Set();for(const q of out){if(seen.has(q.q))q.q+=" (संच "+(seed%500+1)+")";seen.add(q.q);}
  return shuffle(out);
 }
+
+function buildPoliceBhartiSection(type,count,seed,lang){
+ if(type!=="policeGK") return buildPoliceBhartiSectionLegacy(type,count,seed,lang);
+ const r=gdRand(seed),mr=lang==="mr";
+ const base=buildPoliceBhartiSectionLegacy(type,15,seed,lang);
+ const ca=[
+  ["‘खेलो भारत नीती’ राष्ट्रीय क्रीडा धोरणाची सुरुवात कोणत्या दिवशी झाली?",["1 जुलै 2025","15 ऑगस्ट 2025","26 जानेवारी 2026","1 मे 2025"],0,"PIB नुसार Khelo Bharat Niti 1 जुलै 2025 रोजी सुरू झाली.","PIB states that Khelo Bharat Niti was launched on 1 July 2025."],
+  ["Khelo Bharat Niti चे दीर्घकालीन उत्कृष्टतेचे लक्ष्य कोणत्या ऑलिम्पिक वर्षाशी जोडले आहे?",["2036","2028","2032","2040"],0,"या धोरणात 2036 ऑलिम्पिकमध्ये उत्कृष्टतेचे लक्ष्य आहे.","The policy sets an excellence goal for the 2036 Olympics."],
+  ["2026–27 च्या केंद्रीय अर्थसंकल्पात क्रीडा मंत्रालयासाठी किती तरतूद जाहीर झाली?",["₹4,479.88 कोटी","₹3,000 कोटी","₹1,219 कोटी","₹5,500 कोटी"],0,"PIB नुसार 2026–27 साठी ₹4,479.88 कोटींची तरतूद आहे.","PIB reports an allocation of ₹4,479.88 crore for 2026–27."],
+  ["2026–27 ते 2030–31 साठी सुधारित Khelo India व राष्ट्रीय क्रीडा महासंघ सहाय्य यांचा संयुक्त खर्च किती?",["₹36,441 कोटी","₹10,000 कोटी","₹25,000 कोटी","₹44,798 कोटी"],0,"केंद्रीय मंत्रिमंडळाने संयुक्त ₹36,441 कोटी खर्च मंजूर केला.","The Union Cabinet approved a combined outlay of ₹36,441 crore."],
+  ["KIRTI उपक्रम कोणत्या वयोगटातील मुलांमधील क्रीडा-प्रतिभा शोधतो?",["9 ते 18 वर्षे","5 ते 8 वर्षे","18 ते 25 वर्षे","25 ते 30 वर्षे"],0,"KIRTI चा भर 9–18 वयोगटावर आहे.","KIRTI focuses on identifying talent among children aged 9–18."],
+  ["TOPS योजनेतील मुख्य गटातील खेळाडूंसाठी नमूद मासिक stipend किती आहे?",["₹50,000","₹25,000","₹10,000","₹75,000"],0,"PIB नुसार TOPS मुख्य गटासाठी ₹50,000 मासिक stipend नमूद आहे.","PIB lists a ₹50,000 monthly stipend for TOPS core athletes."],
+  ["TOPS विकास गटातील कनिष्ठ खेळाडूंसाठी नमूद मासिक stipend किती आहे?",["₹25,000","₹50,000","₹15,000","₹5,000"],0,"विकास गटातील कनिष्ठ खेळाडूंसाठी ₹25,000 मासिक stipend आहे.","The Development Group stipend is ₹25,000 per month."],
+  ["ऑगस्ट 2025 मध्ये मंजूर National Sports Governance Bill मध्ये क्रीडा वादांसाठी कोणती संस्था प्रस्तावित आहे?",["National Sports Tribunal","Finance Commission","Election Commission","National Green Tribunal"],0,"विधेयकात क्रीडा वाद सोडवण्यासाठी National Sports Tribunal ची तरतूद आहे.","The Bill provides for a National Sports Tribunal to resolve sports disputes."],
+  ["2025–26 या आर्थिक वर्षासाठी Khelo India योजनेला किती तरतूद देण्यात आली होती?",["₹1,000 कोटी","₹500 कोटी","₹2,191 कोटी","₹3,794 कोटी"],0,"PIB च्या जून 2025 च्या माहितीनुसार Khelo India साठी ₹1,000 कोटी होते.","PIB's June 2025 note lists ₹1,000 crore for Khelo India in 2025–26."],
+  ["Khelo India Centres चा प्रमुख हेतू कोणता?",["तळागाळातील प्रशिक्षण व प्रतिभा विकास","फक्त आंतरराष्ट्रीय खेळाडू निवडणे","क्रीडा साहित्य विकणे","विद्यापीठ परीक्षा घेणे"],0,"केंद्रांचा भर स्थानिक पातळीवरील प्रशिक्षण व प्रतिभा विकासावर आहे.","The centres focus on grassroots training and talent development."]
+ ];
+ const out=base.slice(0,15);
+ for(let i=0;i<10;i++){
+  const x=ca[i],opts=mr?x[1]:["1 July 2025","15 August 2025","26 January 2026","1 May 2025"];
+  const enQ=[
+   "On which date was the Khelo Bharat Niti national sports policy launched?",
+   "Which Olympic year is the long-term excellence target of Khelo Bharat Niti linked to?",
+   "What allocation was announced for the Ministry of Sports in the Union Budget 2026–27?",
+   "What combined outlay was approved for revamped Khelo India and National Sports Federations support for 2026–27 to 2030–31?",
+   "Which age group does the KIRTI initiative focus on for identifying sporting talent?",
+   "What monthly stipend is specified for core athletes under TOPS?",
+   "What monthly stipend is specified for junior athletes in the TOPS Development Group?",
+   "Which body for resolving sports disputes is provided for in the National Sports Governance Bill passed in August 2025?",
+   "What allocation was made to Khelo India for financial year 2025–26?",
+   "What is the primary purpose of Khelo India Centres?"
+  ];
+  const enOpts=[
+   ["1 July 2025","15 August 2025","26 January 2026","1 May 2025"],
+   ["2036","2028","2032","2040"],
+   ["₹4,479.88 crore","₹3,000 crore","₹1,219 crore","₹5,500 crore"],
+   ["₹36,441 crore","₹10,000 crore","₹25,000 crore","₹44,798 crore"],
+   ["9 to 18 years","5 to 8 years","18 to 25 years","25 to 30 years"],
+   ["₹50,000","₹25,000","₹10,000","₹75,000"],
+   ["₹25,000","₹50,000","₹15,000","₹5,000"],
+   ["National Sports Tribunal","Finance Commission","Election Commission","National Green Tribunal"],
+   ["₹1,000 crore","₹500 crore","₹2,191 crore","₹3,794 crore"],
+   ["Grassroots training and talent development","Selecting only international athletes","Selling sports equipment","Conducting university examinations"]
+  ];
+  const pairs=(mr?opts:enOpts[i]).map((v,j)=>({v,ok:j===0}));
+  for(let j=pairs.length-1;j>0;j--){const z=Math.floor(r()*(j+1));[pairs[j],pairs[z]]=[pairs[z],pairs[j]];}
+  out.push({q:mr?x[0]:enQ[i],o:pairs.map(p=>p.v),a:pairs.findIndex(p=>p.ok),e:mr?x[3]:x[4]});
+ }
+ return out.slice(0,count);
+}
+
 function mockGcd(a,b){while(b){const t=b;b=a%b;a=t;}return a;}
 function buildExamMock(exam,no,seed,lang,level,stream){const p=examProfiles[exam];if(!p)throw new Error("Exam profile missing");if(exam==="Maharashtra Police Bharti"){const questions=[];p.sections.forEach((sp,i)=>buildPoliceBhartiSection(sp[2],sp[1],(seed+i*8191)>>>0,lang).forEach(q=>questions.push({...q,section:sp[0],marks:1,negativeMarks:0})));const seen=new Set();for(const q of questions){if(seen.has(q.q))q.q+=" (Paper "+no+")";seen.add(q.q);}return {label:"Maharashtra Police Bharti — Hard Mock Test "+no,duration:90,questions,correctMarks:1,negativeMarks:0,maxMarks:100,testSeed:seed,testSignature:practiceTestSignature({questions})};}if(exam==="SSC GD"){const g=buildGDMock(no,lang,seed);if(lang==="en"){const en=mockEnglishPool(seed+991).slice(0,20);let n=0;g.questions=g.questions.map(q=>/Hindi Grammar/.test(q.section)&&n<20?{...en[n++],section:"English Language"}:q);}const seenGD={};g.questions.forEach((q,i)=>{if(seenGD[q.q])q.q=q.q+" — Version "+(i+1);seenGD[q.q]=true;});g.label="SSC GD — Hard Mock Test "+no;g.maxMarks=160;g.correctMarks=2;g.negativeMarks=.25;g.testSeed=seed;g.testSignature=practiceTestSignature(g);return g;}const questions=[];p.sections.forEach((sp,i)=>mockBuildSection(sp[2],sp[1],(seed+i*8191)>>>0,lang,stream).forEach(q=>questions.push({...q,section:sp[0],marks:p.correct,negativeMarks:exam==="SSC MTS"?(sp[2]==="quant"||sp[2]==="reasoning"?0:1):p.negative})));return {label:exam+" — "+(level?level+" ":"")+(stream?stream+" ":"")+"Hard Mock Test "+no,duration:p.duration,questions:questions,correctMarks:p.correct,negativeMarks:p.negative,maxMarks:questions.reduce((a,q)=>a+q.marks,0),testSeed:seed,testSignature:practiceTestSignature({questions:questions})};}
 function mockHash(v){let h=2166136261;for(let i=0;i<v.length;i++)h=Math.imul(h^v.charCodeAt(i),16777619);return h>>>0;}
