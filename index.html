@@ -1683,14 +1683,15 @@ function submitPracticeTest(forceSubmit){
   }
   const maxMarks=Number(activePractice.maxMarks||total*(activePractice.correctMarks||1));
   const attempted=correct+wrong;
-  let fallbackReview='<section class="result-review"><h3 class="result-review-heading">Answer analysis and solutions ('+total+')</h3><div class="result-review-grid">';
+  const solLang=selectedPaperLanguage||"hi",solEn=solLang==="en",solHi=solLang==="hi";
+  let fallbackReview='<section class="result-review"><h3 class="result-review-heading">'+(solEn?'Answer analysis and solutions':solHi?'उत्तर विश्लेषण और समाधान':'उत्तर विश्लेषण आणि उपाय')+' ('+total+')</h3><div class="result-review-grid">';
   for(let i=0;i<total;i++){
    const q=activePractice.questions[i]||{},chosen=practiceAnswers[i];
    const state=chosen===q.a?'correct':(chosen===undefined||chosen===null?'unanswered':'wrong');
    const steps=buildDetailedSolutionSteps(q);
-   const stepHtml=steps.length?'<ol class="result-solution-steps">'+steps.map(x=>'<li>'+escapeHTML(x)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
+   const stepHtml=steps.length?'<ol class="result-solution-steps">'+steps.map(x=>'<li>'+escapeHTML(x)+'</li>').join('')+'</ol>':'<p class="result-explanation">'+(solEn?'A detailed explanation has not yet been added for this question.':solHi?'इस प्रश्न का विस्तृत समाधान अभी उपलब्ध नहीं है।':'या प्रश्नाचे सविस्तर स्पष्टीकरण अजून उपलब्ध नाही.')+'</p>';
    const opts=Array.isArray(q.o)?q.o:[];
-   fallbackReview+='<article class="result-answer-card '+state+'"><b>Question '+(i+1)+'</b><p class="result-question">'+escapeHTML(q.q||'')+'</p><p><b>Correct answer:</b> '+escapeHTML(opts[q.a]||'')+'</p><details class="result-solution"><summary>💡 Solution पाहा — Step by Step</summary><div class="result-solution-body">'+stepHtml+'</div></details></article>';
+   fallbackReview+='<article class="result-answer-card '+state+'"><b>'+(solEn?'Question ':solHi?'प्रश्न ':'प्रश्न ')+(i+1)+'</b><p class="result-question">'+escapeHTML(q.q||'')+'</p><p><b>'+(solEn?'Correct answer:':solHi?'सही उत्तर:':'योग्य उत्तर:')+'</b> '+escapeHTML(opts[q.a]||'')+'</p><details class="result-solution"><summary>💡 '+(solEn?'View solution — Step by step':solHi?'समाधान देखें — चरणबद्ध':'उपाय पाहा — टप्प्याटप्प्याने')+'</summary><div class="result-solution-body">'+stepHtml+'</div></details></article>';
   }
   fallbackReview+='</div></section>';
   let node=document.getElementById("testResult");
@@ -1711,6 +1712,7 @@ const target=window.isPolicePYQPractice?'policepyq':(window.isPoliceHardPractice
 showPage(target);
 }
 function buildDetailedSolutionSteps(q){
+ const lang=selectedPaperLanguage||"hi",isEn=lang==="en",isHi=lang==="hi";
  const authored=Array.isArray(q.steps)?q.steps.map(x=>String(x).trim()).filter(Boolean):[];
  const raw=String(q.e||q.explanation||q.solution||"").trim();
  const source=authored.length?authored:raw.split(/\n+|;\s*|(?<=[.!?])\s+(?=[A-Zअ-ह])/).map(x=>x.trim()).filter(Boolean);
@@ -1725,7 +1727,7 @@ function buildDetailedSolutionSteps(q){
  });
  const answer=q.o&&q.o[q.a]!==undefined?String(q.o[q.a]):"";
  const option=Number.isInteger(q.a)?String.fromCharCode(65+q.a):"";
- if(answer&&!steps.some(x=>x.includes(answer)))steps.push("अंतिम उत्तर: "+answer+(option?" (पर्याय "+option+")":""));
+ if(answer&&!steps.some(x=>x.includes(answer)))steps.push((isEn?"Final answer: ":isHi?"अंतिम उत्तर: ":"अंतिम उत्तर: ")+answer+(option?(isEn?" (Option ":isHi?" (विकल्प ":" (पर्याय ")+option+")":""));
  return steps;
 }
 function submitPracticeTestCore(forceSubmit){
@@ -1735,7 +1737,8 @@ if(!forceSubmit&&unanswered>0&&!window.confirm((selectedPaperLanguage==='en'?'Yo
 practiceSubmitted=true;
 clearInterval(practiceInterval);
 let score=0,correct=0,wrong=0,skipped=0,negativeDeducted=0;
-let reviewHtml='<section class="result-review"><h3 class="result-review-heading">'+(selectedPaperLanguage==='en'?'Answer analysis and solutions':'Answer analysis and solutions')+' ('+total+')</h3><div class="result-review-grid">';
+const solLang=selectedPaperLanguage||"hi",solEn=solLang==="en",solHi=solLang==="hi";
+let reviewHtml='<section class="result-review"><h3 class="result-review-heading">'+(solEn?'Answer analysis and solutions':solHi?'उत्तर विश्लेषण और समाधान':'उत्तर विश्लेषण आणि उपाय')+' ('+total+')</h3><div class="result-review-grid">';
 activePractice.questions.forEach((q,i)=>{
 const chosen=practiceAnswers[i];
 if(chosen===q.a){correct++;score+=q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:(isGDMock?2:1));}
@@ -1746,8 +1749,8 @@ const status=state==='correct'?('Correct'):state==='wrong'?('Incorrect'):('Unans
 const yourAnswer=chosen===undefined||chosen===null?(selectedPaperLanguage==='en'?'Not attempted':'उत्तर दिले नाही'):escapeHTML(q.o[chosen]);
 const solutionText=String(q.e||'').trim();
 const solutionSteps=buildDetailedSolutionSteps(q);
-const solutionHtml=solutionSteps.length?'<ol class="result-solution-steps">'+solutionSteps.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol>':'<p class="result-explanation">या प्रश्नासाठी सविस्तर स्पष्टीकरण अजून जोडलेले नाही.</p>';
-reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'Question ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'Your answer')+'</small><p>'+yourAnswer+'</p></div><div><small>'+('Correct Answer')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><details class="result-solution"><summary>'+(selectedPaperLanguage==='en'?'💡 Solution पाहा — Step by Step':'💡 Solution पाहा — Step by Step')+'</summary><div class="result-solution-body"><p><b>'+(selectedPaperLanguage==='en'?'Correct option: ':'Correct option: ')+'</b>'+escapeHTML(q.o[q.a])+'</p>'+solutionHtml+'</div></details></article>';
+const solutionHtml=solutionSteps.length?'<ol class="result-solution-steps">'+solutionSteps.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol>':'<p class="result-explanation">'+(solEn?'A detailed explanation has not yet been added for this question.':solHi?'इस प्रश्न का विस्तृत समाधान अभी उपलब्ध नहीं है।':'या प्रश्नाचे सविस्तर स्पष्टीकरण अजून उपलब्ध नाही.')+'</p>';
+reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(solEn?'QUESTION ':solHi?'प्रश्न ':'प्रश्न ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(solEn?'Your answer':solHi?'आपका उत्तर':'तुमचे उत्तर')+'</small><p>'+yourAnswer+'</p></div><div><small>'+(solEn?'Correct answer':solHi?'सही उत्तर':'योग्य उत्तर')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><details class="result-solution"><summary>'+(solEn?'💡 View solution — Step by step':solHi?'💡 समाधान देखें — चरणबद्ध':'💡 उपाय पाहा — टप्प्याटप्प्याने')+'</summary><div class="result-solution-body"><p><b>'+(solEn?'Correct option: ':solHi?'सही विकल्प: ':'योग्य पर्याय: ')+'</b>'+escapeHTML(q.o[q.a])+'</p>'+solutionHtml+'</div></details></article>';
 });
 reviewHtml+='</div></section>';
 const maxMarks=activePractice.maxMarks||activePractice.questions.reduce((sum,q)=>sum+(q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:1)),0);
