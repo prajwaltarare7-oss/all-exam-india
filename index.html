@@ -1710,6 +1710,23 @@ if(activePractice&&practiceTestStarted&&!practiceSubmitted){alert(selectedPaperL
 const target=window.isPolicePYQPractice?'policepyq':(window.isPoliceHardPractice?'policehardpractice':(isGDMock?'mock':'pyq'));
 showPage(target);
 }
+function buildDetailedSolutionSteps(q){
+ const authored=Array.isArray(q.steps)?q.steps.map(x=>String(x).trim()).filter(Boolean):[];
+ if(authored.length)return authored;
+ const raw=String(q.e||"").trim();
+ if(!raw)return [];
+ const chunks=raw.split(/\\n+|;\\s*|(?<=[.!?])\\s+(?=[A-Zअ-ह])/).map(x=>x.trim()).filter(Boolean);
+ const steps=[];
+ chunks.forEach(chunk=>{
+  const eq=chunk.split(/\\s*=\\s*/).map(x=>x.trim()).filter(Boolean);
+  if(eq.length>=3){
+   for(let i=1;i<eq.length;i++)steps.push(eq[i-1]+" = "+eq[i]);
+  }else steps.push(chunk);
+ });
+ const answer=q.o&&q.o[q.a]!==undefined?String(q.o[q.a]):"";
+ if(answer&&!steps.some(x=>x.includes(answer)))steps.push("म्हणून योग्य उत्तर: "+answer);
+ return steps;
+}
 function submitPracticeTestCore(forceSubmit){
 if(!activePractice||practiceSubmitted)return;
 const total=activePractice.questions.length,unanswered=total-Object.keys(practiceAnswers).length;
@@ -1727,8 +1744,8 @@ const state=chosen===q.a?'correct':(chosen===undefined||chosen===null?'unanswere
 const status=state==='correct'?('Correct'):state==='wrong'?('Incorrect'):('Unanswered');
 const yourAnswer=chosen===undefined||chosen===null?(selectedPaperLanguage==='en'?'Not attempted':'उत्तर दिले नाही'):escapeHTML(q.o[chosen]);
 const solutionText=String(q.e||'').trim();
-const solutionSteps=Array.isArray(q.steps)&&q.steps.length?q.steps.map(x=>String(x)):solutionText.split(/(?:\\n+|(?<=[.!?])\\s+|;\\s*)/).map(x=>x.trim()).filter(Boolean);
-const solutionHtml=solutionSteps.length?'<ol class="result-solution-steps">'+solutionSteps.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
+const solutionSteps=buildDetailedSolutionSteps(q);
+const solutionHtml=solutionSteps.length?'<ol class="result-solution-steps">'+solutionSteps.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol>':'<p class="result-explanation">या प्रश्नासाठी सविस्तर स्पष्टीकरण अजून जोडलेले नाही.</p>';
 reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'Question ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'Your answer')+'</small><p>'+yourAnswer+'</p></div><div><small>'+('Correct Answer')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><details class="result-solution"><summary>'+(selectedPaperLanguage==='en'?'💡 Solution पाहा — Step by Step':'💡 Solution पाहा — Step by Step')+'</summary><div class="result-solution-body"><p><b>'+(selectedPaperLanguage==='en'?'Correct option: ':'Correct option: ')+'</b>'+escapeHTML(q.o[q.a])+'</p>'+solutionHtml+'</div></details></article>';
 });
 reviewHtml+='</div></section>';
