@@ -1392,7 +1392,7 @@ function buildPoliceHardSection(type,count,seed,lang){
     }
     case 12:{
      const a=12+Math.floor(r()*10),b=18+Math.floor(r()*10),l=a*b/mockGcd(a,b);
-     ans=l;q=M("दोन घंटा अनुक्रमे प्रत्येक "+a+" व "+b+" मिनिटांनी वाजतात. त्या सकाळी 8 वाजता एकत्र वाजल्या. पुन्हा किती वाजता एकत्र वाजतील?","Two bells ring every "+a+" and "+b+" minutes. They ring together at 8:00 a.m. When will they next ring together?");
+     ans=l;q=M("दोन घंटा अनुक्रमे प्रत्येक "+a+" व "+b+" मिनिटांनी वाजतात. त्या एकत्र वाजल्यानंतर पुन्हा किती मिनिटांनी एकत्र वाजतील?","Two bells ring every "+a+" and "+b+" minutes. How many minutes after ringing together will they next ring together?");
      const total=480+l;w=[l+mockGcd(a,b),Math.max(a,b),a+b];e=M("पुन्हा एकत्र वाजण्याचा कालावधी = "+a+" व "+b+" यांचा LCM = "+l+" मिनिटे.","The next common interval is the LCM of "+a+" and "+b+", which is "+l+" minutes.");break;
     }
     case 13:{
@@ -1416,7 +1416,7 @@ function buildPoliceHardSection(type,count,seed,lang){
     case 0:{
      const x=3+Math.floor(r()*9),d=2+Math.floor(r()*5),terms=[x,x+d,x+3*d,x+6*d];ans=x+10*d;
      q=M("मालिकेत सलग फरक "+d+" ने वाढतात: "+terms.join(", ")+", __. पुढील पद शोधा.","The successive differences increase by "+d+": "+terms.join(", ")+", __. Find the next term.");
-     w=[ans-d,ans+d,ans+2*d];e=M("फरक "+d+", "+(2*d)+", "+(3*d)+", "+(4*d)+" असे आहेत; पुढचा फरक "+(5*d)+" आहे.","The differences are "+d+", "+(2*d)+", "+(3*d)+", "+(4*d)+"; the next difference is "+(5*d)+".");break;
+     w=[ans-d,ans+d,ans+2*d];e=M("फरक "+d+", "+(2*d)+", "+(3*d)+" असे आहेत; पुढचा फरक "+(4*d)+" आहे.","The differences are "+d+", "+(2*d)+", "+(3*d)+", "+(4*d)+"; the next difference is "+(5*d)+".");break;
     }
     case 1:{
      const word=pick(["TRAIN","POLICE","MARKET","BRAVE","CROWN"]),shift=1+Math.floor(r()*4),coded=[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+shift)%26)).join("");
@@ -1431,7 +1431,7 @@ function buildPoliceHardSection(type,count,seed,lang){
      const n=12+Math.floor(r()*18),e0=8+Math.floor(r()*12),s0=5+Math.floor(r()*7),w0=3+Math.floor(r()*5);
      const dx=e0-w0,dy=n-s0;ans=dx===0?(dy>0?M("उत्तर","North"):M("दक्षिण","South")):dy===0?(dx>0?M("पूर्व","East"):M("पश्चिम","West")):M((dy>0?"उत्तर":"दक्षिण")+"-"+(dx>0?"पूर्व":"पश्चिम"),(dy>0?"North":"South")+"-"+(dx>0?"East":"West"));
      q=M("एक व्यक्ती "+n+" मी उत्तर, "+e0+" मी पूर्व, "+s0+" मी दक्षिण व "+w0+" मी पश्चिम चालते. सुरुवातीच्या ठिकाणाच्या तुलनेत अंतिम दिशा कोणती?","A person walks "+n+" m north, "+e0+" m east, "+s0+" m south and "+w0+" m west. In which direction is the final position from the start?");
-     w=mr?["ईशान्य","वायव्य","आग्नेय","नैऋत्य","उत्तर","दक्षिण","पूर्व","पश्चिम"].filter(x=>x!==ans).slice(0,3):["North-east","North-west","South-east","South-west","North","South","East","West"].filter(x=>x!==ans).slice(0,3);e=M("उत्तर-दक्षिण आणि पूर्व-पश्चिम हालचाली स्वतंत्रपणे वजा करून निव्वळ दिशा ठरवा.","Subtract north–south and east–west movements separately to obtain the net direction.");break;
+     w=mr?["वायव्य","आग्नेय","नैऋत्य","उत्तर","दक्षिण","पूर्व","पश्चिम"].filter(x=>x!==ans).slice(0,3):["North-west","South-east","South-west","North","South","East","West"].filter(x=>x!==ans).slice(0,3);e=M("उत्तर-दक्षिण आणि पूर्व-पश्चिम हालचाली स्वतंत्रपणे वजा करून निव्वळ दिशा ठरवा.","Subtract north–south and east–west movements separately to obtain the net direction.");break;
     }
     case 4:{
      const left=3+Math.floor(r()*9),right=5+Math.floor(r()*10),total=left+right-1;
