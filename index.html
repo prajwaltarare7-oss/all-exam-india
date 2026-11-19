@@ -1147,7 +1147,7 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     }
     case 1:{
      const A=2+Math.floor(r()*5),B=3+Math.floor(r()*5),C=4+Math.floor(r()*5);
-     q=M("एका सांकेतिक भाषेत POLICE = 16-15-12-9-3-5 असे लिहितात. त्याच नियमानुसार प्रत्येक अक्षराचा क्रमांक उलट क्रमाने (A=26, B=25...) घेतल्यास PATROL ची बेरीज किती?","In a code, letters are assigned reverse alphabet values (A=26, B=25, ...). Find the sum for PATROL.");
+     q=M("उलट वर्णमालेत (A=26, B=25...) प्रत्येक अक्षराचे मूल्य घेतल्यास PATROL या शब्दाच्या अक्षरमूल्यांची बेरीज किती?","Using reverse alphabet values (A=26, B=25, ...), find the sum of the letter values in PATROL.");
      ans=[11,26,7,9,12,15].reduce((x,y)=>x+y,0);wrong=[ans-6,ans+6,ans+12];e=M("उलट वर्णमालेतील मूल्ये P=11, A=26, T=7, R=9, O=12, L=15; त्यांची बेरीज करा.","Reverse values: P=11, A=26, T=7, R=9, O=12, L=15; add them.");break;
     }
     case 2:{
@@ -1168,7 +1168,7 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     case 5:{
      const hh=1+Math.floor(r()*10),mm=10+Math.floor(r()*8)*5;
      const raw=Math.abs(30*hh-5.5*mm),ang=Math.min(raw,360-raw);
-     q=M(hh+":"+String(mm).padStart(2,"0")+M(" वाजता घड्याळाच्या तास व मिनिट काट्यांतील लहान कोन किती?","Find the smaller angle between the clock hands at "+hh+":"+String(mm).padStart(2,"0")+"."));
+     q=mr?hh+":"+String(mm).padStart(2,"0")+" वाजता घड्याळाच्या तास व मिनिट काट्यांतील लहान कोन किती?":"Find the smaller angle between the clock hands at "+hh+":"+String(mm).padStart(2,"0")+".";
      ans=Number(ang.toFixed(1));wrong=[Number((ang+5.5).toFixed(1)),Number(Math.abs(180-ang).toFixed(1)),Number((360-ang).toFixed(1))];e=M("कोन = |30×तास − 5.5×मिनिट|; मोठा कोन असल्यास 360 मधून वजा करा.","Angle = |30×hour − 5.5×minutes|; use 360 minus it if needed.");break;
     }
     case 6:{
@@ -1176,7 +1176,7 @@ function buildPoliceBhartiSection(type,count,seed,lang){
      ans=M("फक्त II","Only II");wrong=mr?["फक्त I","दोन्ही","एकही नाही"]:["Only I","Both","Neither"];e=M("‘काही प्रशिक्षित खेळाडू आहेत’ यावरून काही खेळाडू प्रशिक्षित आहेत हे निश्चित; शिपाई खेळाडू असतीलच असे नाही.","The statement guarantees some athletes are trained, but does not establish that any constable is an athlete.");break;
     }
     case 7:{
-     const day=1+Math.floor(r()*28),shift=1+Math.floor(r()*6),weekday=(day+shift)%7;
+     const shift=1+Math.floor(r()*6),weekday=shift%7;
      q=M("एखाद्या महिन्याची १ तारीख सोमवार असेल, तर त्याच महिन्याची "+(1+shift)+" तारीख कोणता वार असेल?","If the 1st of a month is Monday, what day of the week is the "+(1+shift)+"th?");
      ans=shift%7;const days=mr?["सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार","रविवार"]:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
      const correct=days[weekday],wrongDays=shuffle(days.filter(x=>x!==correct)).slice(0,3);ans=correct;wrong=wrongDays;e=M("तारखांमधील अंतर "+shift+" दिवस; ७ ने भागल्यावर उरलेला बाकी वार ठरवतो.","The offset is "+shift+" days; reduce it modulo 7 to find the weekday.");break;
@@ -1184,7 +1184,7 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     case 8:{
      const x=2+Math.floor(r()*5),y=3+Math.floor(r()*5);
      q=M("एका संकेतामध्ये ‘A हा B च्या उत्तरेस आहे’ आणि ‘C हा A च्या पूर्वेस आहे’. D हा B च्या दक्षिणेस व B च्या पूर्वेस असल्यास, D कोणत्या दिशेला असेल?","A is north of B; C is east of A. D is south of B and east of B. Which direction from B is D?");
-     ans=M("आग्नेय","South-east");wrong=mr?["नैऋत्य","वायव्य","ईशान्य"]:["South-west","North-west","North-east"];e=M("C हे B च्या ईशान्येस; C च्या दक्षिणेकडे आणि B च्या पूर्वेकडे असलेला बिंदू आग्नेय दिशेत येतो.","C is north-east of B; a point south of C and east of B lies in the south-east region.");break;
+     ans=M("आग्नेय","South-east");wrong=mr?["नैऋत्य","वायव्य","ईशान्य"]:["South-west","North-west","North-east"];e=M("D हा B च्या दक्षिणेस व पूर्वेस असल्याने तो B च्या आग्नेय दिशेला आहे.","D is both south and east of B, so D is south-east of B.");break;
     }
     case 9:{
      const base=10+Math.floor(r()*15),mul=2+Math.floor(r()*4);
