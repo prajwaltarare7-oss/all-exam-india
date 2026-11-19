@@ -1510,6 +1510,22 @@ function buildPoliceHardSection(type,count,seed,lang){
 }
 function buildPoliceBhartiSection(type,count,seed,lang){
  if(type==="policeMath"||type==="policeReason")return buildPoliceHardSection(type,count,seed,lang);
+ if(type==="policeGK"){
+  const base=buildPoliceBhartiSectionLegacy(type,count,seed,lang),r=gdRand(seed+7411),mr=lang==="mr";
+  const labels=mr?["फक्त विधान I","फक्त विधान II","दोन्ही विधाने","एकही विधान नाही"]:["Only statement I","Only statement II","Both statements","Neither statement"];
+  return base.map((x,i)=>{
+   const correct=x.o[x.a],wrong=x.o[(x.a+1)%x.o.length],correctFirst=r()>.5;
+   const first=correctFirst?correct:wrong,second=correctFirst?wrong:correct;
+   const stem=mr
+    ?"खालील विधानांचा विचार करा. I. '"+first+"' हे प्रश्नाचे योग्य उत्तर आहे: "+x.q+" II. '"+second+"' हे त्याच प्रश्नाचे योग्य उत्तर आहे. कोणते विधान योग्य आहे?"
+    :"Consider the following statements. I. '"+first+"' is the correct answer to: "+x.q+" II. '"+second+"' is the correct answer to the same question. Which statement is correct?";
+   const opts=mockShuffle(labels.map((v,j)=>({v,ok:j===(correctFirst?0:1)})),r);
+   const exp=mr
+    ?(correctFirst?"विधान I योग्य आहे. ":"विधान II योग्य आहे. ")+"मूळ प्रश्नाचे योग्य उत्तर '"+correct+"' आहे; '"+wrong+"' हा पर्याय योग्य नाही."
+    :(correctFirst?"Statement I is correct. ":"Statement II is correct. ")+"The correct answer to the original question is '"+correct+"'; '"+wrong+"' is not correct.";
+   return {...x,q:stem,o:opts.map(v=>v.v),a:opts.findIndex(v=>v.ok),e:exp};
+  });
+ }
  return buildPoliceBhartiSectionLegacy(type,count,seed,lang);
 }
 
