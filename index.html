@@ -1062,11 +1062,11 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     case 0:{
      const p=10+Math.floor(r()*4)*5, d=10+Math.floor(r()*4)*5, base=1000+50*n();
      ans=base*(1-p/100)*(1-d/100);
-     q=M("एका वस्तूची दर्शनी किंमत ₹"+base आहे. प्रथम "+p+"% आणि नंतर सवलतीच्या किमतीवर "+d+"% सूट दिली. अंतिम किंमत किती?","An item marked ₹"+base+" receives successive discounts of "+p+"% and "+d+"%. Find the final price.");
+     q=M("एका वस्तूची दर्शनी किंमत ₹"+base+" आहे. प्रथम "+p+"% आणि नंतर सवलतीच्या किमतीवर "+d+"% सूट दिली. अंतिम किंमत किती?","An item marked ₹"+base+" receives successive discounts of "+p+"% and "+d+"%. Find the final price.");
      w=[base*(1-(p+d)/100),base*(1-p/100),base*(1-d/100)];e=M("सलग सवलती गुणाकाराने लागू होतात: मूळ किंमत × (1−p/100) × (1−d/100).","Successive discounts multiply: marked price × (1−p/100) × (1−d/100).");break;
     }
     case 1:{
-     const x=2+Math.floor(r()*5),y=3+Math.floor(r()*5),total=(x+y)*c,part=x*c;
+     const x=2+Math.floor(r()*5),y=x+1+Math.floor(r()*4),total=(x+y)*c,part=x*c;
      ans=part;q=M("दोन संख्यांचे गुणोत्तर "+x+":"+y+" आहे. त्यांची बेरीज "+total+" असल्यास लहान संख्या किती?","Two numbers are in the ratio "+x+":"+y+". If their sum is "+total+", find the smaller number.");
      w=[y*c,total/x,total-part];e=M("एकूण भाग "+(x+y)+"; एक भाग "+c+"; लहान संख्या "+x+" × "+c+".","Total ratio parts = "+(x+y)+"; one part = "+c+"; smaller number = "+x+" × "+c+".");break;
     }
@@ -1141,13 +1141,14 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     case 0:{
      const x=3+Math.floor(r()*8),d=2+Math.floor(r()*5);
      const seq=[x,x+d,x+2*d,x+3*d,x+4*d];ans=x+5*d;
-     q=M("मालिकेत प्रत्येक पुढील पदाचा फरक आधीच्या फरकापेक्षा "+d+" ने वाढतो: "+seq.slice(0,4).join(", ")+", __ ?","In a series, each successive difference increases by "+d+": "+seq.slice(0,4).join(", ")+", __ ?");
+     const terms=[x,x+d,x+3*d,x+6*d];ans=x+10*d;
+     q=M("मालिकेत प्रत्येक पुढील फरक "+d+" ने वाढतो: "+terms.join(", ")+", __ ?","In this series, each successive difference increases by "+d+": "+terms.join(", ")+", __ ?");
      wrong=[ans-d,ans+d,ans+2*d];e=M("पहिले फरक "+d+" च्या पटीत वाढतात; पुढील फरक "+(5*d)+" आहे.","The successive differences rise by "+d+"; the next difference is "+(5*d)+".");break;
     }
     case 1:{
      const A=2+Math.floor(r()*5),B=3+Math.floor(r()*5),C=4+Math.floor(r()*5);
      q=M("एका सांकेतिक भाषेत POLICE = 16-15-12-9-3-5 असे लिहितात. त्याच नियमानुसार प्रत्येक अक्षराचा क्रमांक उलट क्रमाने (A=26, B=25...) घेतल्यास PATROL ची बेरीज किती?","In a code, letters are assigned reverse alphabet values (A=26, B=25, ...). Find the sum for PATROL.");
-     ans=[16,26,7,9,14,15].reduce((x,y)=>x+y,0);wrong=[ans-6,ans+6,ans+12];e=M("उलट वर्णमालेतील मूल्ये P=11, A=26, T=7, R=9, O=12, L=15; त्यांची बेरीज करा.","Reverse values: P=11, A=26, T=7, R=9, O=12, L=15; add them.");break;
+     ans=[11,26,7,9,12,15].reduce((x,y)=>x+y,0);wrong=[ans-6,ans+6,ans+12];e=M("उलट वर्णमालेतील मूल्ये P=11, A=26, T=7, R=9, O=12, L=15; त्यांची बेरीज करा.","Reverse values: P=11, A=26, T=7, R=9, O=12, L=15; add them.");break;
     }
     case 2:{
      const n1=3+Math.floor(r()*6),n2=2+Math.floor(r()*5);
@@ -1176,13 +1177,13 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     }
     case 7:{
      const day=1+Math.floor(r()*28),shift=1+Math.floor(r()*6),weekday=(day+shift)%7;
-     q=M("एखाद्या महिन्याची १ तारीख सोमवार असेल, तर त्याच महिन्याची "+(day+shift)+" तारीख कोणता वार असेल?","If the 1st of a month is Monday, what day of the week is the "+(day+shift)+"th?");
-     ans=weekday;const days=mr?["सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार","रविवार"]:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-     const correct=days[weekday],wrongDays=shuffle(days.filter(x=>x!==correct)).slice(0,3);add(q,correct,wrongDays,M("तारखांमधील अंतर "+shift+" दिवस; ७ ने भागल्यावर उरलेला बाकी वार ठरवतो.","The offset is "+shift+" days; reduce it modulo 7 to find the weekday.");break;
+     q=M("एखाद्या महिन्याची १ तारीख सोमवार असेल, तर त्याच महिन्याची "+(1+shift)+" तारीख कोणता वार असेल?","If the 1st of a month is Monday, what day of the week is the "+(1+shift)+"th?");
+     ans=shift%7;const days=mr?["सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार","रविवार"]:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+     const correct=days[weekday],wrongDays=shuffle(days.filter(x=>x!==correct)).slice(0,3);ans=correct;wrong=wrongDays;e=M("तारखांमधील अंतर "+shift+" दिवस; ७ ने भागल्यावर उरलेला बाकी वार ठरवतो.","The offset is "+shift+" days; reduce it modulo 7 to find the weekday.");break;
     }
     case 8:{
      const x=2+Math.floor(r()*5),y=3+Math.floor(r()*5);
-     q=M("एका संकेतामध्ये ‘A हा B च्या उत्तरेस आहे’ आणि ‘C हा A च्या पूर्वेस आहे’. D हा C च्या दक्षिणेस व B च्या पूर्वेस असल्यास, D कोणत्या दिशेला असू शकतो?","A is north of B; C is east of A. D is south of C and east of B. Which direction from B can D be?");
+     q=M("एका संकेतामध्ये ‘A हा B च्या उत्तरेस आहे’ आणि ‘C हा A च्या पूर्वेस आहे’. D हा B च्या दक्षिणेस व B च्या पूर्वेस असल्यास, D कोणत्या दिशेला असेल?","A is north of B; C is east of A. D is south of B and east of B. Which direction from B is D?");
      ans=M("आग्नेय","South-east");wrong=mr?["नैऋत्य","वायव्य","ईशान्य"]:["South-west","North-west","North-east"];e=M("C हे B च्या ईशान्येस; C च्या दक्षिणेकडे आणि B च्या पूर्वेकडे असलेला बिंदू आग्नेय दिशेत येतो.","C is north-east of B; a point south of C and east of B lies in the south-east region.");break;
     }
     case 9:{
