@@ -2294,6 +2294,7 @@ const db = getFirestore(app);
 const eventCol = collection(db, "activityEvents");
 const sessionKey = "aei-analytics-session-v1";
 let sessionId = "";
+let activeTestCategory = "Other";
 try {
   sessionId = localStorage.getItem(sessionKey) || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2));
   localStorage.setItem(sessionKey, sessionId);
@@ -2304,7 +2305,7 @@ async function track(type, page) {
     await addDoc(eventCol, {
       eventType: type,
       page: String(page || "").slice(0, 80),
-      category: /pyq/i.test(String(page || "")) ? "PYQ" : (/mock|hard/i.test(String(page || "")) ? "Mock" : "Other"),
+      category: /pyq/i.test(String(page || "")) ? "PYQ" : (/mock|hard/i.test(String(page || "")) ? "Mock" : activeTestCategory),
       sessionId,
       createdAt: serverTimestamp()
     });
@@ -2327,8 +2328,11 @@ if (typeof originalShowPage === "function") {
 const originalStart = window.confirmStartPracticeTest;
 if (typeof originalStart === "function") {
   window.confirmStartPracticeTest = function() {
+    const activePage = document.querySelector(".page.active");
+    const pageId = activePage ? activePage.id : "";
+    activeTestCategory = /pyq/i.test(pageId) ? "PYQ" : (/mock|hard/i.test(pageId) ? "Mock" : (window.isPolicePYQPractice ? "PYQ" : (window.isGDMock ? "Mock" : "Other")));
     const result = originalStart.apply(this, arguments);
-    track("test_started", window.practiceExam || "testroom");
+    if (window.activePractice || document.body.classList.contains("aei-test-active")) track("test_started", pageId || window.practiceExam || "testroom");
     return result;
   };
 }
@@ -2337,7 +2341,8 @@ if (typeof originalSubmit === "function") {
   window.submitPracticeTestCore = function() {
     const wasSubmitted = window.practiceSubmitted;
     const result = originalSubmit.apply(this, arguments);
-    if (!wasSubmitted && window.practiceSubmitted) track("test_completed", window.practiceExam || "testroom");
+    const resultPanel = document.getElementById("testResult");
+    if (!wasSubmitted && resultPanel && resultPanel.innerHTML.indexOf("result-review") !== -1) track("test_completed", activeTestCategory === "PYQ" ? "PYQ" : (activeTestCategory === "Mock" ? "Mock" : (window.practiceExam || "testroom")));
     return result;
   };
 }
