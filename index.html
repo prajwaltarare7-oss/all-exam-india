@@ -181,7 +181,7 @@ body.dark .test-status span,body.dark .question-legend span{background:#192a48;b
 .result-review-heading{margin:20px 0 12px;padding:12px 14px;border-radius:12px;background:#eef3ff;color:#203b77;font-size:17px;font-weight:850}
 body.dark .result-review-heading{background:#1c2d4b;color:#dce7ff}
 .result-solution{margin-top:12px;border:1px solid #dce5f3;border-radius:10px;background:#f6f8fd;overflow:hidden}
-.result-solution summary{cursor:pointer;padding:11px 12px;font-size:13px;font-weight:850;color:#3155bd;list-style:none}
+.result-solution summary{display:block!important;visibility:visible!important;cursor:pointer;padding:13px 14px;font-size:14px;font-weight:900;color:#2349b5;list-style:none;background:#eaf0ff;border-radius:9px;min-height:44px}
 .result-solution summary::-webkit-details-marker{display:none}
 .result-solution summary:after{content:"＋";float:right;font-size:17px}
 .result-solution[open] summary:after{content:"−"}
@@ -1690,7 +1690,7 @@ function submitPracticeTest(forceSubmit){
    const steps=Array.isArray(q.steps)&&q.steps.length?q.steps.map(x=>String(x)):String(q.e||'').split(/(?:\\n+|(?<=[.!?])\\s+|;\\s*)/).map(x=>x.trim()).filter(Boolean);
    const stepHtml=steps.length?'<ol class="result-solution-steps">'+steps.map(x=>'<li>'+escapeHTML(x)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
    const opts=Array.isArray(q.o)?q.o:[];
-   fallbackReview+='<article class="result-answer-card '+state+'"><b>Question '+(i+1)+'</b><p class="result-question">'+escapeHTML(q.q||'')+'</p><p><b>Correct answer:</b> '+escapeHTML(opts[q.a]||'')+'</p><details class="result-solution"><summary>Solution — Step by Step</summary><div class="result-solution-body">'+stepHtml+'</div></details></article>';
+   fallbackReview+='<article class="result-answer-card '+state+'"><b>Question '+(i+1)+'</b><p class="result-question">'+escapeHTML(q.q||'')+'</p><p><b>Correct answer:</b> '+escapeHTML(opts[q.a]||'')+'</p><details class="result-solution"><summary>💡 Solution पाहा — Step by Step</summary><div class="result-solution-body">'+stepHtml+'</div></details></article>';
   }
   fallbackReview+='</div></section>';
   let node=document.getElementById("testResult");
@@ -1729,7 +1729,7 @@ const yourAnswer=chosen===undefined||chosen===null?(selectedPaperLanguage==='en'
 const solutionText=String(q.e||'').trim();
 const solutionSteps=Array.isArray(q.steps)&&q.steps.length?q.steps.map(x=>String(x)):solutionText.split(/(?:\\n+|(?<=[.!?])\\s+|;\\s*)/).map(x=>x.trim()).filter(Boolean);
 const solutionHtml=solutionSteps.length?'<ol class="result-solution-steps">'+solutionSteps.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
-reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'Question ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'Your answer')+'</small><p>'+yourAnswer+'</p></div><div><small>'+('Correct Answer')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><details class="result-solution"><summary>'+(selectedPaperLanguage==='en'?'Solution — Step by Step':'Solution — Step by Step')+'</summary><div class="result-solution-body"><p><b>'+(selectedPaperLanguage==='en'?'Correct option: ':'Correct option: ')+'</b>'+escapeHTML(q.o[q.a])+'</p>'+solutionHtml+'</div></details></article>';
+reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'Question ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'Your answer')+'</small><p>'+yourAnswer+'</p></div><div><small>'+('Correct Answer')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><details class="result-solution"><summary>'+(selectedPaperLanguage==='en'?'💡 Solution पाहा — Step by Step':'💡 Solution पाहा — Step by Step')+'</summary><div class="result-solution-body"><p><b>'+(selectedPaperLanguage==='en'?'Correct option: ':'Correct option: ')+'</b>'+escapeHTML(q.o[q.a])+'</p>'+solutionHtml+'</div></details></article>';
 });
 reviewHtml+='</div></section>';
 const maxMarks=activePractice.maxMarks||activePractice.questions.reduce((sum,q)=>sum+(q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:1)),0);
