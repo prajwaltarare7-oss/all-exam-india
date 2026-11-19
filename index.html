@@ -1045,91 +1045,240 @@ function mockBuildSection(type,count,seed,lang,stream){const r=gdRand(seed);let 
 
 function buildPoliceBhartiSection(type,count,seed,lang){
  const r=gdRand(seed),out=[],mr=lang==="mr";
- const add=(q,opts,answer,explain)=>{const a=mockShuffle(opts.map((v,i)=>({v:String(v),ok:i===answer})),r);out.push({q,o:a.map(x=>x.v),a:a.findIndex(x=>x.ok),e:explain});};
- const unique=(a)=>Array.from(new Set(a.map(String)));
+ const pick=a=>a[Math.floor(r()*a.length)];
+ const shuffle=a=>mockShuffle(a,r);
+ const add=(q,correct,wrong,explain)=>{
+  const vals=[String(correct),...wrong.map(String)].filter((v,i,a)=>a.indexOf(v)===i);
+  while(vals.length<4) vals.push(String(correct)+" + "+(vals.length+1));
+  const choices=shuffle(vals.slice(0,4).map(v=>({v,ok:v===String(correct)})));
+  out.push({q,o:choices.map(x=>x.v),a:choices.findIndex(x=>x.ok),e:explain});
+ };
+ const M=(mrText,enText)=>mr?mrText:enText;
  for(let i=0;i<count;i++){
-  const n=()=>1+Math.floor(r()*90),pick=(a)=>a[Math.floor(r()*a.length)];
+  const k=i%12, n=()=>8+Math.floor(r()*72),a=n(),b=5+Math.floor(r()*25),c=2+Math.floor(r()*9);
   if(type==="policeMath"){
-   const k=i%10,a=12+n(),b=3+Math.floor(r()*18),c=2+Math.floor(r()*12);let ans,q,e;
-   if(k===0){ans=a*b;q=mr? a+" वस्तूंची किंमत प्रत्येकी ₹"+b+" असल्यास एकूण किंमत किती?":"If "+a+" items cost ₹"+b+" each, what is the total cost?";e=mr?"एकूण किंमत = वस्तूंची संख्या × प्रति वस्तू किंमत.":"Total cost = number of items × cost per item.";}
-   else if(k===1){const p=10+Math.floor(r()*6)*5,base=a*10;ans=base*(100-p)/100;q=mr?"₹"+base+" किमतीवर "+p+"% सूट दिल्यास विक्री किंमत किती?":"An item marked ₹"+base+" is discounted by "+p+"%. Find its sale price.";e=mr?"विक्री किंमत = मूळ किंमत × (100 − सूट)%":"Sale price = marked price × (100 − discount)%.";}
-   else if(k===2){const x=2+Math.floor(r()*8),y=3+Math.floor(r()*7);ans=x*y;q=mr?"A:B = "+x+":"+y+" आणि B = "+y* c+" असल्यास A किती?":"If A:B = "+x+":"+y+" and B = "+y*c+", find A.";ans=x*c;e=mr?"B चा भाग "+y+" असल्याने एका भागाची किंमत "+c+"; A = "+x+" × "+c+".":"One ratio unit is "+c+"; A = "+x+" × "+c+".";}
-   else if(k===3){const p=5+Math.floor(r()*15),principal=1000+10*n();ans=principal*p*2/100;q=mr?"₹"+principal+" वर वार्षिक "+p+"% दराने 2 वर्षांचे सरळव्याज किती?":"Find simple interest on ₹"+principal+" at "+p+"% per annum for 2 years.";e=mr?"सरळव्याज = मुद्दल × दर × कालावधी / 100.":"Simple interest = principal × rate × time / 100.";}
-   else if(k===4){const x=2+Math.floor(r()*8),y=2+Math.floor(r()*8);ans=x*y/(x+y);q=mr?"A काम "+x+" दिवसांत व B "+y+" दिवसांत करतो. दोघे मिळून किती दिवसांत करतील?":"A completes a job in "+x+" days and B in "+y+" days. How long together?";e=mr?"एकत्र वेळ = xy/(x+y) दिवस.":"Combined time = xy/(x+y) days.";}
-   else if(k===5){const speed=30+Math.floor(r()*7)*5,time=2+Math.floor(r()*5);ans=speed*time;q=mr?""+speed+" किमी/तास वेगाने "+time+" तासांत किती अंतर पार होईल?":"At "+speed+" km/h, how far is travelled in "+time+" hours?";e=mr?"अंतर = वेग × वेळ.":"Distance = speed × time.";}
-   else if(k===6){const x=n(),y=n(),z=n();ans=(x+y+z)/3;q=mr?"तीन संख्यांची सरासरी "+ans+" आहे. त्यांची बेरीज किती?":"The average of three numbers is "+ans+". Find their sum.";ans=x+y+z;e=mr?"बेरीज = सरासरी × संख्यांची संख्या.":"Sum = average × number of values.";}
-   else if(k===7){const base=100+10*n(),p=10+Math.floor(r()*5)*5;ans=base*(100+p)/100;q=mr?"₹"+base+" मध्ये "+p+"% वाढ झाल्यास नवीन किंमत किती?":"A value of ₹"+base+" increases by "+p+"%. Find the new value.";e=mr?"नवीन किंमत = मूळ किंमत × (1 + दर/100).":"New value = original × (1 + rate/100).";}
-   else if(k===8){const total=2*b*c,part=b;ans=total-part;q=mr?"एका वर्गात "+total+" विद्यार्थी आहेत. "+part+" विद्यार्थी अनुपस्थित असल्यास उपस्थित किती?":"A class has "+total+" students; "+part+" are absent. How many are present?";e=mr?"उपस्थित = एकूण − अनुपस्थित.":"Present = total − absent.";}
-   else{const num=2+Math.floor(r()*8),den=num+2,whole=den*c;ans=whole/den*num;q=mr?whole+" चा "+num+"/"+den+" भाग किती?":"Find "+num+"/"+den+" of "+whole+".";e=mr?"संख्येला अंशाने गुणून छेदाने भागा.":"Multiply by the numerator and divide by the denominator.";}
-   const opts=unique([ans,ans+(Math.abs(ans)*.1||3),ans-(Math.abs(ans)*.1||3),ans+Math.max(2,Math.round(Math.abs(ans)*.2))]);while(opts.length<4)opts.push(Number(ans)+opts.length*7+11);add(q,opts.slice(0,4),0,e);
+   let q,ans,w,e;
+   switch(k){
+    case 0:{
+     const p=10+Math.floor(r()*4)*5, d=10+Math.floor(r()*4)*5, base=1000+50*n();
+     ans=base*(1-p/100)*(1-d/100);
+     q=M("एका वस्तूची दर्शनी किंमत ₹"+base आहे. प्रथम "+p+"% आणि नंतर सवलतीच्या किमतीवर "+d+"% सूट दिली. अंतिम किंमत किती?","An item marked ₹"+base+" receives successive discounts of "+p+"% and "+d+"%. Find the final price.");
+     w=[base*(1-(p+d)/100),base*(1-p/100),base*(1-d/100)];e=M("सलग सवलती गुणाकाराने लागू होतात: मूळ किंमत × (1−p/100) × (1−d/100).","Successive discounts multiply: marked price × (1−p/100) × (1−d/100).");break;
+    }
+    case 1:{
+     const x=2+Math.floor(r()*5),y=3+Math.floor(r()*5),total=(x+y)*c,part=x*c;
+     ans=part;q=M("दोन संख्यांचे गुणोत्तर "+x+":"+y+" आहे. त्यांची बेरीज "+total+" असल्यास लहान संख्या किती?","Two numbers are in the ratio "+x+":"+y+". If their sum is "+total+", find the smaller number.");
+     w=[y*c,total/x,total-part];e=M("एकूण भाग "+(x+y)+"; एक भाग "+c+"; लहान संख्या "+x+" × "+c+".","Total ratio parts = "+(x+y)+"; one part = "+c+"; smaller number = "+x+" × "+c+".");break;
+    }
+    case 2:{
+     const daysA=4+Math.floor(r()*7),daysB=daysA+2+Math.floor(r()*8),daysC=3+Math.floor(r()*5);
+     const work=daysA*daysB,rate=1/daysA+1/daysB,ans=work/(daysA+daysB);
+     const together=daysA*daysB/(daysA+daysB);
+     q=M("A एखादे काम "+daysA+" दिवसांत व B "+daysB+" दिवसांत करतो. दोघांनी एकत्र "+daysC+" दिवस काम केल्यावर उरलेले काम A एकट्याने किती दिवसांत पूर्ण करेल?","A completes a job in "+daysA+" days and B in "+daysB+" days. After they work together for "+daysC+" days, how many more days will A alone need?");
+     const remaining=1-daysC*(1/daysA+1/daysB);ans=remaining*daysA;
+     w=[daysA*daysC,daysB*daysC,daysA*daysB/(daysA+daysB)];e=M("एकत्र दर = 1/A + 1/B. उरलेले काम = 1 − दिवस × एकत्र दर; त्याला A च्या दराने भागा.","Combined rate = 1/A + 1/B. Remaining work = 1 − elapsed days × combined rate; divide by A's rate.");break;
+    }
+    case 3:{
+     const speed=36+Math.floor(r()*8)*6,train=120+Math.floor(r()*9)*20,platform=180+Math.floor(r()*9)*20;
+     ans=(train+platform)/(speed*5/18);
+     q=M(speed+" किमी/तास वेगाची "+train+" मीटर लांबीची रेल्वे "+platform+" मीटर लांबीचा फलाट किती सेकंदांत पूर्ण ओलांडेल?","A "+train+" m train travels at "+speed+" km/h. How many seconds will it take to completely cross a "+platform+" m platform?");
+     w=[train/(speed*5/18),platform/(speed*5/18),(train+platform)/(speed/3.6)];e=M("पूर्ण ओलांडण्यासाठी रेल्वेची लांबी + फलाटाची लांबी पार करावी लागते; वेग m/s मध्ये बदला.","To clear the platform, the train covers train length + platform length; convert speed to m/s.");break;
+    }
+    case 4:{
+     const p=1000+100*n(),rate=5+Math.floor(r()*6),t=2+Math.floor(r()*3);
+     const ci=p*Math.pow(1+rate/100,t)-p,si=p*rate*t/100;ans=Number((ci-si).toFixed(2));
+     q=M("₹"+p+" वर वार्षिक "+rate+"% दराने "+t+" वर्षांसाठी चक्रवाढ व्याज व सरळव्याज यांतील फरक किती?","Find the difference between compound interest and simple interest on ₹"+p+" at "+rate+"% per annum for "+t+" years.");
+     w=[Number((p*rate/100).toFixed(2)),Number((ci+si).toFixed(2)),Number((si-ci).toFixed(2))];e=M("चक्रवाढ व्याजात दरवर्षी व्याज मुद्दलात जोडले जाते; CI मधून SI वजा करा.","Compound interest adds each year's interest to the principal; subtract SI from CI.");break;
+    }
+    case 5:{
+     const inlet=4+Math.floor(r()*5),outlet=10+Math.floor(r()*8),tank= inlet*outlet*2;
+     const net=1/inlet-1/outlet;ans=1/net;
+     q=M("एक नळ टाकी "+inlet+" तासांत भरतो; गळतीचा नळ ती "+outlet+" तासांत रिकामी करतो. दोन्ही उघडे असल्यास टाकी किती तासांत भरेल?","An inlet fills a tank in "+inlet+" hours and a leak empties it in "+outlet+" hours. How long will the open system take to fill it?");
+     w=[1/(1/inlet+1/outlet),outlet-inlet,inlet*outlet/(outlet-inlet+2)];e=M("निव्वळ दर = भरण्याचा दर − रिकामी होण्याचा दर.","Net rate = filling rate − emptying rate.");break;
+    }
+    case 6:{
+     const count=8+Math.floor(r()*8),avg=35+Math.floor(r()*20),old=avg*count,removed=20+Math.floor(r()*30),added=removed+count*2;
+     ans=(old-removed+added)/(count);
+     q=M(count+" विद्यार्थ्यांचे सरासरी वजन "+avg+" किलो आहे. "+removed+" किलो वजनाचा विद्यार्थी बाहेर गेला आणि "+added+" किलोचा विद्यार्थी आला. नवीन सरासरी किती?","The average weight of "+count+" students is "+avg+" kg. A "+removed+" kg student leaves and a "+added+" kg student joins. Find the new average.");
+     w=[avg+(added-removed),avg+(added-removed)/(count-1),avg+(added-removed)/(count+1)];e=M("नवीन बेरीज = जुनी बेरीज − बाहेर गेलेले वजन + आलेले वजन; विद्यार्थ्यांची संख्या तीच.","New total = old total − departing weight + arriving weight; the number of students is unchanged.");break;
+    }
+    case 7:{
+     const cp=500+50*n(),profit=10+Math.floor(r()*5)*5,disc=10+Math.floor(r()*4)*5;
+     const sp=cp*(1+profit/100),mp=sp/(1-disc/100);ans=Number(mp.toFixed(2));
+     q=M("विक्रेत्याला खरेदी किमतीवर "+profit+"% नफा हवा आहे. "+disc+"% सूट दिल्यानंतर विक्री किंमत ₹"+sp.toFixed(2) असेल, तर दर्शनी किंमत किती?","A seller wants "+profit+"% profit on cost price. If the selling price after a "+disc+"% discount is ₹"+sp.toFixed(2)+", find the marked price.");
+     w=[Number((sp*(1+disc/100)).toFixed(2)),Number((sp/(1+disc/100)).toFixed(2)),Number((cp*(1+disc/100)).toFixed(2))];e=M("नफा आधी खरेदी किमतीवरून विक्री किंमत ठरवतो; सूटीनंतरची किंमत ही दर्शनी किमतीची "+(100-disc)+"% आहे.","First calculate the profit-based selling price; the discounted price is "+(100-disc)+"% of the marked price.");break;
+    }
+    case 8:{
+     const ages=18+Math.floor(r()*12),gap=6+Math.floor(r()*8),years=3+Math.floor(r()*5);
+     const younger=ages,older=ages+gap;ans=older+younger+2*years;
+     q=M("वडिलांचे व मुलाचे सध्याचे वय अनुक्रमे "+older+" व "+younger+" वर्षे आहे. "+years+" वर्षांनंतर त्यांच्या वयांची बेरीज किती असेल?","A father and son's present ages are "+older+" and "+younger+" years. What will be the sum of their ages after "+years+" years?");
+     w=[older+younger+years,older+younger+3*years,older+younger];e=M("दोघांचे वय दरवर्षी एकाने वाढते; म्हणून एकूण बेरीज "+(2*years)+" ने वाढते.","Each person's age increases by one each year, so the sum rises by "+(2*years)+".");break;
+    }
+    case 9:{
+     const x=12+Math.floor(r()*18),y=18+Math.floor(r()*18),g=mockGcd(x,y),l=x*y/g;
+     ans=l;q=M("दोन घंटा अनुक्रमे प्रत्येक "+x+" व "+y+" मिनिटांनी वाजतात. त्या एकत्र वाजल्यानंतर पुन्हा किती मिनिटांनी एकत्र वाजतील?","Two bells ring every "+x+" and "+y+" minutes. After ringing together, when will they next ring together?");
+     w=[g,x+y,l+g];e=M("पुन्हा एकत्र वाजण्याचा कालावधी म्हणजे दोन्ही अंतरांचा लसावी.","The next simultaneous ring occurs after the LCM of the intervals.");break;
+    }
+    case 10:{
+     const boat=12+Math.floor(r()*10),stream=2+Math.floor(r()*5),distance=boat*2;
+     ans=distance/(boat+stream)+distance/(boat-stream);
+     q=M("स्थिर पाण्यातील होडीचा वेग "+boat+" किमी/तास व प्रवाहाचा वेग "+stream+" किमी/तास आहे. "+distance+" किमी जाऊन परत येण्यासाठी एकूण वेळ किती?","A boat's still-water speed is "+boat+" km/h and stream speed is "+stream+" km/h. Find total time for a "+distance+" km downstream-and-back journey.");
+     w=[2*distance/boat,distance/(boat+stream),distance/(boat-stream)];e=M("प्रवाहाच्या दिशेने वेग = होडी + प्रवाह; विरुद्ध दिशेने = होडी − प्रवाह. दोन्ही वेळा जोडा.","Downstream speed = boat + stream; upstream speed = boat − stream. Add both travel times.");break;
+    }
+    default:{
+     const total=120+Math.floor(r()*80),ratio=2+Math.floor(r()*4),part=3+Math.floor(r()*5),whole=ratio+part;
+     ans=total*ratio/whole;
+     q=M("एका मिश्रणात दूध व पाणी यांचे गुणोत्तर "+ratio+":"+part+" आहे. मिश्रणातून "+total+" लिटर घेतल्यास त्यातील दुधाचे प्रमाण किती?","A mixture contains milk and water in the ratio "+ratio+":"+part+". How much milk is present in "+total+" litres of the mixture?");
+     w=[total*part/whole,total/ratio,total*ratio/part];e=M("एकूण भाग "+whole+"; दुधाचे प्रमाण = एकूण × दूधाचे भाग / एकूण भाग.","Total parts = "+whole+"; milk = total volume × milk parts / total parts.");break;
+    }
+   }
+   const correct=Number.isInteger(ans)?String(ans):String(Number(ans.toFixed(2)));
+   const wrong=w.map(v=>Number.isInteger(v)?String(v):String(Number(v.toFixed(2))));
+   add(q,correct,wrong,e);
   }else if(type==="policeReason"){
-   const k=i%8,a=3+n()%20,d=2+n()%9;let ans,q,e,opts;
-   if(k===0){ans=a+5*d;q=mr?"मालिका पूर्ण करा: "+a+", "+(a+d)+", "+(a+2*d)+", "+(a+3*d)+", __":"Complete the series: "+a+", "+(a+d)+", "+(a+2*d)+", "+(a+3*d)+", __";opts=[ans,ans+d,ans-d,ans+2*d];e=mr?"प्रत्येक पदात "+d+" ची वाढ आहे.":"The common difference is "+d+".";}
-   else if(k===1){ans=(a+3)*(a+3);q=mr?"मालिका पूर्ण करा: "+(a*a)+", "+((a+1)*(a+1))+", "+((a+2)*(a+2))+", __":"Find the next term: "+(a*a)+", "+((a+1)*(a+1))+", "+((a+2)*(a+2))+", __";opts=[ans,ans+1,ans+2,ans+d];e=mr?"अनुक्रमे पूर्ण वर्ग आहेत.":"The terms are consecutive square numbers.";}
-   else if(k===2){const code=a+3;ans=code+4;q=mr?"जर CAT ला अक्षरांच्या क्रमांकांची बेरीज "+(3+1+20)+" अशी दिली, तर DOG ची बेरीज किती?":"If a word is coded by the sum of its alphabet positions, what is the code for DOG?";ans=4+15+7;opts=[ans,ans+2,ans-2,ans+4];e=mr?"D=4, O=15, G=7; बेरीज = 26.":"D=4, O=15, G=7; total = 26.";}
-   else if(k===3){const x=2+Math.floor(r()*8),y=3+Math.floor(r()*8);ans=x+y;q=mr?"एका रांगेत अमोल डावीकडून "+x+" वा आणि उजवीकडून "+y+" वा आहे. रांगेत एकूण किती जण?":"Amol is "+x+"th from the left and "+y+"th from the right. How many people are in the row?";e=mr?"एकूण = डावीकडील स्थान + उजवीकडील स्थान − 1.":"Total = left position + right position − 1.";ans=x+y-1;opts=[ans,ans+1,ans+2,Math.max(1,ans-2)];}
-   else if(k===4){ans=pick([2,3,4,5]);q=mr?"खालीलपैकी वेगळा घटक ओळखा: 8, 27, 64, 100, 125":"Find the odd one out: 8, 27, 64, 100, 125";ans=100;opts=[100,64,27,125];e=mr?"इतर संख्या पूर्ण घन आहेत; 100 पूर्ण घन नाही.":"All others are perfect cubes; 100 is not.";}
-   else if(k===5){const x=1+Math.floor(r()*8);ans=x*3;q=mr?"जर A=1, B=2,... तर CAT चे मूल्य किती?":"If A=1, B=2,... what is the value of CAT?";ans=3+1+20;opts=[ans,ans+1,ans-1,ans+3];e=mr?"C=3, A=1, T=20; बेरीज 24.":"C=3, A=1, T=20; total 24.";}
-   else if(k===6){q=mr?"एक व्यक्ती 5 किमी उत्तर, 3 किमी पूर्व, नंतर 5 किमी दक्षिण जाते. सुरुवातीच्या ठिकाणापासून ती कोणत्या दिशेला आहे?":"A person walks 5 km north, 3 km east, then 5 km south. In which direction from the start?";ans= "पूर्व";opts=mr?["पूर्व","पश्चिम","उत्तर","दक्षिण"]:["East","West","North","South"];ans=0;e=mr?"उत्तर-दक्षिण हालचाल रद्द होते; 3 किमी पूर्व उरते.":"North and south cancel; 3 km east remains.";}
-   else{ans=pick([12,18,24,30]);q=mr?"घड्याळात 3:00 वाजता तास व मिनिट काट्यातील कोन किती?":"What is the angle between clock hands at 3:00?";ans=90;opts=[90,60,75,120];e=mr?"3 वाजता काट्यांमध्ये समकोन म्हणजे 90° असतो.":"At 3:00 the hands form a right angle.";}
-   if(!opts)opts=[ans,ans+d,Math.max(0,ans-d),ans+2*d];add(q,opts,0,e);
+   let q,ans,wrong,e;
+   switch(k){
+    case 0:{
+     const x=3+Math.floor(r()*8),d=2+Math.floor(r()*5);
+     const seq=[x,x+d,x+2*d,x+3*d,x+4*d];ans=x+5*d;
+     q=M("मालिकेत प्रत्येक पुढील पदाचा फरक आधीच्या फरकापेक्षा "+d+" ने वाढतो: "+seq.slice(0,4).join(", ")+", __ ?","In a series, each successive difference increases by "+d+": "+seq.slice(0,4).join(", ")+", __ ?");
+     wrong=[ans-d,ans+d,ans+2*d];e=M("पहिले फरक "+d+" च्या पटीत वाढतात; पुढील फरक "+(5*d)+" आहे.","The successive differences rise by "+d+"; the next difference is "+(5*d)+".");break;
+    }
+    case 1:{
+     const A=2+Math.floor(r()*5),B=3+Math.floor(r()*5),C=4+Math.floor(r()*5);
+     q=M("एका सांकेतिक भाषेत POLICE = 16-15-12-9-3-5 असे लिहितात. त्याच नियमानुसार प्रत्येक अक्षराचा क्रमांक उलट क्रमाने (A=26, B=25...) घेतल्यास PATROL ची बेरीज किती?","In a code, letters are assigned reverse alphabet values (A=26, B=25, ...). Find the sum for PATROL.");
+     ans=[16,26,7,9,14,15].reduce((x,y)=>x+y,0);wrong=[ans-6,ans+6,ans+12];e=M("उलट वर्णमालेतील मूल्ये P=11, A=26, T=7, R=9, O=12, L=15; त्यांची बेरीज करा.","Reverse values: P=11, A=26, T=7, R=9, O=12, L=15; add them.");break;
+    }
+    case 2:{
+     const n1=3+Math.floor(r()*6),n2=2+Math.floor(r()*5);
+     q=M("अमित हा सीमा हिचा भाऊ आहे. सीमा ही रोहनची आई आहे. रोहन हा नेहाचा भाऊ आहे. अमितचे नेहाशी नाते काय?","Amit is Seema's brother. Seema is Rohan's mother. Rohan is Neha's brother. How is Amit related to Neha?");
+     ans=M("मामा","Maternal uncle");wrong=mr?["काका","आजोबा","भाऊ"]:["Paternal uncle","Grandfather","Brother"];e=M("सीमा ही नेहा व रोहनची आई; तिचा भाऊ अमित म्हणजे नेहाचा मामा.","Seema is Neha's mother; her brother Amit is Neha's maternal uncle.");break;
+    }
+    case 3:{
+     const d=10+Math.floor(r()*20),h=2+Math.floor(r()*5);
+     q=M("एक व्यक्ती उत्तरेस "+d+" मीटर, पूर्वेस "+(d+h)+" मीटर, दक्षिणेस "+d+" मीटर आणि पश्चिमेस "+h+" मीटर जाते. ती सुरुवातीच्या ठिकाणापासून कुठे आहे?","A person walks "+d+" m north, "+(d+h)+" m east, "+d+" m south, then "+h+" m west. Where is the person relative to the start?");
+     ans=M("पूर्व","East");wrong=mr?["पश्चिम","उत्तर","दक्षिण"]:["West","North","South"];e=M("उत्तर-दक्षिण हालचाल रद्द; पूर्वेकडील अंतरातून पश्चिमेकडील अंतर वजा केल्यावर "+d+" मीटर पूर्व उरते.","North and south cancel; subtract westward travel from eastward travel, leaving "+d+" m east.");break;
+    }
+    case 4:{
+     const startN=2+Math.floor(r()*4),endN=3+Math.floor(r()*5),total=startN+endN-1;
+     q=M("एका रांगेत किरण डावीकडून "+startN+" वा व उजवीकडून "+endN+" वा आहे. रांगेत एकूण किती व्यक्ती आहेत?","Kiran is "+startN+"th from the left and "+endN+"th from the right. How many people are in the row?");
+     ans=total;wrong=[total+1,total-1,startN+endN];e=M("एकूण व्यक्ती = डावीकडील स्थान + उजवीकडील स्थान − 1.","Total = left rank + right rank − 1.");break;
+    }
+    case 5:{
+     const hh=1+Math.floor(r()*10),mm=10+Math.floor(r()*8)*5;
+     const raw=Math.abs(30*hh-5.5*mm),ang=Math.min(raw,360-raw);
+     q=M(hh+":"+String(mm).padStart(2,"0")+M(" वाजता घड्याळाच्या तास व मिनिट काट्यांतील लहान कोन किती?","Find the smaller angle between the clock hands at "+hh+":"+String(mm).padStart(2,"0")+"."));
+     ans=Number(ang.toFixed(1));wrong=[Number((ang+5.5).toFixed(1)),Number(Math.abs(180-ang).toFixed(1)),Number((360-ang).toFixed(1))];e=M("कोन = |30×तास − 5.5×मिनिट|; मोठा कोन असल्यास 360 मधून वजा करा.","Angle = |30×hour − 5.5×minutes|; use 360 minus it if needed.");break;
+    }
+    case 6:{
+     q=M("विधाने: सर्व शिपाई प्रशिक्षित आहेत. काही प्रशिक्षित व्यक्ती खेळाडू आहेत. निष्कर्ष: (I) काही शिपाई खेळाडू आहेत. (II) काही खेळाडू प्रशिक्षित आहेत. कोणता निष्कर्ष निश्चितपणे अनुसरतो?","Statements: All constables are trained. Some trained people are athletes. Conclusions: (I) Some constables are athletes. (II) Some athletes are trained. Which conclusion necessarily follows?");
+     ans=M("फक्त II","Only II");wrong=mr?["फक्त I","दोन्ही","एकही नाही"]:["Only I","Both","Neither"];e=M("‘काही प्रशिक्षित खेळाडू आहेत’ यावरून काही खेळाडू प्रशिक्षित आहेत हे निश्चित; शिपाई खेळाडू असतीलच असे नाही.","The statement guarantees some athletes are trained, but does not establish that any constable is an athlete.");break;
+    }
+    case 7:{
+     const day=1+Math.floor(r()*28),shift=1+Math.floor(r()*6),weekday=(day+shift)%7;
+     q=M("एखाद्या महिन्याची १ तारीख सोमवार असेल, तर त्याच महिन्याची "+(day+shift)+" तारीख कोणता वार असेल?","If the 1st of a month is Monday, what day of the week is the "+(day+shift)+"th?");
+     ans=weekday;const days=mr?["सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार","रविवार"]:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+     const correct=days[weekday],wrongDays=shuffle(days.filter(x=>x!==correct)).slice(0,3);add(q,correct,wrongDays,M("तारखांमधील अंतर "+shift+" दिवस; ७ ने भागल्यावर उरलेला बाकी वार ठरवतो.","The offset is "+shift+" days; reduce it modulo 7 to find the weekday.");break;
+    }
+    case 8:{
+     const x=2+Math.floor(r()*5),y=3+Math.floor(r()*5);
+     q=M("एका संकेतामध्ये ‘A हा B च्या उत्तरेस आहे’ आणि ‘C हा A च्या पूर्वेस आहे’. D हा C च्या दक्षिणेस व B च्या पूर्वेस असल्यास, D कोणत्या दिशेला असू शकतो?","A is north of B; C is east of A. D is south of C and east of B. Which direction from B can D be?");
+     ans=M("आग्नेय","South-east");wrong=mr?["नैऋत्य","वायव्य","ईशान्य"]:["South-west","North-west","North-east"];e=M("C हे B च्या ईशान्येस; C च्या दक्षिणेकडे आणि B च्या पूर्वेकडे असलेला बिंदू आग्नेय दिशेत येतो.","C is north-east of B; a point south of C and east of B lies in the south-east region.");break;
+    }
+    case 9:{
+     const base=10+Math.floor(r()*15),mul=2+Math.floor(r()*4);
+     q=M("जर 1 जानेवारीला बुधवार असेल, तर त्याच वर्षातील 1 मार्च (जानेवारी 31 दिवस व फेब्रुवारी 28 दिवस) कोणता वार असेल?","If 1 January is Wednesday in a non-leap year, what day is 1 March (January 31 days, February 28 days)?");
+     ans=M("शनिवार","Saturday");wrong=mr?["शुक्रवार","रविवार","सोमवार"]:["Friday","Sunday","Monday"];e=M("१ मार्च हा १ जानेवारीनंतर ५९ दिवसांनी येतो; ५९ mod ७ = ३, बुधवार + ३ = शनिवार.","1 March is 59 days after 1 January; 59 mod 7 = 3, so Wednesday + 3 = Saturday.");break;
+    }
+    case 10:{
+     q=M("खालील क्रमात प्रत्येक अक्षर पुढील अक्षराच्या वर्णमाला स्थानाशी संबंधित आहे: AZ, BY, CX, DW, __. पुढील जोडी कोणती?","In the sequence AZ, BY, CX, DW, __, what is the next pair?");
+     ans="EV";wrong=["EU","FV","EX"];e=M("पहिले अक्षर A,B,C,D,E असे पुढे; दुसरे Z,Y,X,W,V असे मागे जाते.","The first letter moves forward A–E while the second moves backward Z–V.");break;
+    }
+    default:{
+     const vals=[2,5,11,23,47],next=95;
+     q=M("संख्या मालिकेत प्रत्येक पद मागील पदाच्या दुप्पट करून 1 मिळवून तयार होते: 2, 5, 11, 23, 47, __. पुढील पद कोणते?","Each term is twice the previous term plus one: 2, 5, 11, 23, 47, __. Find the next term.");
+     ans=next;wrong=[94,96,97];e=M("47 × 2 + 1 = 95.","47 × 2 + 1 = 95.");break;
+    }
+   }
+   if(Array.isArray(wrong))add(q,ans,wrong,e);
   }else if(type==="policeLanguage"){
    const mrBank=[
-    ["'अधोरेखित' शब्दाचा योग्य अर्थ कोणता?",["रेषेखाली दाखवलेला","वर लिहिलेला","पुसून टाकलेला","दुमडलेला"],0,"अधोरेखित म्हणजे रेषेखाली दाखवलेला."],
-    ["'अति तिथे माती' या म्हणीचा अर्थ कोणता?",["अतिरेकामुळे नुकसान होते","नेहमी जिंकावे","वेळ वाया घालवणे","कमी बोलणे"],0,"कोणत्याही गोष्टीचा अतिरेक नुकसानकारक असतो."],
-    ["'राजपुत्र' हा कोणत्या समासाचा प्रकार आहे?",["षष्ठी तत्पुरुष","द्वंद्व","बहुव्रीही","अव्ययीभाव"],0,"राजाचा पुत्र — षष्ठी तत्पुरुष समास."],
-    ["'नीलकंठ' (शिव) हा कोणत्या समासाचे उदाहरण आहे?",["बहुव्रीही","द्विगु","द्वंद्व","अव्ययीभाव"],0,"ज्याचा कंठ निळा आहे असा — बहुव्रीही."],
-    ["'तो पुस्तक वाचत होता.' या वाक्यातील काळ कोणता?",["अपूर्ण भूतकाळ","साधा वर्तमानकाळ","भविष्यकाळ","पूर्ण वर्तमानकाळ"],0,"'वाचत होता' अपूर्ण भूतकाळ दर्शवते."],
-    ["'ज्याला भय नाही' या शब्दसमूहासाठी योग्य शब्द कोणता?",["निर्भय","भयभीत","सशंक","भित्रा"],0,"भय नसलेला म्हणजे निर्भय."],
-    ["'पाणी' या शब्दाचा तत्सम शब्द कोणता?",["जल","पाणीदार","नीरव","पावसाळा"],0,"'जल' हा तत्सम शब्द आहे."],
-    ["'कृतज्ञ' या शब्दाचा विरुद्धार्थी शब्द कोणता?",["कृतघ्न","उपकारक","ऋणी","आभारी"],0,"कृतघ्न म्हणजे उपकार न मानणारा."],
-    ["'डोळ्यात तेल घालून पाहणे' या वाक्प्रचाराचा अर्थ?",["अत्यंत सावध राहणे","झोप घेणे","रडणे","दुर्लक्ष करणे"],0,"याचा अर्थ अतिशय दक्ष राहणे."],
-    ["'मुलांनी मैदानात खेळावे.' या वाक्याचा प्रकार?",["आज्ञार्थी","प्रश्नार्थी","उद्गारार्थी","नकारार्थी"],0,"'खेळावे' हा विध्यर्थ/आज्ञार्थी प्रयोग आहे."]
+    ["‘यथाशक्ती’ या शब्दातील समास ओळखा.",["अव्ययीभाव","द्वंद्व","बहुव्रीही","कर्मधारय"],0,"‘शक्तीप्रमाणे’ असा अर्थ; अव्ययीभाव समास."],
+    ["‘राजपुत्र’ या शब्दाचा विग्रह व समासप्रकार योग्य कोणता?",["राजाचा पुत्र — षष्ठी तत्पुरुष","राजा आणि पुत्र — द्वंद्व","राजासारखा पुत्र — कर्मधारय","राजा असलेला पुत्र — बहुव्रीही"],0,"‘राजाचा पुत्र’ हा षष्ठी तत्पुरुष समास आहे."],
+    ["‘नीलकंठ’ हा शब्द शिवासाठी वापरल्यास कोणता समास?",["बहुव्रीही","कर्मधारय","द्विगु","अव्ययीभाव"],0,"ज्याचा कंठ निळा आहे तो — अन्यपदार्थप्रधान बहुव्रीही."],
+    ["‘रामाने रावणाचा वध केला.’ या वाक्यातील प्रयोग कोणता?",["कर्तरी","कर्मणी","भावे","कर्तृ-कर्मणी"],0,"कर्ता ‘राम’ प्रधान असून क्रियापद कर्त्यानुसार आहे."],
+    ["‘मुलांकडून पत्र लिहिले गेले.’ हा कोणता प्रयोग?",["कर्मणी","कर्तरी","भावे","संयुक्त"],0,"कर्म प्रधान असून क्रियापद कर्माशी जुळते."],
+    ["‘तो आला असता तर मी गेलो असतो.’ या वाक्याचा अर्थदृष्ट्या प्रकार कोणता?",["संकेतार्थी","स्वार्थी","आज्ञार्थी","प्रश्नार्थी"],0,"अट व तिचा संभाव्य परिणाम दर्शविला आहे."],
+    ["‘अति तिथे माती’ या म्हणीत कोणता अर्थ अभिप्रेत आहे?",["अतिरेक शेवटी हानिकारक ठरतो","परिश्रमाशिवाय यश मिळते","संकटात धैर्य सोडावे","वेळेचे नियोजन महत्त्वाचे"],0,"अतिरेकामुळे नुकसान होते."],
+    ["‘अश्रू’ या शब्दाचा योग्य समानार्थी शब्द कोणता?",["नेत्रजल","अग्निज्वाळा","अंबर","अनिल"],0,"नेत्रजल म्हणजे डोळ्यांतील पाणी."],
+    ["‘कृतज्ञ’ या शब्दाचा विरुद्धार्थी शब्द कोणता?",["कृतघ्न","ऋणी","आभारी","उपकृत"],0,"कृतघ्न म्हणजे उपकार न मानणारा."],
+    ["‘परोपकार’ या शब्दातील उपसर्ग कोणता?",["पर","उप","कार","प"],0,"‘पर’ हा उपसर्ग आहे."],
+    ["‘गिरीश’ या शब्दाची योग्य संधी कोणती?",["गिरि + ईश","गिर + ईश","गिरी + श","गिरि + इश"],0,"इ + ई यांपासून ई दीर्घ होतो."],
+    ["‘तो हळूहळू चालतो’ येथे ‘हळूहळू’ हा शब्द कोणत्या प्रकारचा?",["क्रियाविशेषण","विशेषण","नाम","उभयान्वयी अव्यय"],0,"चालण्याची रीत सांगतो."],
+    ["‘ज्याला सीमा नाही’ यासाठी योग्य एकशब्दी पर्याय कोणता?",["असीम","सीमित","मर्यादित","ससीम"],0,"असीम म्हणजे ज्याला सीमा नाही."],
+    ["‘डोळ्यात तेल घालून पाहणे’ या वाक्प्रचाराचा अर्थ?",["अत्यंत दक्ष राहणे","झोप घेणे","रडणे","दुर्लक्ष करणे"],0,"अतिशय सावध राहणे."],
+    ["‘विद्यार्थ्यांनी नियम पाळावेत.’ या वाक्यातील क्रियापदाचा अर्थ कोणता?",["कर्तव्य/विधी","भूतकाळ","नकार","प्रश्न"],0,"‘पाळावेत’ विध्यर्थी अर्थ दर्शवते."]
    ];
    const enBank=[
-    ["Choose the grammatically correct sentence.",["Neither of the answers is correct.","Neither of the answers are correct.","Neither answers is correct.","Neither answer were correct."],0,"'Neither' is treated as singular here."],
-    ["Choose the correct indirect speech: He said, “I am busy.”",["He said that he was busy.","He said that I am busy.","He says he was busy.","He told that he is busy."],0,"Backshift changes 'am' to 'was'."],
-    ["Identify the figure of speech: “The wind whispered.”",["Personification","Simile","Metaphor","Hyperbole"],0,"Human action is attributed to the wind."],
-    ["Choose the correct passive voice: “They completed the work.”",["The work was completed by them.","The work is completed by them.","The work had complete by them.","The work completed them."],0,"Simple past passive uses was/were + past participle."],
-    ["Choose the correctly spelt word.",["Conscientious","Consciencious","Conscentious","Conscientous"],0,"Conscientious is the correct spelling."],
-    ["The idiom “to hit the nail on the head” means:",["To say exactly the right thing","To make a mistake","To delay a task","To avoid an issue"],0,"It means to identify or state the exact point."],
-    ["Choose the correct preposition: She is adept ___ solving puzzles.",["at","in","on","for"],0,"The usual construction is 'adept at'."],
-    ["Choose the antonym of “transient”.",["Permanent","Brief","Temporary","Momentary"],0,"Transient means temporary; permanent is its opposite."],
-    ["Identify the clause: “I know where he lives.”",["Noun clause","Adjective clause","Adverb clause","Main clause only"],0,"'Where he lives' functions as the object of 'know'."],
-    ["Choose the correct form: If I ___ earlier, I would have met her.",["had arrived","arrive","have arrived","would arrive"],0,"Third conditional uses past perfect in the if-clause."]
+    ["Choose the correct inversion: ___ had the officer arrived than the briefing began.",["No sooner","Hardly","Scarcely","Never"],0,"The correlative construction is 'no sooner...than'."],
+    ["Identify the correct subject-verb agreement.",["The quality of the answers is important.","The quality of the answers are important.","The qualities of the answer is important.","The quality are important."],0,"The head subject 'quality' is singular."],
+    ["Choose the correct passive form: 'People believe that he is honest.'",["He is believed to be honest.","He was believed that honest.","He is believing to be honest.","It is believed him honest."],0,"Impersonal reporting passive: subject + is believed + infinitive."],
+    ["Choose the correct transformation: 'As soon as the bell rang, the candidates entered.'",["No sooner had the bell rung than the candidates entered.","No sooner the bell rang when candidates entered.","Hardly the bell rang than candidates entered.","The bell had rung than candidates entered."],0,"No sooner is followed by past perfect inversion and 'than'."],
+    ["Identify the clause: 'The officer who issued the notice has retired.'",["Adjective clause","Noun clause","Adverb clause","Main clause only"],0,"The clause modifies the noun 'officer'."],
+    ["Choose the correctly punctuated sentence.",["The report, which was delayed, arrived today.","The report which was delayed, arrived today.","The report, which was delayed arrived today.","The report which, was delayed arrived today."],0,"The non-restrictive clause is enclosed by commas."],
+    ["Choose the correct conditional: 'If he had followed the map, he ___ lost.'",["would not have got","will not get","would not get","did not get"],0,"Third conditional: would have + past participle."],
+    ["Choose the correct reported speech: She said, 'I must leave now.'",["She said that she had to leave then.","She said that I must leave now.","She says she had to leave then.","She told that she must left."],0,"Must changes to had to; now changes to then."],
+    ["Select the antonym of 'mitigate'.",["Aggravate","Alleviate","Moderate","Lessen"],0,"Aggravate means to make worse."],
+    ["Choose the correct meaning of 'prima facie'.",["At first sight","Beyond doubt","After trial","In secret"],0,"Prima facie means based on first impression or initial appearance."],
+    ["Identify the figure of speech: 'The law is a shield for the weak.'",["Metaphor","Simile","Personification","Litotes"],0,"The law is directly compared to a shield."],
+    ["Choose the grammatically correct sentence.",["Each of the files has been checked.","Each of the files have been checked.","Each files has been checked.","Each of file have been checked."],0,"Each takes a singular verb."],
+    ["Choose the correct preposition: 'The accused was acquitted ___ the charge.'",["of","from","with","by"],0,"The standard collocation is acquitted of a charge."],
+    ["Choose the correct form: 'The evidence is insufficient, ___?'",["isn't it","is it","doesn't it","isn't there"],0,"A positive statement with 'is' takes a negative tag."],
+    ["Choose the word closest in meaning to 'obdurate'.",["Stubborn","Generous","Flexible","Careless"],0,"Obdurate means stubborn or resistant to persuasion."]
    ];
-   const x=pick(mr?mrBank:enBank);add(x[0],x[1],x[2],x[3]);
+   const bank=mr?mrBank:enBank,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
   }else{
    const mrGK=[
-    ["भारतीय राज्यघटनेतील मूलभूत कर्तव्ये कोणत्या घटनादुरुस्तीने समाविष्ट झाली?",["४२ वी","४४ वी","५२ वी","६१ वी"],0,"१९७६ मधील ४२ व्या घटनादुरुस्तीने मूलभूत कर्तव्ये समाविष्ट झाली."],
-    ["महाराष्ट्रातील पहिले मुख्यमंत्री कोण होते?",["यशवंतराव चव्हाण","वसंतराव नाईक","शंकरराव चव्हाण","मारोतराव कन्नमवार"],0,"यशवंतराव चव्हाण हे महाराष्ट्राचे पहिले मुख्यमंत्री होते."],
-    ["भारतीय रिझर्व्ह बँकेची स्थापना कोणत्या वर्षी झाली?",["१९३५","१९४७","१९५०","१९२१"],0,"RBI ची स्थापना १ एप्रिल १९३५ रोजी झाली."],
-    ["पंचायतराज व्यवस्थेला घटनात्मक दर्जा कोणत्या दुरुस्तीने मिळाला?",["७३ वी","७४ वी","४२ वी","८६ वी"],0,"७३ व्या घटनादुरुस्तीने पंचायतराज संस्थांना घटनात्मक दर्जा मिळाला."],
-    ["भारतातील पहिला अणुऊर्जा प्रकल्प कुठे सुरू झाला?",["तारापूर","रावतभाटा","कुडनकुलम","कैगा"],0,"तारापूर अणुऊर्जा केंद्र १९६९ मध्ये सुरू झाले."],
-    ["सह्याद्री पर्वतरांगांना दुसरे कोणते नाव आहे?",["पश्चिम घाट","पूर्व घाट","अरवली","सातपुडा"],0,"सह्याद्री म्हणजे पश्चिम घाट."],
-    ["गोदावरी नदी कोणत्या समुद्राला मिळते?",["बंगालचा उपसागर","अरबी समुद्र","हिंदी महासागर","लाल समुद्र"],0,"गोदावरी बंगालच्या उपसागराला मिळते."],
-    ["भारतीय संविधानाच्या मसुदा समितीचे अध्यक्ष कोण होते?",["डॉ. बाबासाहेब आंबेडकर","डॉ. राजेंद्र प्रसाद","जवाहरलाल नेहरू","सरदार पटेल"],0,"मसुदा समितीचे अध्यक्ष डॉ. बी. आर. आंबेडकर होते."],
-    ["वनस्पतींमध्ये अन्ननिर्मितीची प्रक्रिया कोणती?",["प्रकाशसंश्लेषण","श्वसन","वाष्पोत्सर्जन","अंकुरण"],0,"प्रकाशसंश्लेषणाद्वारे वनस्पती अन्न तयार करतात."],
-    ["मानवी रक्तातील ऑक्सिजन वाहून नेणारे द्रव्य कोणते?",["हिमोग्लोबिन","इन्सुलिन","प्लाझ्मा","पित्त"],0,"हिमोग्लोबिन ऑक्सिजन वाहून नेते."]
+    ["भारतीय संविधानातील राज्याच्या धोरणनिर्देशक तत्त्वांचा समावेश कोणत्या भागात आहे?",["भाग IV","भाग III","भाग IVA","भाग V"],0,"धोरणनिर्देशक तत्त्वे भाग IV मध्ये आहेत."],
+    ["मूलभूत कर्तव्ये कोणत्या घटनादुरुस्तीने समाविष्ट झाली?",["42 वी","44 वी","52 वी","61 वी"],0,"1976 मधील 42 व्या घटनादुरुस्तीने भाग IVA समाविष्ट केला."],
+    ["धन विधेयक आहे की नाही हे अंतिमतः कोण ठरवतो?",["लोकसभा अध्यक्ष","राष्ट्रपती","पंतप्रधान","राज्यसभा सभापती"],0,"कलम 110 नुसार लोकसभा अध्यक्षांचे प्रमाणन निर्णायक असते."],
+    ["भारताच्या नियंत्रक व महालेखापरीक्षकांचा उल्लेख कोणत्या कलमात आहे?",["कलम 148","कलम 124","कलम 280","कलम 324"],0,"CAG साठी कलम 148 आहे."],
+    ["वित्त आयोगाची तरतूद कोणत्या कलमात आहे?",["कलम 280","कलम 263","कलम 356","कलम 368"],0,"वित्त आयोग कलम 280 अंतर्गत."],
+    ["महाराष्ट्र राज्याची स्थापना कोणत्या दिवशी झाली?",["1 मे 1960","1 मे 1956","15 ऑगस्ट 1947","26 जानेवारी 1950"],0,"महाराष्ट्र राज्य 1 मे 1960 रोजी अस्तित्वात आले."],
+    ["सह्याद्री पर्वतरांग कोणत्या भौगोलिक रचनेचा भाग आहे?",["पश्चिम घाट","पूर्व घाट","अरवली","सातपुडा"],0,"सह्याद्री म्हणजे पश्चिम घाटाचा प्रमुख भाग."],
+    ["काळी माती प्रामुख्याने कोणत्या पिकासाठी उपयुक्त मानली जाते?",["कापूस","चहा","ज्यूट","कॉफी"],0,"काळी माती ओलावा धरून ठेवते व कापसासाठी उपयुक्त आहे."],
+    ["पंचायतराज संस्थांना घटनात्मक दर्जा कोणत्या दुरुस्तीने मिळाला?",["73 वी","74 वी","42 वी","44 वी"],0,"73 वी घटनादुरुस्ती ग्रामीण स्थानिक स्वराज्यासाठी."],
+    ["नगरपालिकांशी संबंधित घटनादुरुस्ती कोणती?",["74 वी","73 वी","86 वी","91 वी"],0,"74 वी घटनादुरुस्ती नागरी स्थानिक स्वराज्य संस्थांसाठी."],
+    ["ओझोन थर वातावरणाच्या कोणत्या स्तरात आढळतो?",["समताप मंडळ","क्षोभमंडळ","मध्यमंडळ","तापमंडळ"],0,"ओझोनचे जास्त प्रमाण समताप मंडळात असते."],
+    ["विद्युत प्रवाहाचे SI एकक कोणते?",["अँपिअर","व्होल्ट","ओहम","वॅट"],0,"विद्युत प्रवाहाचे SI एकक अँपिअर."],
+    ["रक्त गोठण्याच्या प्रक्रियेत कोणते घटक महत्त्वाचे असतात?",["प्लेटलेट्स","लाल पेशी","इन्सुलिन","पित्त"],0,"प्लेटलेट्स रक्त गोठण्यास मदत करतात."],
+    ["वनस्पतींमध्ये पाण्याचे वहन प्रामुख्याने कोणत्या ऊतीद्वारे होते?",["झायलम","फ्लोएम","कॅम्बियम","एपिडर्मिस"],0,"झायलम मुळांपासून पाणी व खनिजे वाहून नेते."],
+    ["पृथ्वीच्या वातावरणात सर्वाधिक प्रमाणात कोणता वायू आहे?",["नायट्रोजन","ऑक्सिजन","कार्बन डायऑक्साइड","आर्गॉन"],0,"वातावरणात सुमारे 78% नायट्रोजन असतो."]
    ];
    const enGK=[
-    ["Which amendment added Fundamental Duties to the Indian Constitution?",["42nd","44th","52nd","61st"],0,"The 42nd Amendment (1976) added Fundamental Duties."],
-    ["Who was the first Chief Minister of Maharashtra?",["Yashwantrao Chavan","Vasantrao Naik","Shankarrao Chavan","Marotrao Kannamwar"],0,"Yashwantrao Chavan was Maharashtra's first Chief Minister."],
-    ["In which year was the Reserve Bank of India established?",["1935","1947","1950","1921"],0,"The RBI commenced operations on 1 April 1935."],
-    ["Which amendment gave constitutional status to Panchayati Raj?",["73rd","74th","42nd","86th"],0,"The 73rd Amendment constitutionalised Panchayati Raj institutions."],
-    ["Where did India's first nuclear power station begin operation?",["Tarapur","Rawatbhata","Kudankulam","Kaiga"],0,"Tarapur Atomic Power Station began operation in 1969."],
-    ["The Sahyadri range is also known as:",["Western Ghats","Eastern Ghats","Aravalli","Satpura"],0,"Sahyadri is another name for the Western Ghats."],
-    ["The Godavari river drains into the:",["Bay of Bengal","Arabian Sea","Indian Ocean","Red Sea"],0,"The Godavari empties into the Bay of Bengal."],
-    ["Who chaired the Drafting Committee of the Indian Constitution?",["Dr B. R. Ambedkar","Dr Rajendra Prasad","Jawaharlal Nehru","Sardar Patel"],0,"Dr B. R. Ambedkar chaired the Drafting Committee."],
-    ["Which process enables green plants to prepare food?",["Photosynthesis","Respiration","Transpiration","Germination"],0,"Plants prepare food through photosynthesis."],
-    ["Which pigment/protein carries oxygen in human blood?",["Haemoglobin","Insulin","Plasma","Bile"],0,"Haemoglobin in red blood cells carries oxygen."]
+    ["Which Part of the Indian Constitution contains the Directive Principles of State Policy?",["Part IV","Part III","Part IVA","Part V"],0,"The Directive Principles are in Part IV."],
+    ["Which amendment added Fundamental Duties to the Constitution?",["42nd","44th","52nd","61st"],0,"The 42nd Amendment added Part IVA in 1976."],
+    ["Who decides whether a Bill is a Money Bill?",["Lok Sabha Speaker","President","Prime Minister","Rajya Sabha Chairman"],0,"The Speaker's certification under Article 110 is decisive."],
+    ["Which Article provides for the Comptroller and Auditor General of India?",["Article 148","Article 124","Article 280","Article 324"],0,"The CAG is provided under Article 148."],
+    ["Which Article provides for the Finance Commission?",["Article 280","Article 263","Article 356","Article 368"],0,"The Finance Commission is constituted under Article 280."],
+    ["When was Maharashtra formed as a state?",["1 May 1960","1 May 1956","15 August 1947","26 January 1950"],0,"Maharashtra was formed on 1 May 1960."],
+    ["The Sahyadri range is part of which physiographic division?",["Western Ghats","Eastern Ghats","Aravalli","Satpura"],0,"Sahyadri is the principal section of the Western Ghats."],
+    ["Black soil is especially suitable for which crop?",["Cotton","Tea","Jute","Coffee"],0,"Black soil retains moisture and is suitable for cotton."],
+    ["Which amendment gave constitutional status to Panchayati Raj institutions?",["73rd","74th","42nd","44th"],0,"The 73rd Amendment concerns rural local self-government."],
+    ["Which amendment concerns urban local bodies?",["74th","73rd","86th","91st"],0,"The 74th Amendment concerns municipalities."],
+    ["The ozone layer is mainly located in which atmospheric layer?",["Stratosphere","Troposphere","Mesosphere","Thermosphere"],0,"Most atmospheric ozone is in the stratosphere."],
+    ["What is the SI unit of electric current?",["Ampere","Volt","Ohm","Watt"],0,"The SI unit of current is the ampere."],
+    ["Which blood component is essential for clotting?",["Platelets","Red cells","Insulin","Bile"],0,"Platelets help form blood clots."],
+    ["Which plant tissue transports water from roots?",["Xylem","Phloem","Cambium","Epidermis"],0,"Xylem transports water and minerals."],
+    ["Which gas forms the largest proportion of Earth's atmosphere?",["Nitrogen","Oxygen","Carbon dioxide","Argon"],0,"Nitrogen makes up about 78% of the atmosphere."]
    ];
-   const x=pick(mr?mrGK:enGK);add(x[0],x[1],x[2],x[3]);
+   const bank=mr?mrGK:enGK,x=bank[(i+Math.floor(r()*bank.length))%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
   }
  }
- const seen=new Set();for(const q of out){if(seen.has(q.q))q.q+=" (प्रश्न संच "+(seed%500+1)+")";seen.add(q.q);}
- return mockShuffle(out,r);
+ const seen=new Set();for(const q of out){if(seen.has(q.q))q.q+=" (संच "+(seed%500+1)+")";seen.add(q.q);}
+ return shuffle(out);
 }
+function mockGcd(a,b){while(b){const t=b;b=a%b;a=t;}return a;}
 function buildExamMock(exam,no,seed,lang,level,stream){const p=examProfiles[exam];if(!p)throw new Error("Exam profile missing");if(exam==="Maharashtra Police Bharti"){const questions=[];p.sections.forEach((sp,i)=>buildPoliceBhartiSection(sp[2],sp[1],(seed+i*8191)>>>0,lang).forEach(q=>questions.push({...q,section:sp[0],marks:1,negativeMarks:0})));const seen=new Set();for(const q of questions){if(seen.has(q.q))q.q+=" (Paper "+no+")";seen.add(q.q);}return {label:"Maharashtra Police Bharti — Hard Mock Test "+no,duration:90,questions,correctMarks:1,negativeMarks:0,maxMarks:100,testSeed:seed,testSignature:practiceTestSignature({questions})};}if(exam==="SSC GD"){const g=buildGDMock(no,lang,seed);if(lang==="en"){const en=mockEnglishPool(seed+991).slice(0,20);let n=0;g.questions=g.questions.map(q=>/Hindi Grammar/.test(q.section)&&n<20?{...en[n++],section:"English Language"}:q);}const seenGD={};g.questions.forEach((q,i)=>{if(seenGD[q.q])q.q=q.q+" — Version "+(i+1);seenGD[q.q]=true;});g.label="SSC GD — Hard Mock Test "+no;g.maxMarks=160;g.correctMarks=2;g.negativeMarks=.25;g.testSeed=seed;g.testSignature=practiceTestSignature(g);return g;}const questions=[];p.sections.forEach((sp,i)=>mockBuildSection(sp[2],sp[1],(seed+i*8191)>>>0,lang,stream).forEach(q=>questions.push({...q,section:sp[0],marks:p.correct,negativeMarks:exam==="SSC MTS"?(sp[2]==="quant"||sp[2]==="reasoning"?0:1):p.negative})));return {label:exam+" — "+(level?level+" ":"")+(stream?stream+" ":"")+"Hard Mock Test "+no,duration:p.duration,questions:questions,correctMarks:p.correct,negativeMarks:p.negative,maxMarks:questions.reduce((a,q)=>a+q.marks,0),testSeed:seed,testSignature:practiceTestSignature({questions:questions})};}
 function mockHash(v){let h=2166136261;for(let i=0;i<v.length;i++)h=Math.imul(h^v.charCodeAt(i),16777619);return h>>>0;}
 function buildNextStudentExamMock(exam,lang){const st=getStudent(),used=readUsedStudentTests(studentTestBucket(st,exam)),base=used.length+1,level=document.getElementById("mockLevel")?.value||"Graduation",stream=document.getElementById("mockStream")?.value||"Civil";for(let n=base;n<base+5000;n++){const seed=(studentTestSeed(st&&st.name,n)^mockHash(exam+"|"+level+"|"+stream))>>>0,c=buildExamMock(exam,n,seed,lang,level,stream);if(!used.some(x=>x&&(x.seed===seed||x.signature===c.testSignature)))return c;}const seed=(studentTestSeed(st&&st.name,base+5001)^mockHash(exam+"|"+level+"|"+stream))>>>0;return buildExamMock(exam,base+5001,seed,lang,level,stream);}
