@@ -1683,11 +1683,21 @@ function submitPracticeTest(forceSubmit){
   }
   const maxMarks=Number(activePractice.maxMarks||total*(activePractice.correctMarks||1));
   const attempted=correct+wrong;
+  let fallbackReview='<section class="result-review"><h3 class="result-review-heading">Answer analysis and solutions ('+total+')</h3><div class="result-review-grid">';
+  for(let i=0;i<total;i++){
+   const q=activePractice.questions[i]||{},chosen=practiceAnswers[i];
+   const state=chosen===q.a?'correct':(chosen===undefined||chosen===null?'unanswered':'wrong');
+   const steps=Array.isArray(q.steps)&&q.steps.length?q.steps.map(x=>String(x)):String(q.e||'').split(/(?:\\n+|(?<=[.!?])\\s+|;\\s*)/).map(x=>x.trim()).filter(Boolean);
+   const stepHtml=steps.length?'<ol class="result-solution-steps">'+steps.map(x=>'<li>'+escapeHTML(x)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
+   const opts=Array.isArray(q.o)?q.o:[];
+   fallbackReview+='<article class="result-answer-card '+state+'"><b>Question '+(i+1)+'</b><p class="result-question">'+escapeHTML(q.q||'')+'</p><p><b>Correct answer:</b> '+escapeHTML(opts[q.a]||'')+'</p><details class="result-solution"><summary>Solution — Step by Step</summary><div class="result-solution-body">'+stepHtml+'</div></details></article>';
+  }
+  fallbackReview+='</div></section>';
   let node=document.getElementById("testResult");
   if(!node){node=document.createElement("div");node.id="testResult";const room=document.getElementById("testroom");if(room)room.appendChild(node);}
   document.getElementById("testArea").innerHTML="";
   node.style.display="block";
-  node.innerHTML='<section class="result-wrap"><h2>Test Completed — Result</h2><p>'+String(activePractice.label||window.practiceExam||"Practice Test").replace(/[&<>"]/g,"")+'</p><div class="result-metrics"><div class="result-metric correct"><span>Correct</span><b>'+correct+'</b></div><div class="result-metric wrong"><span>Incorrect</span><b>'+wrong+'</b></div><div class="result-metric unanswered"><span>Unanswered</span><b>'+skipped+'</b></div><div class="result-metric accuracy"><span>Score</span><b>'+score.toFixed(2)+' / '+maxMarks.toFixed(2)+'</b></div></div><p>Detailed answer review could not be displayed, but your score is shown above.</p></section><div class="result-action-bar no-print"><button class="primary" onclick="returnFromTest()">Back</button><button class="primary" onclick="reattemptCurrentPractice()">Reattempt Test</button><button class="primary" onclick="printProfessionalResult()">Print / Save Result PDF</button></div>';
+  node.innerHTML='<section class="result-wrap"><h2>Test Completed — Result</h2><p>'+String(activePractice.label||window.practiceExam||"Practice Test").replace(/[&<>"]/g,"")+'</p><div class="result-metrics"><div class="result-metric correct"><span>Correct</span><b>'+correct+'</b></div><div class="result-metric wrong"><span>Incorrect</span><b>'+wrong+'</b></div><div class="result-metric unanswered"><span>Unanswered</span><b>'+skipped+'</b></div><div class="result-metric accuracy"><span>Score</span><b>'+score.toFixed(2)+' / '+maxMarks.toFixed(2)+'</b></div></div></section>'+fallbackReview+'<div class="result-action-bar no-print"><button class="primary" onclick="returnFromTest()">Back</button><button class="primary" onclick="reattemptCurrentPractice()">Reattempt Test</button><button class="primary" onclick="printProfessionalResult()">Print / Save Result PDF</button></div>';
   try{saveTestRecord(score,total,correct,{wrong:wrong,skipped:skipped,attempted:attempted,maxMarks:maxMarks,label:activePractice.label||window.practiceExam});}catch(historyError){console.error("Could not save recovery result to history:",historyError);}
   node.scrollIntoView({behavior:"smooth",block:"start"});
  }
