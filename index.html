@@ -1072,7 +1072,7 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     }
     case 2:{
      const daysA=4+Math.floor(r()*7),daysB=daysA+2+Math.floor(r()*8),daysC=3+Math.floor(r()*5);
-     const work=daysA*daysB,rate=1/daysA+1/daysB,ans=work/(daysA+daysB);
+     const work=daysA*daysB;let ans=work/(daysA+daysB);
      const together=daysA*daysB/(daysA+daysB);
      q=M("A एखादे काम "+daysA+" दिवसांत व B "+daysB+" दिवसांत करतो. दोघांनी एकत्र "+daysC+" दिवस काम केल्यावर उरलेले काम A एकट्याने किती दिवसांत पूर्ण करेल?","A completes a job in "+daysA+" days and B in "+daysB+" days. After they work together for "+daysC+" days, how many more days will A alone need?");
      const remaining=1-daysC*(1/daysA+1/daysB);ans=remaining*daysA;
