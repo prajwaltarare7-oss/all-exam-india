@@ -965,7 +965,7 @@ sourceReasonSection.slice(0,15).forEach(q=>out.push(q));
 {
  // Original practice variants based on the same quantitative methods seen in the uploaded papers:
  // weighted average, profit/revenue, median, simple-interest rate and speed.
- const q1=4+pick(5),q2=3+pick(5),q3=5+pick(5);
+ const q1=4+pick(5),q2=q1,q3=q1;
  const p1=120+pick(5)*10,p2=p1+30,p3=p2+30;
  const avg=(q1*p1+q2*p2+q3*p3)/(q1+q2+q3);
  addNum(M,"एक दुकानदार ने "+q1+" पैकेट ₹"+p1+" प्रति पैकेट, "+q2+" पैकेट ₹"+p2+" प्रति पैकेट और "+q3+" पैकेट ₹"+p3+" प्रति पैकेट खरीदे। औसत खरीद मूल्य प्रति पैकेट कितना है?","A shopkeeper buys "+q1+" packs at ₹"+p1+" each, "+q2+" packs at ₹"+p2+" each and "+q3+" packs at ₹"+p3+" each. Find the average cost per pack.",avg,"भारित औसत = कुल लागत ÷ कुल पैकेट = "+(q1*p1+q2*p2+q3*p3)+" ÷ "+(q1+q2+q3)+" = ₹"+avg+".","Weighted average = total cost ÷ total packs = "+(q1*p1+q2*p2+q3*p3)+" ÷ "+(q1+q2+q3)+" = ₹"+avg+".");
