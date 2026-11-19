@@ -1077,6 +1077,7 @@ function showTestInstructions(){
 function confirmStartPracticeTest(){
  if(!activePractice||practiceSubmitted)return;
  practiceTestStarted=true;
+ document.body.classList.add("aei-test-active");
  document.getElementById("testResult").innerHTML="";
  renderPracticeQuestionPaper(true);
  startPracticeClock();
@@ -1161,7 +1162,7 @@ function setTheme(mode){document.body.classList.toggle('dark',mode==='dark');try
 function escapeHTML(v){return String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
 function initNewFeatures(){const opts=exams.map(e=>'<option value="'+escapeHTML(e)+'">'+escapeHTML(e)+'</option>').join('');const mockExam=document.getElementById('mockExam');if(mockExam)mockExam.innerHTML='<option value="">Select an Exam</option>'+opts;document.getElementById('testExam').innerHTML='<option value="">Select an Exam</option>'+opts;try{const t=localStorage.getItem('aei-theme');if(t==='dark')setTheme('dark');}catch(e){}}
 function showPage(id,fromHistory=false){
-document.body.classList.toggle("aei-test-active",id==="testroom");
+document.body.classList.toggle("aei-test-active",id==="testroom"&&!!practiceTestStarted);
 const target=document.getElementById(id);
 if(!target){console.error("Page not found:",id);return;}
 const active=document.querySelector(".page.active");
