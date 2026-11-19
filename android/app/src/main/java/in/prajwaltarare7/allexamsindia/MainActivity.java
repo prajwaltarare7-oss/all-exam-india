@@ -52,6 +52,8 @@ public class MainActivity extends Activity {
     private View errorView;
     private SharedPreferences preferences;
     private boolean showingError = false;
+    private boolean awaitingUpdate = false;
+    private boolean checkingUpdate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,17 @@ public class MainActivity extends Activity {
         checkForMandatoryUpdate();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (awaitingUpdate && !checkingUpdate && root != null) {
+            checkForMandatoryUpdate();
+        }
+    }
+
     private void checkForMandatoryUpdate() {
+        if (checkingUpdate) return;
+        checkingUpdate = true;
         new Thread(() -> {
             int latestVersion = -1;
             String updateUrl = WEBSITE_DOWNLOAD_PAGE;
@@ -95,11 +107,15 @@ public class MainActivity extends Activity {
             final int remoteVersion = latestVersion;
             final String finalUpdateUrl = updateUrl;
             runOnUiThread(() -> {
+                checkingUpdate = false;
                 int installedVersion = 1;
                 try { installedVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode; }
                 catch (Exception ignored) {}
                 if (remoteVersion > installedVersion) showMandatoryUpdateDialog(finalUpdateUrl, remoteVersion);
-                else showMainApp();
+                else {
+                    awaitingUpdate = false;
+                    showMainApp();
+                }
             });
         }).start();
     }
@@ -110,6 +126,7 @@ public class MainActivity extends Activity {
                 .setMessage("या अॅपची नवीन आवृत्ती उपलब्ध आहे. अॅप वापरण्यासाठी अपडेट डाउनलोड करा.\n\nनवीन आवृत्ती: " + latestVersion)
                 .setCancelable(false)
                 .setPositiveButton("Update", (dialog, which) -> {
+                    awaitingUpdate = true;
                     try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(updateUrl))); }
                     catch (Exception e) { Toast.makeText(this, "Website उघडता आली नाही.", Toast.LENGTH_LONG).show(); }
                 })
