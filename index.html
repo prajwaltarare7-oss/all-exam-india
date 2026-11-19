@@ -585,10 +585,7 @@ let pendingPracticeStart=false; let isGDMock=false;
 let selectedPaperLanguage="hi";
 function setPaperLanguage(lang){selectedPaperLanguage=lang;["pyqLanguage","testLanguage","mockLanguage"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=lang;});}
 
-const examPatterns={
-"SSC CGL":{status:"verified",name:"SSC CGL Tier-I",sections:"Reasoning, General Awareness, Quantitative Aptitude and English",duration:"As per the official notification",marking:"As per the official notification",source:"https://ssc.gov.in/"}
-
-};
+const examPatterns={};
 
 var practiceTestStarted=false;
 var focusedPaletteOpen=false;
@@ -1001,16 +998,7 @@ showPage("testroom");showTestInstructions();
 }
 
 const examProfiles={
-"SSC CGL":{duration:60,correct:2,negative:.5,sections:[["Reasoning",25,"reasoning"],["General Awareness",25,"ga"],["Quantitative Aptitude",25,"quant"],["English Comprehension",25,"english"]]},
-"SSC CHSL":{duration:60,correct:2,negative:.5,sections:[["English Language",25,"english"],["General Intelligence",25,"reasoning"],["Quantitative Aptitude",25,"quant"],["General Awareness",25,"ga"]]},
-"SSC MTS":{duration:90,correct:3,negative:0,sections:[["Session I — Numerical Ability",20,"quant"],["Session I — Reasoning Ability",20,"reasoning"],["Session II — General Awareness",25,"ga"],["Session II — English Language",25,"english"]]},
-"SSC GD":{duration:60,correct:2,negative:.25,sections:[["Mathematics",20,"quant"],["Reasoning",20,"reasoning"],["Hindi Grammar",20,"hindi"],["GK & General Science",20,"ga"]]},
-"SSC CPO":{duration:120,correct:1,negative:.25,sections:[["Reasoning",50,"reasoning"],["General Awareness",50,"ga"],["Quantitative Aptitude",50,"quant"],["English Comprehension",50,"english"]]},
-"SSC Stenographer":{duration:120,correct:1,negative:.25,sections:[["Reasoning",50,"reasoning"],["General Awareness",50,"ga"],["English Language & Comprehension",100,"english"]]},
-"SSC JE":{duration:120,correct:1,negative:.25,sections:[["Reasoning",50,"reasoning"],["General Awareness",50,"ga"],["General Engineering",100,"technical"]]},
-"SSC JHT":{duration:120,correct:1,negative:.25,sections:[["General Hindi",50,"hindi"],["General English",50,"english"]]},
-"SSC Selection Post":{duration:60,correct:2,negative:.5,sections:[["Reasoning",25,"reasoning"],["General Awareness",25,"ga"],["Quantitative Aptitude",25,"quant"],["English Language",25,"english"]]},
-"SSC Scientific Assistant":{duration:120,correct:1,negative:.25,sections:[["Reasoning",25,"reasoning"],["Quantitative Aptitude",25,"quant"],["English Language",25,"english"],["General Awareness",25,"ga"],["Subject Specific",100,"technical"]]}
+"SSC GD":{duration:60,correct:2,negative:.25,sections:[["Mathematics",20,"quant"],["Reasoning",20,"reasoning"],["Hindi Grammar",20,"hindi"],["GK & General Science",20,"ga"]]}
 };
 const mockEnglishBase=[
 ["Neither of the two proposals ___ acceptable.",["is","are","have","were"],0,"'Neither' is singular in this construction."],
@@ -1045,9 +1033,9 @@ function mockBuildSection(type,count,seed,lang,stream){const r=gdRand(seed);let 
 function buildExamMock(exam,no,seed,lang,level,stream){const p=examProfiles[exam];if(!p)throw new Error("Exam profile missing");if(exam==="SSC GD"){const g=buildGDMock(no,lang,seed);if(lang==="en"){const en=mockEnglishPool(seed+991).slice(0,20);let n=0;g.questions=g.questions.map(q=>/Hindi Grammar/.test(q.section)&&n<20?{...en[n++],section:"English Language"}:q);}const seenGD={};g.questions.forEach((q,i)=>{if(seenGD[q.q])q.q=q.q+" — Version "+(i+1);seenGD[q.q]=true;});g.label="SSC GD — Hard Mock Test "+no;g.maxMarks=160;g.correctMarks=2;g.negativeMarks=.25;g.testSeed=seed;g.testSignature=practiceTestSignature(g);return g;}const questions=[];p.sections.forEach((sp,i)=>mockBuildSection(sp[2],sp[1],(seed+i*8191)>>>0,lang,stream).forEach(q=>questions.push({...q,section:sp[0],marks:p.correct,negativeMarks:exam==="SSC MTS"?(sp[2]==="quant"||sp[2]==="reasoning"?0:1):p.negative})));return {label:exam+" — "+(level?level+" ":"")+(stream?stream+" ":"")+"Hard Mock Test "+no,duration:p.duration,questions:questions,correctMarks:p.correct,negativeMarks:p.negative,maxMarks:questions.reduce((a,q)=>a+q.marks,0),testSeed:seed,testSignature:practiceTestSignature({questions:questions})};}
 function mockHash(v){let h=2166136261;for(let i=0;i<v.length;i++)h=Math.imul(h^v.charCodeAt(i),16777619);return h>>>0;}
 function buildNextStudentExamMock(exam,lang){const st=getStudent(),used=readUsedStudentTests(studentTestBucket(st,exam)),base=used.length+1,level=document.getElementById("mockLevel")?.value||"Graduation",stream=document.getElementById("mockStream")?.value||"Civil";for(let n=base;n<base+5000;n++){const seed=(studentTestSeed(st&&st.name,n)^mockHash(exam+"|"+level+"|"+stream))>>>0,c=buildExamMock(exam,n,seed,lang,level,stream);if(!used.some(x=>x&&(x.seed===seed||x.signature===c.testSignature)))return c;}const seed=(studentTestSeed(st&&st.name,base+5001)^mockHash(exam+"|"+level+"|"+stream))>>>0;return buildExamMock(exam,base+5001,seed,lang,level,stream);}
-function updateMockProfile(){const exam=document.getElementById("mockExamSelect")?.value||"SSC CGL",p=examProfiles[exam],lw=document.getElementById("mockLevelWrap"),sw=document.getElementById("mockStreamWrap");if(lw)lw.style.display=exam==="SSC Selection Post"?"block":"none";const hasStream=exam==="SSC JE"||exam==="SSC Scientific Assistant";if(sw)sw.style.display=hasStream?"block":"none";const sel=document.getElementById("mockStream");if(sel){const opts=exam==="SSC JE"?["Civil","Electrical","Mechanical"]:["Physics","Computer Science","Electronics"];if(sel.options.length!==opts.length)sel.innerHTML=opts.map(x=>'<option value="'+x+'">'+x+'</option>').join("");}const info=document.getElementById("mockPatternInfo");if(info&&p)info.innerHTML="<b>"+escapeHTML(exam)+"</b><br>"+p.sections.map(x=>escapeHTML(x[0])+": "+x[1]).join(" • ")+"<br><b>Duration:</b> "+p.duration+" minutes • <b>Correct:</b> +"+p.correct+" • <b>Incorrect:</b> −"+p.negative+(exam==="SSC MTS"?" (Sessions I and II are 45 minutes each; this practice test uses a combined 90-minute timer)":"");}
+function updateMockProfile(){const exam=document.getElementById("mockExamSelect")?.value||"SSC GD",p=examProfiles[exam],lw=document.getElementById("mockLevelWrap"),sw=document.getElementById("mockStreamWrap");if(lw)lw.style.display="none";const hasStream=false;if(sw)sw.style.display=hasStream?"block":"none";const sel=document.getElementById("mockStream");if(sel){const opts=exam==="SSC JE"?["Civil","Electrical","Mechanical"]:["Physics","Computer Science","Electronics"];if(sel.options.length!==opts.length)sel.innerHTML=opts.map(x=>'<option value="'+x+'">'+x+'</option>').join("");}const info=document.getElementById("mockPatternInfo");if(info&&p)info.innerHTML="<b>"+escapeHTML(exam)+"</b><br>"+p.sections.map(x=>escapeHTML(x[0])+": "+x[1]).join(" • ")+"<br><b>Duration:</b> "+p.duration+" minutes • <b>Correct:</b> +"+p.correct+" • <b>Incorrect:</b> −"+p.negative+(exam==="SSC MTS"?" (Sessions I and II are 45 minutes each; this practice test uses a combined 90-minute timer)":"");}
 
-let mockBrowserPage=0,mockBrowserExam="SSC CGL",mockBrowserSelected=1,questionPaletteFilter="all";
+let mockBrowserPage=0,mockBrowserExam="SSC GD",mockBrowserSelected=1,questionPaletteFilter="all";
 function renderMockBrowser(){
  const host=document.getElementById("mockBrowserList"),title=document.getElementById("mockBrowserTitle"),info=document.getElementById("mockBrowserInfo");if(!host)return;
  const student=getStudent(),used=student?readUsedStudentTests(studentTestBucket(student,mockBrowserExam)):[],first=mockBrowserPage*50+1,last=Math.min(5000,first+49);
@@ -1064,7 +1052,7 @@ function renderMockCards(){
  const el=document.getElementById("mockExamCards"),sel=document.getElementById("mockExamSelect");
  if(sel)sel.innerHTML=exams.map(x=>'<option value="'+escapeHTML(x)+'">'+escapeHTML(x)+'</option>').join("");
  if(el)el.innerHTML=exams.map(x=>{const p=examProfiles[x],safe=escapeHTML(x);return '<div class="card"><h3>🎯 '+safe+'</h3><p>5,000 exam-wise Mock Tests • '+p.sections.reduce((a,b)=>a+b[1],0)+' Questions • '+p.duration+' minutes</p><button class="primary" type="button" onclick="selectMockExam(\''+safe+'\')">Browse 5,000 Tests</button></div>';}).join("");
- if(sel)sel.value="SSC CGL";updateMockProfile();mockBrowserExam="SSC CGL";renderMockBrowser();
+ if(sel)sel.value="SSC GD";updateMockProfile();mockBrowserExam="SSC GD";renderMockBrowser();
 }
 function selectMockExam(exam){const sel=document.getElementById("mockExamSelect");if(sel)sel.value=exam;mockBrowserExam=exam;mockBrowserPage=0;mockBrowserSelected=1;updateMockProfile();renderMockBrowser();document.getElementById("mockBrowserCard")?.scrollIntoView({behavior:"smooth",block:"start"});}
 function startExamMock(exam){isGDMock=true;window.practiceExam=exam;if(!getStudent()){pendingPracticeStart=true;openRegistration();return;}if(!examProfiles[exam])return;activePractice=buildExamMock(exam,mockBrowserSelected,(studentTestSeed(getStudent()&&getStudent().name,mockBrowserSelected)^mockHash(exam+"|"+(document.getElementById("mockLevel")?.value||"Graduation")+"|"+(document.getElementById("mockStream")?.value||"Civil")))>>>0,selectedPaperLanguage,document.getElementById("mockLevel")?.value||"Graduation",document.getElementById("mockStream")?.value||"Civil");activePractice.testNumber=mockBrowserSelected;resetPracticeState();practiceSeconds=activePractice.duration*60;document.getElementById("testIntro").style.display="none";document.getElementById("testResult").innerHTML="";document.getElementById("testTitle").textContent=activePractice.label;showPage("testroom");showTestInstructions();}
