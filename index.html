@@ -1319,9 +1319,9 @@ const bank=mr?mrGK:enGK,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2
 function buildPoliceHardSection(type,count,seed,lang){
  const r=gdRand(seed),mr=lang==="mr",out=[];
  const M=(a,b)=>mr?a:b, pick=a=>a[Math.floor(r()*a.length)];
- const fmt=x=>{const n=Number(x);return Number.isInteger(n)?String(n):String(Number(n.toFixed(2)));};
+ const fmt=x=>{const n=Number(x);return Number.isFinite(n)?(Number.isInteger(n)?String(n):String(Number(n.toFixed(2)))):String(x);};
  const add=(q,ans,wrong,e)=>{
-  const key=fmt(ans),vals=[...new Set([key,...wrong.map(fmt)].filter(v=>v!==""&&Number.isFinite(Number(v))))];
+  const key=fmt(ans),vals=[...new Set([key,...wrong.map(fmt)].filter(v=>v!==""&&true))];
   let bump=1;while(vals.length<4){const v=fmt(Number(key)+bump);if(!vals.includes(v))vals.push(v);bump++;}
   const pairs=mockShuffle(vals.slice(0,4).map(v=>({v,ok:v===key})),r);
   out.push({q,o:pairs.map(x=>x.v),a:pairs.findIndex(x=>x.ok),e});
@@ -1337,7 +1337,7 @@ function buildPoliceHardSection(type,count,seed,lang){
     }
     case 1:{
      const cp=800+100*Math.floor(r()*9),p=10+5*Math.floor(r()*4),d=10+5*Math.floor(r()*3),sp=cp*(1+p/100),mp=sp/(1-d/100);
-     ans=mp;q=M("खरेदी किंमत ₹"+cp+". विक्रेत्याला "+p+"% नफा हवा आहे. "+d+"% सूट दिल्यानंतर अपेक्षित विक्री किंमत मिळण्यासाठी दर्शनी किंमत किती ठेवावी?","The cost price is ₹"+cp. "A seller wants a "+p+"% profit. What marked price is needed so that after a "+d+"% discount the target selling price is achieved?");
+     ans=mp;q=M("खरेदी किंमत ₹"+cp+". विक्रेत्याला "+p+"% नफा हवा आहे. "+d+"% सूट दिल्यानंतर अपेक्षित विक्री किंमत मिळण्यासाठी दर्शनी किंमत किती ठेवावी?","The cost price is ₹"+cp+". A seller wants a "+p+"% profit. What marked price is needed so that after a "+d+"% discount the target selling price is achieved?");
      w=[sp*(1+d/100),sp/(1+d/100),cp*(1+(p+d)/100)];e=M("लक्ष्य विक्री किंमत = CP × (1 + नफा%). दर्शनी किंमत = लक्ष्य विक्री किंमत ÷ (1 − सूट%).","Target SP = CP × (1 + profit%). Marked price = target SP ÷ (1 − discount%).");break;
     }
     case 2:{
@@ -1416,12 +1416,12 @@ function buildPoliceHardSection(type,count,seed,lang){
     case 0:{
      const x=3+Math.floor(r()*9),d=2+Math.floor(r()*5),terms=[x,x+d,x+3*d,x+6*d];ans=x+10*d;
      q=M("मालिकेत सलग फरक "+d+" ने वाढतात: "+terms.join(", ")+", __. पुढील पद शोधा.","The successive differences increase by "+d+": "+terms.join(", ")+", __. Find the next term.");
-     w=[ans-d,ans+d,ans+2*d];e=M("फरक "+d, "+(2*d)+", "+(3*d)+", "+(4*d)+" असे आहेत; पुढचा फरक "+(5*d)+" आहे.","The differences are "+d+", "+(2*d)+", "+(3*d)+", "+(4*d)+"; the next difference is "+(5*d)+".");break;
+     w=[ans-d,ans+d,ans+2*d];e=M("फरक "+d+", "+(2*d)+", "+(3*d)+", "+(4*d)+" असे आहेत; पुढचा फरक "+(5*d)+" आहे.","The differences are "+d+", "+(2*d)+", "+(3*d)+", "+(4*d)+"; the next difference is "+(5*d)+".");break;
     }
     case 1:{
      const word=pick(["TRAIN","POLICE","MARKET","BRAVE","CROWN"]),shift=1+Math.floor(r()*4),coded=[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+shift)%26)).join("");
-     ans=coded;q=M("एका संकेतपद्धतीत प्रत्येक अक्षर त्याच्या वर्णक्रमात "+shift+" स्थानांनी पुढे जाते (Z नंतर A). TRAIN या नियमाने "+word+" कसा लिहाल?","In a code, each letter is shifted forward by "+shift+" places (Z wraps to A). How is "+word+" encoded?");
-     w=[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+shift+1)%26)).join(""),[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+25)%26)).join(""),[...word].reverse().join("")];e=M("प्रत्येक अक्षर स्वतंत्रपणे "+shift+" स्थानांनी पुढे सरकवा; Z नंतर A घ्या.","Shift each letter forward by "+shift+" positions, wrapping after Z.");break;
+     ans=coded;q=M("एका संकेतपद्धतीत प्रत्येक अक्षर त्याच्या वर्णक्रमात "+shift+" स्थानांनी पुढे जाते (Z नंतर A). दिलेला शब्द "+word+" कसा लिहाल?","In a code, each letter is shifted forward by "+shift+" places (Z wraps to A). How is "+word+" encoded?");
+     w=[[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+shift+1)%26)).join(""),[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+25)%26)).join(""),[...word].reverse().join("")];e=M("प्रत्येक अक्षर स्वतंत्रपणे "+shift+" स्थानांनी पुढे सरकवा; Z नंतर A घ्या.","Shift each letter forward by "+shift+" positions, wrapping after Z.");break;
     }
     case 2:{
      q=M("अनिल हा मीनाचा भाऊ आहे. मीना ही सागरची आई आहे. सागर हा रियाचा भाऊ आहे. अनिलचे रियाशी नाते काय?","Anil is Meena's brother. Meena is Sagar's mother. Sagar is Riya's brother. How is Anil related to Riya?");
@@ -1453,14 +1453,14 @@ function buildPoliceHardSection(type,count,seed,lang){
      w=mockShuffle((mr?daysMR:daysEN).filter(x=>x!==ans),r).slice(0,3);e=M("तारखांमधील अंतर "+offset+" दिवस आहे. 7 ने बाकी काढून सोमवारपासून पुढे मोजा.","The offset is "+offset+" days. Reduce it modulo 7 and count forward from Monday.");break;
     }
     case 8:{
-     const pairs=["AZ","BY","CX","DW","EV"],idx=Math.floor(r()*3),first=String.fromCharCode(65+idx),second=String.fromCharCode(90-idx),nxt=String.fromCharCode(66+idx)+String.fromCharCode(89-idx);
+     const pairs=["AZ","BY","CX","DW","EV"],idx=Math.floor(r()*3),first=String.fromCharCode(65+idx),second=String.fromCharCode(90-idx),nxt=String.fromCharCode(68+idx)+String.fromCharCode(87-idx);
      ans=nxt;q=M("अक्षरमालिका: "+pairs.slice(idx,idx+3).join(", ")+", __. पुढील जोडी कोणती?","Letter sequence: "+pairs.slice(idx,idx+3).join(", ")+", __. What is the next pair?");
      w=[String.fromCharCode(65+idx)+String.fromCharCode(88-idx),String.fromCharCode(67+idx)+String.fromCharCode(89-idx),String.fromCharCode(66+idx)+String.fromCharCode(90-idx)];e=M("पहिले अक्षर पुढे जाते आणि दुसरे अक्षर उलट दिशेने जाते.","The first letter advances while the second moves backward.");break;
     }
     case 9:{
      const a=4+Math.floor(r()*6),b=a+1+Math.floor(r()*5),c=b+1+Math.floor(r()*5);
-     ans=M("मधोमध","In the middle");q=M("P, Q, R, S, T एका रांगेत उभे आहेत. P हा Q च्या पुढे, R हा Q च्या मागे, S हा P च्या पुढे आणि T हा R च्या मागे आहे. मधोमध कोण आहे?","P, Q, R, S and T stand in a line. P is ahead of Q, R is behind Q, S is ahead of P, and T is behind R. Who is in the middle?");
-     w=mr?["सर्वात पुढे","सर्वात मागे","दुसऱ्या स्थानी"]:["At the front","At the back","Second"];e=M("क्रम S–P–Q–R–T असा होतो; मधला Q आहे.","The order is S–P–Q–R–T, so Q is in the middle.");break;
+     ans="Q";q=M("P, Q, R, S, T एका रांगेत उभे आहेत. P हा Q च्या पुढे, R हा Q च्या मागे, S हा P च्या पुढे आणि T हा R च्या मागे आहे. मधोमध कोण आहे?","P, Q, R, S and T stand in a line. P is ahead of Q, R is behind Q, S is ahead of P, and T is behind R. Who is in the middle?");
+     w=["P","R","S"];e=M("क्रम S–P–Q–R–T असा होतो; मधला Q आहे.","The order is S–P–Q–R–T, so Q is in the middle.");break;
     }
     case 10:{
      const x=2+Math.floor(r()*8),n=x+3,seq=[x,x*2,x*2+3,(x*2+3)*2];ans=seq[3]+3;
@@ -1468,7 +1468,7 @@ function buildPoliceHardSection(type,count,seed,lang){
      w=[seq[3]*2,seq[3]+2,seq[3]+6];e=M("शेवटचे पद "+seq[3]+" आहे; पुढील क्रिया +3 आहे.","The last term is "+seq[3]+"; the next operation is +3.");break;
     }
     default:{
-     const a=2+Math.floor(r()*5),b=3+Math.floor(r()*5),c=4+Math.floor(r()*5);
+     const a=2+Math.floor(r()*5),b=3+Math.floor(r()*5),c=a-1;
      q=M("एका परीक्षेत नेहा वरून "+a+" वी आणि खालून "+b+" वी आहे. तिच्यापेक्षा "+c+" जणांनी जास्त गुण मिळवले. परीक्षेला एकूण किती विद्यार्थी होते?","In an exam, Neha ranks "+a+"th from the top and "+b+"th from the bottom. Exactly "+c+" students scored higher than her. How many students took the exam?");
      ans=a+b-1;w=[a+b,a+b+c-1,a+b-c-1];e=M("वरून व खालून दिलेली क्रमवारी एकत्र केल्यास एकूण = "+a+" + "+b+" − 1. अतिरिक्त माहितीमधील अट तपासून तीच सुसंगत संख्या राहते.","Combining top and bottom ranks gives total = "+a+" + "+b+" − 1; the stated higher-score count is consistent with the top rank.");break;
     }
