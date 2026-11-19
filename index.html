@@ -1322,12 +1322,12 @@ function renderPYQ(){
  examMatches.forEach(name=>{
   const isGD=name==="SSC GD";
   const count=isGD?gdPracticeSessions.length:0;
-  html+='<article class="card exam-pyq-card"><h3>📘 '+escapeHTML(name)+'</h3><p>'+(isGD?count+' year/shift-wise independent practice sets उपलब्ध • 80 Question • 60 minutes':'Verified official PYQ papers for this exam have not been added yet. They will appear here by year when available.')+'</p><div class="exam-pyq-actions"><button class="primary" type="button" onclick="showPYQExam(\''+escapeHTML(name)+'\')">'+(isGD?'View PYQ Practice':'View PYQ Status')+'</button>'+(isGD?'':'<button class="primary" type="button" onclick="selectMockExam(\''+escapeHTML(name)+'\');showPage(\'mock\')">Open Mock Tests</button>')+'</div></article>';
+  html+='<article class="card exam-pyq-card"><h3>📘 '+escapeHTML(name)+'</h3><p>'+(isGD?count+' year/shift-wise practice sets उपलब्ध • 80 Question • 60 minutes':'Verified official PYQ papers for this exam have not been added yet. They will appear here by year when available.')+'</p><div class="exam-pyq-actions"><button class="primary" type="button" onclick="showPYQExam(\''+escapeHTML(name)+'\')">'+(isGD?'View PYQ Practice':'View PYQ Status')+'</button>'+(isGD?'':'<button class="primary" type="button" onclick="selectMockExam(\''+escapeHTML(name)+'\');showPage(\'mock\')">Open Mock Tests</button>')+'</div></article>';
  });
  html+='</div>';
  const selected=window.selectedPYQExam&&examMatches.includes(window.selectedPYQExam)?window.selectedPYQExam:"";
  if(selected==="SSC GD"){
-  html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>61 independent practice sets. Year and shift are references; the questions are not exact copies of official PYQs.</p></div>';
+  html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>64 practice sets: 61 independent sets plus 3 original concept-practice sets informed by the uploaded 2012, 2019 and 2021 PDFs. They are not verbatim PYQs.</p></div>';
   [2024,2023,2021,2019,2012].forEach(year=>{
    const group=gdPracticeSessions.filter(x=>x.year===year&&(!q||matchingSessions.includes(x)));
    if(!group.length)return;
