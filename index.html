@@ -463,7 +463,7 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 <h2 id="upcoming-title">Coming Soon</h2>
 <p>More exam categories will be available soon.</p>
 <div class="upcoming-grid">
-<div class="upcoming-card police-countdown-card"><span class="coming-badge" id="policeComingBadge">COMING SOON</span><h3>🚔 Maharashtra Police Bharti</h3><p id="policeCountdownText">Police Bharti section opens today at 9:00 PM (IST).</p><div id="policeCountdown" role="timer" aria-live="polite" style="font-size:1.35rem;font-weight:800;letter-spacing:.04em;margin:12px 0">Loading countdown…</div><div id="policeBhartiChoices" style="display:none;gap:10px;flex-wrap:wrap"><button class="primary" type="button" onclick="showPage('policepyq')">PYQ Test</button><button class="primary" type="button" onclick="showPage('policemock')">Mock Test</button></div></div>
+<div class="upcoming-card police-countdown-card"><span class="coming-badge" id="policeComingBadge">DEVELOPMENT OPEN</span><h3>🚔 Maharashtra Police Bharti</h3><p id="policeCountdownText">Police Bharti tests are open for development and testing.</p><div id="policeCountdown" role="timer" aria-live="polite" style="font-size:1.35rem;font-weight:800;letter-spacing:.04em;margin:12px 0">Development preview open</div><div id="policeBhartiChoices" style="display:flex;gap:10px;flex-wrap:wrap"><button class="primary" type="button" onclick="showPage('policepyq')">PYQ Test</button><button class="primary" type="button" onclick="showPage('policemock')">Mock Test</button></div></div>
 <div class="upcoming-card"><span class="coming-badge">COMING SOON</span><h3>🎖️ NDA</h3><p>NDA preparation and practice tests will be available soon.</p></div>
 </div></section>
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
@@ -1294,7 +1294,6 @@ window.addEventListener("beforeunload",event=>{
 const active=document.querySelector(".page.active");
 if(active&&active.id==="testroom"&&activePractice&&practiceTestStarted&&!practiceSubmitted){event.preventDefault();event.returnValue="";return "";}
 });
-if(new URLSearchParams(location.search).get("policePreview")==="1")showPage("policemock");
 })();
 function getOfficialSourceForExam(exam){
 return exam.startsWith("SSC") ? officialSources[0] : null;
