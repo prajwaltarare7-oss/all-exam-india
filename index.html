@@ -1043,36 +1043,90 @@ function mockBuildSection(type,count,seed,lang,stream){const r=gdRand(seed);let 
 function buildPoliceBhartiSection(type,count,seed,lang){
  const r=gdRand(seed),out=[],mr=lang==="mr";
  const add=(q,opts,answer,explain)=>{const a=mockShuffle(opts.map((v,i)=>({v:String(v),ok:i===answer})),r);out.push({q,o:a.map(x=>x.v),a:a.findIndex(x=>x.ok),e:explain});};
- const gk=[
- ["महाराष्ट्राची राजधानी कोणती?","What is the capital of Maharashtra?",["मुंबई","पुणे","नागपूर","नाशिक"],["Mumbai","Pune","Nagpur","Nashik"],0,"महाराष्ट्राची राजधानी मुंबई आहे.","Mumbai is the capital of Maharashtra."],
- ["महाराष्ट्र दिन कधी साजरा होतो?","When is Maharashtra Day celebrated?",["१ मे","१५ ऑगस्ट","२६ जानेवारी","१ नोव्हेंबर"],["1 May","15 August","26 January","1 November"],0,"महाराष्ट्र राज्याची स्थापना १ मे १९६० रोजी झाली.","Maharashtra state was formed on 1 May 1960."],
- ["गोदावरी नदीचा उगम कुठे होतो?","Where does the Godavari originate?",["त्र्यंबकेश्वर","महाबळेश्वर","भीमाशंकर","लोणावळा"],["Trimbakeshwar","Mahabaleshwar","Bhimashankar","Lonavala"],0,"गोदावरीचा उगम त्र्यंबकेश्वर येथे होतो.","The Godavari originates at Trimbakeshwar."],
- ["महाराष्ट्रातील सर्वोच्च शिखर कोणते?","Which is the highest peak in Maharashtra?",["कळसूबाई","साल्हेर","हरिश्चंद्रगड","तोरणा"],["Kalsubai","Salher","Harishchandragad","Torna"],0,"कळसूबाई हे महाराष्ट्रातील सर्वोच्च शिखर आहे.","Kalsubai is Maharashtra's highest peak."],
- ["भारतीय संविधान दिन कधी असतो?","When is Constitution Day observed?",["२६ नोव्हेंबर","२६ जानेवारी","१५ ऑगस्ट","२ ऑक्टोबर"],["26 November","26 January","15 August","2 October"],0,"२६ नोव्हेंबर रोजी संविधान दिन साजरा होतो.","Constitution Day is observed on 26 November."]
- ];
- const mrq=[
- ["'सुंदर'चा विरुद्धार्थी शब्द कोणता?",["कुरूप","मनोहर","आकर्षक","छान"],0,"'कुरूप' हा विरुद्धार्थी शब्द आहे."],
- ["'जलद'चा समानार्थी शब्द कोणता?",["वेगवान","मंद","हळू","स्थिर"],0,"'वेगवान' हा समानार्थी शब्द आहे."],
- ["'मुलगा'चे अनेकवचन कोणते?",["मुलगे","मुलगी","मुलगा","मुलग्याने"],0,"'मुलगा'चे अनेकवचन 'मुलगे' आहे."],
- ["'आई' या शब्दाचे लिंग कोणते?",["स्त्रीलिंग","पुल्लिंग","नपुंसकलिंग","उभयलिंग"],0,"'आई' हा स्त्रीलिंगी शब्द आहे."],
- ["'तो शाळेत जातो.' या वाक्याचा काळ कोणता?",["वर्तमानकाळ","भूतकाळ","भविष्यकाळ","पूर्णभूतकाळ"],0,"'जातो' हे वर्तमानकाळातील क्रियापद आहे."]
- ];
- const enq=[
- ["She ___ to the station every day.",["go","goes","going","gone"],1,"The singular subject 'she' takes 'goes'."],
- ["Choose the antonym of 'brave'.",["Courageous","Fearless","Cowardly","Bold"],2,"'Cowardly' is the antonym of 'brave'."],
- ["Plural of 'criterion' is ___.",["criterions","criteria","criterias","criterion"],1,"The plural form is 'criteria'."],
- ["He is interested ___ science.",["on","at","in","for"],2,"The correct phrase is 'interested in'."],
- ["Choose the correct spelling.",["Accomodation","Accommodation","Acommodation","Acomodation"],1,"'Accommodation' is the correct spelling."]
- ];
+ const unique=(a)=>Array.from(new Set(a.map(String)));
  for(let i=0;i<count;i++){
-  if(type==="policeMath"){const a=10+Math.floor(r()*40),b=2+Math.floor(r()*9),k=i%4;let q,ans,e;if(k===0){ans=a*b;q=mr?a+" × "+b+" = किती?":"Calculate "+a+" × "+b+".";e=mr?"दोन्ही संख्यांचा गुणाकार करा.":"Multiply the two numbers.";}else if(k===1){ans=a+b;q=mr?a+" आणि "+b+" यांची बेरीज किती?":"What is the sum of "+a+" and "+b+"?";e=mr?"दोन्ही संख्या जोडा.":"Add the two numbers.";}else if(k===2){ans=a*5;q=mr?a*10+" चा ५०% किती?":"What is 50% of "+a*10+"?";e=mr?"५०% म्हणजे अर्धे.":"50% means one half.";}else{ans=b*60;q=mr?b+" मिनिटे म्हणजे किती सेकंद?":"How many seconds are in "+b+" minutes?";e=mr?"१ मिनिट = ६० सेकंद.":"1 minute = 60 seconds.";}add(q,[ans,ans+2,Math.max(0,ans-2),ans+5],0,e);}
-  else if(type==="policeReason"){const a=2+Math.floor(r()*15),d=2+Math.floor(r()*8),ans=a+4*d;add(mr?"मालिका पूर्ण करा: "+a+", "+(a+d)+", "+(a+2*d)+", "+(a+3*d)+", __":"Complete the series: "+a+", "+(a+d)+", "+(a+2*d)+", "+(a+3*d)+", __",[ans,ans+d,ans-1,ans+2*d],0,mr?"प्रत्येक वेळी "+d+" ची वाढ होते.":"Each term increases by "+d+".");}
-  else if(type==="policeLanguage"){const x=(mr?mrq:enq)[i%(mr?mrq:enq).length];add(x[0],x[1],x[2],x[3]);}
-  else{const x=gk[i%gk.length];add(mr?x[0]:x[1],mr?x[2]:x[3],x[4],mr?x[5]:x[6]);}
+  const n=()=>1+Math.floor(r()*90),pick=(a)=>a[Math.floor(r()*a.length)];
+  if(type==="policeMath"){
+   const k=i%10,a=12+n(),b=3+Math.floor(r()*18),c=2+Math.floor(r()*12);let ans,q,e;
+   if(k===0){ans=a*b;q=mr? a+" वस्तूंची किंमत प्रत्येकी ₹"+b+" असल्यास एकूण किंमत किती?":"If "+a+" items cost ₹"+b+" each, what is the total cost?";e=mr?"एकूण किंमत = वस्तूंची संख्या × प्रति वस्तू किंमत.":"Total cost = number of items × cost per item.";}
+   else if(k===1){const p=10+Math.floor(r()*6)*5,base=a*10;ans=base*(100-p)/100;q=mr?"₹"+base+" किमतीवर "+p+"% सूट दिल्यास विक्री किंमत किती?":"An item marked ₹"+base+" is discounted by "+p+"%. Find its sale price.";e=mr?"विक्री किंमत = मूळ किंमत × (100 − सूट)%":"Sale price = marked price × (100 − discount)%.";}
+   else if(k===2){const x=2+Math.floor(r()*8),y=3+Math.floor(r()*7);ans=x*y;q=mr?"A:B = "+x+":"+y+" आणि B = "+y* c+" असल्यास A किती?":"If A:B = "+x+":"+y+" and B = "+y*c+", find A.";ans=x*c;e=mr?"B चा भाग "+y+" असल्याने एका भागाची किंमत "+c+"; A = "+x+" × "+c+".":"One ratio unit is "+c+"; A = "+x+" × "+c+".";}
+   else if(k===3){const p=5+Math.floor(r()*15),principal=1000+10*n();ans=principal*p*2/100;q=mr?"₹"+principal+" वर वार्षिक "+p+"% दराने 2 वर्षांचे सरळव्याज किती?":"Find simple interest on ₹"+principal+" at "+p+"% per annum for 2 years.";e=mr?"सरळव्याज = मुद्दल × दर × कालावधी / 100.":"Simple interest = principal × rate × time / 100.";}
+   else if(k===4){const x=2+Math.floor(r()*8),y=2+Math.floor(r()*8);ans=x*y/(x+y);q=mr?"A काम "+x+" दिवसांत व B "+y+" दिवसांत करतो. दोघे मिळून किती दिवसांत करतील?":"A completes a job in "+x+" days and B in "+y+" days. How long together?";e=mr?"एकत्र वेळ = xy/(x+y) दिवस.":"Combined time = xy/(x+y) days.";}
+   else if(k===5){const speed=30+Math.floor(r()*7)*5,time=2+Math.floor(r()*5);ans=speed*time;q=mr?""+speed+" किमी/तास वेगाने "+time+" तासांत किती अंतर पार होईल?":"At "+speed+" km/h, how far is travelled in "+time+" hours?";e=mr?"अंतर = वेग × वेळ.":"Distance = speed × time.";}
+   else if(k===6){const x=n(),y=n(),z=n();ans=(x+y+z)/3;q=mr?"तीन संख्यांची सरासरी "+ans+" आहे. त्यांची बेरीज किती?":"The average of three numbers is "+ans+". Find their sum.";ans=x+y+z;e=mr?"बेरीज = सरासरी × संख्यांची संख्या.":"Sum = average × number of values.";}
+   else if(k===7){const base=100+10*n(),p=10+Math.floor(r()*5)*5;ans=base*(100+p)/100;q=mr?"₹"+base+" मध्ये "+p+"% वाढ झाल्यास नवीन किंमत किती?":"A value of ₹"+base+" increases by "+p+"%. Find the new value.";e=mr?"नवीन किंमत = मूळ किंमत × (1 + दर/100).":"New value = original × (1 + rate/100).";}
+   else if(k===8){const total=2*b*c,part=b;ans=total-part;q=mr?"एका वर्गात "+total+" विद्यार्थी आहेत. "+part+" विद्यार्थी अनुपस्थित असल्यास उपस्थित किती?":"A class has "+total+" students; "+part+" are absent. How many are present?";e=mr?"उपस्थित = एकूण − अनुपस्थित.":"Present = total − absent.";}
+   else{const num=2+Math.floor(r()*8),den=num+2,whole=den*c;ans=whole/den*num;q=mr?whole+" चा "+num+"/"+den+" भाग किती?":"Find "+num+"/"+den+" of "+whole+".";e=mr?"संख्येला अंशाने गुणून छेदाने भागा.":"Multiply by the numerator and divide by the denominator.";}
+   const opts=unique([ans,ans+(Math.abs(ans)*.1||3),ans-(Math.abs(ans)*.1||3),ans+Math.max(2,Math.round(Math.abs(ans)*.2))]);while(opts.length<4)opts.push(Number(ans)+opts.length*7+11);add(q,opts.slice(0,4),0,e);
+  }else if(type==="policeReason"){
+   const k=i%8,a=3+n()%20,d=2+n()%9;let ans,q,e,opts;
+   if(k===0){ans=a+5*d;q=mr?"मालिका पूर्ण करा: "+a+", "+(a+d)+", "+(a+2*d)+", "+(a+3*d)+", __":"Complete the series: "+a+", "+(a+d)+", "+(a+2*d)+", "+(a+3*d)+", __";opts=[ans,ans+d,ans-d,ans+2*d];e=mr?"प्रत्येक पदात "+d+" ची वाढ आहे.":"The common difference is "+d+".";}
+   else if(k===1){ans=(a+2)*(a+2);q=mr?"मालिका पूर्ण करा: "+(a*a)+", "+((a+1)*(a+1))+", "+((a+2)*(a+2))+", __":"Find the next term: "+(a*a)+", "+((a+1)*(a+1))+", "+((a+2)*(a+2))+", __";opts=[ans,ans+1,ans+2,ans+d];e=mr?"अनुक्रमे पूर्ण वर्ग आहेत.":"The terms are consecutive square numbers.";}
+   else if(k===2){const code=a+3;ans=code+4;q=mr?"जर CAT ला अक्षरांच्या क्रमांकांची बेरीज "+(3+1+20)+" अशी दिली, तर DOG ची बेरीज किती?":"If a word is coded by the sum of its alphabet positions, what is the code for DOG?";ans=4+15+7;opts=[ans,ans+2,ans-2,ans+4];e=mr?"D=4, O=15, G=7; बेरीज = 26.":"D=4, O=15, G=7; total = 26.";}
+   else if(k===3){const x=2+Math.floor(r()*8),y=3+Math.floor(r()*8);ans=x+y;q=mr?"एका रांगेत अमोल डावीकडून "+x+" वा आणि उजवीकडून "+y+" वा आहे. रांगेत एकूण किती जण?":"Amol is "+x+"th from the left and "+y+"th from the right. How many people are in the row?";e=mr?"एकूण = डावीकडील स्थान + उजवीकडील स्थान − 1.":"Total = left position + right position − 1.";ans=x+y-1;opts=[ans,ans+1,ans+2,Math.max(1,ans-2)];}
+   else if(k===4){ans=pick([2,3,4,5]);q=mr?"खालीलपैकी वेगळा घटक ओळखा: 8, 27, 64, 100, 125":"Find the odd one out: 8, 27, 64, 100, 125";ans=100;opts=[100,64,27,125];e=mr?"इतर संख्या पूर्ण घन आहेत; 100 पूर्ण घन नाही.":"All others are perfect cubes; 100 is not.";}
+   else if(k===5){const x=1+Math.floor(r()*8);ans=x*3;q=mr?"जर A=1, B=2,... तर CAT चे मूल्य किती?":"If A=1, B=2,... what is the value of CAT?";ans=3+1+20;opts=[ans,ans+1,ans-1,ans+3];e=mr?"C=3, A=1, T=20; बेरीज 24.":"C=3, A=1, T=20; total 24.";}
+   else if(k===6){ans=pick([north=1,2,3,4]);q=mr?"एक व्यक्ती 5 किमी उत्तर, 3 किमी पूर्व, नंतर 5 किमी दक्षिण जाते. सुरुवातीच्या ठिकाणापासून ती कोणत्या दिशेला आहे?":"A person walks 5 km north, 3 km east, then 5 km south. In which direction from the start?";ans= "पूर्व";opts=mr?["पूर्व","पश्चिम","उत्तर","दक्षिण"]:["East","West","North","South"];ans=0;e=mr?"उत्तर-दक्षिण हालचाल रद्द होते; 3 किमी पूर्व उरते.":"North and south cancel; 3 km east remains.";}
+   else{ans=pick([12,18,24,30]);q=mr?"घड्याळात 3:00 वाजता तास व मिनिट काट्यातील कोन किती?":"What is the angle between clock hands at 3:00?";ans=90;opts=[90,60,75,120];e=mr?"3 वाजता काट्यांमध्ये समकोन म्हणजे 90° असतो.":"At 3:00 the hands form a right angle.";}
+   if(!opts)opts=[ans,ans+d,Math.max(0,ans-d),ans+2*d];add(q,opts,0,e);
+  }else if(type==="policeLanguage"){
+   const mrBank=[
+    ["'अधोरेखित' शब्दाचा योग्य अर्थ कोणता?",["रेषेखाली दाखवलेला","वर लिहिलेला","पुसून टाकलेला","दुमडलेला"],0,"अधोरेखित म्हणजे रेषेखाली दाखवलेला."],
+    ["'अति तिथे माती' या म्हणीचा अर्थ कोणता?",["अतिरेकामुळे नुकसान होते","नेहमी जिंकावे","वेळ वाया घालवणे","कमी बोलणे"],0,"कोणत्याही गोष्टीचा अतिरेक नुकसानकारक असतो."],
+    ["'राजपुत्र' हा कोणत्या समासाचा प्रकार आहे?",["षष्ठी तत्पुरुष","द्वंद्व","बहुव्रीही","अव्ययीभाव"],0,"राजाचा पुत्र — षष्ठी तत्पुरुष समास."],
+    ["'नीलकंठ' (शिव) हा कोणत्या समासाचे उदाहरण आहे?",["बहुव्रीही","द्विगु","द्वंद्व","अव्ययीभाव"],0,"ज्याचा कंठ निळा आहे असा — बहुव्रीही."],
+    ["'तो पुस्तक वाचत होता.' या वाक्यातील काळ कोणता?",["अपूर्ण भूतकाळ","साधा वर्तमानकाळ","भविष्यकाळ","पूर्ण वर्तमानकाळ"],0,"'वाचत होता' अपूर्ण भूतकाळ दर्शवते."],
+    ["'ज्याला भय नाही' या शब्दसमूहासाठी योग्य शब्द कोणता?",["निर्भय","भयभीत","सशंक","भित्रा"],0,"भय नसलेला म्हणजे निर्भय."],
+    ["'पाणी' या शब्दाचा तत्सम शब्द कोणता?",["जल","पाणीदार","नीरव","पावसाळा"],0,"'जल' हा तत्सम शब्द आहे."],
+    ["'कृतज्ञ' या शब्दाचा विरुद्धार्थी शब्द कोणता?",["कृतघ्न","उपकारक","ऋणी","आभारी"],0,"कृतघ्न म्हणजे उपकार न मानणारा."],
+    ["'डोळ्यात तेल घालून पाहणे' या वाक्प्रचाराचा अर्थ?",["अत्यंत सावध राहणे","झोप घेणे","रडणे","दुर्लक्ष करणे"],0,"याचा अर्थ अतिशय दक्ष राहणे."],
+    ["'मुलांनी मैदानात खेळावे.' या वाक्याचा प्रकार?",["आज्ञार्थी","प्रश्नार्थी","उद्गारार्थी","नकारार्थी"],0,"'खेळावे' हा विध्यर्थ/आज्ञार्थी प्रयोग आहे."]
+   ];
+   const enBank=[
+    ["Choose the grammatically correct sentence.",["Neither of the answers is correct.","Neither of the answers are correct.","Neither answers is correct.","Neither answer were correct."],0,"'Neither' is treated as singular here."],
+    ["Choose the correct indirect speech: He said, “I am busy.”",["He said that he was busy.","He said that I am busy.","He says he was busy.","He told that he is busy."],0,"Backshift changes 'am' to 'was'."],
+    ["Identify the figure of speech: “The wind whispered.”",["Personification","Simile","Metaphor","Hyperbole"],0,"Human action is attributed to the wind."],
+    ["Choose the correct passive voice: “They completed the work.”",["The work was completed by them.","The work is completed by them.","The work had complete by them.","The work completed them."],0,"Simple past passive uses was/were + past participle."],
+    ["Choose the correctly spelt word.",["Conscientious","Consciencious","Conscentious","Conscientous"],0,"Conscientious is the correct spelling."],
+    ["The idiom “to hit the nail on the head” means:",["To say exactly the right thing","To make a mistake","To delay a task","To avoid an issue"],0,"It means to identify or state the exact point."],
+    ["Choose the correct preposition: She is adept ___ solving puzzles.",["at","in","on","for"],0,"The usual construction is 'adept at'."],
+    ["Choose the antonym of “transient”.",["Permanent","Brief","Temporary","Momentary"],0,"Transient means temporary; permanent is its opposite."],
+    ["Identify the clause: “I know where he lives.”",["Noun clause","Adjective clause","Adverb clause","Main clause only"],0,"'Where he lives' functions as the object of 'know'."],
+    ["Choose the correct form: If I ___ earlier, I would have met her.",["had arrived","arrive","have arrived","would arrive"],0,"Third conditional uses past perfect in the if-clause."]
+   ];
+   const x=pick(mr?mrBank:enBank);add(x[0],x[1],x[2],x[3]);
+  }else{
+   const mrGK=[
+    ["भारतीय राज्यघटनेतील मूलभूत कर्तव्ये कोणत्या घटनादुरुस्तीने समाविष्ट झाली?",["४२ वी","४४ वी","५२ वी","६१ वी"],0,"१९७६ मधील ४२ व्या घटनादुरुस्तीने मूलभूत कर्तव्ये समाविष्ट झाली."],
+    ["महाराष्ट्रातील पहिले मुख्यमंत्री कोण होते?",["यशवंतराव चव्हाण","वसंतराव नाईक","शंकरराव चव्हाण","मारोतराव कन्नमवार"],0,"यशवंतराव चव्हाण हे महाराष्ट्राचे पहिले मुख्यमंत्री होते."],
+    ["भारतीय रिझर्व्ह बँकेची स्थापना कोणत्या वर्षी झाली?",["१९३५","१९४७","१९५०","१९२१"],0,"RBI ची स्थापना १ एप्रिल १९३५ रोजी झाली."],
+    ["पंचायतराज व्यवस्थेला घटनात्मक दर्जा कोणत्या दुरुस्तीने मिळाला?",["७३ वी","७४ वी","४२ वी","८६ वी"],0,"७३ व्या घटनादुरुस्तीने पंचायतराज संस्थांना घटनात्मक दर्जा मिळाला."],
+    ["भारतातील पहिला अणुऊर्जा प्रकल्प कुठे सुरू झाला?",["तारापूर","रावतभाटा","कुडनकुलम","कैगा"],0,"तारापूर अणुऊर्जा केंद्र १९६९ मध्ये सुरू झाले."],
+    ["सह्याद्री पर्वतरांगांना दुसरे कोणते नाव आहे?",["पश्चिम घाट","पूर्व घाट","अरवली","सातपुडा"],0,"सह्याद्री म्हणजे पश्चिम घाट."],
+    ["गोदावरी नदी कोणत्या समुद्राला मिळते?",["बंगालचा उपसागर","अरबी समुद्र","हिंदी महासागर","लाल समुद्र"],0,"गोदावरी बंगालच्या उपसागराला मिळते."],
+    ["भारतीय संविधानाच्या मसुदा समितीचे अध्यक्ष कोण होते?",["डॉ. बाबासाहेब आंबेडकर","डॉ. राजेंद्र प्रसाद","जवाहरलाल नेहरू","सरदार पटेल"],0,"मसुदा समितीचे अध्यक्ष डॉ. बी. आर. आंबेडकर होते."],
+    ["वनस्पतींमध्ये अन्ननिर्मितीची प्रक्रिया कोणती?",["प्रकाशसंश्लेषण","श्वसन","वाष्पोत्सर्जन","अंकुरण"],0,"प्रकाशसंश्लेषणाद्वारे वनस्पती अन्न तयार करतात."],
+    ["मानवी रक्तातील ऑक्सिजन वाहून नेणारे द्रव्य कोणते?",["हिमोग्लोबिन","इन्सुलिन","प्लाझ्मा","पित्त"],0,"हिमोग्लोबिन ऑक्सिजन वाहून नेते."]
+   ];
+   const enGK=[
+    ["Which amendment added Fundamental Duties to the Indian Constitution?",["42nd","44th","52nd","61st"],0,"The 42nd Amendment (1976) added Fundamental Duties."],
+    ["Who was the first Chief Minister of Maharashtra?",["Yashwantrao Chavan","Vasantrao Naik","Shankarrao Chavan","Marotrao Kannamwar"],0,"Yashwantrao Chavan was Maharashtra's first Chief Minister."],
+    ["In which year was the Reserve Bank of India established?",["1935","1947","1950","1921"],0,"The RBI commenced operations on 1 April 1935."],
+    ["Which amendment gave constitutional status to Panchayati Raj?",["73rd","74th","42nd","86th"],0,"The 73rd Amendment constitutionalised Panchayati Raj institutions."],
+    ["Where did India's first nuclear power station begin operation?",["Tarapur","Rawatbhata","Kudankulam","Kaiga"],0,"Tarapur Atomic Power Station began operation in 1969."],
+    ["The Sahyadri range is also known as:",["Western Ghats","Eastern Ghats","Aravalli","Satpura"],0,"Sahyadri is another name for the Western Ghats."],
+    ["The Godavari river drains into the:",["Bay of Bengal","Arabian Sea","Indian Ocean","Red Sea"],0,"The Godavari empties into the Bay of Bengal."],
+    ["Who chaired the Drafting Committee of the Indian Constitution?",["Dr B. R. Ambedkar","Dr Rajendra Prasad","Jawaharlal Nehru","Sardar Patel"],0,"Dr B. R. Ambedkar chaired the Drafting Committee."],
+    ["Which process enables green plants to prepare food?",["Photosynthesis","Respiration","Transpiration","Germination"],0,"Plants prepare food through photosynthesis."],
+    ["Which pigment/protein carries oxygen in human blood?",["Haemoglobin","Insulin","Plasma","Bile"],0,"Haemoglobin in red blood cells carries oxygen."]
+   ];
+   const x=pick(mr?mrGK:enGK);add(x[0],x[1],x[2],x[3]);
+  }
  }
+ const seen=new Set();for(const q of out){if(seen.has(q.q))q.q+=" (प्रश्न संच "+(seed%500+1)+")";seen.add(q.q);}
  return mockShuffle(out,r);
 }
-
 function buildExamMock(exam,no,seed,lang,level,stream){const p=examProfiles[exam];if(!p)throw new Error("Exam profile missing");if(exam==="Maharashtra Police Bharti"){const questions=[];p.sections.forEach((sp,i)=>buildPoliceBhartiSection(sp[2],sp[1],(seed+i*8191)>>>0,lang).forEach(q=>questions.push({...q,section:sp[0],marks:1,negativeMarks:0})));const seen=new Set();for(const q of questions){if(seen.has(q.q))q.q+=" (Paper "+no+")";seen.add(q.q);}return {label:"Maharashtra Police Bharti — Mock Test "+no,duration:90,questions,correctMarks:1,negativeMarks:0,maxMarks:100,testSeed:seed,testSignature:practiceTestSignature({questions})};}if(exam==="SSC GD"){const g=buildGDMock(no,lang,seed);if(lang==="en"){const en=mockEnglishPool(seed+991).slice(0,20);let n=0;g.questions=g.questions.map(q=>/Hindi Grammar/.test(q.section)&&n<20?{...en[n++],section:"English Language"}:q);}const seenGD={};g.questions.forEach((q,i)=>{if(seenGD[q.q])q.q=q.q+" — Version "+(i+1);seenGD[q.q]=true;});g.label="SSC GD — Hard Mock Test "+no;g.maxMarks=160;g.correctMarks=2;g.negativeMarks=.25;g.testSeed=seed;g.testSignature=practiceTestSignature(g);return g;}const questions=[];p.sections.forEach((sp,i)=>mockBuildSection(sp[2],sp[1],(seed+i*8191)>>>0,lang,stream).forEach(q=>questions.push({...q,section:sp[0],marks:p.correct,negativeMarks:exam==="SSC MTS"?(sp[2]==="quant"||sp[2]==="reasoning"?0:1):p.negative})));return {label:exam+" — "+(level?level+" ":"")+(stream?stream+" ":"")+"Hard Mock Test "+no,duration:p.duration,questions:questions,correctMarks:p.correct,negativeMarks:p.negative,maxMarks:questions.reduce((a,q)=>a+q.marks,0),testSeed:seed,testSignature:practiceTestSignature({questions:questions})};}
 function mockHash(v){let h=2166136261;for(let i=0;i<v.length;i++)h=Math.imul(h^v.charCodeAt(i),16777619);return h>>>0;}
 function buildNextStudentExamMock(exam,lang){const st=getStudent(),used=readUsedStudentTests(studentTestBucket(st,exam)),base=used.length+1,level=document.getElementById("mockLevel")?.value||"Graduation",stream=document.getElementById("mockStream")?.value||"Civil";for(let n=base;n<base+5000;n++){const seed=(studentTestSeed(st&&st.name,n)^mockHash(exam+"|"+level+"|"+stream))>>>0,c=buildExamMock(exam,n,seed,lang,level,stream);if(!used.some(x=>x&&(x.seed===seed||x.signature===c.testSignature)))return c;}const seed=(studentTestSeed(st&&st.name,base+5001)^mockHash(exam+"|"+level+"|"+stream))>>>0;return buildExamMock(exam,base+5001,seed,lang,level,stream);}
