@@ -1316,54 +1316,174 @@ const bank=mr?mrGK:enGK,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2
  return shuffle(out);
 }
 
-function buildPoliceBhartiSection(type,count,seed,lang){
- if(type!=="policeGK") return buildPoliceBhartiSectionLegacy(type,count,seed,lang);
- const r=gdRand(seed),mr=lang==="mr";
- const base=buildPoliceBhartiSectionLegacy(type,15,seed,lang);
- const ca=[
-  ["‘खेलो भारत नीती’ राष्ट्रीय क्रीडा धोरणाची सुरुवात कोणत्या दिवशी झाली?",["1 जुलै 2025","15 ऑगस्ट 2025","26 जानेवारी 2026","1 मे 2025"],0,"PIB नुसार Khelo Bharat Niti 1 जुलै 2025 रोजी सुरू झाली.","PIB states that Khelo Bharat Niti was launched on 1 July 2025."],
-  ["Khelo Bharat Niti चे दीर्घकालीन उत्कृष्टतेचे लक्ष्य कोणत्या ऑलिम्पिक वर्षाशी जोडले आहे?",["2036","2028","2032","2040"],0,"या धोरणात 2036 ऑलिम्पिकमध्ये उत्कृष्टतेचे लक्ष्य आहे.","The policy sets an excellence goal for the 2036 Olympics."],
-  ["2026–27 च्या केंद्रीय अर्थसंकल्पात क्रीडा मंत्रालयासाठी किती तरतूद जाहीर झाली?",["₹4,479.88 कोटी","₹3,000 कोटी","₹1,219 कोटी","₹5,500 कोटी"],0,"PIB नुसार 2026–27 साठी ₹4,479.88 कोटींची तरतूद आहे.","PIB reports an allocation of ₹4,479.88 crore for 2026–27."],
-  ["2026–27 ते 2030–31 साठी सुधारित Khelo India व राष्ट्रीय क्रीडा महासंघ सहाय्य यांचा संयुक्त खर्च किती?",["₹36,441 कोटी","₹10,000 कोटी","₹25,000 कोटी","₹44,798 कोटी"],0,"केंद्रीय मंत्रिमंडळाने संयुक्त ₹36,441 कोटी खर्च मंजूर केला.","The Union Cabinet approved a combined outlay of ₹36,441 crore."],
-  ["KIRTI उपक्रम कोणत्या वयोगटातील मुलांमधील क्रीडा-प्रतिभा शोधतो?",["9 ते 18 वर्षे","5 ते 8 वर्षे","18 ते 25 वर्षे","25 ते 30 वर्षे"],0,"KIRTI चा भर 9–18 वयोगटावर आहे.","KIRTI focuses on identifying talent among children aged 9–18."],
-  ["TOPS योजनेतील मुख्य गटातील खेळाडूंसाठी नमूद मासिक stipend किती आहे?",["₹50,000","₹25,000","₹10,000","₹75,000"],0,"PIB नुसार TOPS मुख्य गटासाठी ₹50,000 मासिक stipend नमूद आहे.","PIB lists a ₹50,000 monthly stipend for TOPS core athletes."],
-  ["TOPS विकास गटातील कनिष्ठ खेळाडूंसाठी नमूद मासिक stipend किती आहे?",["₹25,000","₹50,000","₹15,000","₹5,000"],0,"विकास गटातील कनिष्ठ खेळाडूंसाठी ₹25,000 मासिक stipend आहे.","The Development Group stipend is ₹25,000 per month."],
-  ["ऑगस्ट 2025 मध्ये मंजूर National Sports Governance Bill मध्ये क्रीडा वादांसाठी कोणती संस्था प्रस्तावित आहे?",["National Sports Tribunal","Finance Commission","Election Commission","National Green Tribunal"],0,"विधेयकात क्रीडा वाद सोडवण्यासाठी National Sports Tribunal ची तरतूद आहे.","The Bill provides for a National Sports Tribunal to resolve sports disputes."],
-  ["2025–26 या आर्थिक वर्षासाठी Khelo India योजनेला किती तरतूद देण्यात आली होती?",["₹1,000 कोटी","₹500 कोटी","₹2,191 कोटी","₹3,794 कोटी"],0,"PIB च्या जून 2025 च्या माहितीनुसार Khelo India साठी ₹1,000 कोटी होते.","PIB's June 2025 note lists ₹1,000 crore for Khelo India in 2025–26."],
-  ["Khelo India Centres चा प्रमुख हेतू कोणता?",["तळागाळातील प्रशिक्षण व प्रतिभा विकास","फक्त आंतरराष्ट्रीय खेळाडू निवडणे","क्रीडा साहित्य विकणे","विद्यापीठ परीक्षा घेणे"],0,"केंद्रांचा भर स्थानिक पातळीवरील प्रशिक्षण व प्रतिभा विकासावर आहे.","The centres focus on grassroots training and talent development."]
- ];
- const out=base.slice(0,15);
- for(let i=0;i<10;i++){
-  const x=ca[i],opts=mr?x[1]:["1 July 2025","15 August 2025","26 January 2026","1 May 2025"];
-  const enQ=[
-   "On which date was the Khelo Bharat Niti national sports policy launched?",
-   "Which Olympic year is the long-term excellence target of Khelo Bharat Niti linked to?",
-   "What allocation was announced for the Ministry of Sports in the Union Budget 2026–27?",
-   "What combined outlay was approved for revamped Khelo India and National Sports Federations support for 2026–27 to 2030–31?",
-   "Which age group does the KIRTI initiative focus on for identifying sporting talent?",
-   "What monthly stipend is specified for core athletes under TOPS?",
-   "What monthly stipend is specified for junior athletes in the TOPS Development Group?",
-   "Which body for resolving sports disputes is provided for in the National Sports Governance Bill passed in August 2025?",
-   "What allocation was made to Khelo India for financial year 2025–26?",
-   "What is the primary purpose of Khelo India Centres?"
-  ];
-  const enOpts=[
-   ["1 July 2025","15 August 2025","26 January 2026","1 May 2025"],
-   ["2036","2028","2032","2040"],
-   ["₹4,479.88 crore","₹3,000 crore","₹1,219 crore","₹5,500 crore"],
-   ["₹36,441 crore","₹10,000 crore","₹25,000 crore","₹44,798 crore"],
-   ["9 to 18 years","5 to 8 years","18 to 25 years","25 to 30 years"],
-   ["₹50,000","₹25,000","₹10,000","₹75,000"],
-   ["₹25,000","₹50,000","₹15,000","₹5,000"],
-   ["National Sports Tribunal","Finance Commission","Election Commission","National Green Tribunal"],
-   ["₹1,000 crore","₹500 crore","₹2,191 crore","₹3,794 crore"],
-   ["Grassroots training and talent development","Selecting only international athletes","Selling sports equipment","Conducting university examinations"]
-  ];
-  const pairs=(mr?opts:enOpts[i]).map((v,j)=>({v,ok:j===0}));
-  for(let j=pairs.length-1;j>0;j--){const z=Math.floor(r()*(j+1));[pairs[j],pairs[z]]=[pairs[z],pairs[j]];}
-  out.push({q:mr?x[0]:enQ[i],o:pairs.map(p=>p.v),a:pairs.findIndex(p=>p.ok),e:mr?x[3]:x[4]});
+function buildPoliceHardSection(type,count,seed,lang){
+ const r=gdRand(seed),mr=lang==="mr",out=[];
+ const M=(a,b)=>mr?a:b, pick=a=>a[Math.floor(r()*a.length)];
+ const fmt=x=>{const n=Number(x);return Number.isInteger(n)?String(n):String(Number(n.toFixed(2)));};
+ const add=(q,ans,wrong,e)=>{
+  const key=fmt(ans),vals=[...new Set([key,...wrong.map(fmt)].filter(v=>v!==""&&Number.isFinite(Number(v))))];
+  let bump=1;while(vals.length<4){const v=fmt(Number(key)+bump);if(!vals.includes(v))vals.push(v);bump++;}
+  const pairs=mockShuffle(vals.slice(0,4).map(v=>({v,ok:v===key})),r);
+  out.push({q,o:pairs.map(x=>x.v),a:pairs.findIndex(x=>x.ok),e});
+ };
+ if(type==="policeMath"){
+  for(let i=0;i<count;i++){
+   const k=i%15;let q,ans,w,e;
+   switch(k){
+    case 0:{
+     const mp=2400+100*Math.floor(r()*9),d=10+5*Math.floor(r()*4),tax=5+5*Math.floor(r()*3),cp=mp*(1-d/100)*(1+tax/100);
+     ans=cp;q=M("एका वस्तूची दर्शनी किंमत ₹"+mp+" आहे. प्रथम "+d+"% सूट आणि नंतर सवलतीच्या किमतीवर "+tax+"% GST लावला. अंतिम बिल किती?","An item has a marked price of ₹"+mp+". A discount of "+d+"% is applied, followed by "+tax+"% GST. Find the final bill.");
+     w=[mp*(1+(tax-d)/100),mp*(1-d/100),mp*(1+tax/100)];e=M("आधी सूट: "+mp+" × "+(100-d)+"/100; नंतर GST: मिळालेली किंमत × "+(100+tax)+"/100.","Apply the discount first, then GST: "+mp+" × "+(100-d)+"/100 × "+(100+tax)+"/100.");break;
+    }
+    case 1:{
+     const cp=800+100*Math.floor(r()*9),p=10+5*Math.floor(r()*4),d=10+5*Math.floor(r()*3),sp=cp*(1+p/100),mp=sp/(1-d/100);
+     ans=mp;q=M("खरेदी किंमत ₹"+cp+". विक्रेत्याला "+p+"% नफा हवा आहे. "+d+"% सूट दिल्यानंतर अपेक्षित विक्री किंमत मिळण्यासाठी दर्शनी किंमत किती ठेवावी?","The cost price is ₹"+cp. "A seller wants a "+p+"% profit. What marked price is needed so that after a "+d+"% discount the target selling price is achieved?");
+     w=[sp*(1+d/100),sp/(1+d/100),cp*(1+(p+d)/100)];e=M("लक्ष्य विक्री किंमत = CP × (1 + नफा%). दर्शनी किंमत = लक्ष्य विक्री किंमत ÷ (1 − सूट%).","Target SP = CP × (1 + profit%). Marked price = target SP ÷ (1 − discount%).");break;
+    }
+    case 2:{
+     const a=3+Math.floor(r()*5),b=a+2+Math.floor(r()*5),unit=6+Math.floor(r()*8),sum=(a+b)*unit,diff=(b-a)*unit;
+     ans=a*unit;q=M("दोन संख्यांचे गुणोत्तर "+a+":"+b+" आहे. त्यांची बेरीज "+sum+" आणि फरक "+diff+" आहे. लहान संख्या शोधा.","Two numbers are in the ratio "+a+":"+b+". Their sum is "+sum+" and their difference is "+diff+". Find the smaller number.");
+     w=[b*unit,sum/a,diff];e=M("गुणोत्तरातील भागांची बेरीज "+(a+b)+" आहे; एक भाग = "+sum+"/"+(a+b)+". लहान संख्या = "+a+" भाग.","The ratio has "+(a+b)+" total parts. One part is "+sum+"/"+(a+b)+"; multiply by "+a+".");break;
+    }
+    case 3:{
+     const A=6+Math.floor(r()*5),B=12+Math.floor(r()*9),elapsed=1+Math.floor(r()*2),remaining=1-elapsed*(1/A+1/B),ans0=remaining*A;
+     ans=ans0;q=M("A काम "+A+" दिवसांत व B "+B+" दिवसांत पूर्ण करतो. दोघांनी "+elapsed+" दिवस एकत्र काम केल्यावर उरलेले काम A एकट्याने किती दिवसांत पूर्ण करेल?","A can finish a job in "+A+" days and B in "+B+" days. After they work together for "+elapsed+" days, how many more days will A alone need?");
+     w=[A*remaining,B*remaining,A*B/(A+B)];e=M("एकत्र दर = 1/"+A+" + 1/"+B+". उरलेले काम = 1 − "+elapsed+" × एकत्र दर; त्याला A च्या दराने भागा.","Combined rate = 1/"+A+" + 1/"+B+". Remaining work = 1 − "+elapsed+" × combined rate; divide by A's rate.");break;
+    }
+    case 4:{
+     const speed=48+6*Math.floor(r()*6),train=120+20*Math.floor(r()*7),platform=160+20*Math.floor(r()*8);
+     ans=(train+platform)/(speed*5/18);q=M(speed+" किमी/तास वेगाची "+train+" मीटर लांबीची रेल्वे "+platform+" मीटर फलाट पूर्ण ओलांडण्यास किती सेकंद घेईल?","A "+train+" m train travels at "+speed+" km/h. How many seconds does it take to completely cross a "+platform+" m platform?");
+     w=[train/(speed*5/18),platform/(speed*5/18),(train+platform)/(speed/3.6)];e=M("पूर्ण ओलांडताना एकूण अंतर = रेल्वे + फलाट. वेग m/s मध्ये बदला.","Total distance is train length plus platform length. Convert km/h to m/s.");break;
+    }
+    case 5:{
+     const P=5000+1000*Math.floor(r()*8),rate=4+Math.floor(r()*7);
+     ans=P*rate*rate/10000;q=M("₹"+P+" वर वार्षिक "+rate+"% दराने 2 वर्षांसाठी चक्रवाढ व्याज व सरळव्याज यांतील फरक किती?","Find the difference between compound interest and simple interest on ₹"+P+" at "+rate+"% per annum for 2 years.");
+     w=[P*rate/100,P*rate*2/100,P*rate*rate/1000];e=M("2 वर्षांसाठी CI − SI = मुद्दल × (दर/100)².","For two years, CI − SI = principal × (rate/100)².");break;
+    }
+    case 6:{
+     const n=12+Math.floor(r()*9),avg=42+Math.floor(r()*9),old=avg*n,leave=35+Math.floor(r()*16),join=leave+5+Math.floor(r()*16);
+     ans=(old-leave+join)/n;q=M(n+" विद्यार्थ्यांचे सरासरी वजन "+avg+" किलो आहे. "+leave+" किलोचा विद्यार्थी बाहेर गेला व "+join+" किलोचा विद्यार्थी आला. नवीन सरासरी किती?","The average weight of "+n+" students is "+avg+" kg. A "+leave+" kg student leaves and a "+join+" kg student joins. Find the new average.");
+     w=[avg+(join-leave),avg+(join-leave)/(n-1),avg+(join+leave)/n];e=M("नवीन बेरीज = जुनी बेरीज − बाहेर गेलेले + आलेले वजन. विद्यार्थीसंख्या तीच आहे.","New total = old total − departing weight + arriving weight; the number of students is unchanged.");break;
+    }
+    case 7:{
+     const V=60+10*Math.floor(r()*7),x=10+5*Math.floor(r()*5),percent=100*Math.pow(1-x/V,2);
+     ans=percent;q=M(V+" लिटरच्या दुधाने भरलेल्या भांड्यातून "+x+" लिटर दूध काढून तेवढेच पाणी भरले. ही प्रक्रिया पुन्हा एकदा केली. शेवटी दुधाचे प्रमाण किती टक्के?","A "+V+" L vessel is full of milk. "+x+" L is removed and replaced with water. The same operation is repeated once. What percentage of the final mixture is milk?");
+     w=[100*(1-x/V),100*Math.pow(1-x/V,1),100*(1-2*x/V)];e=M("प्रत्येक वेळी दुधाचा उरलेला अंश "+(V-x)+"/"+V+". दोन वेळा केल्यावर अंशाचा वर्ग होतो.","The milk fraction remaining after each operation is (V−x)/V. After two operations, square that fraction.");break;
+    }
+    case 8:{
+     const boat=14+Math.floor(r()*9),stream=2+Math.floor(r()*5),dist=boat*2;
+     ans=dist/(boat+stream)+dist/(boat-stream);q=M("स्थिर पाण्यात होडीचा वेग "+boat+" किमी/तास व प्रवाहाचा वेग "+stream+" किमी/तास आहे. "+dist+" किमी अंतर जाऊन त्याच मार्गाने परत येण्यास किती वेळ लागेल?","A boat's speed in still water is "+boat+" km/h and stream speed is "+stream+" km/h. How long does a "+dist+" km downstream journey and return take?");
+     w=[2*dist/boat,dist/(boat+stream),dist/(boat-stream)];e=M("प्रवाहासोबत वेग = "+(boat+stream)+"; विरुद्ध = "+(boat-stream)+". दोन्ही वेळा स्वतंत्र काढून जोडा.","Downstream speed is "+(boat+stream)+" and upstream speed is "+(boat-stream)+". Calculate and add both times.");break;
+    }
+    case 9:{
+     const v1=36+6*Math.floor(r()*6),v2=42+6*Math.floor(r()*6),dist=390+30*Math.floor(r()*8);
+     ans=dist/(v1+v2);q=M("दोन ठिकाणांतील अंतर "+dist+" किमी आहे. दोन वाहने एकाच वेळी समोरासमोर अनुक्रमे "+v1+" व "+v2+" किमी/तास वेगाने निघाली. ती किती तासांनी भेटतील?","Two vehicles start simultaneously toward each other from points "+dist+" km apart at "+v1+" and "+v2+" km/h. After how many hours will they meet?");
+     w=[dist/Math.abs(v1-v2),dist/v1,dist/v2];e=M("समोरासमोर येताना सापेक्ष वेग = "+v1+" + "+v2+"; वेळ = अंतर ÷ सापेक्ष वेग.","For motion toward each other, relative speed is the sum of speeds; time = distance ÷ relative speed.");break;
+    }
+    case 10:{
+     const fill=5+Math.floor(r()*5),leak=fill+4+Math.floor(r()*8);
+     ans=1/(1/fill-1/leak);q=M("एक नळ टाकी "+fill+" तासांत भरतो आणि गळतीमुळे पूर्ण टाकी "+leak+" तासांत रिकामी होते. दोन्ही एकाच वेळी सुरू असल्यास टाकी किती तासांत भरेल?","An inlet fills a tank in "+fill+" hours while a leak empties a full tank in "+leak+" hours. If both operate together, how long will filling take?");
+     w=[1/(1/fill+1/leak),leak-fill,fill*leak/(leak-fill)];e=M("निव्वळ दर = 1/"+fill+" − 1/"+leak. वेळ = 1 ÷ निव्वळ दर.","Net rate = 1/"+fill+" − 1/"+leak. Time is the reciprocal of the net rate.");break;
+    }
+    case 11:{
+     const age=24+Math.floor(r()*9),gap=8+Math.floor(r()*7),years=3+Math.floor(r()*6),young=age,old=age+gap;
+     ans=(old+years)/(young+years);q=M("वडील व मुलाचे सध्याचे वय "+old+" व "+young+" वर्षे आहे. "+years+" वर्षांनंतर त्यांच्या वयांचे गुणोत्तर किती असेल?","A father and son's present ages are "+old+" and "+young+" years. What will be the ratio of their ages after "+years+" years?");
+     const gcd=mockGcd(old+years,young+years);ans=(old+years)/gcd+":"+(young+years)/gcd;w=[(old+years+1)+":"+(young+years),(old+years)+":"+(young+years+1),old+":"+young];e=M("दोघांच्या वयात "+years+" वर्षे जोडा आणि मिळालेले गुणोत्तर ल.सा.वि./म.सा.वि.ने साधे करा.","Add "+years+" to both ages, then reduce the resulting ratio by their HCF.");break;
+    }
+    case 12:{
+     const a=12+Math.floor(r()*10),b=18+Math.floor(r()*10),l=a*b/mockGcd(a,b);
+     ans=l;q=M("दोन घंटा अनुक्रमे प्रत्येक "+a+" व "+b+" मिनिटांनी वाजतात. त्या सकाळी 8 वाजता एकत्र वाजल्या. पुन्हा किती वाजता एकत्र वाजतील?","Two bells ring every "+a+" and "+b+" minutes. They ring together at 8:00 a.m. When will they next ring together?");
+     const total=480+l;w=[l+mockGcd(a,b),Math.max(a,b),a+b];e=M("पुन्हा एकत्र वाजण्याचा कालावधी = "+a+" व "+b+" यांचा LCM = "+l+" मिनिटे.","The next common interval is the LCM of "+a+" and "+b+", which is "+l+" minutes.");break;
+    }
+    case 13:{
+     const p=20+5*Math.floor(r()*8),q0=10+5*Math.floor(r()*6),base=1000+100*Math.floor(r()*8);
+     ans=base*(1+p/100)*(1-q0/100);q=M("एका संख्येत प्रथम "+p+"% वाढ आणि नंतर नव्या संख्येत "+q0+"% घट झाली. सुरुवातीची संख्या "+base+" असल्यास अंतिम संख्या किती?","A number is first increased by "+p+"% and then the new value is decreased by "+q0+"%. If the original number is "+base+", find the final value.");
+     w=[base*(1+(p-q0)/100),base*(1-p/100)*(1+q0/100),base+(p-q0)];e=M("टक्केवारी बदल मूळ संख्येवर एकत्र बेरीज होत नाहीत; प्रत्येक बदल नव्या संख्येवर लागू करा.","Apply each percentage to the current value, not both to the original value.");break;
+    }
+    default:{
+     const length=24+2*Math.floor(r()*9),width=12+2*Math.floor(r()*7),path=2+Math.floor(r()*4);
+     ans=length*width-(length-2*path)*(width-2*path);q=M(length+" मी × "+width+" मी आयताकृती मैदानाच्या आतील बाजूने सर्वत्र "+path+" मी रुंदीचा मार्ग आहे. मार्गाचे क्षेत्रफळ किती?","A "+length+" m by "+width+" m rectangular field has a path of width "+path+" m running all around inside it. Find the area of the path.");
+     w=[2*path*(length+width),length*width-(length-path)*(width-path),2*path*(length+width-2*path)];e=M("मार्गाचे क्षेत्रफळ = बाहेरील आयताचे क्षेत्रफळ − आतील उरलेल्या आयताचे क्षेत्रफळ.","Path area = outer rectangle area − inner rectangle area.");break;
+    }
+   }
+   add(q,ans,w,e);
+  }
+ }else if(type==="policeReason"){
+  const daysMR=["सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार","रविवार"],daysEN=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+  for(let i=0;i<count;i++){
+   const k=i%12;let q,ans,w,e;
+   switch(k){
+    case 0:{
+     const x=3+Math.floor(r()*9),d=2+Math.floor(r()*5),terms=[x,x+d,x+3*d,x+6*d];ans=x+10*d;
+     q=M("मालिकेत सलग फरक "+d+" ने वाढतात: "+terms.join(", ")+", __. पुढील पद शोधा.","The successive differences increase by "+d+": "+terms.join(", ")+", __. Find the next term.");
+     w=[ans-d,ans+d,ans+2*d];e=M("फरक "+d, "+(2*d)+", "+(3*d)+", "+(4*d)+" असे आहेत; पुढचा फरक "+(5*d)+" आहे.","The differences are "+d+", "+(2*d)+", "+(3*d)+", "+(4*d)+"; the next difference is "+(5*d)+".");break;
+    }
+    case 1:{
+     const word=pick(["TRAIN","POLICE","MARKET","BRAVE","CROWN"]),shift=1+Math.floor(r()*4),coded=[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+shift)%26)).join("");
+     ans=coded;q=M("एका संकेतपद्धतीत प्रत्येक अक्षर त्याच्या वर्णक्रमात "+shift+" स्थानांनी पुढे जाते (Z नंतर A). TRAIN या नियमाने "+word+" कसा लिहाल?","In a code, each letter is shifted forward by "+shift+" places (Z wraps to A). How is "+word+" encoded?");
+     w=[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+shift+1)%26)).join(""),[...word].map(c=>String.fromCharCode(65+(c.charCodeAt(0)-65+25)%26)).join(""),[...word].reverse().join("")];e=M("प्रत्येक अक्षर स्वतंत्रपणे "+shift+" स्थानांनी पुढे सरकवा; Z नंतर A घ्या.","Shift each letter forward by "+shift+" positions, wrapping after Z.");break;
+    }
+    case 2:{
+     q=M("अनिल हा मीनाचा भाऊ आहे. मीना ही सागरची आई आहे. सागर हा रियाचा भाऊ आहे. अनिलचे रियाशी नाते काय?","Anil is Meena's brother. Meena is Sagar's mother. Sagar is Riya's brother. How is Anil related to Riya?");
+     ans=M("मामा","Maternal uncle");w=mr?["काका","आजोबा","भाऊ"]:["Paternal uncle","Grandfather","Brother"];e=M("मीना रिया व सागरची आई; तिचा भाऊ अनिल म्हणजे रियाचा मामा.","Meena is Riya's mother, so her brother Anil is Riya's maternal uncle.");break;
+    }
+    case 3:{
+     const n=12+Math.floor(r()*18),e0=8+Math.floor(r()*12),s0=5+Math.floor(r()*7),w0=3+Math.floor(r()*5);
+     const dx=e0-w0,dy=n-s0;ans=dx===0?(dy>0?M("उत्तर","North"):M("दक्षिण","South")):dy===0?(dx>0?M("पूर्व","East"):M("पश्चिम","West")):M((dy>0?"उत्तर":"दक्षिण")+"-"+(dx>0?"पूर्व":"पश्चिम"),(dy>0?"North":"South")+"-"+(dx>0?"East":"West"));
+     q=M("एक व्यक्ती "+n+" मी उत्तर, "+e0+" मी पूर्व, "+s0+" मी दक्षिण व "+w0+" मी पश्चिम चालते. सुरुवातीच्या ठिकाणाच्या तुलनेत अंतिम दिशा कोणती?","A person walks "+n+" m north, "+e0+" m east, "+s0+" m south and "+w0+" m west. In which direction is the final position from the start?");
+     w=mr?["ईशान्य","वायव्य","आग्नेय","नैऋत्य","उत्तर","दक्षिण","पूर्व","पश्चिम"].filter(x=>x!==ans).slice(0,3):["North-east","North-west","South-east","South-west","North","South","East","West"].filter(x=>x!==ans).slice(0,3);e=M("उत्तर-दक्षिण आणि पूर्व-पश्चिम हालचाली स्वतंत्रपणे वजा करून निव्वळ दिशा ठरवा.","Subtract north–south and east–west movements separately to obtain the net direction.");break;
+    }
+    case 4:{
+     const left=3+Math.floor(r()*9),right=5+Math.floor(r()*10),total=left+right-1;
+     ans=total;q=M("एका रांगेत रोहन डावीकडून "+left+" वा आणि उजवीकडून "+right+" वा आहे. रांगेत एकूण किती जण आहेत?","Rohan is "+left+"th from the left and "+right+"th from the right in a row. How many people are there?");
+     w=[total+1,total-1,left+right];e=M("एकूण = डावीकडील क्रमांक + उजवीकडील क्रमांक − 1; रोहन दोन्हीकडे एकदाच मोजला जातो.","Total = left rank + right rank − 1; Rohan is counted once.");break;
+    }
+    case 5:{
+     const h=1+Math.floor(r()*10),m=10+5*Math.floor(r()*10),raw=Math.abs(30*(h%12)-5.5*m),angle=Math.min(raw,360-raw);
+     ans=Number(angle.toFixed(1));q=M(h+":"+String(m).padStart(2,"0")+" वाजता घड्याळाच्या काट्यांतील लहान कोन किती अंश?","Find the smaller angle between the clock hands at "+h+":"+String(m).padStart(2,"0")+".");
+     w=[Number(Math.abs(angle+5.5).toFixed(1)),Number(Math.abs(180-angle).toFixed(1)),Number((360-angle).toFixed(1))];e=M("तास काटा = 30h + 0.5m अंश; मिनिट काटा = 6m अंश. फरकाचा लहान कोन घ्या.","Hour-hand angle = 30h + 0.5m degrees; minute-hand angle = 6m degrees. Take the smaller difference.");break;
+    }
+    case 6:{
+     q=M("विधाने: सर्व निरीक्षक पदवीधर आहेत. काही पदवीधर खेळाडू आहेत. निष्कर्ष: I) काही निरीक्षक खेळाडू आहेत. II) काही खेळाडू पदवीधर आहेत. कोणता निष्कर्ष निश्चितपणे अनुसरतो?","Statements: All inspectors are graduates. Some graduates are athletes. Conclusions: I) Some inspectors are athletes. II) Some athletes are graduates. Which conclusion necessarily follows?");
+     ans=M("फक्त II","Only II");w=mr?["फक्त I","दोन्ही","एकही नाही"]:["Only I","Both","Neither"];e=M("‘काही पदवीधर खेळाडू आहेत’ यावरून काही खेळाडू पदवीधर आहेत; निरीक्षक-खेळाडू संबंध निश्चित होत नाही.","The existence of some graduate-athletes guarantees conclusion II, but not a link between inspectors and athletes.");break;
+    }
+    case 7:{
+     const offset=1+Math.floor(r()*6),idx=offset%7;ans=(mr?daysMR:daysEN)[idx];
+     q=M("एखाद्या महिन्याची 1 तारीख सोमवार असेल, तर "+(1+offset)+" तारीख कोणता वार असेल?","If the 1st of a month is Monday, what day of the week is the "+(1+offset)+"th?");
+     w=mockShuffle((mr?daysMR:daysEN).filter(x=>x!==ans),r).slice(0,3);e=M("तारखांमधील अंतर "+offset+" दिवस आहे. 7 ने बाकी काढून सोमवारपासून पुढे मोजा.","The offset is "+offset+" days. Reduce it modulo 7 and count forward from Monday.");break;
+    }
+    case 8:{
+     const pairs=["AZ","BY","CX","DW","EV"],idx=Math.floor(r()*3),first=String.fromCharCode(65+idx),second=String.fromCharCode(90-idx),nxt=String.fromCharCode(66+idx)+String.fromCharCode(89-idx);
+     ans=nxt;q=M("अक्षरमालिका: "+pairs.slice(idx,idx+3).join(", ")+", __. पुढील जोडी कोणती?","Letter sequence: "+pairs.slice(idx,idx+3).join(", ")+", __. What is the next pair?");
+     w=[String.fromCharCode(65+idx)+String.fromCharCode(88-idx),String.fromCharCode(67+idx)+String.fromCharCode(89-idx),String.fromCharCode(66+idx)+String.fromCharCode(90-idx)];e=M("पहिले अक्षर पुढे जाते आणि दुसरे अक्षर उलट दिशेने जाते.","The first letter advances while the second moves backward.");break;
+    }
+    case 9:{
+     const a=4+Math.floor(r()*6),b=a+1+Math.floor(r()*5),c=b+1+Math.floor(r()*5);
+     ans=M("मधोमध","In the middle");q=M("P, Q, R, S, T एका रांगेत उभे आहेत. P हा Q च्या पुढे, R हा Q च्या मागे, S हा P च्या पुढे आणि T हा R च्या मागे आहे. मधोमध कोण आहे?","P, Q, R, S and T stand in a line. P is ahead of Q, R is behind Q, S is ahead of P, and T is behind R. Who is in the middle?");
+     w=mr?["सर्वात पुढे","सर्वात मागे","दुसऱ्या स्थानी"]:["At the front","At the back","Second"];e=M("क्रम S–P–Q–R–T असा होतो; मधला Q आहे.","The order is S–P–Q–R–T, so Q is in the middle.");break;
+    }
+    case 10:{
+     const x=2+Math.floor(r()*8),n=x+3,seq=[x,x*2,x*2+3,(x*2+3)*2];ans=seq[3]+3;
+     q=M("मालिका: "+seq.join(", ")+", __. पर्यायी पदांवर ×2 आणि +3 ही क्रिया आलटून-पालटून होते. पुढील पद कोणते?","Series: "+seq.join(", ")+", __. The operations ×2 and +3 alternate. Find the next term.");
+     w=[seq[3]*2,seq[3]+2,seq[3]+6];e=M("शेवटचे पद "+seq[3]+" आहे; पुढील क्रिया +3 आहे.","The last term is "+seq[3]+"; the next operation is +3.");break;
+    }
+    default:{
+     const a=2+Math.floor(r()*5),b=3+Math.floor(r()*5),c=4+Math.floor(r()*5);
+     q=M("एका परीक्षेत नेहा वरून "+a+" वी आणि खालून "+b+" वी आहे. तिच्यापेक्षा "+c+" जणांनी जास्त गुण मिळवले. परीक्षेला एकूण किती विद्यार्थी होते?","In an exam, Neha ranks "+a+"th from the top and "+b+"th from the bottom. Exactly "+c+" students scored higher than her. How many students took the exam?");
+     ans=a+b-1;w=[a+b,a+b+c-1,a+b-c-1];e=M("वरून व खालून दिलेली क्रमवारी एकत्र केल्यास एकूण = "+a+" + "+b+" − 1. अतिरिक्त माहितीमधील अट तपासून तीच सुसंगत संख्या राहते.","Combining top and bottom ranks gives total = "+a+" + "+b+" − 1; the stated higher-score count is consistent with the top rank.");break;
+    }
+   }
+   add(q,ans,w,e);
+  }
+ }else{
+  return buildPoliceBhartiSectionLegacy(type,count,seed,lang);
  }
- return out.slice(0,count);
+ const seen=new Set();for(const q of out){if(seen.has(q.q))q.q+=" (प्रश्न संच "+(seed%500+1)+")";seen.add(q.q);}
+ return mockShuffle(out,r).slice(0,count);
+}
+function buildPoliceBhartiSection(type,count,seed,lang){
+ if(type==="policeMath"||type==="policeReason")return buildPoliceHardSection(type,count,seed,lang);
+ return buildPoliceBhartiSectionLegacy(type,count,seed,lang);
 }
 
 function mockGcd(a,b){while(b){const t=b;b=a%b;a=t;}return a;}
