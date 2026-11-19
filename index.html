@@ -1687,7 +1687,7 @@ function submitPracticeTest(forceSubmit){
   for(let i=0;i<total;i++){
    const q=activePractice.questions[i]||{},chosen=practiceAnswers[i];
    const state=chosen===q.a?'correct':(chosen===undefined||chosen===null?'unanswered':'wrong');
-   const steps=Array.isArray(q.steps)&&q.steps.length?q.steps.map(x=>String(x)):String(q.e||'').split(/(?:\\n+|(?<=[.!?])\\s+|;\\s*)/).map(x=>x.trim()).filter(Boolean);
+   const steps=buildDetailedSolutionSteps(q);
    const stepHtml=steps.length?'<ol class="result-solution-steps">'+steps.map(x=>'<li>'+escapeHTML(x)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
    const opts=Array.isArray(q.o)?q.o:[];
    fallbackReview+='<article class="result-answer-card '+state+'"><b>Question '+(i+1)+'</b><p class="result-question">'+escapeHTML(q.q||'')+'</p><p><b>Correct answer:</b> '+escapeHTML(opts[q.a]||'')+'</p><details class="result-solution"><summary>💡 Solution पाहा — Step by Step</summary><div class="result-solution-body">'+stepHtml+'</div></details></article>';
@@ -1712,19 +1712,20 @@ showPage(target);
 }
 function buildDetailedSolutionSteps(q){
  const authored=Array.isArray(q.steps)?q.steps.map(x=>String(x).trim()).filter(Boolean):[];
- if(authored.length)return authored;
- const raw=String(q.e||"").trim();
- if(!raw)return [];
- const chunks=raw.split(/\\n+|;\\s*|(?<=[.!?])\\s+(?=[A-Zअ-ह])/).map(x=>x.trim()).filter(Boolean);
+ const raw=String(q.e||q.explanation||q.solution||"").trim();
+ const source=authored.length?authored:raw.split(/\n+|;\s*|(?<=[.!?])\s+(?=[A-Zअ-ह])/).map(x=>x.trim()).filter(Boolean);
+ if(!source.length)return [];
  const steps=[];
- chunks.forEach(chunk=>{
-  const eq=chunk.split(/\\s*=\\s*/).map(x=>x.trim()).filter(Boolean);
-  if(eq.length>=3){
-   for(let i=1;i<eq.length;i++)steps.push(eq[i-1]+" = "+eq[i]);
-  }else steps.push(chunk);
+ source.forEach(part=>{
+  String(part).split(/\n+/).map(x=>x.trim()).filter(Boolean).forEach(line=>{
+   const eq=line.split(/\s*=\s*/).map(x=>x.trim()).filter(Boolean);
+   if(eq.length>=3){for(let i=1;i<eq.length;i++)steps.push(eq[i-1]+" = "+eq[i]);}
+   else steps.push(line);
+  });
  });
  const answer=q.o&&q.o[q.a]!==undefined?String(q.o[q.a]):"";
- if(answer&&!steps.some(x=>x.includes(answer)))steps.push("म्हणून योग्य उत्तर: "+answer);
+ const option=Number.isInteger(q.a)?String.fromCharCode(65+q.a):"";
+ if(answer&&!steps.some(x=>x.includes(answer)))steps.push("अंतिम उत्तर: "+answer+(option?" (पर्याय "+option+")":""));
  return steps;
 }
 function submitPracticeTestCore(forceSubmit){
