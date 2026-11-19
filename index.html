@@ -1237,7 +1237,19 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     ["Choose the correct form: 'The evidence is insufficient, ___?'",["isn't it","is it","doesn't it","isn't there"],0,"A positive statement with 'is' takes a negative tag."],
     ["Choose the word closest in meaning to 'obdurate'.",["Stubborn","Generous","Flexible","Careless"],0,"Obdurate means stubborn or resistant to persuasion."]
    ];
-   const bank=mr?mrBank:enBank,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
+   mrBank.push(
+ ["‘ज्याने उपकाराची जाणीव ठेवली आहे’ यासाठी योग्य शब्द कोणता?",["कृतज्ञ","कृतघ्न","निर्लज्ज","उद्धट"],0,"उपकार मानणारा म्हणजे कृतज्ञ."],
+ ["‘तो पुस्तक वाचून झोपला’ या वाक्यातील पूर्वकालवाचक क्रियापद कोणते?",["वाचून","झोपला","तो","पुस्तक"],0,"मुख्य क्रियेपूर्वी झालेली क्रिया ‘वाचून’ दर्शवते."],
+ ["‘पाणी पाणी होणे’ या वाक्प्रचाराचा संदर्भानुसार योग्य अर्थ कोणता?",["अतिशय लाजिरवाणे होणे","तहान लागणे","आनंदित होणे","घाबरून पळणे"],0,"या वाक्प्रचाराचा अर्थ लज्जित होणे असा आहे."],
+ ["‘दुर्जन’ या शब्दातील उपसर्ग व मूळ शब्द कोणते?",["दुर् + जन","दु + र्जन","दुर्ज + अन","दुर् + अजन"],0,"‘दुर्’ हा उपसर्ग ‘जन’ या शब्दाला जोडला आहे."],
+ ["‘आकाशाला गवसणी घालणे’ या वाक्प्रचाराचा अर्थ कोणता?",["अतिशय मोठे ध्येय साध्य करण्याचा प्रयत्न करणे","आकाश पाहणे","प्रवास करणे","निरर्थक बोलणे"],0,"अशक्यप्राय मोठे ध्येय गाठण्याचा प्रयत्न."],
+ ["‘आई-वडील’ या शब्दातील समास कोणता?",["द्वंद्व","तत्पुरुष","बहुव्रीही","अव्ययीभाव"],0,"दोन्ही पदांना समान महत्त्व असल्याने द्वंद्व समास."],
+ ["‘जरी पाऊस आला, तरी सामना सुरू राहिला’ हे कोणत्या प्रकारचे वाक्य?",["मिश्र वाक्य","केवल वाक्य","संयुक्त वाक्य","उद्गारार्थी"],0,"अधीनत्व दर्शवणारे उभयान्वयी अव्यय असल्याने मिश्र वाक्य."],
+ ["‘त्याने मला पुस्तक दिले’ या वाक्यात ‘मला’ कोणती विभक्ती दर्शवते?",["चतुर्थी","द्वितीया","तृतीया","षष्ठी"],0,"‘मला’ हे संप्रदान/चतुर्थीचे रूप आहे."],
+ ["‘निरुपयोगी’ या शब्दाचा विरुद्धार्थी शब्द कोणता?",["उपयुक्त","निरर्थक","व्यर्थ","अनावश्यक"],0,"निरुपयोगीचा विरुद्धार्थी उपयुक्त."],
+ ["‘सूर्यास्त’ या शब्दाची योग्य संधी-विग्रह रचना कोणती?",["सूर्य + अस्त","सूर्यः + अस्त","सूर्य + आस्त","सुर्य + अस्त"],0,"‘सूर्य’ आणि ‘अस्त’ यांच्या संयोगातून सूर्यास्त."]
+);
+const bank=mr?mrBank:enBank,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
   }else{
    const mrGK=[
     ["भारतीय संविधानातील राज्याच्या धोरणनिर्देशक तत्त्वांचा समावेश कोणत्या भागात आहे?",["भाग IV","भाग III","भाग IVA","भाग V"],0,"धोरणनिर्देशक तत्त्वे भाग IV मध्ये आहेत."],
@@ -1273,7 +1285,31 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     ["Which plant tissue transports water from roots?",["Xylem","Phloem","Cambium","Epidermis"],0,"Xylem transports water and minerals."],
     ["Which gas forms the largest proportion of Earth's atmosphere?",["Nitrogen","Oxygen","Carbon dioxide","Argon"],0,"Nitrogen makes up about 78% of the atmosphere."]
    ];
-   const bank=mr?mrGK:enGK,x=bank[(i+Math.floor(r()*bank.length))%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
+   mrGK.push(
+ ["2025-26 च्या महाराष्ट्राच्या आर्थिक सर्वेक्षणानुसार राज्याच्या निर्यातीचा 2024-25 मध्ये भारताच्या एकूण निर्यातीत किती वाटा होता?",["15.0%","10.5%","20.0%","31.0%"],0,"महाराष्ट्र आर्थिक सर्वेक्षण 2025-26 नुसार हा वाटा 15.0% होता."],
+ ["महाराष्ट्राच्या 2025-26 च्या पहिल्या सहामाहीतील FDI बाबत राज्यपालांच्या अभिभाषणात कोणती रक्कम नमूद आहे?",["₹91,337 कोटी","₹1,64,875 कोटी","₹30 लाख कोटी","₹56,000 कोटी"],0,"2025-26 च्या पहिल्या सहामाहीत ₹91,337 कोटी FDI नमूद आहे."],
+ ["महाराष्ट्र शासनाच्या 2025-29 कृषी-कृत्रिम बुद्धिमत्ता धोरणाचा मुख्य उद्देश कोणता?",["AI व आधुनिक तंत्रज्ञानाद्वारे शेती अधिक उत्पादक व शाश्वत करणे","केवळ निर्यात शुल्क वाढवणे","सर्व शेती जमीन औद्योगिक करणे","पीक विमा बंद करणे"],0,"धोरणाचा उद्देश शेतीत AI वापरून उत्पादकता व शाश्वतता वाढवणे."],
+ ["जानेवारी 2026 मध्ये जाहीर झालेल्या Export Preparedness Index-2024 मध्ये महाराष्ट्राचा क्रमांक कोणता असल्याचे राज्यपालांच्या अभिभाषणात नमूद आहे?",["पहिला","दुसरा","तिसरा","पाचवा"],0,"महाराष्ट्राने पहिला क्रमांक मिळवल्याचे नमूद आहे."],
+ ["नोव्हेंबर 2025 मधील सहाव्या राष्ट्रीय जल पुरस्कारात ‘Best State’ श्रेणीतील प्रथम पुरस्कार कोणत्या राज्याला मिळाला?",["महाराष्ट्र","गुजरात","राजस्थान","केरळ"],0,"महाराष्ट्राला ‘Best State’ श्रेणीतील प्रथम पुरस्कार मिळाला."],
+ ["2026 मधील National Awards for e-Governance मध्ये महाराष्ट्रातील कोणत्या दोन संस्थांना सुवर्ण पुरस्कार मिळाले?",["कडेपूर ग्रामपंचायत व जिल्हा परिषद नंदुरबार","पुणे महानगरपालिका व मुंबई पोलीस","नाशिक जिल्हा परिषद व नागपूर महानगरपालिका","रत्नागिरी जिल्हा परिषद व ठाणे पोलीस"],0,"PIB नुसार सांगलीतील कडेपूर ग्रामपंचायत आणि जिल्हा परिषद नंदुरबार यांना पुरस्कार मिळाले."],
+ ["2025 च्या India Maritime Week दरम्यान महाराष्ट्राने सुमारे किती रुपयांचे सामंजस्य करार केले?",["₹56,000 कोटी","₹5,600 कोटी","₹1.64 लाख कोटी","₹30 लाख कोटी"],0,"महाराष्ट्राच्या राज्यपालांच्या अभिभाषणात सुमारे ₹56,000 कोटींचे MoU नमूद आहेत."],
+ ["2026 च्या Davos बैठकीत महाराष्ट्र शासनाने सुमारे किती गुंतवणुकीचे सामंजस्य करार केल्याचे अभिभाषणात नमूद आहे?",["₹30 लाख कोटी","₹3 लाख कोटी","₹56,000 कोटी","₹91,337 कोटी"],0,"18 देशांतील कंपन्यांसोबत सुमारे ₹30 लाख कोटींचे MoU नमूद आहेत."],
+ ["2025 मध्ये जाहीर झालेल्या महाराष्ट्राच्या ‘Green Maharashtra, Prosperous Maharashtra’ मोहिमेचे वृक्षलागवडीचे उद्दिष्ट किती होते?",["10 कोटी","1 कोटी","5 कोटी","15 कोटी"],0,"मोहिमेचे उद्दिष्ट 10 कोटी वृक्ष लावण्याचे होते."],
+ ["महाराष्ट्रातील ‘MILAAP’ पोर्टल कोणत्या प्रक्रियेशी संबंधित आहे?",["MIDC औद्योगिक भूखंडांचे पारदर्शक वाटप","शालेय प्रवेश","पोलीस भरती अर्ज","पीक विमा दावे"],0,"MILAAP हे MIDC औद्योगिक भूखंड अर्ज व वाटपासाठीचे पोर्टल आहे."]
+);
+enGK.push(
+ ["According to Maharashtra's Economic Survey 2025-26, what share did the State contribute to India's total exports in 2024-25?",["15.0%","10.5%","20.0%","31.0%"],0,"The Economic Survey reports a 15.0% share."],
+ ["What FDI inflow for the first half of 2025-26 was mentioned in the Maharashtra Governor's address?",["₹91,337 crore","₹1,64,875 crore","₹30 lakh crore","₹56,000 crore"],0,"The address reports ₹91,337 crore for the first half of 2025-26."],
+ ["What is the central aim of Maharashtra's Agriculture-AI Policy 2025-29?",["Make farming more productive and sustainable using AI and modern technology","Increase only export duties","Convert all farmland to industrial land","End crop insurance"],0,"The policy aims to improve agricultural productivity and sustainability through AI."],
+ ["What rank did Maharashtra secure in the Export Preparedness Index-2024, as stated in the January 2026 Governor's address?",["First","Second","Third","Fifth"],0,"The address states Maharashtra ranked first."],
+ ["Which State received first prize in the 'Best State' category at the Sixth National Water Awards in November 2025?",["Maharashtra","Gujarat","Rajasthan","Kerala"],0,"Maharashtra received the first prize in the Best State category."],
+ ["Which two Maharashtra institutions received Gold Awards at the 2026 National Awards for e-Governance?",["Kadepur Gram Panchayat and Zilla Parishad Nandurbar","Pune Municipal Corporation and Mumbai Police","Nashik Zilla Parishad and Nagpur Municipal Corporation","Ratnagiri Zilla Parishad and Thane Police"],0,"PIB identifies Kadepur Gram Panchayat and Zilla Parishad Nandurbar."],
+ ["What was the approximate value of MoUs signed by Maharashtra during India Maritime Week 2025?",["₹56,000 crore","₹5,600 crore","₹1.64 lakh crore","₹30 lakh crore"],0,"The Governor's address cites MoUs worth about ₹56,000 crore."],
+ ["What approximate investment MoU value did Maharashtra announce from the January 2026 Davos meeting?",["₹30 lakh crore","₹3 lakh crore","₹56,000 crore","₹91,337 crore"],0,"The address reports about ₹30 lakh crore in MoUs with companies from 18 countries."],
+ ["What was the tree-plantation target of Maharashtra's 2025 'Green Maharashtra, Prosperous Maharashtra' campaign?",["10 crore trees","1 crore trees","5 crore trees","15 crore trees"],0,"The campaign target was 10 crore trees."],
+ ["The Maharashtra portal 'MILAAP' is associated with which process?",["Transparent application and allotment of MIDC industrial plots","School admissions","Police recruitment applications","Crop insurance claims"],0,"MILAAP is the MIDC Industrial Land Application and Allotment Portal."]
+);
+const bank=mr?mrGK:enGK,x=bank[i%bank.length];add(x[0],x[1][0],x[1].slice(1),x[2]);
   }
  }
  const seen=new Set();for(const q of out){if(seen.has(q.q))q.q+=" (संच "+(seed%500+1)+")";seen.add(q.q);}
