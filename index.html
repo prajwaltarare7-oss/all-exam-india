@@ -1105,7 +1105,7 @@ function buildPoliceBhartiSection(type,count,seed,lang){
     case 7:{
      const cp=500+50*n(),profit=10+Math.floor(r()*5)*5,disc=10+Math.floor(r()*4)*5;
      const sp=cp*(1+profit/100),mp=sp/(1-disc/100);ans=Number(mp.toFixed(2));
-     q=M("विक्रेत्याला खरेदी किमतीवर "+profit+"% नफा हवा आहे. "+disc+"% सूट दिल्यानंतर विक्री किंमत ₹"+sp.toFixed(2) असेल, तर दर्शनी किंमत किती?","A seller wants "+profit+"% profit on cost price. If the selling price after a "+disc+"% discount is ₹"+sp.toFixed(2)+", find the marked price.");
+     q=M("विक्रेत्याला खरेदी किमतीवर "+profit+"% नफा हवा आहे. "+disc+"% सूट दिल्यानंतर विक्री किंमत ₹"+sp.toFixed(2)+" असेल, तर दर्शनी किंमत किती?","A seller wants "+profit+"% profit on cost price. If the selling price after a "+disc+"% discount is ₹"+sp.toFixed(2)+", find the marked price.");
      w=[Number((sp*(1+disc/100)).toFixed(2)),Number((sp/(1+disc/100)).toFixed(2)),Number((cp*(1+disc/100)).toFixed(2))];e=M("नफा आधी खरेदी किमतीवरून विक्री किंमत ठरवतो; सूटीनंतरची किंमत ही दर्शनी किमतीची "+(100-disc)+"% आहे.","First calculate the profit-based selling price; the discounted price is "+(100-disc)+"% of the marked price.");break;
     }
     case 8:{
