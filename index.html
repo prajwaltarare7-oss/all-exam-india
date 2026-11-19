@@ -485,9 +485,9 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
 </section>
 <section id="pyq" class="page">
-<h2>Exam-wise PYQ & Practice Tests</h2><div class="notice"><b id="pyqTotalCount">Available PYQ Practice Sets: 61</b> • Counts show available sets.</div>
+<h2>Exam-wise PYQ & Practice Tests</h2><div class="notice"><b id="pyqTotalCount">Available PYQ Practice Sets: 64</b> • Counts show available sets.</div>
 <p>Choose a separate PYQ section for each exam. Exams without verified official paper sources will not be presented with fabricated PYQs.</p>
-<div class="notice">For SSC GD, 61 independent practice sets are available using 2023–2024 year/shift references. These are not exact questions from official papers. Official papers for other exams will be added when available. <a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC Official Website</a></div>
+<div class="notice">For SSC GD, 64 practice sets are available. The 2023–2024 sets are independent practice; the 2012, 2019 and 2021 reference sets use original questions based on concepts found in the uploaded PDFs, not copied PYQs. Official papers for other exams will be added when available. <a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC Official Website</a></div>
 <div class="card"><h3>Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="Search exam name / year / date / shift..." oninput="renderPYQ()">
 <div id="pyqList"></div>
 
@@ -1249,6 +1249,13 @@ const gdPracticeSessions=gdPracticeSessionIds.map((id,index)=>{
  const day=Number(m[1]),monthKey=m[2],year=Number(m[3]),shift=Number(m[4]);
  return {id,index,day,month:gdMonthNumbers[monthKey]||1,year,shift,dateLabel:day+" "+(gdMonthNames[monthKey]||monthKey)+" "+year,label:day+" "+(gdMonthNames[monthKey]||monthKey)+" "+year+" • Shift "+shift};
 }).filter(Boolean).sort((a,b)=>(b.year-a.year)||(b.month-a.month)||(b.day-a.day)||(a.shift-b.shift));
+/* Original concept-practice sets informed by the uploaded reference PDFs.
+   These are NOT verbatim previous-year questions or official paper reproductions. */
+gdPracticeSessions.push(
+ {id:"source-2012-shift-2",index:61,day:0,month:0,year:2012,shift:2,dateLabel:"2012 Shift 2 reference",label:"2012 Shift 2 • Source-concept practice",sourceLabel:"solved-ssc-gd-2012-shift-2-paper-with-solutions.pdf"},
+ {id:"source-2019-shift-1",index:62,day:0,month:0,year:2019,shift:1,dateLabel:"18 February 2019 Shift 1 reference",label:"18 Feb 2019 Shift 1 • Source-concept practice",sourceLabel:"solved-ssc-gd-18th-feb-2019-shift-1-paper-with-solutions.pdf"},
+ {id:"source-2021-shift-1",index:63,day:0,month:0,year:2021,shift:1,dateLabel:"16 November 2021 Shift 1 reference",label:"16 Nov 2021 Shift 1 • Source-concept practice",sourceLabel:"solved-ssc-gd-16th-nov-2021-shift-1-paper-with-solutions.pdf"}
+);
 function gdSessionSeed(id){
  let h=2166136261;
  for(let i=0;i<id.length;i++)h=Math.imul(h^id.charCodeAt(i),16777619);
@@ -1307,7 +1314,7 @@ function startGDSessionPractice(sessionId){
 
 function showPYQExam(exam){window.selectedPYQExam=exam;renderPYQ();}
 function renderPYQ(){
- const totalNode=document.getElementById("pyqTotalCount");if(totalNode)totalNode.textContent="SSC GD PYQ Practice Sets: "+gdPracticeSessions.length+" (year/shift-wise)";
+ const totalNode=document.getElementById("pyqTotalCount");if(totalNode)totalNode.textContent="SSC GD PYQ & source-concept practice sets: "+gdPracticeSessions.length;
  const q=(document.getElementById("pyqSearch")?.value||"").trim().toLowerCase();
  const matchingSessions=gdPracticeSessions.filter(x=>(x.label+" ssc gd "+x.year+" shift "+x.shift).toLowerCase().includes(q));
  const examMatches=exams.filter(name=>name.toLowerCase().includes(q)||(name==="SSC GD"&&matchingSessions.length>0));
@@ -1321,12 +1328,12 @@ function renderPYQ(){
  const selected=window.selectedPYQExam&&examMatches.includes(window.selectedPYQExam)?window.selectedPYQExam:"";
  if(selected==="SSC GD"){
   html+='<div class="card"><h3>SSC GD — Year & Shift-wise Practice Sets</h3><p>61 independent practice sets. Year and shift are references; the questions are not exact copies of official PYQs.</p></div>';
-  [2024,2023].forEach(year=>{
+  [2024,2023,2021,2019,2012].forEach(year=>{
    const group=gdPracticeSessions.filter(x=>x.year===year&&(!q||matchingSessions.includes(x)));
    if(!group.length)return;
    html+='<details class="card pyq-year-group" '+(year===2024||q?'open':'')+'><summary><strong>SSC GD '+year+' — '+group.length+' Practice Sets</strong></summary><div class="pyq-session-grid">';
    group.forEach(session=>{
-    html+='<article class="pyq-session-card"><b>SSC GD '+session.year+'</b><p>'+session.dateLabel+'</p><p class="small-note">Shift '+session.shift+' · 80 Questions · 60 Minutes</p><button class="primary" type="button" onclick="openPYQPractice(\'SSC GD\',\''+session.id+'\')">Start Practice Test</button></article>';
+    html+='<article class="pyq-session-card"><b>SSC GD '+session.year+'</b><p>'+escapeHTML(session.label||session.dateLabel)+'</p><p class="small-note">'+(session.sourceLabel?'Original concept practice · ':'')+'80 Questions · 60 Minutes</p><button class="primary" type="button" onclick="openPYQPractice(\'SSC GD\',\''+session.id+'\')">Start Practice Test</button></article>';
    });
    html+='</div></details>';
   });
