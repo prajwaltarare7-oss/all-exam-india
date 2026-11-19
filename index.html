@@ -2272,5 +2272,140 @@ initAccountAuth();initNewFeatures();renderMockCards();renderStudentStats();
   } catch(e) {}
 })();
 </script>
+
+<!-- AEI_FIREBASE_ADMIN_DASHBOARD_V1 -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBAAexSmsL-rz73v6zKMV8RGHxOw93FSQs",
+  authDomain: "all-exam-india.firebaseapp.com",
+  projectId: "all-exam-india",
+  storageBucket: "all-exam-india.firebasestorage.app",
+  messagingSenderId: "945595541558",
+  appId: "1:945595541558:web:a45242ebf48ba8c3f51097"
+};
+const ADMIN_UID = "WwE0ux0gy2Xyqpc9XJavfR19jTf1";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const eventCol = collection(db, "activityEvents");
+const sessionKey = "aei-analytics-session-v1";
+let sessionId = "";
+try {
+  sessionId = localStorage.getItem(sessionKey) || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2));
+  localStorage.setItem(sessionKey, sessionId);
+} catch (_) { sessionId = "session-" + Date.now(); }
+
+async function track(type, page) {
+  try {
+    await addDoc(eventCol, {
+      eventType: type,
+      page: String(page || "").slice(0, 80),
+      category: /pyq/i.test(String(page || "")) ? "PYQ" : (/mock|hard/i.test(String(page || "")) ? "Mock" : "Other"),
+      sessionId,
+      createdAt: serverTimestamp()
+    });
+  } catch (e) {
+    console.warn("Activity tracking unavailable. Check Firestore Rules.", e);
+  }
+}
+window.aeiTrackActivity = track;
+track("visit", "site");
+track("page_view", location.hash.replace("#page=", "") || "home");
+
+const originalShowPage = window.showPage;
+if (typeof originalShowPage === "function") {
+  window.showPage = function(id, fromHistory) {
+    const result = originalShowPage.apply(this, arguments);
+    track("page_view", id);
+    return result;
+  };
+}
+const originalStart = window.confirmStartPracticeTest;
+if (typeof originalStart === "function") {
+  window.confirmStartPracticeTest = function() {
+    const result = originalStart.apply(this, arguments);
+    track("test_started", window.practiceExam || "testroom");
+    return result;
+  };
+}
+const originalSubmit = window.submitPracticeTestCore;
+if (typeof originalSubmit === "function") {
+  window.submitPracticeTestCore = function() {
+    const wasSubmitted = window.practiceSubmitted;
+    const result = originalSubmit.apply(this, arguments);
+    if (!wasSubmitted && window.practiceSubmitted) track("test_completed", window.practiceExam || "testroom");
+    return result;
+  };
+}
+
+const style = document.createElement("style");
+style.textContent = "#aeiAdminCard input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:10px;margin:5px 0 12px}#aeiAdminStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}#aeiAdminStats .stat{background:#f1f5ff;padding:14px;border-radius:12px}#aeiAdminStats b{display:block;font-size:25px;color:#244fc5}#aeiAdminStatus{white-space:pre-wrap}";
+document.head.appendChild(style);
+
+const settingsTitle = document.querySelector("#settings h2");
+if (settingsTitle && !document.getElementById("aeiAdminCard")) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.id = "aeiAdminCard";
+  card.innerHTML = '<h3>🔐 Admin Activity Dashboard</h3><p>फक्त अधिकृत Admin प्रवेश करू शकतो.</p><label for="aeiAdminEmail">Admin Email</label><input id="aeiAdminEmail" type="email" autocomplete="username" placeholder="Admin email"><label for="aeiAdminPassword">Firebase Admin Password</label><input id="aeiAdminPassword" type="password" autocomplete="current-password" placeholder="Firebase password"><button class="primary" id="aeiAdminLogin">Admin Login</button> <button class="primary" id="aeiAdminLogout" style="display:none">Logout</button><p id="aeiAdminStatus" class="small-note" aria-live="polite">Dashboard पाहण्यासाठी Admin Login करा.</p><div id="aeiAdminPanel" style="display:none"><div id="aeiAdminStats"></div><h3>Activity Summary</h3><div id="aeiAdminBreakdown"></div><button class="primary" id="aeiAdminRefresh">Refresh Dashboard</button><p class="small-note">हे browser events वर आधारित अंदाजे आकडे आहेत; student names, phone numbers किंवा answers गोळा केले जात नाहीत.</p></div>';
+  settingsTitle.insertAdjacentElement("afterend", card);
+}
+const el = id => document.getElementById(id);
+function setStatus(t) { if (el("aeiAdminStatus")) el("aeiAdminStatus").textContent = t; }
+async function loadDashboard() {
+  setStatus("Activity data लोड होत आहे...");
+  try {
+    const snap = await getDocs(query(eventCol, orderBy("createdAt", "desc"), limit(1000)));
+    const events = snap.docs.map(d => d.data()).filter(x => x.createdAt && typeof x.createdAt.toDate === "function");
+    const now = Date.now(), day = 86400000;
+    const count = (fn, type) => events.filter(e => (!type || e.eventType === type) && fn(e.createdAt.toDate().getTime())).length;
+    const unique = (fn) => new Set(events.filter(e => fn(e.createdAt.toDate().getTime())).map(e => e.sessionId)).size;
+    const sinceDay = t => t >= now-day, sinceWeek = t => t >= now-7*day, sinceMonth = t => t >= now-30*day;
+    const stats = [
+      ["Total Visits", count(()=>true,"visit")],
+      ["Unique Sessions", unique(()=>true)],
+      ["Today", count(sinceDay)],
+      ["Last 7 Days", count(sinceWeek)],
+      ["Last 30 Days", count(sinceMonth)],
+      ["Tests Started", count(()=>true,"test_started")],
+      ["Tests Completed", count(()=>true,"test_completed")],
+      ["Page Views", count(()=>true,"page_view")]
+    ];
+    el("aeiAdminStats").innerHTML = stats.map(x => '<div class="stat"><b>'+x[1]+'</b>'+x[0]+'</div>').join("");
+    const pyq = events.filter(e=>e.category==="PYQ");
+    const mock = events.filter(e=>e.category==="Mock");
+    const popular = {};
+    events.filter(e=>e.eventType==="test_started").forEach(e=>{const k=e.page||"Unknown";popular[k]=(popular[k]||0)+1;});
+    const top = Object.entries(popular).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    el("aeiAdminBreakdown").innerHTML = '<p><b>PYQ Events:</b> '+pyq.length+' &nbsp; <b>Mock Events:</b> '+mock.length+'</p><h4>Popular Tests</h4>'+(top.length?top.map(x=>'<p>'+String(x[0]).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))+' — '+x[1]+' starts</p>').join(""):"<p>अजून टेस्ट activity नाही.</p>");
+    setStatus("Dashboard अपडेट झाले. शेवटचे 1,000 events तपासले.");
+  } catch (e) {
+    setStatus("डेटा वाचता आला नाही. Firestore Security Rules तपासा. "+(e.code||e.message||""));
+  }
+}
+function showAdmin(user) {
+  const ok = !!user && user.uid === ADMIN_UID;
+  if (el("aeiAdminPanel")) el("aeiAdminPanel").style.display = ok ? "block" : "none";
+  if (el("aeiAdminLogout")) el("aeiAdminLogout").style.display = ok ? "inline-block" : "none";
+  if (el("aeiAdminLogin")) el("aeiAdminLogin").style.display = ok ? "none" : "inline-block";
+  if (ok) loadDashboard();
+  else if (user) { signOut(auth); setStatus("हा Account Admin म्हणून अधिकृत नाही."); }
+}
+onAuthStateChanged(auth, showAdmin);
+el("aeiAdminLogin")?.addEventListener("click", async () => {
+  const email = el("aeiAdminEmail").value.trim(), password = el("aeiAdminPassword").value;
+  if (!email || !password) { setStatus("Admin Email आणि Password भरा."); return; }
+  setStatus("Login तपासत आहे...");
+  try { await signInWithEmailAndPassword(auth, email, password); el("aeiAdminPassword").value=""; }
+  catch(e) { setStatus("Login अयशस्वी. Email/Password तपासा. ("+(e.code||"error")+")"); }
+});
+el("aeiAdminLogout")?.addEventListener("click", () => signOut(auth));
+el("aeiAdminRefresh")?.addEventListener("click", loadDashboard);
+</script>
+
 </body>
 </html>
