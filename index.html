@@ -409,6 +409,22 @@ body:has(.test-instructions) .container{height:auto!important;min-height:100dvh!
 body:has(.test-instructions) #testroom{height:auto!important;min-height:0!important;overflow:visible!important}
 body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!important;padding-bottom:24px}
 .test-instructions{max-height:none!important;overflow:visible!important;margin:14px auto 28px!important}
+
+/* After submission, release the locked CBT viewport so the full result and solutions can scroll on mobile. */
+@media(max-width:760px){
+ body.aei-test-active:has(#testResult .result-wrap),
+ body.aei-test-active:has(#testResult .result-review){height:auto!important;min-height:100%!important;overflow-y:auto!important;overflow-x:hidden!important;position:static!important}
+ body.aei-test-active:has(#testResult .result-wrap) .container,
+ body.aei-test-active:has(#testResult .result-review) .container{height:auto!important;min-height:100dvh!important;overflow:visible!important}
+ body.aei-test-active:has(#testResult .result-wrap) #testroom.page.active,
+ body.aei-test-active:has(#testResult .result-review) #testroom.page.active{position:relative!important;inset:auto!important;height:auto!important;min-height:100dvh!important;max-height:none!important;overflow:visible!important;padding:12px 10px 32px!important}
+ body.aei-test-active:has(#testResult .result-wrap) #testArea,
+ body.aei-test-active:has(#testResult .result-review) #testArea{height:auto!important;min-height:0!important;overflow:visible!important}
+ body.aei-test-active:has(#testResult .result-wrap) #testResult,
+ body.aei-test-active:has(#testResult .result-review) #testResult{display:block!important;height:auto!important;max-height:none!important;overflow:visible!important;padding-bottom:30px}
+ body.aei-test-active:has(#testResult .result-wrap) .result-review,
+ body.aei-test-active:has(#testResult .result-review) .result-review{overflow:visible!important}
+}
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#website","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","name":"SSC EXAM.IN","alternateName":"ALL EXAM INDIA","description":"Free mock tests, free PYQ practice tests and current affairs for SSC examinations.","inLanguage":["mr","hi","en"]},{"@type":"EducationalOrganization","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#organization","name":"SSC EXAM.IN","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","description":"Online practice resources for Indian SSC competitive examinations."}]}</script>
