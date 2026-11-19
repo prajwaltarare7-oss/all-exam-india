@@ -178,6 +178,8 @@ body.dark .test-status span,body.dark .question-legend span{background:#192a48;b
 .result-answer-pair p{margin:0;font-size:13px;line-height:1.5;color:#263752}
 .result-explanation{font-size:13px;line-height:1.6;color:#52617b;margin:11px 0 0;padding-top:10px;border-top:1px solid #e6ebf3}
 .result-explanation b{color:#203252}
+.result-review-heading{margin:20px 0 12px;padding:12px 14px;border-radius:12px;background:#eef3ff;color:#203b77;font-size:17px;font-weight:850}
+body.dark .result-review-heading{background:#1c2d4b;color:#dce7ff}
 .result-solution{margin-top:12px;border:1px solid #dce5f3;border-radius:10px;background:#f6f8fd;overflow:hidden}
 .result-solution summary{cursor:pointer;padding:11px 12px;font-size:13px;font-weight:850;color:#3155bd;list-style:none}
 .result-solution summary::-webkit-details-marker{display:none}
@@ -1705,7 +1707,7 @@ if(!forceSubmit&&unanswered>0&&!window.confirm((selectedPaperLanguage==='en'?'Yo
 practiceSubmitted=true;
 clearInterval(practiceInterval);
 let score=0,correct=0,wrong=0,skipped=0,negativeDeducted=0;
-let reviewHtml='<section class="result-review"><details><summary>'+(selectedPaperLanguage==='en'?'View answer analysis and explanations':'उत्तरे and स्पष्टीकरण पाहा')+' ('+total+')</summary><div class="result-review-grid">';
+let reviewHtml='<section class="result-review"><h3 class="result-review-heading">'+(selectedPaperLanguage==='en'?'Answer analysis and solutions':'Answer analysis and solutions')+' ('+total+')</h3><div class="result-review-grid">';
 activePractice.questions.forEach((q,i)=>{
 const chosen=practiceAnswers[i];
 if(chosen===q.a){correct++;score+=q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:(isGDMock?2:1));}
@@ -1719,7 +1721,7 @@ const solutionSteps=Array.isArray(q.steps)&&q.steps.length?q.steps.map(x=>String
 const solutionHtml=solutionSteps.length?'<ol class="result-solution-steps">'+solutionSteps.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
 reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'Question ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'Your answer')+'</small><p>'+yourAnswer+'</p></div><div><small>'+('Correct Answer')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><details class="result-solution"><summary>'+(selectedPaperLanguage==='en'?'Solution — Step by Step':'Solution — Step by Step')+'</summary><div class="result-solution-body"><p><b>'+(selectedPaperLanguage==='en'?'Correct option: ':'Correct option: ')+'</b>'+escapeHTML(q.o[q.a])+'</p>'+solutionHtml+'</div></details></article>';
 });
-reviewHtml+='</div></details></section>';
+reviewHtml+='</div></section>';
 const maxMarks=activePractice.maxMarks||activePractice.questions.reduce((sum,q)=>sum+(q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:1)),0);
 const scorePercent=maxMarks>0?Math.max(0,Math.min(100,score/maxMarks*100)):0;
 const attempted=correct+wrong,accuracy=attempted?Math.round(correct/attempted*100):0,completion=Math.round(attempted/total*100);
