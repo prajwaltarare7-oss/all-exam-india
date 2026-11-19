@@ -1478,7 +1478,7 @@ function buildPoliceHardSection(type,count,seed,lang){
  }else{
   return buildPoliceBhartiSectionLegacy(type,count,seed,lang);
  }
- const seen=new Set();for(const q of out){if(seen.has(q.q))q.q+=" (प्रश्न संच "+(seed%500+1)+")";seen.add(q.q);}
+ const seen=new Set();let duplicateNo=0;for(const q of out){if(seen.has(q.q)){duplicateNo++;q.q+=" (संच "+(seed%500+1)+"-"+duplicateNo+")";}seen.add(q.q);}
  return mockShuffle(out,r).slice(0,count);
 }
 function buildPoliceBhartiSection(type,count,seed,lang){
