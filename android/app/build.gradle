@@ -2,11 +2,6 @@ plugins {
     id 'com.android.application'
 }
 
-def releaseKeystoreFile = System.getenv('ANDROID_KEYSTORE_FILE')
-def releaseStorePassword = System.getenv('ANDROID_KEYSTORE_PASSWORD')
-def releaseKeyAlias = System.getenv('ANDROID_KEY_ALIAS')
-def releaseKeyPassword = System.getenv('ANDROID_KEY_PASSWORD')
-
 android {
     namespace 'in.prajwaltarare7.allexamsindia'
     compileSdk 35
@@ -15,25 +10,13 @@ android {
         applicationId 'in.prajwaltarare7.allexamsindia'
         minSdk 23
         targetSdk 35
-        versionCode 3
-        versionName '1.2'
-    }
-
-    signingConfigs {
-        release {
-            if (releaseKeystoreFile && releaseStorePassword && releaseKeyAlias && releaseKeyPassword) {
-                storeFile file(releaseKeystoreFile)
-                storePassword releaseStorePassword
-                keyAlias releaseKeyAlias
-                keyPassword releaseKeyPassword
-            }
-        }
+        versionCode 4
+        versionName '1.3'
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            signingConfig signingConfigs.release
+        debug {
+            debuggable false
         }
     }
 
