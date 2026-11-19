@@ -1452,5 +1452,32 @@ initAccountAuth();initNewFeatures();renderMockCards();renderStudentStats();
 })();
 
 </script>
+
+<script>
+(function(){
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('app-update') !== '1') return;
+    var style = document.createElement('style');
+    style.textContent = '#aei-app-update-page{position:fixed;inset:0;z-index:999999;background:linear-gradient(145deg,#101b35,#1d3970);display:flex;align-items:center;justify-content:center;padding:22px;font-family:inherit}#aei-app-update-page .aei-update-card{width:min(100%,460px);background:#fff;border-radius:24px;padding:28px 22px;text-align:center;box-shadow:0 22px 70px #0005;color:#17233d}#aei-app-update-page h2{margin:0 0 10px;font-size:25px}#aei-app-update-page p{color:#65728a;line-height:1.6}#aei-app-update-page .aei-update-version{display:inline-block;background:#eaf1ff;color:#2453c7;padding:8px 14px;border-radius:30px;font-weight:800;margin:8px 0 16px}#aei-app-update-page .aei-update-btn{display:block;width:100%;box-sizing:border-box;margin-top:12px;padding:15px 18px;border:0;border-radius:13px;background:linear-gradient(110deg,#16834a,#20a464);color:white;font-weight:800;font-size:16px;text-decoration:none}#aei-app-update-page .aei-update-back{display:block;margin-top:15px;color:#315ee8;font-weight:700;text-decoration:none}';
+    document.head.appendChild(style);
+    var page=document.createElement('section');
+    page.id='aei-app-update-page';
+    page.innerHTML='<div class="aei-update-card"><div style="font-size:42px">📲</div><h2>ALL EXAM INDIA</h2><p>App Update Center</p><div class="aei-update-version" id="aei-update-version">Latest version तपासत आहोत…</div><p id="aei-update-message">कृपया थोडा वेळ थांबा.</p><a class="aei-update-btn" id="aei-update-download" href="https://github.com/prajwaltarare7-oss/all-exam-india/releases/latest/download/all-exam-india.apk">⬇ Download / Update APK</a><a class="aei-update-back" href="./">← Website वर परत जा</a></div>';
+    document.body.appendChild(page);
+    fetch('./app-update.json?ts='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('update info unavailable');return r.json();}).then(function(data){
+      var version=document.getElementById('aei-update-version');
+      var message=document.getElementById('aei-update-message');
+      var link=document.getElementById('aei-update-download');
+      version.textContent='Version '+(data.latestVersionName||'Latest');
+      message.textContent='नवीन आवृत्ती डाउनलोड करून install करा. तुमची जुनी app uninstall करू नका.';
+      if(data.apkUrl) link.href=data.apkUrl;
+    }).catch(function(){
+      document.getElementById('aei-update-version').textContent='Update माहिती उपलब्ध नाही';
+      document.getElementById('aei-update-message').textContent='इंटरनेट तपासा आणि पुन्हा प्रयत्न करा.';
+    });
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
