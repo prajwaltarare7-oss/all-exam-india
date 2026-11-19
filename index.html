@@ -1383,7 +1383,7 @@ function buildPoliceHardSection(type,count,seed,lang){
     case 10:{
      const fill=5+Math.floor(r()*5),leak=fill+4+Math.floor(r()*8);
      ans=1/(1/fill-1/leak);q=M("एक नळ टाकी "+fill+" तासांत भरतो आणि गळतीमुळे पूर्ण टाकी "+leak+" तासांत रिकामी होते. दोन्ही एकाच वेळी सुरू असल्यास टाकी किती तासांत भरेल?","An inlet fills a tank in "+fill+" hours while a leak empties a full tank in "+leak+" hours. If both operate together, how long will filling take?");
-     w=[1/(1/fill+1/leak),leak-fill,fill*leak/(leak-fill)];e=M("निव्वळ दर = 1/"+fill+" − 1/"+leak. वेळ = 1 ÷ निव्वळ दर.","Net rate = 1/"+fill+" − 1/"+leak. Time is the reciprocal of the net rate.");break;
+     w=[1/(1/fill+1/leak),leak-fill,fill*leak/(leak-fill)];e=M("निव्वळ दर = 1/"+fill+" − 1/"+leak+". वेळ = 1 ÷ निव्वळ दर.","Net rate = 1/"+fill+" − 1/"+leak+". Time is the reciprocal of the net rate.");break;
     }
     case 11:{
      const age=24+Math.floor(r()*9),gap=8+Math.floor(r()*7),years=3+Math.floor(r()*6),young=age,old=age+gap;
