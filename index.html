@@ -955,6 +955,40 @@ shuffle(reasoningTypes).forEach(kind=>{
  }
 });
 
+/* Source-informed SSC GD practice: question styles checked against the user's uploaded 2012, 2019 and 2021 papers.
+   These are newly written variants, not copied official PYQs. Five Maths + five Reasoning slots are reserved per set. */
+const sourceMathSection=out.filter(q=>/गणित|Mathematics/i.test(q.section||""));
+const sourceReasonSection=out.filter(q=>/तर्कशक्ति|Reasoning/i.test(q.section||""));
+out.splice(0,out.length,...out.filter(q=>!/गणित|Mathematics|तर्कशक्ति|Reasoning/i.test(q.section||"")));
+sourceMathSection.slice(0,15).forEach(q=>out.push(q));
+sourceReasonSection.slice(0,15).forEach(q=>out.push(q));
+{
+ const n=240+pick(40), p=15+pick(5), a=3+pick(5), b=2+pick(5);
+ addNum(M,"एक संख्या का "+p+"% = "+(n*p/100)+" है। वह संख्या ज्ञात करें।",""+p+"% of a number is "+(n*p/100)+". Find the number.",n,"संख्या = (दिया गया मान × 100)/प्रतिशत = "+n+".","Number = (given value × 100)/percentage = "+n+".");
+ const x=18+pick(12), y=24+pick(18); let u=x,v=y;while(v){const t=v;v=u%v;u=t;}
+ addNum(M,""+x+" और "+y+" का HCF ज्ञात करें।","Find the HCF of "+x+" and "+y+".",u,"दोनों संख्याओं का महत्तम समापवर्तक "+u+" है।","The greatest common divisor is "+u+".");
+ const total=40+pick(30),water=20+pick(10),add=2+pick(5),target=water+5;
+ const litres=(total*water/100),need=(target*total/100-litres)/(1-target/100);
+ const rounded=Math.round(need*10)/10;
+ addNum(M,""+total+" लीटर मिश्रण में "+water+"% पानी है। पानी का प्रतिशत "+target+"% करने के लिए कितना पानी मिलाएँ? (निकटतम 0.1 लीटर)","A "+total+" L mixture contains "+water+"% water. How much water must be added to make it "+target+"%? (nearest 0.1 L)",rounded,"मिश्रण में पानी = "+litres+" L. समीकरण से आवश्यक पानी लगभग "+rounded+" L है।","Water initially = "+litres+" L. Solving the mixture equation gives about "+rounded+" L.");
+ const base=20+pick(20),ratio=2+pick(3);
+ const older=base*ratio,younger=base;
+ addNum(M,"दो व्यक्तियों की वर्तमान आयु का अनुपात "+ratio+":1 है और त्यांच्या वयांची बेरीज "+(older+younger)+" वर्षे आहे. लहान व्यक्तीचे वय किती?","The present age ratio of two people is "+ratio+":1 and their total age is "+(older+younger)+" years. Find the younger person's age.",younger,"एकूण भाग = "+(ratio+1)+"; एक भाग = "+younger+" वर्षे.","Total parts = "+(ratio+1)+"; one part = "+younger+" years.");
+ const speed=48+pick(6)*6, mins=15+pick(4)*5, distance=speed*mins/60;
+ addNum(M,"एक वाहन "+speed+" किमी/तास वेगाने "+mins+" मिनिटे प्रवास करते. अंतर किती?","A vehicle travels at "+speed+" km/h for "+mins+" minutes. Find the distance.",distance,"अंतर = वेग × वेळ = "+speed+" × "+mins+"/60 = "+distance+" किमी.","Distance = speed × time = "+speed+" × "+mins+"/60 = "+distance+" km.");
+}
+{
+ const start=2+pick(10),step=3+pick(5),seq=[start,start+step,start+2*step,start+3*step],ans=start+4*step;
+ addNum(R,"संख्या श्रृंखला पूरी करें: "+seq.join(", ")+", ?","Complete the number series: "+seq.join(", ")+", ?",ans,"प्रत्येक पद में "+step+" की वृद्धि है।","Each term increases by "+step+".");
+ const word=["TRAIN","PLANE","BRAVE","CLOUD","STONE"][pick(5)],coded=word.split("").reverse().join("");
+ addChoice(R,"यदि किसी कूट में शब्द के अक्षर उल्टे क्रम में लिखे जाते हैं, तो '"+word+"' का कूट क्या होगा?","If a code writes a word in reverse order, how is '"+word+"' coded?",coded,[word,word.slice(1)+word[0],word.split("").sort().join("")],"अक्षरों का क्रम उल्टा किया गया है।","The order of letters is reversed.");
+ const words=["SUBSCRIBE","SUBSIDIARY","SUBSEQUENT","SUBSTANTIATE"],sorted=words.slice().sort(),second=sorted[1];
+ addChoice(R,"इन शब्दों को शब्दकोश क्रम में रखने पर दूसरा शब्द कौन-सा होगा? "+words.join(", "),"Which word comes second in dictionary order? "+words.join(", "),second,words.filter(w=>w!==second),"वर्णक्रमानुसार शब्दों की तुलना करने पर दूसरा शब्द "+second+" है।","Comparing alphabetically, the second word is "+second+".");
+ const aa=3+pick(6),bb=5+pick(6);
+ addChoice(R,"यदि सभी A, B हैं और कुछ B, C हैं, तो कौन-सा निष्कर्ष निश्चित है?","If all A are B and some B are C, which conclusion is definite?","कोई निश्चित निष्कर्ष नहीं","All A are C","Some A are C","All C are A","कुछ B का C होना, A और C के संबंध को निश्चित नहीं करता।","Some B being C does not establish a definite relation between A and C.");
+ const left=5+pick(8),right=5+pick(8),total=left+right+5,rev=total-right+1,between=rev-left-1;
+ addNum(R,"एक पंक्ति में "+total+" व्यक्ति हैं। रीना बाएँ से "+left+"वीं और सीमा दाएँ से "+right+"वीं है। उनके बीच कितने व्यक्ति हैं?","There are "+total+" people in a row. Reena is "+left+"th from the left and Seema is "+right+"th from the right. How many are between them?",between,"सीमा का बाएँ से स्थान = "+total+" − "+right+" + 1 = "+rev+"; बीच में "+between+" व्यक्ति हैं।","Seema's position from the left = "+total+" − "+right+" + 1 = "+rev+"; people between = "+between+".");
+}
 /* भाषा और सामान्य ज्ञान के Question हर पेपर में अलग क्रम और अलग चयन से लिए जाते हैं */
 if(lang==="hi"){
  shuffle(gdHG,rnd).slice(0,20).forEach(q=>add(H,q[0],q[1],q[2],q[3],q[4],q[5],q[6]));
