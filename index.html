@@ -1263,7 +1263,7 @@ function setTheme(mode){document.body.classList.toggle('dark',mode==='dark');try
 function escapeHTML(v){return String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
 function initNewFeatures(){const opts=exams.map(e=>'<option value="'+escapeHTML(e)+'">'+escapeHTML(e)+'</option>').join('');const mockExam=document.getElementById('mockExam');if(mockExam)mockExam.innerHTML='<option value="">Select an Exam</option>'+opts;document.getElementById('testExam').innerHTML='<option value="">Select an Exam</option>'+opts;try{const t=localStorage.getItem('aei-theme');if(t==='dark')setTheme('dark');}catch(e){}}
 function showPage(id,fromHistory=false){
-if((id==="policepyq"||id==="policemock")&&Date.now()<Date.parse("2026-11-19T21:00:00+05:30")&&new URLSearchParams(location.search).get("policePreview")!=="1"){alert("Police Bharti opens at 9:00 PM IST on 19 November 2026.");return;}
+// DEVELOPMENT UNLOCK: Police Bharti pages are temporarily open for testing. Re-enable the date gate before public launch.
 document.body.classList.toggle("aei-test-active",id==="testroom"&&!!practiceTestStarted);
 const target=document.getElementById(id);
 if(!target){console.error("Page not found:",id);return;}
@@ -1697,32 +1697,19 @@ initAccountAuth();initNewFeatures();renderMockCards();renderStudentStats();
 })();
 
 
-// Police Bharti countdown: 19 November 2026, 9:00 PM India time.
+// DEVELOPMENT UNLOCK: keep Police Bharti navigation visible while development and testing continue.
 (function(){
- const target=Date.parse("2026-11-19T21:00:00+05:30");
+ const out=document.getElementById("policeCountdown");
+ const badge=document.getElementById("policeComingBadge");
+ const msg=document.getElementById("policeCountdownText");
+ const choices=document.getElementById("policeBhartiChoices");
  const card=document.querySelector(".police-countdown-card");
- function tick(){
-  const out=document.getElementById("policeCountdown");
-  if(!out)return;
-  const badge=document.getElementById("policeComingBadge");
-  const msg=document.getElementById("policeCountdownText");
-  const choices=document.getElementById("policeBhartiChoices");
-  const left=target-Date.now();
-  if(left<=0){
-   out.textContent="Available";
-   if(badge)badge.textContent="AVAILABLE";
-   if(msg)msg.textContent="Choose a section to continue.";
-   if(choices)choices.style.display="flex";
-   if(card)card.classList.add("police-unlocked");
-   return;
-  }
-  const d=Math.floor(left/86400000),h=Math.floor(left%86400000/3600000),m=Math.floor(left%3600000/60000),sec=Math.floor(left%60000/1000);
-  out.textContent=(d?d+"d ":"")+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(sec).padStart(2,"0");
-  if(choices)choices.style.display="none";
-  if(badge)badge.textContent="COMING SOON";
- }
- tick();setInterval(tick,1000);
-})();
+ if(out)out.textContent="Development preview open";
+ if(badge)badge.textContent="DEVELOPMENT OPEN";
+ if(msg)msg.textContent="Police Bharti tests are temporarily open for development and testing.";
+ if(choices)choices.style.display="flex";
+ if(card)card.classList.add("police-unlocked");
+})();;
 </script>
 
 <script>
