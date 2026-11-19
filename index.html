@@ -178,6 +178,18 @@ body.dark .test-status span,body.dark .question-legend span{background:#192a48;b
 .result-answer-pair p{margin:0;font-size:13px;line-height:1.5;color:#263752}
 .result-explanation{font-size:13px;line-height:1.6;color:#52617b;margin:11px 0 0;padding-top:10px;border-top:1px solid #e6ebf3}
 .result-explanation b{color:#203252}
+.result-solution{margin-top:12px;border:1px solid #dce5f3;border-radius:10px;background:#f6f8fd;overflow:hidden}
+.result-solution summary{cursor:pointer;padding:11px 12px;font-size:13px;font-weight:850;color:#3155bd;list-style:none}
+.result-solution summary::-webkit-details-marker{display:none}
+.result-solution summary:after{content:"＋";float:right;font-size:17px}
+.result-solution[open] summary:after{content:"−"}
+.result-solution-body{padding:0 12px 12px;font-size:13px;line-height:1.65;color:#34445f}
+.result-solution-body>p{margin:2px 0 9px}
+.result-solution-steps{margin:0;padding-left:22px}
+.result-solution-steps li{padding:3px 0}
+body.dark .result-solution{background:#172945;border-color:#34496d}
+body.dark .result-solution summary{color:#a9c0ff}
+body.dark .result-solution-body{color:#d8e3f7}
 .result-action-bar{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 4px}
 .result-action-bar button{min-width:140px}
 body.dark .result-wrap{background:linear-gradient(145deg,#14213a,#101b30);border-color:#2b3b59;color:#e8eefb}
@@ -1702,7 +1714,10 @@ else{wrong++;const penalty=q.negativeMarks!==undefined?q.negativeMarks:(activePr
 const state=chosen===q.a?'correct':(chosen===undefined||chosen===null?'unanswered':'wrong');
 const status=state==='correct'?('Correct'):state==='wrong'?('Incorrect'):('Unanswered');
 const yourAnswer=chosen===undefined||chosen===null?(selectedPaperLanguage==='en'?'Not attempted':'उत्तर दिले नाही'):escapeHTML(q.o[chosen]);
-reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'Question ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'You have उत्तर')+'</small><p>'+yourAnswer+'</p></div><div><small>'+('Correct Answer')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><p class="result-explanation"><b>'+('Explanation: ')+'</b>'+escapeHTML(q.e||'—')+'</p></article>';
+const solutionText=String(q.e||'').trim();
+const solutionSteps=Array.isArray(q.steps)&&q.steps.length?q.steps.map(x=>String(x)):solutionText.split(/(?:\\n+|(?<=[.!?])\\s+|;\\s*)/).map(x=>x.trim()).filter(Boolean);
+const solutionHtml=solutionSteps.length?'<ol class="result-solution-steps">'+solutionSteps.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol>':'<p class="result-explanation">Detailed explanation has not yet been added for this question.</p>';
+reviewHtml+='<article class="result-answer-card '+state+'"><div class="result-answer-top"><b>'+(selectedPaperLanguage==='en'?'QUESTION ':'Question ')+(i+1)+(q.section?' • '+escapeHTML(q.section):'')+'</b><span class="result-status '+state+'">'+status+'</span></div><p class="result-question">'+escapeHTML(q.q)+'</p><div class="result-answer-pair"><div><small>'+(selectedPaperLanguage==='en'?'Your answer':'Your answer')+'</small><p>'+yourAnswer+'</p></div><div><small>'+('Correct Answer')+'</small><p>'+escapeHTML(q.o[q.a])+'</p></div></div><details class="result-solution"><summary>'+(selectedPaperLanguage==='en'?'Solution — Step by Step':'Solution — Step by Step')+'</summary><div class="result-solution-body"><p><b>'+(selectedPaperLanguage==='en'?'Correct option: ':'Correct option: ')+'</b>'+escapeHTML(q.o[q.a])+'</p>'+solutionHtml+'</div></details></article>';
 });
 reviewHtml+='</div></details></section>';
 const maxMarks=activePractice.maxMarks||activePractice.questions.reduce((sum,q)=>sum+(q.marks!==undefined?q.marks:(activePractice.correctMarks!==undefined?activePractice.correctMarks:1)),0);
