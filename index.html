@@ -463,11 +463,13 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 <h2 id="upcoming-title">Coming Soon</h2>
 <p>More exam categories will be available soon.</p>
 <div class="upcoming-grid">
-<div class="upcoming-card"><span class="coming-badge">COMING SOON</span><h3>🚔 Police Bharti</h3><p>Police Bharti preparation and practice tests will be available soon.</p></div>
+<div class="upcoming-card police-countdown-card"><span class="coming-badge" id="policeComingBadge">COMING SOON</span><h3>🚔 Maharashtra Police Bharti</h3><p id="policeCountdownText">Police Bharti section opens today at 9:00 PM (IST).</p><div id="policeCountdown" role="timer" aria-live="polite" style="font-size:1.35rem;font-weight:800;letter-spacing:.04em;margin:12px 0">Loading countdown…</div><div id="policeBhartiChoices" style="display:none;gap:10px;flex-wrap:wrap"><button class="primary" type="button" onclick="showPage('policepyq')">PYQ Test</button><button class="primary" type="button" onclick="showPage('policemock')">Mock Test</button></div></div>
 <div class="upcoming-card"><span class="coming-badge">COMING SOON</span><h3>🎖️ NDA</h3><p>NDA preparation and practice tests will be available soon.</p></div>
 </div></section>
 <div class="card owner-profile"><div><h3>SSC EXAM.IN</h3><p>Learn • Practice • Succeed</p><p class="owner-name">Website by Prajwal Tarare</p></div></div>
 </section>
+<section id="policepyq" class="page"><h2>Maharashtra Police Bharti — PYQ Tests</h2><div class="notice">Your verified Police Bharti PYQ papers will appear here after you provide them. No mock questions will be labelled as PYQs.</div><button class="primary" type="button" onclick="showPage('home')">Back to Home</button></section>
+<section id="policemock" class="page"><h2>Maharashtra Police Bharti — 500 Mock Tests</h2><div class="notice"><b>500 Mock Tests planned</b><br>Each paper is intended to use the shared SSC GD-style test interface: timer, question navigation, review, result, solutions, history and fresh-question reattempt.</div><div class="notice">The 500-paper question bank is still being prepared and checked. Tests are not available yet; incomplete papers will not be shown as ready.</div><button class="primary" type="button" onclick="showPage('home')">Back to Home</button></section>
 <section id="pyq" class="page">
 <h2>SSC GD — PYQ & Practice Tests</h2><div class="notice"><b id="pyqTotalCount">SSC GD Practice Sets: 195</b><br><small>Uploaded PDF files: 134 • Practice sets: 195</small></div>
 <div class="notice">More SSC GD Previous Year Questions (PYQs) will be uploaded regularly. New question sets will be added to the website.</div>
@@ -1603,6 +1605,33 @@ initAccountAuth();initNewFeatures();renderMockCards();renderStudentStats();
  setInterval(checkForUpdate,5*60*1000);
 })();
 
+
+// Police Bharti countdown: 19 November 2026, 9:00 PM India time.
+(function(){
+ const target=Date.parse("2026-11-19T21:00:00+05:30");
+ const card=document.querySelector(".police-countdown-card");
+ function tick(){
+  const out=document.getElementById("policeCountdown");
+  if(!out)return;
+  const badge=document.getElementById("policeComingBadge");
+  const msg=document.getElementById("policeCountdownText");
+  const choices=document.getElementById("policeBhartiChoices");
+  const left=target-Date.now();
+  if(left<=0){
+   out.textContent="Available";
+   if(badge)badge.textContent="AVAILABLE";
+   if(msg)msg.textContent="Choose a section to continue.";
+   if(choices)choices.style.display="flex";
+   if(card)card.classList.add("police-unlocked");
+   return;
+  }
+  const d=Math.floor(left/86400000),h=Math.floor(left%86400000/3600000),m=Math.floor(left%3600000/60000),sec=Math.floor(left%60000/1000);
+  out.textContent=(d?d+"d ":"")+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(sec).padStart(2,"0");
+  if(choices)choices.style.display="none";
+  if(badge)badge.textContent="COMING SOON";
+ }
+ tick();setInterval(tick,1000);
+})();
 </script>
 
 <script>
