@@ -389,6 +389,12 @@ body.dark:has(#testroom.active .focused-test) .focused-palette{background:#192a4
 body.dark:has(#testroom.active .focused-test) .focused-palette-head{color:#e8eefb}
 body.dark:has(#testroom.active .focused-test) .focused-number{background:#23344f;color:#e8eefb;border-color:#465a79}
 @media(max-height:700px){.focused-test{gap:8px;padding:10px}.focused-question{padding:8px 4px}.focused-question h2{margin-bottom:10px}.focused-question .test-choice{padding:9px;margin:6px 0}.focused-number-grid{grid-template-rows:repeat(3,27px);grid-auto-columns:31px}.focused-test-actions button{min-height:42px}}
+/* Keep the pre-test instructions page scrollable on mobile. */
+body:has(.test-instructions){overflow-y:auto!important;overflow-x:hidden!important;height:auto!important}
+body:has(.test-instructions) .container{height:auto!important;min-height:100dvh!important;overflow:visible!important}
+body:has(.test-instructions) #testroom{height:auto!important;min-height:0!important;overflow:visible!important}
+body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!important;padding-bottom:24px}
+.test-instructions{max-height:none!important;overflow:visible!important;margin:14px auto 28px!important}
 </style>
 <meta name="google-site-verification" content="9QG14GjTD_A_6IEu4I57yBSWGlO4d4H5FQhxli0p-kM">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#website","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","name":"SSC EXAM.IN","alternateName":"ALL EXAM INDIA","description":"Free mock tests, free PYQ practice tests and current affairs for SSC examinations.","inLanguage":["mr","hi","en"]},{"@type":"EducationalOrganization","@id":"https://prajwaltarare7-oss.github.io/all-exam-india/#organization","name":"SSC EXAM.IN","url":"https://prajwaltarare7-oss.github.io/all-exam-india/","description":"Online practice resources for Indian SSC competitive examinations."}]}</script>
@@ -609,9 +615,10 @@ const examPatterns={
 
 };
 
+var practiceTestStarted=false;
 var focusedPaletteOpen=false;
 function toggleFocusedPalette(){focusedPaletteOpen=!focusedPaletteOpen;renderPracticeQuestionPaper(true);}
-function resetPracticeState(){focusedPaletteOpen=false;questionPaletteFilter="all";practiceAnswers={};markedForReview={};skippedQuestions={};visitedQuestions={0:true};activeQuestionIndex=0;practiceSubmitted=false;}
+function resetPracticeState(){practiceTestStarted=false;focusedPaletteOpen=false;questionPaletteFilter="all";practiceAnswers={};markedForReview={};skippedQuestions={};visitedQuestions={0:true};activeQuestionIndex=0;practiceSubmitted=false;}
 function startPracticeClock(){
 clearInterval(practiceInterval);
 const update=()=>{const t=document.getElementById("practiceTimer");if(t)t.textContent=Math.floor(practiceSeconds/60)+":"+String(practiceSeconds%60).padStart(2,"0");};
@@ -1069,12 +1076,13 @@ function showTestInstructions(){
 }
 function confirmStartPracticeTest(){
  if(!activePractice||practiceSubmitted)return;
+ practiceTestStarted=true;
  document.getElementById("testResult").innerHTML="";
  renderPracticeQuestionPaper(true);
  startPracticeClock();
 }
 function cancelTestInstructions(){
- clearInterval(practiceInterval);activePractice=null;practiceSubmitted=false;
+ clearInterval(practiceInterval);activePractice=null;practiceSubmitted=false;practiceTestStarted=false;
  document.getElementById("testArea").innerHTML="";
  showPage(isGDMock?"mock":"pyq");
 }
@@ -1098,7 +1106,7 @@ document.getElementById("testArea").innerHTML=html;
 function toggleQuestionDrawer(){const drawer=document.querySelector(".question-sidebar");if(drawer)drawer.classList.toggle("drawer-open");}
 function setQuestionPaletteFilter(mode){questionPaletteFilter=mode;renderPracticeQuestionPaper(true);const drawer=document.querySelector(".question-sidebar");if(drawer)drawer.classList.add("drawer-open");}
 function returnFromTest(){
-if(activePractice&&!practiceSubmitted){alert(selectedPaperLanguage==='en'?'Submit the test before leaving.':'Submit the test before leaving.');return;}
+if(activePractice&&practiceTestStarted&&!practiceSubmitted){alert(selectedPaperLanguage==='en'?'Submit the test before leaving.':'Submit the test before leaving.');return;}
 const target=isGDMock?'mock':'pyq';
 showPage(target);
 }
@@ -1181,7 +1189,7 @@ showPage(target&&target.classList.contains("page")?requested:"home",true);
 });
 window.addEventListener("beforeunload",event=>{
 const active=document.querySelector(".page.active");
-if(active&&active.id==="testroom"&&activePractice&&!practiceSubmitted){event.preventDefault();event.returnValue="";return "";}
+if(active&&active.id==="testroom"&&activePractice&&practiceTestStarted&&!practiceSubmitted){event.preventDefault();event.returnValue="";return "";}
 });
 })();
 function getOfficialSourceForExam(exam){
