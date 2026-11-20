@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<meta name="aei-build-id" content="af535b2ebb3fb6fc844501d1293b8069f81911ca">
+<meta name="aei-build-id" content="admin-card-force-visible-20261120-02">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -515,7 +515,7 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 </section>
 <section id="settings" class="page">
 <h2>Profile & Settings</h2>
-<div class="card" id="aeiAdminCard">
+<div class="card" id="aeiAdminCard" style="display:block!important;visibility:visible!important;opacity:1!important">
 <h3>🔐 Admin Activity Dashboard</h3>
 <p>फक्त अधिकृत Admin प्रवेश करू शकतो.</p>
 <label for="aeiAdminEmail">Admin Email</label>
@@ -2367,7 +2367,7 @@ if (typeof originalSubmit === "function") {
 }
 
 const style = document.createElement("style");
-style.textContent = "#aeiAdminCard [hidden]{display:none!important}#aeiAdminCard input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:10px;margin:5px 0 12px}#aeiAdminStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}#aeiAdminStats .stat{background:#f1f5ff;padding:14px;border-radius:12px}#aeiAdminStats b{display:block;font-size:25px;color:#244fc5}#aeiAdminStatus{white-space:pre-wrap}";
+style.textContent = "#settings #aeiAdminCard{display:block!important;visibility:visible!important;opacity:1!important}#aeiAdminCard [hidden]{display:none!important}#aeiAdminCard input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:10px;margin:5px 0 12px}#aeiAdminStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}#aeiAdminStats .stat{background:#f1f5ff;padding:14px;border-radius:12px}#aeiAdminStats b{display:block;font-size:25px;color:#244fc5}#aeiAdminStatus{white-space:pre-wrap}";
 document.head.appendChild(style);
 
 // Admin dashboard markup is defined once in the Settings HTML above.
