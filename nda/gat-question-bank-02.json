@@ -4,7 +4,7 @@
   "mock": 2,
   "status": "in_progress",
   "target_questions": 150,
-  "completed_questions": 22,
+  "completed_questions": 49,
   "language_modes": [
     "en",
     "hi"
@@ -608,6 +608,735 @@
       "answer": 0,
       "solution_en": "One pascal equals one newton per square metre.",
       "solution_hi": "एक पास्कल एक न्यूटन प्रति वर्ग मीटर के बराबर है।"
+    },
+    {
+      "id": 23,
+      "subject": "English",
+      "en": "Choose the synonym of 'Amiable'.",
+      "hi": "'Amiable' का समानार्थी चुनिए।",
+      "options": [
+        [
+          "Friendly",
+          "मिलनसार"
+        ],
+        [
+          "Hostile",
+          "शत्रुतापूर्ण"
+        ],
+        [
+          "Arrogant",
+          "अहंकारी"
+        ],
+        [
+          "Rigid",
+          "कठोर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Amiable means friendly and pleasant.",
+      "solution_hi": "Amiable का अर्थ मित्रवत और सुखद स्वभाव वाला है।"
+    },
+    {
+      "id": 24,
+      "subject": "English",
+      "en": "Choose the antonym of 'Scarce'.",
+      "hi": "'Scarce' का विलोम चुनिए।",
+      "options": [
+        [
+          "Abundant",
+          "प्रचुर"
+        ],
+        [
+          "Rare",
+          "दुर्लभ"
+        ],
+        [
+          "Limited",
+          "सीमित"
+        ],
+        [
+          "Insufficient",
+          "अपर्याप्त"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Scarce means insufficient or rare; abundant is its opposite.",
+      "solution_hi": "Scarce का अर्थ कम या दुर्लभ है; Abundant इसका विलोम है।"
+    },
+    {
+      "id": 25,
+      "subject": "English",
+      "en": "Fill in: The captain, along with his team, ___ arrived.",
+      "hi": "रिक्त स्थान भरें: The captain, along with his team, ___ arrived.",
+      "options": [
+        [
+          "has",
+          "has"
+        ],
+        [
+          "have",
+          "have"
+        ],
+        [
+          "are",
+          "are"
+        ],
+        [
+          "were",
+          "were"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The subject is 'captain'; the phrase 'along with his team' does not change the singular verb.",
+      "solution_hi": "मुख्य कर्ता 'captain' है; 'along with his team' से क्रिया का वचन नहीं बदलता।"
+    },
+    {
+      "id": 26,
+      "subject": "English",
+      "en": "Choose the correct meaning of 'Break the ice'.",
+      "hi": "'Break the ice' का सही अर्थ चुनिए।",
+      "options": [
+        [
+          "Start a conversation in a tense situation",
+          "संकोचपूर्ण स्थिति में बातचीत शुरू करना"
+        ],
+        [
+          "Break something frozen",
+          "जमी हुई वस्तु तोड़ना"
+        ],
+        [
+          "End a friendship",
+          "मित्रता समाप्त करना"
+        ],
+        [
+          "Create confusion",
+          "भ्रम पैदा करना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The idiom means to make people feel more comfortable and begin talking.",
+      "solution_hi": "इस मुहावरे का अर्थ लोगों का संकोच दूर करके बातचीत शुरू करना है।"
+    },
+    {
+      "id": 27,
+      "subject": "English",
+      "en": "Choose the correct indirect speech: She said, 'I have completed the task.'",
+      "hi": "सही अप्रत्यक्ष कथन चुनें: She said, 'I have completed the task.'",
+      "options": [
+        [
+          "She said that she had completed the task.",
+          "उसने कहा कि उसने कार्य पूरा कर लिया था।"
+        ],
+        [
+          "She said that I have completed the task.",
+          "उसने कहा कि मैंने कार्य पूरा कर लिया है।"
+        ],
+        [
+          "She says she completed the task.",
+          "वह कहती है कि उसने कार्य पूरा किया।"
+        ],
+        [
+          "She told that she has completed task.",
+          "उसने बताया कि उसने कार्य पूरा किया है।"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Present perfect usually changes to past perfect after a past reporting verb.",
+      "solution_hi": "भूतकाल के reporting verb के बाद present perfect सामान्यतः past perfect बनता है।"
+    },
+    {
+      "id": 28,
+      "subject": "Physics",
+      "en": "A 10 ohm resistor carries a current of 2 A. The potential difference is:",
+      "hi": "10 ओम प्रतिरोधक में 2 A धारा बहती है। विभवांतर कितना होगा?",
+      "options": [
+        [
+          "20 V",
+          "20 वोल्ट"
+        ],
+        [
+          "5 V",
+          "5 वोल्ट"
+        ],
+        [
+          "12 V",
+          "12 वोल्ट"
+        ],
+        [
+          "8 V",
+          "8 वोल्ट"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "By Ohm's law, V = IR = 2 × 10 = 20 V.",
+      "solution_hi": "ओम के नियम से V = IR = 2 × 10 = 20 वोल्ट।"
+    },
+    {
+      "id": 29,
+      "subject": "Physics",
+      "en": "The SI unit of work is:",
+      "hi": "कार्य की SI इकाई है:",
+      "options": [
+        [
+          "Joule",
+          "जूल"
+        ],
+        [
+          "Watt",
+          "वाट"
+        ],
+        [
+          "Newton",
+          "न्यूटन"
+        ],
+        [
+          "Pascal",
+          "पास्कल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Work is measured in joules; one joule equals one newton-metre.",
+      "solution_hi": "कार्य जूल में मापा जाता है; एक जूल एक न्यूटन-मीटर के बराबर है।"
+    },
+    {
+      "id": 30,
+      "subject": "Physics",
+      "en": "Which mirror is used as a rear-view mirror in vehicles?",
+      "hi": "वाहनों में पीछे देखने के दर्पण के रूप में कौन-सा दर्पण उपयोग होता है?",
+      "options": [
+        [
+          "Convex mirror",
+          "उत्तल दर्पण"
+        ],
+        [
+          "Concave mirror",
+          "अवतल दर्पण"
+        ],
+        [
+          "Plane mirror only",
+          "केवल समतल दर्पण"
+        ],
+        [
+          "Cylindrical mirror",
+          "बेलनाकार दर्पण"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A convex mirror gives an erect, diminished image and a wide field of view.",
+      "solution_hi": "उत्तल दर्पण सीधा, छोटा प्रतिबिंब और विस्तृत दृश्य क्षेत्र देता है।"
+    },
+    {
+      "id": 31,
+      "subject": "Physics",
+      "en": "The phenomenon responsible for the twinkling of stars is:",
+      "hi": "तारों के टिमटिमाने का कारण है:",
+      "options": [
+        [
+          "Atmospheric refraction",
+          "वायुमंडलीय अपवर्तन"
+        ],
+        [
+          "Reflection",
+          "परावर्तन"
+        ],
+        [
+          "Diffraction",
+          "विवर्तन"
+        ],
+        [
+          "Polarisation",
+          "ध्रुवण"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Changing atmospheric refraction makes the apparent position and brightness fluctuate.",
+      "solution_hi": "बदलते वायुमंडलीय अपवर्तन से तारों की आभासी स्थिति और चमक बदलती रहती है।"
+    },
+    {
+      "id": 32,
+      "subject": "Chemistry",
+      "en": "Which gas is known as laughing gas?",
+      "hi": "किस गैस को हँसाने वाली गैस कहते हैं?",
+      "options": [
+        [
+          "Nitrous oxide",
+          "नाइट्रस ऑक्साइड"
+        ],
+        [
+          "Nitric oxide",
+          "नाइट्रिक ऑक्साइड"
+        ],
+        [
+          "Nitrogen dioxide",
+          "नाइट्रोजन डाइऑक्साइड"
+        ],
+        [
+          "Ammonia",
+          "अमोनिया"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Nitrous oxide, N₂O, is commonly called laughing gas.",
+      "solution_hi": "नाइट्रस ऑक्साइड N₂O को सामान्यतः laughing gas कहते हैं।"
+    },
+    {
+      "id": 33,
+      "subject": "Chemistry",
+      "en": "Which of these is a greenhouse gas?",
+      "hi": "इनमें से कौन-सी ग्रीनहाउस गैस है?",
+      "options": [
+        [
+          "Methane",
+          "मीथेन"
+        ],
+        [
+          "Argon",
+          "आर्गन"
+        ],
+        [
+          "Neon",
+          "निऑन"
+        ],
+        [
+          "Helium",
+          "हीलियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Methane absorbs infrared radiation and contributes to the greenhouse effect.",
+      "solution_hi": "मीथेन अवरक्त विकिरण अवशोषित करती है और ग्रीनहाउस प्रभाव में योगदान देती है।"
+    },
+    {
+      "id": 34,
+      "subject": "Chemistry",
+      "en": "The pH of a strongly acidic solution is generally:",
+      "hi": "प्रबल अम्लीय विलयन का pH सामान्यतः होता है:",
+      "options": [
+        [
+          "Less than 7",
+          "7 से कम"
+        ],
+        [
+          "Exactly 7",
+          "ठीक 7"
+        ],
+        [
+          "Greater than 7",
+          "7 से अधिक"
+        ],
+        [
+          "Exactly 14",
+          "ठीक 14"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Acidic aqueous solutions have pH below 7 at ordinary reference conditions.",
+      "solution_hi": "सामान्य संदर्भ स्थितियों में अम्लीय जलीय विलयन का pH 7 से कम होता है।"
+    },
+    {
+      "id": 35,
+      "subject": "Biology",
+      "en": "Which structure connects muscles to bones?",
+      "hi": "मांसपेशियों को हड्डियों से कौन जोड़ता है?",
+      "options": [
+        [
+          "Tendon",
+          "कण्डरा"
+        ],
+        [
+          "Ligament",
+          "स्नायुबंधन"
+        ],
+        [
+          "Cartilage",
+          "उपास्थि"
+        ],
+        [
+          "Neuron",
+          "न्यूरॉन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Tendons attach muscles to bones; ligaments connect bones to bones.",
+      "solution_hi": "कण्डराएँ मांसपेशियों को हड्डियों से जोड़ती हैं; स्नायुबंधन हड्डियों को आपस में जोड़ते हैं।"
+    },
+    {
+      "id": 36,
+      "subject": "Biology",
+      "en": "Which part of the digestive system absorbs most nutrients?",
+      "hi": "पाचन तंत्र का कौन-सा भाग अधिकांश पोषक तत्वों का अवशोषण करता है?",
+      "options": [
+        [
+          "Small intestine",
+          "छोटी आंत"
+        ],
+        [
+          "Stomach",
+          "आमाशय"
+        ],
+        [
+          "Large intestine",
+          "बड़ी आंत"
+        ],
+        [
+          "Oesophagus",
+          "ग्रासनली"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The small intestine has villi that provide a large surface for nutrient absorption.",
+      "solution_hi": "छोटी आंत में विलस होते हैं जो पोषक तत्वों के अवशोषण के लिए बड़ा क्षेत्र देते हैं।"
+    },
+    {
+      "id": 37,
+      "subject": "Biology",
+      "en": "The genetic material in most living organisms is:",
+      "hi": "अधिकांश जीवों में आनुवंशिक पदार्थ है:",
+      "options": [
+        [
+          "DNA",
+          "DNA"
+        ],
+        [
+          "Starch",
+          "स्टार्च"
+        ],
+        [
+          "Cellulose",
+          "सेल्यूलोज"
+        ],
+        [
+          "Protein only",
+          "केवल प्रोटीन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "DNA stores hereditary information in most organisms.",
+      "solution_hi": "अधिकांश जीवों में DNA आनुवंशिक सूचना संग्रहीत करता है।"
+    },
+    {
+      "id": 38,
+      "subject": "History",
+      "en": "Who was the first Indian to become President of the Indian National Congress?",
+      "hi": "भारतीय राष्ट्रीय कांग्रेस के अध्यक्ष बनने वाले पहले भारतीय कौन थे?",
+      "options": [
+        [
+          "Womesh Chandra Bonnerjee",
+          "व्योमेश चंद्र बनर्जी"
+        ],
+        [
+          "Dadabhai Naoroji",
+          "दादाभाई नौरोजी"
+        ],
+        [
+          "Badruddin Tyabji",
+          "बदरुद्दीन तैयबजी"
+        ],
+        [
+          "Surendranath Banerjee",
+          "सुरेंद्रनाथ बनर्जी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "W. C. Bonnerjee presided over the first Congress session in 1885.",
+      "solution_hi": "डब्ल्यू. सी. बनर्जी ने 1885 में कांग्रेस के पहले अधिवेशन की अध्यक्षता की।"
+    },
+    {
+      "id": 39,
+      "subject": "History",
+      "en": "The Vernacular Press Act was passed in 1878 by:",
+      "hi": "वर्नाक्युलर प्रेस एक्ट 1878 में किसने पारित किया?",
+      "options": [
+        [
+          "Lord Lytton",
+          "लॉर्ड लिटन"
+        ],
+        [
+          "Lord Ripon",
+          "लॉर्ड रिपन"
+        ],
+        [
+          "Lord Curzon",
+          "लॉर्ड कर्जन"
+        ],
+        [
+          "Lord Canning",
+          "लॉर्ड कैनिंग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Lord Lytton's government enacted the Vernacular Press Act in 1878.",
+      "solution_hi": "लॉर्ड लिटन की सरकार ने 1878 में वर्नाक्युलर प्रेस एक्ट लागू किया।"
+    },
+    {
+      "id": 40,
+      "subject": "History",
+      "en": "Who established the Ramakrishna Mission?",
+      "hi": "रामकृष्ण मिशन की स्थापना किसने की?",
+      "options": [
+        [
+          "Swami Vivekananda",
+          "स्वामी विवेकानंद"
+        ],
+        [
+          "Ramakrishna Paramahamsa",
+          "रामकृष्ण परमहंस"
+        ],
+        [
+          "Keshab Chandra Sen",
+          "केशव चंद्र सेन"
+        ],
+        [
+          "Annie Besant",
+          "एनी बेसेंट"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Swami Vivekananda founded the Ramakrishna Mission in 1897.",
+      "solution_hi": "स्वामी विवेकानंद ने 1897 में रामकृष्ण मिशन की स्थापना की।"
+    },
+    {
+      "id": 41,
+      "subject": "Geography",
+      "en": "Which is the largest state of India by area?",
+      "hi": "क्षेत्रफल के अनुसार भारत का सबसे बड़ा राज्य कौन-सा है?",
+      "options": [
+        [
+          "Rajasthan",
+          "राजस्थान"
+        ],
+        [
+          "Madhya Pradesh",
+          "मध्य प्रदेश"
+        ],
+        [
+          "Maharashtra",
+          "महाराष्ट्र"
+        ],
+        [
+          "Uttar Pradesh",
+          "उत्तर प्रदेश"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Rajasthan is India's largest state by geographical area.",
+      "solution_hi": "भौगोलिक क्षेत्रफल के अनुसार राजस्थान भारत का सबसे बड़ा राज्य है।"
+    },
+    {
+      "id": 42,
+      "subject": "Geography",
+      "en": "Which river is called the Dakshin Ganga?",
+      "hi": "किस नदी को दक्षिण गंगा कहा जाता है?",
+      "options": [
+        [
+          "Godavari",
+          "गोदावरी"
+        ],
+        [
+          "Krishna",
+          "कृष्णा"
+        ],
+        [
+          "Kaveri",
+          "कावेरी"
+        ],
+        [
+          "Tungabhadra",
+          "तुंगभद्रा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Godavari is often called the Ganga of the South because of its length and basin.",
+      "solution_hi": "लंबाई और नदी बेसिन के कारण गोदावरी को दक्षिण गंगा कहा जाता है।"
+    },
+    {
+      "id": 43,
+      "subject": "Polity",
+      "en": "The Attorney General of India is appointed by:",
+      "hi": "भारत के महान्यायवादी की नियुक्ति कौन करता है?",
+      "options": [
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ],
+        [
+          "Chief Justice of India",
+          "भारत के मुख्य न्यायाधीश"
+        ],
+        [
+          "Parliament",
+          "संसद"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 76 provides for appointment of the Attorney General by the President.",
+      "solution_hi": "अनुच्छेद 76 के अनुसार राष्ट्रपति महान्यायवादी की नियुक्ति करते हैं।"
+    },
+    {
+      "id": 44,
+      "subject": "Polity",
+      "en": "Which House of Parliament is a permanent body?",
+      "hi": "संसद का कौन-सा सदन स्थायी निकाय है?",
+      "options": [
+        [
+          "Rajya Sabha",
+          "राज्यसभा"
+        ],
+        [
+          "Lok Sabha",
+          "लोकसभा"
+        ],
+        [
+          "Both Houses",
+          "दोनों सदन"
+        ],
+        [
+          "Neither House",
+          "कोई नहीं"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Rajya Sabha is not subject to dissolution; one-third of members retire every two years.",
+      "solution_hi": "राज्यसभा भंग नहीं होती; इसके एक-तिहाई सदस्य हर दो वर्ष में सेवानिवृत्त होते हैं।"
+    },
+    {
+      "id": 45,
+      "subject": "Economy",
+      "en": "Which institution regulates the securities market in India?",
+      "hi": "भारत में प्रतिभूति बाजार का नियमन कौन-सी संस्था करती है?",
+      "options": [
+        [
+          "SEBI",
+          "SEBI"
+        ],
+        [
+          "RBI",
+          "RBI"
+        ],
+        [
+          "IRDAI",
+          "IRDAI"
+        ],
+        [
+          "CAG",
+          "CAG"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "SEBI regulates India's securities market and protects investors.",
+      "solution_hi": "SEBI भारत के प्रतिभूति बाजार का नियमन और निवेशकों की सुरक्षा करता है।"
+    },
+    {
+      "id": 46,
+      "subject": "Economy",
+      "en": "A rise in the general price level reduces the:",
+      "hi": "सामान्य मूल्य स्तर में वृद्धि से किसमें कमी आती है?",
+      "options": [
+        [
+          "Purchasing power of money",
+          "मुद्रा की क्रय शक्ति"
+        ],
+        [
+          "Nominal price level",
+          "नाममात्र मूल्य स्तर"
+        ],
+        [
+          "Number of goods produced necessarily",
+          "आवश्यक रूप से उत्पादित वस्तुओं की संख्या"
+        ],
+        [
+          "Face value of currency",
+          "मुद्रा का अंकित मूल्य"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "When prices rise, each unit of money buys fewer goods and services.",
+      "solution_hi": "कीमतें बढ़ने पर मुद्रा की प्रत्येक इकाई से कम वस्तुएँ और सेवाएँ खरीदी जा सकती हैं।"
+    },
+    {
+      "id": 47,
+      "subject": "Science",
+      "en": "Which layer protects Earth from much of the Sun's harmful ultraviolet radiation?",
+      "hi": "सूर्य की हानिकारक पराबैंगनी किरणों से पृथ्वी की रक्षा मुख्यतः कौन-सी परत करती है?",
+      "options": [
+        [
+          "Ozone layer",
+          "ओज़ोन परत"
+        ],
+        [
+          "Tropospheric dust",
+          "क्षोभमंडलीय धूल"
+        ],
+        [
+          "Ionospheric nitrogen",
+          "आयनमंडलीय नाइट्रोजन"
+        ],
+        [
+          "Cloud layer only",
+          "केवल बादल परत"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Stratospheric ozone absorbs much of the Sun's harmful UV-B radiation.",
+      "solution_hi": "समतापमंडलीय ओज़ोन सूर्य की अधिकांश हानिकारक UV-B किरणें अवशोषित करती है।"
+    },
+    {
+      "id": 48,
+      "subject": "Science",
+      "en": "Which organelle is known as the powerhouse of the cell?",
+      "hi": "किस कोशिकांग को कोशिका का ऊर्जा गृह कहा जाता है?",
+      "options": [
+        [
+          "Mitochondrion",
+          "माइटोकॉन्ड्रिया"
+        ],
+        [
+          "Ribosome",
+          "राइबोसोम"
+        ],
+        [
+          "Lysosome",
+          "लाइसोसोम"
+        ],
+        [
+          "Nucleus",
+          "केंद्रक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Mitochondria generate much of the cell's ATP through cellular respiration.",
+      "solution_hi": "माइटोकॉन्ड्रिया कोशिकीय श्वसन द्वारा कोशिका का अधिकांश ATP बनाते हैं।"
+    },
+    {
+      "id": 49,
+      "subject": "Science",
+      "en": "The SI unit of electric potential difference is:",
+      "hi": "विद्युत विभवांतर की SI इकाई है:",
+      "options": [
+        [
+          "Volt",
+          "वोल्ट"
+        ],
+        [
+          "Ampere",
+          "एम्पियर"
+        ],
+        [
+          "Ohm",
+          "ओम"
+        ],
+        [
+          "Coulomb",
+          "कूलॉम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Potential difference is measured in volts.",
+      "solution_hi": "विभवांतर वोल्ट में मापा जाता है।"
     }
   ]
 }
