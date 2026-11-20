@@ -4,7 +4,7 @@
   "mock": 2,
   "status": "in_progress",
   "target_questions": 150,
-  "completed_questions": 79,
+  "completed_questions": 89,
   "language_modes": [
     "en",
     "hi"
@@ -2147,6 +2147,276 @@
       "answer": 0,
       "solution_en": "The Sahara in North Africa is the world's largest hot desert. Antarctica is larger overall but is a polar desert, not a hot desert.",
       "solution_hi": "उत्तरी अफ्रीका का सहारा विश्व का सबसे बड़ा गर्म मरुस्थल है। अंटार्कटिका कुल क्षेत्रफल में बड़ा है, लेकिन वह ध्रुवीय मरुस्थल है, गर्म मरुस्थल नहीं।"
+    },
+    {
+      "id": 80,
+      "subject": "Physics",
+      "en": "A body of mass 5 kg is acted upon by a net force of 20 N. What is its acceleration?",
+      "hi": "5 kg द्रव्यमान के पिंड पर 20 N का परिणामी बल लगता है। उसका त्वरण कितना होगा?",
+      "options": [
+        [
+          "4 m/s²",
+          "4 m/s²"
+        ],
+        [
+          "5 m/s²",
+          "5 m/s²"
+        ],
+        [
+          "15 m/s²",
+          "15 m/s²"
+        ],
+        [
+          "100 m/s²",
+          "100 m/s²"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Newton's second law gives F = ma. Therefore a = F/m = 20/5 = 4 m/s².",
+      "solution_hi": "न्यूटन के द्वितीय नियम के अनुसार F = ma। अतः a = F/m = 20/5 = 4 m/s²।"
+    },
+    {
+      "id": 81,
+      "subject": "Chemistry",
+      "en": "A solution with pH 9 is:",
+      "hi": "pH 9 वाला विलयन कैसा होता है?",
+      "options": [
+        [
+          "Basic",
+          "क्षारीय"
+        ],
+        [
+          "Acidic",
+          "अम्लीय"
+        ],
+        [
+          "Neutral",
+          "उदासीन"
+        ],
+        [
+          "Always a strong acid",
+          "हमेशा प्रबल अम्ल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "At ordinary reference conditions, pH greater than 7 indicates a basic solution. A pH of 9 is therefore alkaline.",
+      "solution_hi": "सामान्य संदर्भ स्थितियों में 7 से अधिक pH क्षारीय विलयन दर्शाता है। इसलिए pH 9 क्षारीय है।"
+    },
+    {
+      "id": 82,
+      "subject": "Biology",
+      "en": "Which part of the brain is primarily responsible for maintaining balance and coordination?",
+      "hi": "मस्तिष्क का कौन-सा भाग मुख्यतः संतुलन और समन्वय बनाए रखता है?",
+      "options": [
+        [
+          "Cerebellum",
+          "अनुमस्तिष्क"
+        ],
+        [
+          "Cerebrum",
+          "प्रमस्तिष्क"
+        ],
+        [
+          "Medulla oblongata",
+          "मेडुला ऑब्लोंगेटा"
+        ],
+        [
+          "Hypothalamus",
+          "हाइपोथैलेमस"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The cerebellum coordinates voluntary muscle activity and helps maintain posture, balance and precision of movement.",
+      "solution_hi": "अनुमस्तिष्क ऐच्छिक मांसपेशियों की गतिविधियों का समन्वय करता है तथा मुद्रा, संतुलन और गति की सटीकता बनाए रखने में मदद करता है।"
+    },
+    {
+      "id": 83,
+      "subject": "History",
+      "en": "Who founded the Indian Association in 1876?",
+      "hi": "1876 में इंडियन एसोसिएशन की स्थापना किसने की थी?",
+      "options": [
+        [
+          "Surendranath Banerjea and Ananda Mohan Bose",
+          "सुरेंद्रनाथ बनर्जी और आनंद मोहन बोस"
+        ],
+        [
+          "Dadabhai Naoroji and Pherozeshah Mehta",
+          "दादाभाई नौरोजी और फिरोजशाह मेहता"
+        ],
+        [
+          "Bal Gangadhar Tilak and Gopal Krishna Gokhale",
+          "बाल गंगाधर तिलक और गोपाल कृष्ण गोखले"
+        ],
+        [
+          "Lala Lajpat Rai and Bipin Chandra Pal",
+          "लाला लाजपत राय और बिपिन चंद्र पाल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Surendranath Banerjea and Ananda Mohan Bose founded the Indian Association in Calcutta in 1876 to promote political awareness and national unity.",
+      "solution_hi": "सुरेंद्रनाथ बनर्जी और आनंद मोहन बोस ने 1876 में कलकत्ता में राजनीतिक जागरूकता और राष्ट्रीय एकता को बढ़ावा देने के लिए इंडियन एसोसिएशन की स्थापना की।"
+    },
+    {
+      "id": 84,
+      "subject": "Polity",
+      "en": "Who presides over a joint sitting of the two Houses of the Indian Parliament?",
+      "hi": "भारतीय संसद के दोनों सदनों की संयुक्त बैठक की अध्यक्षता कौन करता है?",
+      "options": [
+        [
+          "Speaker of the Lok Sabha",
+          "लोकसभा अध्यक्ष"
+        ],
+        [
+          "President of India",
+          "भारत के राष्ट्रपति"
+        ],
+        [
+          "Chairman of the Rajya Sabha",
+          "राज्यसभा के सभापति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Under Article 108, a joint sitting is presided over by the Speaker of the Lok Sabha. In the Speaker's absence, the Deputy Speaker or another prescribed presiding officer may preside.",
+      "solution_hi": "अनुच्छेद 108 के अंतर्गत संयुक्त बैठक की अध्यक्षता लोकसभा अध्यक्ष करते हैं। उनकी अनुपस्थिति में उपाध्यक्ष या निर्धारित अन्य पीठासीन अधिकारी अध्यक्षता कर सकते हैं।"
+    },
+    {
+      "id": 85,
+      "subject": "Geography",
+      "en": "Which pass connects Srinagar with Leh?",
+      "hi": "कौन-सा दर्रा श्रीनगर को लेह से जोड़ता है?",
+      "options": [
+        [
+          "Zoji La",
+          "ज़ोजि ला"
+        ],
+        [
+          "Nathu La",
+          "नाथू ला"
+        ],
+        [
+          "Shipki La",
+          "शिपकी ला"
+        ],
+        [
+          "Bomdi La",
+          "बोमडिला"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Zoji La is a high mountain pass on the route between Srinagar and Leh, connecting the Kashmir Valley with the Dras-Kargil region.",
+      "solution_hi": "ज़ोजि ला श्रीनगर और लेह के मार्ग पर स्थित ऊँचा पर्वतीय दर्रा है। यह कश्मीर घाटी को द्रास-कारगिल क्षेत्र से जोड़ता है।"
+    },
+    {
+      "id": 86,
+      "subject": "English",
+      "en": "Choose the correct indirect speech: He said, 'I am busy now.'",
+      "hi": "सही अप्रत्यक्ष कथन चुनिए: He said, 'I am busy now.'",
+      "options": [
+        [
+          "He said that he was busy then.",
+          "He said that he was busy then."
+        ],
+        [
+          "He said that I am busy now.",
+          "He said that I am busy now."
+        ],
+        [
+          "He says he had busy then.",
+          "He says he had busy then."
+        ],
+        [
+          "He told that he is busy now.",
+          "He told that he is busy now."
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "In reported speech with a past reporting verb, 'am' normally changes to 'was' and 'now' changes to 'then': He said that he was busy then.",
+      "solution_hi": "भूतकाल के reporting verb के बाद 'am' सामान्यतः 'was' और 'now' का 'then' हो जाता है: He said that he was busy then."
+    },
+    {
+      "id": 87,
+      "subject": "Economy",
+      "en": "The term 'fiscal deficit' refers to:",
+      "hi": "'राजकोषीय घाटा' किसे कहते हैं?",
+      "options": [
+        [
+          "Total expenditure minus total receipts excluding borrowings",
+          "उधार को छोड़कर कुल व्यय और कुल प्राप्तियों का अंतर"
+        ],
+        [
+          "Revenue receipts minus revenue expenditure",
+          "राजस्व प्राप्तियों और राजस्व व्यय का अंतर"
+        ],
+        [
+          "Exports minus imports",
+          "निर्यात और आयात का अंतर"
+        ],
+        [
+          "Total tax revenue only",
+          "केवल कुल कर राजस्व"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Fiscal deficit is the excess of total government expenditure over total receipts, excluding borrowings. It indicates the government's borrowing requirement.",
+      "solution_hi": "राजकोषीय घाटा उधार को छोड़कर सरकार के कुल व्यय और कुल प्राप्तियों का अंतर है। यह सरकार की उधार आवश्यकता दर्शाता है।"
+    },
+    {
+      "id": 88,
+      "subject": "Physics",
+      "en": "The image formed by a plane mirror is:",
+      "hi": "समतल दर्पण द्वारा बना प्रतिबिंब कैसा होता है?",
+      "options": [
+        [
+          "Virtual, erect and of the same size",
+          "आभासी, सीधा और समान आकार का"
+        ],
+        [
+          "Real, inverted and enlarged",
+          "वास्तविक, उल्टा और बड़ा"
+        ],
+        [
+          "Real, erect and diminished",
+          "वास्तविक, सीधा और छोटा"
+        ],
+        [
+          "Virtual, inverted and diminished",
+          "आभासी, उल्टा और छोटा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A plane mirror forms a virtual, erect image of the same size as the object, located as far behind the mirror as the object is in front.",
+      "solution_hi": "समतल दर्पण वस्तु के समान आकार का आभासी और सीधा प्रतिबिंब बनाता है। प्रतिबिंब दर्पण के पीछे उतनी ही दूरी पर होता है जितनी दूरी पर वस्तु सामने होती है।"
+    },
+    {
+      "id": 89,
+      "subject": "Chemistry",
+      "en": "Which gas is liberated when an active metal reacts with a dilute acid?",
+      "hi": "सक्रिय धातु की तनु अम्ल से अभिक्रिया होने पर कौन-सी गैस निकलती है?",
+      "options": [
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Chlorine",
+          "क्लोरीन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Many active metals react with dilute acids to form a salt and release hydrogen gas. For example, Zn + 2HCl → ZnCl₂ + H₂.",
+      "solution_hi": "कई सक्रिय धातुएँ तनु अम्लों से अभिक्रिया करके लवण बनाती हैं और हाइड्रोजन गैस छोड़ती हैं। उदाहरण: Zn + 2HCl → ZnCl₂ + H₂।"
     }
   ]
 }
