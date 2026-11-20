@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<meta name="aei-build-id" content="5bb2970ddd949241862c7401ced2e7ddd9f7d996">
+<meta name="aei-build-id" content="3ab1f8c08d8ecd0f475f74ddffb3eef22ae874d6">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SSC GD – PYQ & Mock Test | All Exam India</title>
@@ -498,7 +498,6 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 <section id="policehardpractice" class="page"><h2>🔥 Maharashtra Police Bharti — Hard Mock Test</h2><button class="primary" type="button" onclick="showPage('policehub')">Back</button><div class="notice"><b>Hard Mock Test निवडा</b><br>प्रत्येक पेपर: 100 प्रश्न • 90 मिनिटे • गणित, Reasoning, मराठी आणि GK/Current Affairs. उत्तरांसह स्पष्टीकरण आणि निकाल History मध्ये जतन होईल.</div><div class="card"><label for="policeHardLanguage"><b>Paper Language / भाषा</b></label><select id="policeHardLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="mr">मराठी (Marathi)</option><option value="en">English</option></select><div id="policeHardTestList" class="grid" style="margin-top:14px"></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px"><button type="button" onclick="changePoliceHardPage(-1)">Previous 50</button><span id="policeHardPageInfo" class="small-note">Tests 1–50 of 376</span><button type="button" onclick="changePoliceHardPage(1)">Next 50</button></div><p><small>हे नवीन सराव प्रश्न आहेत; अधिकृत PYQ नाहीत.</small></p></div></section>
 <section id="pyq" class="page">
 <h2>SSC GD — PYQ & Practice Tests</h2><div class="notice"><b id="pyqTotalCount">SSC GD Practice Sets: 195</b><br><small>Uploaded PDF files: 134 • Practice sets: 195</small></div><div class="notice">More SSC GD Previous Year Questions (PYQs) will be uploaded regularly. New question sets will be added to the website.</div><div class="card"><h3>Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="Search SSC GD year / date / shift..." oninput="renderPYQ()"><div id="pyqList"></div>
-
 </section>
 <section id="currentaffairs" class="page">
 <h2>Current Affairs 2026</h2>
@@ -997,8 +996,7 @@ sourceReasonSection.slice(0,10).forEach(q=>out.push(q));
 { // Five multi-step reasoning variants: alternating coding, route tracking,
  // chained rankings, second-difference series, and compound symbol rules. const word=["MATH","ROAD","FIRE","GOLD","RING"][pick(5)],coded=word.split("").map((ch,i)=>letters[(letters.indexOf(ch)+(i%2===0?2:-1)+26)%26]).join("");
  addChoice(R,"एक कूट में पहले, तीसरे आदि स्थान के अक्षर 2 स्थान आगे और दूसरे, चौथे आदि स्थान के अक्षर 1 स्थान पीछे किए जाते हैं। इसी नियम से '"+word+"' का कूट क्या होगा?","In a code, letters in odd positions move 2 places forward and letters in even positions move 1 place backward. How is '"+word+"' coded?",coded,[letterWord(word,1),letterWord(word,2),letterWord(word,3)],"हर अक्षर की स्थिति के अनुसार अलग बदलाव लागू करें: विषम स्थान +2 और सम स्थान −1।","Apply the position-dependent shifts separately: +2 at odd positions and −1 at even positions."); const start=pick(4),dirs=["उत्तर","पूर्व","दक्षिण","पश्चिम"],eng=["north","east","south","west"],moves=[["right",2],["left",1],["right",3]],turns=moves.reduce((d,m)=>(d+(m[0]==="right"?m[1]:-m[1])+8)%4,start);
- addChoiceDual(R,"एक व्यक्ति "+dirs[start]+" की ओर मुँह करके खड़ा है। वह दाएँ 2 समकोण, बाएँ 1 समकोण और फिर दाएँ 3 समकोण घूमता है। अंत में किस दिशा में होगा?","A person faces "+eng[start]+". They turn 2 right angles right, 1 right angle left, then 3 right angles right. Which direction do they face?",dirs[turns],[dirs[(turns+1)%4],dirs[(turns+2)%4],dirs[(turns+3)%4]],eng[turns],[eng[(turns+1)%4],eng[(turns+2)%4],eng[(turns+3)%4]],"दाएँ घूमने को + और बाएँ घूमने को − मानकर कुल समकोण घुमाव जोड़ें।","Treat right turns as positive and left turns as negative, then combine all right-angle turns.");
- const names=["A","B","C","D","E"],perm=shuffle(names),rankQ="पाँच प्रतियोगियों में "+perm[0]+" , "+perm[1]+" से आगे है; "+perm[1]+" , "+perm[2]+" से आगे है; "+perm[2]+" , "+perm[3]+" से आगे है; और "+perm[3]+" , "+perm[4]+" से आगे है। तीसरे स्थान पर कौन है?";
+ addChoiceDual(R,"एक व्यक्ति "+dirs[start]+" की ओर मुँह करके खड़ा है। वह दाएँ 2 समकोण, बाएँ 1 समकोण और फिर दाएँ 3 समकोण घूमता है। अंत में किस दिशा में होगा?","A person faces "+eng[start]+". They turn 2 right angles right, 1 right angle left, then 3 right angles right. Which direction do they face?",dirs[turns],[dirs[(turns+1)%4],dirs[(turns+2)%4],dirs[(turns+3)%4]],eng[turns],[eng[(turns+1)%4],eng[(turns+2)%4],eng[(turns+3)%4]],"दाएँ घूमने को + और बाएँ घूमने को − मानकर कुल समकोण घुमाव जोड़ें।","Treat right turns as positive and left turns as negative, then combine all right-angle turns."); const names=["A","B","C","D","E"],perm=shuffle(names),rankQ="पाँच प्रतियोगियों में "+perm[0]+" , "+perm[1]+" से आगे है; "+perm[1]+" , "+perm[2]+" से आगे है; "+perm[2]+" , "+perm[3]+" से आगे है; और "+perm[3]+" , "+perm[4]+" से आगे है। तीसरे स्थान पर कौन है?";
  addChoice(R,rankQ,"Among five competitors, "+perm[0]+" ranks ahead of "+perm[1]+"; "+perm[1] +" ahead of "+perm[2]+"; "+perm[2]+" ahead of "+perm[3]+"; and "+perm[3]+" ahead of "+perm[4]+". Who is third?",perm[2],[perm[0],perm[1],perm[3]],"दी गई चारों तुलनाओं को एक क्रम में रखने पर तीसरा स्थान "+perm[2]+" का है।","Combining all four comparisons gives the complete order; "+perm[2]+" is third.");
  const x=2+pick(8),series=[x*x,(x+1)*(x+1),(x+2)*(x+2),(x+3)*(x+3)],next=(x+4)*(x+4);
  addNum(R,"संख्या श्रृंखला पूरी करें: "+series.join(", ")+", ?","Complete the number series: "+series.join(", ")+", ?",next,"पद क्रमागत संख्याओं के वर्ग हैं; अगला पद ("+(x+4)+")² = "+next+" है।","The terms are squares of consecutive integers; the next is ("+(x+4)+")² = "+next+".");
@@ -1497,8 +1495,7 @@ function buildPoliceHardSection(type,count,seed,lang){
     }
     case 4:{     const left=3+Math.floor(r()*9),right=5+Math.floor(r()*10),total=left+right-1;
      ans=total;q=M("एका रांगेत रोहन डावीकडून "+left+" वा आणि उजवीकडून "+right+" वा आहे. रांगेत एकूण किती जण आहेत?","Rohan is "+left+"th from the left and "+right+"th from the right in a row. How many people are there?");
-     w=[total+1,total-1,left+right];e=M("एकूण = डावीकडील क्रमांक + उजवीकडील क्रमांक − 1; रोहन दोन्हीकडे एकदाच मोजला जातो.","Total = left rank + right rank − 1; Rohan is counted once.");break;
-    }
+     w=[total+1,total-1,left+right];e=M("एकूण = डावीकडील क्रमांक + उजवीकडील क्रमांक − 1; रोहन दोन्हीकडे एकदाच मोजला जातो.","Total = left rank + right rank − 1; Rohan is counted once.");break;    }
     case 5:{
      const h=1+Math.floor(r()*10),m=10+5*Math.floor(r()*10),raw=Math.abs(30*(h%12)-5.5*m),angle=Math.min(raw,360-raw);
      ans=Number(angle.toFixed(1));q=M(h+":"+String(m).padStart(2,"0")+" वाजता घड्याळाच्या काट्यांतील लहान कोन किती अंश?","Find the smaller angle between the clock hands at "+h+":"+String(m).padStart(2,"0")+".");
@@ -1997,8 +1994,7 @@ function gdSessionAttemptNumber(sessionId){
  let attempts={}; try{attempts=JSON.parse(localStorage.getItem("aei-pyq-attempts")||"{}")||{};}catch(e){attempts={};}
  const next=(Number(attempts[sessionId])||0)+1;
  attempts[sessionId]=next;
- try{localStorage.setItem("aei-pyq-attempts",JSON.stringify(attempts));}catch(e){}
- return next;
+ try{localStorage.setItem("aei-pyq-attempts",JSON.stringify(attempts));}catch(e){} return next;
 }
 function reattemptCurrentPractice(){
  if(!activePractice||!practiceSubmitted)return;
@@ -2363,7 +2359,7 @@ async function loadDashboard() {
     const sinceDay = t => t >= now-day && t <= now, sinceWeek = t => t >= now-7*day && t <= now, sinceMonth = t => t >= now-30*day && t <= now;
     const visitCount = fn => visitEvents.filter(e => fn(e.createdAt.toDate().getTime())).length;
     const stats = [
-      ["Total Visits (latest 1,000)", visitEvents.length],
+      ["Total Visits", visitEvents.length],
       ["Unique Sessions", unique(()=>true)],
       ["Today", visitCount(sinceDay)],
       ["Last 7 Days", visitCount(sinceWeek)],
