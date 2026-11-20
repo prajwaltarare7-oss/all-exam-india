@@ -1,0 +1,154 @@
+{
+  "exam": "NDA",
+  "mock": 1,
+  "paper": "mathematics",
+  "status": "in_progress",
+  "language": ["en", "hi"],
+  "durationMinutes": 150,
+  "questionTarget": 120,
+  "marksPerCorrect": 2.5,
+  "marksPerWrong": -0.8333333333,
+  "questionsIncluded": 20,
+  "questions": [
+    {
+      "id": "NDA-M1-001", "topic": "Trigonometry", "difficulty": "easy",
+      "question": {"en": "If sin θ = 3/5 and θ is acute, then cos θ is:", "hi": "यदि sin θ = 3/5 तथा θ न्यूनकोण है, तो cos θ का मान है:"},
+      "options": {"en": ["3/5", "4/5", "5/4", "5/3"], "hi": ["3/5", "4/5", "5/4", "5/3"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Using sin²θ + cos²θ = 1, cos²θ = 1 − 9/25 = 16/25. Since θ is acute, cos θ = 4/5.", "hi": "sin²θ + cos²θ = 1 से cos²θ = 1 − 9/25 = 16/25। θ न्यूनकोण है, इसलिए cos θ = 4/5।"}
+    },
+    {
+      "id": "NDA-M1-002", "topic": "Quadratic Equations", "difficulty": "easy",
+      "question": {"en": "The sum of the roots of 2x² − 7x + 3 = 0 is:", "hi": "2x² − 7x + 3 = 0 के मूलों का योग है:"},
+      "options": {"en": ["−7/2", "7/2", "3/2", "−3/2"], "hi": ["−7/2", "7/2", "3/2", "−3/2"]},
+      "answerIndex": 1,
+      "explanation": {"en": "For ax² + bx + c = 0, sum of roots = −b/a. Here it is −(−7)/2 = 7/2.", "hi": "ax² + bx + c = 0 में मूलों का योग −b/a होता है। यहाँ −(−7)/2 = 7/2।"}
+    },
+    {
+      "id": "NDA-M1-003", "topic": "Sequences and Series", "difficulty": "easy",
+      "question": {"en": "The 10th term of the AP 4, 7, 10, ... is:", "hi": "समांतर श्रेणी 4, 7, 10, ... का 10वाँ पद है:"},
+      "options": {"en": ["28", "30", "31", "34"], "hi": ["28", "30", "31", "34"]},
+      "answerIndex": 2,
+      "explanation": {"en": "Here a = 4 and d = 3. a₁₀ = a + 9d = 4 + 27 = 31.", "hi": "यहाँ a = 4 और d = 3। a₁₀ = a + 9d = 4 + 27 = 31।"}
+    },
+    {
+      "id": "NDA-M1-004", "topic": "Binomial Theorem", "difficulty": "moderate",
+      "question": {"en": "The coefficient of x³ in (2 + x)⁵ is:", "hi": "(2 + x)⁵ में x³ का गुणांक है:"},
+      "options": {"en": ["40", "60", "80", "100"], "hi": ["40", "60", "80", "100"]},
+      "answerIndex": 2,
+      "explanation": {"en": "The x³ term is C(5,3)·2²·x³ = 10·4·x³, so the coefficient is 40.", "hi": "x³ का पद C(5,3)·2²·x³ = 10·4·x³ है, इसलिए गुणांक 40 है।"}
+    },
+    {
+      "id": "NDA-M1-005", "topic": "Probability", "difficulty": "easy",
+      "question": {"en": "A fair die is thrown once. The probability of getting a prime number is:", "hi": "एक निष्पक्ष पासा एक बार फेंका जाता है। अभाज्य संख्या आने की प्रायिकता है:"},
+      "options": {"en": ["1/3", "1/2", "2/3", "5/6"], "hi": ["1/3", "1/2", "2/3", "5/6"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Prime outcomes are 2, 3 and 5: 3 favourable outcomes out of 6. Probability = 3/6 = 1/2.", "hi": "अभाज्य परिणाम 2, 3 और 5 हैं। 6 में 3 अनुकूल परिणाम, अतः प्रायिकता 3/6 = 1/2।"}
+    },
+    {
+      "id": "NDA-M1-006", "topic": "Differentiation", "difficulty": "easy",
+      "question": {"en": "If y = x³ − 4x, then dy/dx at x = 2 is:", "hi": "यदि y = x³ − 4x, तो x = 2 पर dy/dx का मान है:"},
+      "options": {"en": ["4", "6", "8", "12"], "hi": ["4", "6", "8", "12"]},
+      "answerIndex": 2,
+      "explanation": {"en": "dy/dx = 3x² − 4. At x = 2, the value is 12 − 4 = 8.", "hi": "dy/dx = 3x² − 4। x = 2 रखने पर 12 − 4 = 8।"}
+    },
+    {
+      "id": "NDA-M1-007", "topic": "Matrices", "difficulty": "moderate",
+      "question": {"en": "If A = [[1, 2], [3, 4]], then det(A) equals:", "hi": "यदि A = [[1, 2], [3, 4]], तो det(A) का मान है:"},
+      "options": {"en": ["−2", "2", "10", "−10"], "hi": ["−2", "2", "10", "−10"]},
+      "answerIndex": 0,
+      "explanation": {"en": "For a 2×2 matrix, determinant = ad − bc = (1)(4) − (2)(3) = −2.", "hi": "2×2 मैट्रिक्स का determinant = ad − bc = 1×4 − 2×3 = −2।"}
+    },
+    {
+      "id": "NDA-M1-008", "topic": "Coordinate Geometry", "difficulty": "easy",
+      "question": {"en": "The distance between (1, 2) and (4, 6) is:", "hi": "(1, 2) और (4, 6) के बीच की दूरी है:"},
+      "options": {"en": ["4", "5", "6", "7"], "hi": ["4", "5", "6", "7"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Distance = √[(4−1)² + (6−2)²] = √(9+16) = 5.", "hi": "दूरी = √[(4−1)² + (6−2)²] = √(9+16) = 5।"}
+    },
+    {
+      "id": "NDA-M1-009", "topic": "Vectors", "difficulty": "moderate",
+      "question": {"en": "The magnitude of vector 3i + 4j is:", "hi": "सदिश 3i + 4j का परिमाण है:"},
+      "options": {"en": ["3", "4", "5", "7"], "hi": ["3", "4", "5", "7"]},
+      "answerIndex": 2,
+      "explanation": {"en": "Magnitude = √(3² + 4²) = √25 = 5.", "hi": "परिमाण = √(3² + 4²) = √25 = 5।"}
+    },
+    {
+      "id": "NDA-M1-010", "topic": "Integration", "difficulty": "easy",
+      "question": {"en": "∫ 2x dx equals:", "hi": "∫ 2x dx का मान है:"},
+      "options": {"en": ["x² + C", "2x² + C", "x + C", "2 + C"], "hi": ["x² + C", "2x² + C", "x + C", "2 + C"]},
+      "answerIndex": 0,
+      "explanation": {"en": "By the power rule, ∫2x dx = 2·x²/2 + C = x² + C.", "hi": "Power rule से ∫2x dx = 2·x²/2 + C = x² + C।"}
+    },
+    {
+      "id": "NDA-M1-011", "topic": "Trigonometry", "difficulty": "moderate",
+      "question": {"en": "The value of sin 30° cos 60° + cos 30° sin 60° is:", "hi": "sin 30° cos 60° + cos 30° sin 60° का मान है:"},
+      "options": {"en": ["0", "1/2", "√3/2", "1"], "hi": ["0", "1/2", "√3/2", "1"]},
+      "answerIndex": 3,
+      "explanation": {"en": "Using sin(A+B), the expression is sin(30°+60°) = sin 90° = 1.", "hi": "sin(A+B) सूत्र से यह sin(30°+60°) = sin 90° = 1 है।"}
+    },
+    {
+      "id": "NDA-M1-012", "topic": "Complex Numbers", "difficulty": "moderate",
+      "question": {"en": "The value of i² + i⁴ is:", "hi": "i² + i⁴ का मान है:"},
+      "options": {"en": ["−2", "−1", "0", "1"], "hi": ["−2", "−1", "0", "1"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Since i² = −1 and i⁴ = 1, the sum is 0. Correct option: 0.", "hi": "i² = −1 और i⁴ = 1, इसलिए योग 0 है। सही विकल्प 0 है।"}
+    },
+    {
+      "id": "NDA-M1-013", "topic": "Limits", "difficulty": "moderate",
+      "question": {"en": "lim (x→2) (x² − 4)/(x − 2) equals:", "hi": "lim (x→2) (x² − 4)/(x − 2) का मान है:"},
+      "options": {"en": ["2", "4", "6", "8"], "hi": ["2", "4", "6", "8"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Factor x²−4 = (x−2)(x+2). Cancel x−2; the limit is 2+2 = 4.", "hi": "x²−4 = (x−2)(x+2)। x−2 काटने पर सीमा 2+2 = 4 मिलती है।"}
+    },
+    {
+      "id": "NDA-M1-014", "topic": "Permutations and Combinations", "difficulty": "moderate",
+      "question": {"en": "In how many ways can 3 students be selected from 5 students?", "hi": "5 विद्यार्थियों में से 3 विद्यार्थियों को कितने तरीकों से चुना जा सकता है?"},
+      "options": {"en": ["5", "10", "15", "20"], "hi": ["5", "10", "15", "20"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Selection order does not matter: C(5,3) = 5!/(3!2!) = 10.", "hi": "चयन में क्रम महत्त्वपूर्ण नहीं है: C(5,3) = 5!/(3!2!) = 10।"}
+    },
+    {
+      "id": "NDA-M1-015", "topic": "Statistics", "difficulty": "easy",
+      "question": {"en": "The mean of 2, 4, 6, 8 and 10 is:", "hi": "2, 4, 6, 8 और 10 का माध्य है:"},
+      "options": {"en": ["5", "6", "7", "8"], "hi": ["5", "6", "7", "8"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Mean = (2+4+6+8+10)/5 = 30/5 = 6.", "hi": "माध्य = (2+4+6+8+10)/5 = 30/5 = 6।"}
+    },
+    {
+      "id": "NDA-M1-016", "topic": "Differential Equations", "difficulty": "hard",
+      "question": {"en": "The general solution of dy/dx = 3x² is:", "hi": "dy/dx = 3x² का सामान्य हल है:"},
+      "options": {"en": ["y = x³ + C", "y = 3x + C", "y = x² + C", "y = 3x³ + C"], "hi": ["y = x³ + C", "y = 3x + C", "y = x² + C", "y = 3x³ + C"]},
+      "answerIndex": 0,
+      "explanation": {"en": "Integrating both sides gives y = ∫3x² dx = x³ + C.", "hi": "दोनों पक्षों का समाकलन करने पर y = ∫3x² dx = x³ + C।"}
+    },
+    {
+      "id": "NDA-M1-017", "topic": "Conic Sections", "difficulty": "moderate",
+      "question": {"en": "The eccentricity of a circle is:", "hi": "वृत्त की उत्केन्द्रता है:"},
+      "options": {"en": ["0", "1/2", "1", "Greater than 1"], "hi": ["0", "1/2", "1", "1 से अधिक"]},
+      "answerIndex": 0,
+      "explanation": {"en": "A circle is the limiting ellipse with equal foci; its eccentricity is 0.", "hi": "वृत्त में दोनों फोकस एक ही बिंदु पर होते हैं; इसकी उत्केन्द्रता 0 होती है।"}
+    },
+    {
+      "id": "NDA-M1-018", "topic": "Probability", "difficulty": "moderate",
+      "question": {"en": "Two fair coins are tossed. The probability of getting exactly one head is:", "hi": "दो निष्पक्ष सिक्के उछाले जाते हैं। ठीक एक चित आने की प्रायिकता है:"},
+      "options": {"en": ["1/4", "1/2", "3/4", "1"], "hi": ["1/4", "1/2", "3/4", "1"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Outcomes are HH, HT, TH, TT. HT and TH qualify, so probability = 2/4 = 1/2.", "hi": "परिणाम HH, HT, TH, TT हैं। HT और TH अनुकूल हैं, इसलिए प्रायिकता 2/4 = 1/2।"}
+    },
+    {
+      "id": "NDA-M1-019", "topic": "Straight Lines", "difficulty": "moderate",
+      "question": {"en": "The slope of the line 3x − 2y + 6 = 0 is:", "hi": "रेखा 3x − 2y + 6 = 0 की ढाल है:"},
+      "options": {"en": ["−3/2", "−2/3", "3/2", "2/3"], "hi": ["−3/2", "−2/3", "3/2", "2/3"]},
+      "answerIndex": 2,
+      "explanation": {"en": "Rearrange: 2y = 3x + 6, so y = (3/2)x + 3. Slope = 3/2.", "hi": "2y = 3x + 6 से y = (3/2)x + 3। अतः ढाल 3/2 है।"}
+    },
+    {
+      "id": "NDA-M1-020", "topic": "Applications of Derivatives", "difficulty": "hard",
+      "question": {"en": "For f(x) = x² − 6x + 11, the minimum value is:", "hi": "f(x) = x² − 6x + 11 का न्यूनतम मान है:"},
+      "options": {"en": ["1", "2", "3", "11"], "hi": ["1", "2", "3", "11"]},
+      "answerIndex": 1,
+      "explanation": {"en": "Complete the square: f(x) = (x−3)² + 2. Since the square is non-negative, the minimum is 2 at x=3.", "hi": "पूर्ण वर्ग बनाने पर f(x) = (x−3)² + 2। वर्ग पद शून्य या धनात्मक है, इसलिए x=3 पर न्यूनतम मान 2 है।"}
+    }
+  ]
+}
