@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<meta name="aei-build-id" content="22d7935e11781be3e326146f22cdcc476b64bd6d">
+<meta name="aei-build-id" content="admin-dashboard-nav-restored-20261120">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -440,6 +440,7 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 <nav>
 <a class="download-app-nav" href="download.html">⬇ Download App</a>
 <button class="settings-nav" onclick="showPage('settings')">⚙ Settings</button>
+<button class="settings-nav" id="aeiAdminNav" onclick="showPage('settings');setTimeout(()=>document.getElementById('aeiAdminCard')?.scrollIntoView({behavior:'smooth',block:'start'}),80)">🔐 Admin Dashboard</button>
 </nav>
 <div class="auth-modal" id="registerModal"><div class="auth-box"><h2>Create Account</h2><p>Register to start your tests.</p><label for="regName">Nickname (Required)</label><input id="regName" maxlength="30" required placeholder="Enter your nickname"><div class="auth-actions"><button class="primary" onclick="saveRegistration()">Register</button></div><p class="small-note">This account is stored in this device's browser. A shared account requires an online database.</p></div></div>
 
