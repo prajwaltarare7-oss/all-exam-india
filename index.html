@@ -2376,7 +2376,14 @@ document.head.appendChild(style);
 if (new URLSearchParams(location.search).get("admin") === "1") {
   document.body.classList.add("aei-admin-entry");
   if (typeof window.showPage === "function") window.showPage("settings");
-  setTimeout(() => el("aeiAdminCard")?.scrollIntoView({behavior:"smooth", block:"start"}), 250);
+  setTimeout(() => {
+    const adminCard = document.getElementById("aeiAdminCard");
+    if (adminCard) {
+      adminCard.style.setProperty("display", "block", "important");
+      adminCard.style.setProperty("visibility", "visible", "important");
+      adminCard.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+  }, 500);
 }
 
 const el = id => document.getElementById(id);
