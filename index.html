@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<meta name="aei-build-id" content="2efb42ce90e5c64db8c29955a113a4fd20774de8">
+<meta name="aei-build-id" content="analytics-dashboard-restored-20261120">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SSC GD – PYQ & Mock Test | All Exam India</title>
@@ -497,7 +497,11 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 <section id="policemock" class="page"><h2>Maharashtra Police Bharti — Mock Tests</h2><button class="primary" type="button" onclick="showPage('policehub')">Back</button><div class="notice"><b>500 full-length mock tests • 100 questions each • 90 minutes</b><br>Practice scoring: 1 mark per question, no negative marking. Check your current recruitment notification because official rules may differ.</div><div class="card"><h3>Mock Test</h3><p>500 full-length Maharashtra Police Bharti mock tests.</p><h3>Paper Language</h3><select id="policeMockLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="mr">मराठी (Marathi)</option><option value="en">English</option></select><div id="policeMockTestList" class="grid" style="margin-top:14px"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button type="button" onclick="changePoliceMockPage(-1)">Previous 50</button><span id="policeMockPageInfo" class="small-note">Tests 1–50 of 500</span><button type="button" onclick="changePoliceMockPage(1)">Next 50</button></div></div><button class="primary" type="button" onclick="showPage('policehub')">Back</button></section>
 <section id="policehardpractice" class="page"><h2>🔥 Maharashtra Police Bharti — Hard Mock Test</h2><button class="primary" type="button" onclick="showPage('policehub')">Back</button><div class="notice"><b>Hard Mock Test निवडा</b><br>प्रत्येक पेपर: 100 प्रश्न • 90 मिनिटे • गणित, Reasoning, मराठी आणि GK/Current Affairs. उत्तरांसह स्पष्टीकरण आणि निकाल History मध्ये जतन होईल.</div><div class="card"><label for="policeHardLanguage"><b>Paper Language / भाषा</b></label><select id="policeHardLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="mr">मराठी (Marathi)</option><option value="en">English</option></select><div id="policeHardTestList" class="grid" style="margin-top:14px"></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px"><button type="button" onclick="changePoliceHardPage(-1)">Previous 50</button><span id="policeHardPageInfo" class="small-note">Tests 1–50 of 376</span><button type="button" onclick="changePoliceHardPage(1)">Next 50</button></div><p><small>हे नवीन सराव प्रश्न आहेत; अधिकृत PYQ नाहीत.</small></p></div></section>
 <section id="pyq" class="page">
-<h2>SSC GD — PYQ & Practice Tests</h2><div class="notice"><b id="pyqTotalCount">SSC GD Practice Sets: 195</b><br><small>Uploaded PDF files: 134 • Practice sets: 195</small></div><div class="notice">More SSC GD Previous Year Questions (PYQs) will be uploaded regularly. New question sets will be added to the website.</div><div class="card"><h3>Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="Search SSC GD year / date / shift..." oninput="renderPYQ()"><div id="pyqList"></div>
+<h2>SSC GD — PYQ & Practice Tests</h2><div class="notice"><b id="pyqTotalCount">SSC GD Practice Sets: 195</b><br><small>Uploaded PDF files: 134 • Practice sets: 195</small></div>
+<div class="notice">More SSC GD Previous Year Questions (PYQs) will be uploaded regularly. New question sets will be added to the website.</div>
+<div class="card"><h3>Paper Language</h3><select id="pyqLanguage" class="search" onchange="setPaperLanguage(this.value)"><option value="hi">हिंदी (Hindi)</option><option value="en">English</option></select></div><input class="search" id="pyqSearch" placeholder="Search SSC GD year / date / shift..." oninput="renderPYQ()">
+<div id="pyqList"></div>
+
 </section>
 <section id="currentaffairs" class="page">
 <h2>Current Affairs 2026</h2>
@@ -993,10 +997,14 @@ sourceReasonSection.slice(0,10).forEach(q=>out.push(q));
  addNum(M,""+workers+" मजदूर "+daysWork+" दिनों में "+totalWork+" इकाइयाँ बनाते हैं। प्रति मजदूर दैनिक उत्पादन समान है। यदि मजदूरों की संख्या "+workers2+" और दिन "+days2+" हों, तो उत्पादन कितना होगा?",""+workers+" workers make "+totalWork+" units in "+daysWork+" days at a constant per-worker rate. How many units will "+workers2+" workers make in "+days2+" days?",output,"प्रति मजदूर प्रति दिन उत्पादन = "+totalWork+" ÷ ("+workers+" × "+daysWork+") = "+unitWork+"; नया उत्पादन = "+workers2+" × "+days2+" × "+unitWork+" = "+output+".","Output per worker per day = "+totalWork+" ÷ ("+workers+" × "+daysWork+") = "+unitWork+"; new output = "+workers2+" × "+days2+" × "+unitWork+" = "+output+".");
 
 }
-{ // Five multi-step reasoning variants: alternating coding, route tracking,
- // chained rankings, second-difference series, and compound symbol rules. const word=["MATH","ROAD","FIRE","GOLD","RING"][pick(5)],coded=word.split("").map((ch,i)=>letters[(letters.indexOf(ch)+(i%2===0?2:-1)+26)%26]).join("");
- addChoice(R,"एक कूट में पहले, तीसरे आदि स्थान के अक्षर 2 स्थान आगे और दूसरे, चौथे आदि स्थान के अक्षर 1 स्थान पीछे किए जाते हैं। इसी नियम से '"+word+"' का कूट क्या होगा?","In a code, letters in odd positions move 2 places forward and letters in even positions move 1 place backward. How is '"+word+"' coded?",coded,[letterWord(word,1),letterWord(word,2),letterWord(word,3)],"हर अक्षर की स्थिति के अनुसार अलग बदलाव लागू करें: विषम स्थान +2 और सम स्थान −1।","Apply the position-dependent shifts separately: +2 at odd positions and −1 at even positions."); const start=pick(4),dirs=["उत्तर","पूर्व","दक्षिण","पश्चिम"],eng=["north","east","south","west"],moves=[["right",2],["left",1],["right",3]],turns=moves.reduce((d,m)=>(d+(m[0]==="right"?m[1]:-m[1])+8)%4,start);
- addChoiceDual(R,"एक व्यक्ति "+dirs[start]+" की ओर मुँह करके खड़ा है। वह दाएँ 2 समकोण, बाएँ 1 समकोण और फिर दाएँ 3 समकोण घूमता है। अंत में किस दिशा में होगा?","A person faces "+eng[start]+". They turn 2 right angles right, 1 right angle left, then 3 right angles right. Which direction do they face?",dirs[turns],[dirs[(turns+1)%4],dirs[(turns+2)%4],dirs[(turns+3)%4]],eng[turns],[eng[(turns+1)%4],eng[(turns+2)%4],eng[(turns+3)%4]],"दाएँ घूमने को + और बाएँ घूमने को − मानकर कुल समकोण घुमाव जोड़ें।","Treat right turns as positive and left turns as negative, then combine all right-angle turns."); const names=["A","B","C","D","E"],perm=shuffle(names),rankQ="पाँच प्रतियोगियों में "+perm[0]+" , "+perm[1]+" से आगे है; "+perm[1]+" , "+perm[2]+" से आगे है; "+perm[2]+" , "+perm[3]+" से आगे है; और "+perm[3]+" , "+perm[4]+" से आगे है। तीसरे स्थान पर कौन है?";
+{
+ // Five multi-step reasoning variants: alternating coding, route tracking,
+ // chained rankings, second-difference series, and compound symbol rules.
+ const word=["MATH","ROAD","FIRE","GOLD","RING"][pick(5)],coded=word.split("").map((ch,i)=>letters[(letters.indexOf(ch)+(i%2===0?2:-1)+26)%26]).join("");
+ addChoice(R,"एक कूट में पहले, तीसरे आदि स्थान के अक्षर 2 स्थान आगे और दूसरे, चौथे आदि स्थान के अक्षर 1 स्थान पीछे किए जाते हैं। इसी नियम से '"+word+"' का कूट क्या होगा?","In a code, letters in odd positions move 2 places forward and letters in even positions move 1 place backward. How is '"+word+"' coded?",coded,[letterWord(word,1),letterWord(word,2),letterWord(word,3)],"हर अक्षर की स्थिति के अनुसार अलग बदलाव लागू करें: विषम स्थान +2 और सम स्थान −1।","Apply the position-dependent shifts separately: +2 at odd positions and −1 at even positions.");
+ const start=pick(4),dirs=["उत्तर","पूर्व","दक्षिण","पश्चिम"],eng=["north","east","south","west"],moves=[["right",2],["left",1],["right",3]],turns=moves.reduce((d,m)=>(d+(m[0]==="right"?m[1]:-m[1])+8)%4,start);
+ addChoiceDual(R,"एक व्यक्ति "+dirs[start]+" की ओर मुँह करके खड़ा है। वह दाएँ 2 समकोण, बाएँ 1 समकोण और फिर दाएँ 3 समकोण घूमता है। अंत में किस दिशा में होगा?","A person faces "+eng[start]+". They turn 2 right angles right, 1 right angle left, then 3 right angles right. Which direction do they face?",dirs[turns],[dirs[(turns+1)%4],dirs[(turns+2)%4],dirs[(turns+3)%4]],eng[turns],[eng[(turns+1)%4],eng[(turns+2)%4],eng[(turns+3)%4]],"दाएँ घूमने को + और बाएँ घूमने को − मानकर कुल समकोण घुमाव जोड़ें।","Treat right turns as positive and left turns as negative, then combine all right-angle turns.");
+ const names=["A","B","C","D","E"],perm=shuffle(names),rankQ="पाँच प्रतियोगियों में "+perm[0]+" , "+perm[1]+" से आगे है; "+perm[1]+" , "+perm[2]+" से आगे है; "+perm[2]+" , "+perm[3]+" से आगे है; और "+perm[3]+" , "+perm[4]+" से आगे है। तीसरे स्थान पर कौन है?";
  addChoice(R,rankQ,"Among five competitors, "+perm[0]+" ranks ahead of "+perm[1]+"; "+perm[1] +" ahead of "+perm[2]+"; "+perm[2]+" ahead of "+perm[3]+"; and "+perm[3]+" ahead of "+perm[4]+". Who is third?",perm[2],[perm[0],perm[1],perm[3]],"दी गई चारों तुलनाओं को एक क्रम में रखने पर तीसरा स्थान "+perm[2]+" का है।","Combining all four comparisons gives the complete order; "+perm[2]+" is third.");
  const x=2+pick(8),series=[x*x,(x+1)*(x+1),(x+2)*(x+2),(x+3)*(x+3)],next=(x+4)*(x+4);
  addNum(R,"संख्या श्रृंखला पूरी करें: "+series.join(", ")+", ?","Complete the number series: "+series.join(", ")+", ?",next,"पद क्रमागत संख्याओं के वर्ग हैं; अगला पद ("+(x+4)+")² = "+next+" है।","The terms are squares of consecutive integers; the next is ("+(x+4)+")² = "+next+".");
@@ -1489,13 +1497,17 @@ function buildPoliceHardSection(type,count,seed,lang){
      q=M("अनिल हा मीनाचा भाऊ आहे. मीना ही सागरची आई आहे. सागर हा रियाचा भाऊ आहे. अनिलचे रियाशी नाते काय?","Anil is Meena's brother. Meena is Sagar's mother. Sagar is Riya's brother. How is Anil related to Riya?");
      ans=M("मामा","Maternal uncle");w=mr?["काका","आजोबा","भाऊ"]:["Paternal uncle","Grandfather","Brother"];e=M("मीना रिया व सागरची आई; तिचा भाऊ अनिल म्हणजे रियाचा मामा.","Meena is Riya's mother, so her brother Anil is Riya's maternal uncle.");break;
     }
-    case 3:{     const n=12+Math.floor(r()*18),e0=8+Math.floor(r()*12),s0=5+Math.floor(r()*7),w0=3+Math.floor(r()*5);
+    case 3:{
+     const n=12+Math.floor(r()*18),e0=8+Math.floor(r()*12),s0=5+Math.floor(r()*7),w0=3+Math.floor(r()*5);
      const dx=e0-w0,dy=n-s0;ans=dx===0?(dy>0?M("उत्तर","North"):M("दक्षिण","South")):dy===0?(dx>0?M("पूर्व","East"):M("पश्चिम","West")):M((dy>0?"उत्तर":"दक्षिण")+"-"+(dx>0?"पूर्व":"पश्चिम"),(dy>0?"North":"South")+"-"+(dx>0?"East":"West"));
-     q=M("एक व्यक्ती "+n+" मी उत्तर, "+e0+" मी पूर्व, "+s0+" मी दक्षिण व "+w0+" मी पश्चिम चालते. सुरुवातीच्या ठिकाणाच्या तुलनेत अंतिम दिशा कोणती?","A person walks "+n+" m north, "+e0+" m east, "+s0+" m south and "+w0+" m west. In which direction is the final position from the start?");     w=mr?["वायव्य","आग्नेय","नैऋत्य","उत्तर","दक्षिण","पूर्व","पश्चिम"].filter(x=>x!==ans).slice(0,3):["North-west","South-east","South-west","North","South","East","West"].filter(x=>x!==ans).slice(0,3);e=M("उत्तर-दक्षिण आणि पूर्व-पश्चिम हालचाली स्वतंत्रपणे वजा करून निव्वळ दिशा ठरवा.","Subtract north–south and east–west movements separately to obtain the net direction.");break;
+     q=M("एक व्यक्ती "+n+" मी उत्तर, "+e0+" मी पूर्व, "+s0+" मी दक्षिण व "+w0+" मी पश्चिम चालते. सुरुवातीच्या ठिकाणाच्या तुलनेत अंतिम दिशा कोणती?","A person walks "+n+" m north, "+e0+" m east, "+s0+" m south and "+w0+" m west. In which direction is the final position from the start?");
+     w=mr?["वायव्य","आग्नेय","नैऋत्य","उत्तर","दक्षिण","पूर्व","पश्चिम"].filter(x=>x!==ans).slice(0,3):["North-west","South-east","South-west","North","South","East","West"].filter(x=>x!==ans).slice(0,3);e=M("उत्तर-दक्षिण आणि पूर्व-पश्चिम हालचाली स्वतंत्रपणे वजा करून निव्वळ दिशा ठरवा.","Subtract north–south and east–west movements separately to obtain the net direction.");break;
     }
-    case 4:{     const left=3+Math.floor(r()*9),right=5+Math.floor(r()*10),total=left+right-1;
+    case 4:{
+     const left=3+Math.floor(r()*9),right=5+Math.floor(r()*10),total=left+right-1;
      ans=total;q=M("एका रांगेत रोहन डावीकडून "+left+" वा आणि उजवीकडून "+right+" वा आहे. रांगेत एकूण किती जण आहेत?","Rohan is "+left+"th from the left and "+right+"th from the right in a row. How many people are there?");
-     w=[total+1,total-1,left+right];e=M("एकूण = डावीकडील क्रमांक + उजवीकडील क्रमांक − 1; रोहन दोन्हीकडे एकदाच मोजला जातो.","Total = left rank + right rank − 1; Rohan is counted once.");break;    }
+     w=[total+1,total-1,left+right];e=M("एकूण = डावीकडील क्रमांक + उजवीकडील क्रमांक − 1; रोहन दोन्हीकडे एकदाच मोजला जातो.","Total = left rank + right rank − 1; Rohan is counted once.");break;
+    }
     case 5:{
      const h=1+Math.floor(r()*10),m=10+5*Math.floor(r()*10),raw=Math.abs(30*(h%12)-5.5*m),angle=Math.min(raw,360-raw);
      ans=Number(angle.toFixed(1));q=M(h+":"+String(m).padStart(2,"0")+" वाजता घड्याळाच्या काट्यांतील लहान कोन किती अंश?","Find the smaller angle between the clock hands at "+h+":"+String(m).padStart(2,"0")+".");
@@ -1986,15 +1998,19 @@ gdPracticeSessions.push(
  {id:"pdf-ssc-gd-29th-nov-2021-shift-2",index:193,day:29,month:11,year:2021,shift:2,dateLabel:"29 nov 2021 reference",label:"2021 • Shift 2 • Original exam-pattern practice",sourceLabel:"ssc-gd-29th-nov-2021-shift-2.pdf"},
  {id:"pdf-ssc-gd-23rd-nov-2021-shift-2",index:194,day:23,month:11,year:2021,shift:2,dateLabel:"23 nov 2021 reference",label:"2021 • Shift 2 • Original exam-pattern practice",sourceLabel:"ssc-gd-23rd-nov-2021-shift-2.pdf"}
 );
+
 function gdSessionSeed(id){
  let h=2166136261;
- for(let i=0;i<id.length;i++)h=Math.imul(h^id.charCodeAt(i),16777619); return h>>>0;
+ for(let i=0;i<id.length;i++)h=Math.imul(h^id.charCodeAt(i),16777619);
+ return h>>>0;
 }
 function gdSessionAttemptNumber(sessionId){
- let attempts={}; try{attempts=JSON.parse(localStorage.getItem("aei-pyq-attempts")||"{}")||{};}catch(e){attempts={};}
+ let attempts={};
+ try{attempts=JSON.parse(localStorage.getItem("aei-pyq-attempts")||"{}")||{};}catch(e){attempts={};}
  const next=(Number(attempts[sessionId])||0)+1;
  attempts[sessionId]=next;
- try{localStorage.setItem("aei-pyq-attempts",JSON.stringify(attempts));}catch(e){} return next;
+ try{localStorage.setItem("aei-pyq-attempts",JSON.stringify(attempts));}catch(e){}
+ return next;
 }
 function reattemptCurrentPractice(){
  if(!activePractice||!practiceSubmitted)return;
@@ -2352,7 +2368,7 @@ async function loadDashboard() {
     const events = snap.docs.map(d => d.data()).filter(x => x.createdAt && typeof x.createdAt.toDate === "function");
     const now = Date.now(), day = 86400000;
     const count = (fn, type) => events.filter(e => (!type || e.eventType === type) && fn(e.createdAt.toDate().getTime())).length;
-    // Load visits separately so page-view/test events cannot crowd them out of the 1,000-event activity list.
+    // Keep visit analytics independent from the latest 1,000 mixed activity events.
     const visitSnap = await getDocs(query(eventCol, where("eventType", "==", "visit")));
     const visitEvents = visitSnap.docs.map(d => d.data()).filter(e => e.createdAt && typeof e.createdAt.toDate === "function");
     const unique = (fn) => new Set(visitEvents.filter(e => fn(e.createdAt.toDate().getTime())).map(e => e.sessionId).filter(Boolean)).size;
@@ -2386,3 +2402,19 @@ function showAdmin(user) {
   if (el("aeiAdminLogout")) el("aeiAdminLogout").style.display = ok ? "inline-block" : "none";
   if (el("aeiAdminLogin")) el("aeiAdminLogin").style.display = ok ? "none" : "inline-block";
   if (ok) loadDashboard();
+  else if (user) { signOut(auth); setStatus("हा Account Admin म्हणून अधिकृत नाही."); }
+}
+onAuthStateChanged(auth, showAdmin);
+el("aeiAdminLogin")?.addEventListener("click", async () => {
+  const email = el("aeiAdminEmail").value.trim(), password = el("aeiAdminPassword").value;
+  if (!email || !password) { setStatus("Admin Email आणि Password भरा."); return; }
+  setStatus("Login तपासत आहे...");
+  try { await signInWithEmailAndPassword(auth, email, password); el("aeiAdminPassword").value=""; }
+  catch(e) { setStatus("Login अयशस्वी. Email/Password तपासा. ("+(e.code||"error")+")"); }
+});
+el("aeiAdminLogout")?.addEventListener("click", () => signOut(auth));
+el("aeiAdminRefresh")?.addEventListener("click", loadDashboard);
+</script>
+
+</body>
+</html>
