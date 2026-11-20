@@ -1636,7 +1636,7 @@ function changeMockPage(delta){mockBrowserPage=Math.max(0,Math.min((mockBrowserE
 function renderMockCards(){
  const el=document.getElementById("mockExamCards"),sel=document.getElementById("mockExamSelect");
  if(sel)sel.innerHTML=mockExamOptions.map(x=>'<option value="'+escapeHTML(x)+'">'+escapeHTML(x)+'</option>').join("");
- if(el)el.innerHTML=mockExamOptions.map(x=>{const p=examProfiles[x],safe=escapeHTML(x),total=x==="Maharashtra Police Bharti"?500:(x==="SSC GD"?1378:(x.startsWith("NDA ")?20:5000));return '<div class="card"><h3>🎯 '+safe+'</h3><p>'+total+' exam-wise Hard Mock Tests • '+p.sections.reduce((a,b)=>a+b[1],0)+' Questions • '+p.duration+' minutes</p><button class="primary" type="button" onclick="selectMockExam(\''+safe+'\')">Browse '+total+' Tests</button></div>';}).join("");
+ if(el)el.innerHTML=mockExamOptions.map(x=>{const p=examProfiles[x],safe=escapeHTML(x),total=x==="Maharashtra Police Bharti"?500:(x==="SSC GD"?1378:(x.startsWith("NDA ")?20:5000));return '<div class="card"><h3>🎯 '+safe+'</h3><p>'+total+' exam-wise Full Mock Tests • '+p.sections.reduce((a,b)=>a+b[1],0)+' Questions • '+p.duration+' minutes</p><button class="primary" type="button" onclick="selectMockExam(\''+safe+'\')">Browse '+total+' Tests</button></div>';}).join("");
  if(sel)sel.value="SSC GD";updateMockProfile();mockBrowserExam="SSC GD";renderMockBrowser();
 }
 let policePYQPage=0;
@@ -2245,7 +2245,7 @@ function saveTestRecord(score,total,correctCount,details){
 function renderStudentStats(){let h=[];try{h=JSON.parse(localStorage.getItem("aei-history")||"[]")}catch(e){}const visits=Number(localStorage.getItem("aei-visits")||"0");const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};set("statTests",h.length);set("statBest",h.length?Math.max(...h.map(x=>x.score)):"0");set("statVisitors",visits);const lb=document.getElementById("localLeaderboard"),hist=document.getElementById("testHistory");if(lb){const sorted=[...h].sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy).slice(0,10);lb.innerHTML=sorted.length?sorted.map((x,i)=>"<p>"+(i+1)+". "+escapeHTML(x.name)+" — "+x.score+"/"+x.total+" ("+x.accuracy+"%)</p>").join(""):"<p>No results available yet.</p>";}if(hist)hist.innerHTML=h.length?h.map(x=>"<p>"+escapeHTML(x.date)+" — "+escapeHTML(x.label||x.exam)+": <b>"+Number(x.score||0).toFixed(2)+"/"+Number(x.maxMarks||x.total||0).toFixed(2)+"</b> ("+Number(x.accuracy||0)+"%)"+(x.correct!==undefined?" • Correct "+x.correct+" • Incorrect "+Number(x.wrong||0)+" • Unanswered "+Number(x.skipped||0):"")+(x.negativeMarks!==undefined?" • Negative Marks "+Number(x.negativeMarks).toFixed(2):"")+(Number(x.attemptNumber||1)>1?" • Attempt "+x.attemptNumber:"")+"</p>").join(""):"<p>No tests attempted yet.</p>";}
 try{const n=Number(localStorage.getItem("aei-visits")||"0")+1;localStorage.setItem("aei-visits",String(n));}catch(e){}
 
-initAccountAuth();initNewFeatures();renderMockCards();renderStudentStats();
+initAccountAuth();initNewFeatures();renderMockCards();const requestedMockExam=new URLSearchParams(location.hash.replace(/^#/,"")).get("exam");if(requestedMockExam&&mockExamOptions.includes(requestedMockExam))selectMockExam(requestedMockExam);renderStudentStats();
 
 /* Native app auto-update: check the published build and reload only on Home.
    The active test/result screen is never interrupted. LocalStorage is preserved. */
