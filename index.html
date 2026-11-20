@@ -440,7 +440,7 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 <nav>
 <a class="download-app-nav" href="download.html">⬇ Download App</a>
 <button class="settings-nav" onclick="showPage('settings')">⚙ Settings</button>
-<button class="settings-nav" id="aeiAdminNav" onclick="showPage('settings');setTimeout(()=>document.getElementById('aeiAdminCard')?.scrollIntoView({behavior:'smooth',block:'start'}),80)">🔐 Admin Dashboard</button>
+
 </nav>
 <div class="auth-modal" id="registerModal"><div class="auth-box"><h2>Create Account</h2><p>Register to start your tests.</p><label for="regName">Nickname (Required)</label><input id="regName" maxlength="30" required placeholder="Enter your nickname"><div class="auth-actions"><button class="primary" onclick="saveRegistration()">Register</button></div><p class="small-note">This account is stored in this device's browser. A shared account requires an online database.</p></div></div>
 
@@ -516,7 +516,7 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 </section>
 <section id="settings" class="page">
 <h2>Profile & Settings</h2>
-<div class="card" id="aeiAdminCard" style="display:block!important;visibility:visible!important;opacity:1!important">
+<div class="card" id="aeiAdminCard" style="display:none!important;visibility:visible!important;opacity:1!important">
 <h3>🔐 Admin Activity Dashboard</h3>
 <p>फक्त अधिकृत Admin प्रवेश करू शकतो.</p>
 <label for="aeiAdminEmail">Admin Email</label>
@@ -2368,10 +2368,17 @@ if (typeof originalSubmit === "function") {
 }
 
 const style = document.createElement("style");
-style.textContent = "#settings #aeiAdminCard{display:block!important;visibility:visible!important;opacity:1!important}#aeiAdminCard [hidden]{display:none!important}#aeiAdminCard input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:10px;margin:5px 0 12px}#aeiAdminStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}#aeiAdminStats .stat{background:#f1f5ff;padding:14px;border-radius:12px}#aeiAdminStats b{display:block;font-size:25px;color:#244fc5}#aeiAdminStatus{white-space:pre-wrap}";
+style.textContent = "#settings #aeiAdminCard{display:none!important;visibility:visible!important;opacity:1!important}body.aei-admin-entry #settings #aeiAdminCard{display:block!important}#aeiAdminCard [hidden]{display:none!important}#aeiAdminCard input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:10px;margin:5px 0 12px}#aeiAdminStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}#aeiAdminStats .stat{background:#f1f5ff;padding:14px;border-radius:12px}#aeiAdminStats b{display:block;font-size:25px;color:#244fc5}#aeiAdminStatus{white-space:pre-wrap}";
 document.head.appendChild(style);
 
 // Admin dashboard markup is defined once in the Settings HTML above.
+// Admin dashboard is hidden from the public navigation. Open the owner-only entry URL with ?admin=1.
+if (new URLSearchParams(location.search).get("admin") === "1") {
+  document.body.classList.add("aei-admin-entry");
+  if (typeof window.showPage === "function") window.showPage("settings");
+  setTimeout(() => el("aeiAdminCard")?.scrollIntoView({behavior:"smooth", block:"start"}), 250);
+}
+
 const el = id => document.getElementById(id);
 function setStatus(t) { if (el("aeiAdminStatus")) el("aeiAdminStatus").textContent = t; }
 async function loadDashboard() {
