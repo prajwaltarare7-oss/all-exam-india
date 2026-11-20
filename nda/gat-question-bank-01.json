@@ -1,0 +1,559 @@
+{
+  "exam": "NDA",
+  "paper": "GAT",
+  "mock": 1,
+  "status": "in_progress",
+  "target_questions": 150,
+  "completed_questions": 20,
+  "language_modes": [
+    "en",
+    "hi"
+  ],
+  "marking": {
+    "correct": 4,
+    "wrong": -1.3333333333333333,
+    "unanswered": 0
+  },
+  "questions": [
+    {
+      "id": 1,
+      "subject": "English",
+      "en": "Choose the word closest in meaning to “Abundant”.",
+      "hi": "“Abundant” शब्द का सबसे निकट अर्थ चुनिए।",
+      "options": [
+        [
+          "Plentiful",
+          "प्रचुर"
+        ],
+        [
+          "Scarce",
+          "दुर्लभ"
+        ],
+        [
+          "Empty",
+          "खाली"
+        ],
+        [
+          "Brief",
+          "संक्षिप्त"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Abundant means existing in large quantities; plentiful is its synonym.",
+      "solution_hi": "Abundant का अर्थ बड़ी मात्रा में उपलब्ध होना है; Plentiful इसका समानार्थी है."
+    },
+    {
+      "id": 2,
+      "subject": "English",
+      "en": "Choose the correctly spelt word.",
+      "hi": "सही वर्तनी वाला शब्द चुनिए।",
+      "options": [
+        [
+          "Accomodation",
+          "Accomodation"
+        ],
+        [
+          "Accommodation",
+          "Accommodation"
+        ],
+        [
+          "Acommodation",
+          "Acommodation"
+        ],
+        [
+          "Accommadation",
+          "Accommadation"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "The correct spelling is accommodation, with double c and double m.",
+      "solution_hi": "सही वर्तनी Accommodation है; इसमें c और m दोनों दो-दो बार आते हैं."
+    },
+    {
+      "id": 3,
+      "subject": "English",
+      "en": "Fill in the blank: Neither of the boys ___ present.",
+      "hi": "रिक्त स्थान भरिए: Neither of the boys ___ present.",
+      "options": [
+        [
+          "are",
+          "are"
+        ],
+        [
+          "were",
+          "were"
+        ],
+        [
+          "is",
+          "is"
+        ],
+        [
+          "have",
+          "have"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Neither is grammatically singular here, so it takes the singular verb “is”.",
+      "solution_hi": "यहाँ Neither एकवचन माना जाता है, इसलिए एकवचन क्रिया “is” आएगी."
+    },
+    {
+      "id": 4,
+      "subject": "Physics",
+      "en": "The SI unit of electric resistance is:",
+      "hi": "विद्युत प्रतिरोध की SI इकाई है:",
+      "options": [
+        [
+          "Ampere",
+          "एम्पियर"
+        ],
+        [
+          "Volt",
+          "वोल्ट"
+        ],
+        [
+          "Ohm",
+          "ओम"
+        ],
+        [
+          "Watt",
+          "वाट"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Resistance is measured in ohms (Ω), named after Georg Ohm.",
+      "solution_hi": "प्रतिरोध को ओम (Ω) में मापा जाता है; इसका नाम जॉर्ज ओम के नाम पर है."
+    },
+    {
+      "id": 5,
+      "subject": "Physics",
+      "en": "A body continues in its state of rest or uniform motion unless acted upon by an external unbalanced force. This is:",
+      "hi": "कोई वस्तु विराम या समान गति की अवस्था में बनी रहती है, जब तक उस पर बाहरी असंतुलित बल न लगे। यह है:",
+      "options": [
+        [
+          "Newton’s first law",
+          "न्यूटन का प्रथम नियम"
+        ],
+        [
+          "Newton’s second law",
+          "न्यूटन का द्वितीय नियम"
+        ],
+        [
+          "Newton’s third law",
+          "न्यूटन का तृतीय नियम"
+        ],
+        [
+          "Law of gravitation",
+          "गुरुत्वाकर्षण का नियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "This is Newton’s first law, also called the law of inertia.",
+      "solution_hi": "यह न्यूटन का प्रथम नियम है, जिसे जड़त्व का नियम भी कहते हैं."
+    },
+    {
+      "id": 6,
+      "subject": "Physics",
+      "en": "Which mirror is commonly used as a rear-view mirror in vehicles?",
+      "hi": "वाहनों में पीछे देखने के दर्पण के रूप में सामान्यतः कौन-सा दर्पण उपयोग होता है?",
+      "options": [
+        [
+          "Plane",
+          "समतल"
+        ],
+        [
+          "Concave",
+          "अवतल"
+        ],
+        [
+          "Convex",
+          "उत्तल"
+        ],
+        [
+          "Cylindrical",
+          "बेलनाकार"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "A convex mirror gives an erect, diminished image and a wider field of view.",
+      "solution_hi": "उत्तल दर्पण सीधा, छोटा प्रतिबिंब और अधिक विस्तृत दृश्य क्षेत्र देता है."
+    },
+    {
+      "id": 7,
+      "subject": "Chemistry",
+      "en": "The chemical symbol of potassium is:",
+      "hi": "पोटैशियम का रासायनिक प्रतीक है:",
+      "options": [
+        [
+          "P",
+          "P"
+        ],
+        [
+          "Pt",
+          "Pt"
+        ],
+        [
+          "K",
+          "K"
+        ],
+        [
+          "Po",
+          "Po"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Potassium has the symbol K, derived from the Latin name kalium.",
+      "solution_hi": "पोटैशियम का प्रतीक K है, जो इसके लैटिन नाम Kalium से आया है."
+    },
+    {
+      "id": 8,
+      "subject": "Chemistry",
+      "en": "A solution with pH 3 is:",
+      "hi": "pH 3 वाला विलयन होता है:",
+      "options": [
+        [
+          "Acidic",
+          "अम्लीय"
+        ],
+        [
+          "Neutral",
+          "उदासीन"
+        ],
+        [
+          "Basic",
+          "क्षारीय"
+        ],
+        [
+          "Always saline",
+          "हमेशा लवणीय"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A pH below 7 indicates an acidic solution.",
+      "solution_hi": "7 से कम pH अम्लीय विलयन को दर्शाता है."
+    },
+    {
+      "id": 9,
+      "subject": "Chemistry",
+      "en": "Which gas is released when an acid reacts with most metals?",
+      "hi": "अधिकांश धातुओं के साथ अम्ल की अभिक्रिया होने पर कौन-सी गैस निकलती है?",
+      "options": [
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "A typical acid–metal reaction produces a salt and hydrogen gas.",
+      "solution_hi": "सामान्य अम्ल-धातु अभिक्रिया में लवण और हाइड्रोजन गैस बनती है."
+    },
+    {
+      "id": 10,
+      "subject": "General Science",
+      "en": "The functional unit of the kidney is:",
+      "hi": "वृक्क (गुर्दे) की क्रियात्मक इकाई है:",
+      "options": [
+        [
+          "Neuron",
+          "न्यूरॉन"
+        ],
+        [
+          "Nephron",
+          "नेफ्रॉन"
+        ],
+        [
+          "Alveolus",
+          "वायुकोष्ठ"
+        ],
+        [
+          "Villus",
+          "रसांकुर"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "The nephron filters blood and helps form urine.",
+      "solution_hi": "नेफ्रॉन रक्त का छनन करता है और मूत्र निर्माण में सहायता करता है."
+    },
+    {
+      "id": 11,
+      "subject": "General Science",
+      "en": "Which vitamin is essential for normal blood clotting?",
+      "hi": "सामान्य रक्त का थक्का जमने के लिए कौन-सा विटामिन आवश्यक है?",
+      "options": [
+        [
+          "Vitamin A",
+          "विटामिन A"
+        ],
+        [
+          "Vitamin C",
+          "विटामिन C"
+        ],
+        [
+          "Vitamin D",
+          "विटामिन D"
+        ],
+        [
+          "Vitamin K",
+          "विटामिन K"
+        ]
+      ],
+      "answer": 3,
+      "solution_en": "Vitamin K is required for the synthesis of several blood-clotting proteins.",
+      "solution_hi": "रक्त का थक्का जमाने वाले कई प्रोटीनों के निर्माण के लिए विटामिन K आवश्यक है."
+    },
+    {
+      "id": 12,
+      "subject": "General Science",
+      "en": "Photosynthesis mainly takes place in which cell organelle?",
+      "hi": "प्रकाश संश्लेषण मुख्यतः किस कोशिकांग में होता है?",
+      "options": [
+        [
+          "Mitochondrion",
+          "माइटोकॉन्ड्रिया"
+        ],
+        [
+          "Chloroplast",
+          "हरितलवक"
+        ],
+        [
+          "Ribosome",
+          "राइबोसोम"
+        ],
+        [
+          "Nucleus",
+          "केंद्रक"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "Chloroplasts contain chlorophyll and are the main site of photosynthesis in plants.",
+      "solution_hi": "हरितलवक में क्लोरोफिल होता है और पौधों में प्रकाश संश्लेषण का मुख्य स्थान यही है."
+    },
+    {
+      "id": 13,
+      "subject": "History",
+      "en": "The Battle of Plassey was fought in:",
+      "hi": "प्लासी का युद्ध किस वर्ष लड़ा गया था?",
+      "options": [
+        [
+          "1757",
+          "1757"
+        ],
+        [
+          "1764",
+          "1764"
+        ],
+        [
+          "1857",
+          "1857"
+        ],
+        [
+          "1707",
+          "1707"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Battle of Plassey took place in 1757 between the East India Company and the Nawab of Bengal’s forces.",
+      "solution_hi": "प्लासी का युद्ध 1757 में ईस्ट इंडिया कंपनी और बंगाल के नवाब की सेना के बीच हुआ था."
+    },
+    {
+      "id": 14,
+      "subject": "History",
+      "en": "Who founded the Maurya Empire?",
+      "hi": "मौर्य साम्राज्य की स्थापना किसने की?",
+      "options": [
+        [
+          "Ashoka",
+          "अशोक"
+        ],
+        [
+          "Bindusara",
+          "बिंदुसार"
+        ],
+        [
+          "Chandragupta Maurya",
+          "चंद्रगुप्त मौर्य"
+        ],
+        [
+          "Harsha",
+          "हर्ष"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Chandragupta Maurya founded the Maurya Empire around 322 BCE with the guidance of Chanakya.",
+      "solution_hi": "चाणक्य के मार्गदर्शन में चंद्रगुप्त मौर्य ने लगभग 322 ईसा पूर्व मौर्य साम्राज्य की स्थापना की."
+    },
+    {
+      "id": 15,
+      "subject": "Geography",
+      "en": "The Tropic of Cancer is located at approximately:",
+      "hi": "कर्क रेखा लगभग किस अक्षांश पर स्थित है?",
+      "options": [
+        [
+          "0°",
+          "0°"
+        ],
+        [
+          "23½° N",
+          "23½° उत्तर"
+        ],
+        [
+          "23½° S",
+          "23½° दक्षिण"
+        ],
+        [
+          "66½° N",
+          "66½° उत्तर"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "The Tropic of Cancer lies at about 23½ degrees north latitude.",
+      "solution_hi": "कर्क रेखा लगभग 23½ डिग्री उत्तरी अक्षांश पर स्थित है."
+    },
+    {
+      "id": 16,
+      "subject": "Geography",
+      "en": "Which is the largest state of India by area?",
+      "hi": "क्षेत्रफल की दृष्टि से भारत का सबसे बड़ा राज्य कौन-सा है?",
+      "options": [
+        [
+          "Madhya Pradesh",
+          "मध्य प्रदेश"
+        ],
+        [
+          "Maharashtra",
+          "महाराष्ट्र"
+        ],
+        [
+          "Rajasthan",
+          "राजस्थान"
+        ],
+        [
+          "Uttar Pradesh",
+          "उत्तर प्रदेश"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Rajasthan is the largest Indian state by area.",
+      "solution_hi": "राजस्थान क्षेत्रफल की दृष्टि से भारत का सबसे बड़ा राज्य है."
+    },
+    {
+      "id": 17,
+      "subject": "Polity",
+      "en": "The Constitution of India was adopted on:",
+      "hi": "भारत का संविधान कब अंगीकृत किया गया था?",
+      "options": [
+        [
+          "15 August 1947",
+          "15 अगस्त 1947"
+        ],
+        [
+          "26 November 1949",
+          "26 नवंबर 1949"
+        ],
+        [
+          "26 January 1950",
+          "26 जनवरी 1950"
+        ],
+        [
+          "2 October 1950",
+          "2 अक्टूबर 1950"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "The Constituent Assembly adopted the Constitution on 26 November 1949; it came into force on 26 January 1950.",
+      "solution_hi": "संविधान सभा ने 26 नवंबर 1949 को संविधान अंगीकृत किया; यह 26 जनवरी 1950 को लागू हुआ."
+    },
+    {
+      "id": 18,
+      "subject": "Polity",
+      "en": "Fundamental Duties are included in which part of the Indian Constitution?",
+      "hi": "भारतीय संविधान के किस भाग में मौलिक कर्तव्य शामिल हैं?",
+      "options": [
+        [
+          "Part III",
+          "भाग III"
+        ],
+        [
+          "Part IV",
+          "भाग IV"
+        ],
+        [
+          "Part IVA",
+          "भाग IVA"
+        ],
+        [
+          "Part V",
+          "भाग V"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Fundamental Duties are listed in Part IVA, Article 51A.",
+      "solution_hi": "मौलिक कर्तव्य भाग IVA के अनुच्छेद 51A में दिए गए हैं."
+    },
+    {
+      "id": 19,
+      "subject": "General Science",
+      "en": "The SI unit of frequency is:",
+      "hi": "आवृत्ति की SI इकाई है:",
+      "options": [
+        [
+          "Newton",
+          "न्यूटन"
+        ],
+        [
+          "Hertz",
+          "हर्ट्ज़"
+        ],
+        [
+          "Joule",
+          "जूल"
+        ],
+        [
+          "Pascal",
+          "पास्कल"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "Frequency is measured in hertz (Hz), equal to one cycle per second.",
+      "solution_hi": "आवृत्ति हर्ट्ज़ (Hz) में मापी जाती है; एक हर्ट्ज़ का अर्थ प्रति सेकंड एक चक्र है."
+    },
+    {
+      "id": 20,
+      "subject": "Geography",
+      "en": "Which layer of the atmosphere contains most of the ozone layer?",
+      "hi": "वायुमंडल की किस परत में ओजोन परत का अधिकांश भाग पाया जाता है?",
+      "options": [
+        [
+          "Troposphere",
+          "क्षोभमंडल"
+        ],
+        [
+          "Stratosphere",
+          "समतापमंडल"
+        ],
+        [
+          "Mesosphere",
+          "मध्यमंडल"
+        ],
+        [
+          "Thermosphere",
+          "तापमंडल"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "Most atmospheric ozone is concentrated in the stratosphere.",
+      "solution_hi": "वायुमंडलीय ओजोन का अधिकांश भाग समतापमंडल में केंद्रित होता है."
+    }
+  ]
+}
