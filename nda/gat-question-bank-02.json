@@ -4,7 +4,7 @@
   "mock": 2,
   "status": "in_progress",
   "target_questions": 150,
-  "completed_questions": 69,
+  "completed_questions": 79,
   "language_modes": [
     "en",
     "hi"
@@ -1877,6 +1877,276 @@
       "answer": 0,
       "solution_en": "India's Standard Meridian is 82°30′ E, passing near Mirzapur in Uttar Pradesh. Indian Standard Time is UTC + 5 hours 30 minutes.",
       "solution_hi": "भारत की मानक मध्याह्न रेखा 82°30′ पूर्वी देशांतर है, जो उत्तर प्रदेश के मिर्ज़ापुर के निकट से गुजरती है। भारतीय मानक समय UTC से 5 घंटे 30 मिनट आगे है।"
+    },
+    {
+      "id": 70,
+      "subject": "Physics",
+      "en": "A 60 W electric lamp is used for 5 hours. How much electrical energy does it consume?",
+      "hi": "60 W का विद्युत बल्ब 5 घंटे तक जलता है। वह कितनी विद्युत ऊर्जा खर्च करता है?",
+      "options": [
+        [
+          "0.3 kWh",
+          "0.3 kWh"
+        ],
+        [
+          "12 kWh",
+          "12 kWh"
+        ],
+        [
+          "300 kWh",
+          "300 kWh"
+        ],
+        [
+          "3 kWh",
+          "3 kWh"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Energy = Power × Time = 60 W × 5 h = 300 Wh = 0.3 kWh.",
+      "solution_hi": "ऊर्जा = शक्ति × समय = 60 W × 5 घंटे = 300 Wh = 0.3 kWh।"
+    },
+    {
+      "id": 71,
+      "subject": "Chemistry",
+      "en": "Which allotrope of carbon is a good conductor of electricity?",
+      "hi": "कार्बन का कौन-सा अपररूप विद्युत का अच्छा चालक है?",
+      "options": [
+        [
+          "Graphite",
+          "ग्रेफाइट"
+        ],
+        [
+          "Diamond",
+          "हीरा"
+        ],
+        [
+          "Fullerene only",
+          "केवल फुलरीन"
+        ],
+        [
+          "Charcoal",
+          "लकड़ी का कोयला"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "In graphite, each carbon atom bonds to three others, leaving delocalised electrons that can move through the layers and conduct electricity.",
+      "solution_hi": "ग्रेफाइट में प्रत्येक कार्बन परमाणु तीन अन्य परमाणुओं से जुड़ा होता है। शेष विस्थानीकृत इलेक्ट्रॉन परतों में गति कर सकते हैं और विद्युत का संचालन करते हैं।"
+    },
+    {
+      "id": 72,
+      "subject": "Biology",
+      "en": "Which blood group is commonly called the universal red-cell donor, considering the ABO and Rh systems?",
+      "hi": "ABO और Rh प्रणालियों को ध्यान में रखते हुए किस रक्त समूह को सामान्यतः सार्वत्रिक लाल-रक्त-कोशिका दाता कहा जाता है?",
+      "options": [
+        [
+          "O negative",
+          "O नेगेटिव"
+        ],
+        [
+          "AB positive",
+          "AB पॉज़िटिव"
+        ],
+        [
+          "A positive",
+          "A पॉज़िटिव"
+        ],
+        [
+          "B negative",
+          "B नेगेटिव"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "O negative red blood cells lack A, B and Rh(D) antigens, so they are the preferred emergency red-cell type when the recipient's group is not yet known. Compatibility still requires clinical assessment.",
+      "solution_hi": "O नेगेटिव लाल रक्त कोशिकाओं पर A, B और Rh(D) प्रतिजन नहीं होते। इसलिए प्राप्तकर्ता का रक्त समूह ज्ञात न होने पर आपातकाल में इन्हें प्राथमिकता दी जाती है। फिर भी चिकित्सकीय जाँच आवश्यक है।"
+    },
+    {
+      "id": 73,
+      "subject": "Geography",
+      "en": "Which soil type is most suitable for cotton cultivation in the Deccan region?",
+      "hi": "दक्कन क्षेत्र में कपास की खेती के लिए कौन-सी मिट्टी सबसे उपयुक्त मानी जाती है?",
+      "options": [
+        [
+          "Black soil",
+          "काली मिट्टी"
+        ],
+        [
+          "Laterite soil",
+          "लैटेराइट मिट्टी"
+        ],
+        [
+          "Mountain soil",
+          "पर्वतीय मिट्टी"
+        ],
+        [
+          "Desert soil",
+          "मरुस्थलीय मिट्टी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Black soil, also called regur, retains moisture and is rich in clay minerals. These properties make it particularly suitable for cotton cultivation.",
+      "solution_hi": "काली मिट्टी, जिसे रेगुर भी कहते हैं, नमी बनाए रखती है और इसमें चिकनी मिट्टी के खनिज होते हैं। ये गुण इसे कपास की खेती के लिए उपयुक्त बनाते हैं।"
+    },
+    {
+      "id": 74,
+      "subject": "History",
+      "en": "The first session of the Indian National Congress was held in 1885 at:",
+      "hi": "भारतीय राष्ट्रीय कांग्रेस का पहला अधिवेशन 1885 में कहाँ हुआ था?",
+      "options": [
+        [
+          "Bombay",
+          "बंबई"
+        ],
+        [
+          "Calcutta",
+          "कलकत्ता"
+        ],
+        [
+          "Madras",
+          "मद्रास"
+        ],
+        [
+          "Allahabad",
+          "इलाहाबाद"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The first session of the Indian National Congress was held in Bombay in December 1885, with W. C. Bonnerjee as president.",
+      "solution_hi": "भारतीय राष्ट्रीय कांग्रेस का पहला अधिवेशन दिसंबर 1885 में बंबई में हुआ था। इसके अध्यक्ष डब्ल्यू. सी. बनर्जी थे।"
+    },
+    {
+      "id": 75,
+      "subject": "Polity",
+      "en": "Which writ is issued by a court to produce a person who has been detained?",
+      "hi": "अवैध रूप से हिरासत में रखे गए व्यक्ति को न्यायालय के सामने प्रस्तुत कराने के लिए कौन-सी रिट जारी की जाती है?",
+      "options": [
+        [
+          "Habeas Corpus",
+          "बंदी प्रत्यक्षीकरण"
+        ],
+        [
+          "Mandamus",
+          "परमादेश"
+        ],
+        [
+          "Certiorari",
+          "उत्प्रेषण"
+        ],
+        [
+          "Quo Warranto",
+          "अधिकार-पृच्छा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Habeas Corpus requires the detaining authority to bring the detained person before the court so that the legality of the detention can be examined.",
+      "solution_hi": "बंदी प्रत्यक्षीकरण के तहत हिरासत में रखने वाले प्राधिकारी को व्यक्ति को न्यायालय के सामने प्रस्तुत करना होता है, ताकि हिरासत की वैधता की जाँच हो सके।"
+    },
+    {
+      "id": 76,
+      "subject": "English",
+      "en": "Choose the correct one-word substitution: 'A person who speaks many languages'.",
+      "hi": "सही एक-शब्द विकल्प चुनिए: 'ऐसा व्यक्ति जो अनेक भाषाएँ बोलता हो।'",
+      "options": [
+        [
+          "Polyglot",
+          "बहुभाषी"
+        ],
+        [
+          "Monolingual",
+          "एकभाषी"
+        ],
+        [
+          "Orator",
+          "वक्ता"
+        ],
+        [
+          "Novice",
+          "नवशिक्षु"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A polyglot is a person who knows and uses several languages. A monolingual person uses only one language.",
+      "solution_hi": "Polyglot ऐसा व्यक्ति है जो कई भाषाएँ जानता और बोलता है। Monolingual व्यक्ति केवल एक भाषा का उपयोग करता है।"
+    },
+    {
+      "id": 77,
+      "subject": "English",
+      "en": "Identify the part containing an error: 'Neither of the two answers are correct.'",
+      "hi": "त्रुटि वाला भाग पहचानिए: 'Neither of the two answers are correct.'",
+      "options": [
+        [
+          "are",
+          "are"
+        ],
+        [
+          "Neither of the two answers",
+          "Neither of the two answers"
+        ],
+        [
+          "correct",
+          "correct"
+        ],
+        [
+          "No error",
+          "कोई त्रुटि नहीं"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "'Neither' is grammatically singular in this construction, so it takes 'is': 'Neither of the two answers is correct.'",
+      "solution_hi": "इस रचना में 'Neither' एकवचन माना जाता है, इसलिए इसके साथ 'is' आएगा: 'Neither of the two answers is correct.'"
+    },
+    {
+      "id": 78,
+      "subject": "Economy",
+      "en": "Gross Domestic Product (GDP) measures the value of:",
+      "hi": "सकल घरेलू उत्पाद (GDP) किसके मूल्य को मापता है?",
+      "options": [
+        [
+          "Final goods and services produced within a country's domestic territory during a period",
+          "एक अवधि में देश की घरेलू सीमा के भीतर उत्पादित अंतिम वस्तुओं और सेवाओं का मूल्य"
+        ],
+        [
+          "Only goods exported by a country",
+          "केवल देश द्वारा निर्यात की गई वस्तुओं का मूल्य"
+        ],
+        [
+          "All intermediate goods counted separately",
+          "सभी मध्यवर्ती वस्तुओं का अलग-अलग कुल मूल्य"
+        ],
+        [
+          "Only government expenditure",
+          "केवल सरकारी व्यय"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "GDP is the market value of final goods and services produced within a country's domestic territory during a specified period. Intermediate goods are excluded to avoid double counting.",
+      "solution_hi": "GDP किसी निश्चित अवधि में देश की घरेलू सीमा के भीतर उत्पादित अंतिम वस्तुओं और सेवाओं का बाजार मूल्य है। दोहरी गणना से बचने के लिए मध्यवर्ती वस्तुओं को अलग से नहीं जोड़ा जाता।"
+    },
+    {
+      "id": 79,
+      "subject": "Geography",
+      "en": "The world's largest hot desert is:",
+      "hi": "विश्व का सबसे बड़ा गर्म मरुस्थल कौन-सा है?",
+      "options": [
+        [
+          "Sahara Desert",
+          "सहारा मरुस्थल"
+        ],
+        [
+          "Gobi Desert",
+          "गोबी मरुस्थल"
+        ],
+        [
+          "Kalahari Desert",
+          "कालाहारी मरुस्थल"
+        ],
+        [
+          "Thar Desert",
+          "थार मरुस्थल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Sahara in North Africa is the world's largest hot desert. Antarctica is larger overall but is a polar desert, not a hot desert.",
+      "solution_hi": "उत्तरी अफ्रीका का सहारा विश्व का सबसे बड़ा गर्म मरुस्थल है। अंटार्कटिका कुल क्षेत्रफल में बड़ा है, लेकिन वह ध्रुवीय मरुस्थल है, गर्म मरुस्थल नहीं।"
     }
   ]
 }
