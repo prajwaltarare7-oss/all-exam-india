@@ -2,9 +2,9 @@
   "exam": "NDA",
   "paper": "GAT",
   "mock": 1,
-  "status": "in_progress",
+  "status": "complete",
   "target_questions": 150,
-  "completed_questions": 153,
+  "completed_questions": 150,
   "language_modes": [
     "en",
     "hi"
@@ -4064,87 +4064,6 @@
       "answer": 0,
       "solution_en": "The present perfect with 'for' describes a state continuing up to now.",
       "solution_hi": "'For' के साथ present perfect ऐसी स्थिति बताता है जो अब तक जारी है।"
-    },
-    {
-      "id": 151,
-      "subject": "English",
-      "en": "Choose the synonym of 'Obsolete'.",
-      "hi": "'Obsolete' का समानार्थी चुनिए।",
-      "options": [
-        [
-          "Outdated",
-          "पुराना पड़ चुका"
-        ],
-        [
-          "Modern",
-          "आधुनिक"
-        ],
-        [
-          "Current",
-          "वर्तमान"
-        ],
-        [
-          "Useful",
-          "उपयोगी"
-        ]
-      ],
-      "answer": 0,
-      "solution_en": "Obsolete means no longer in use because it is out of date.",
-      "solution_hi": "Obsolete का अर्थ पुराना होने के कारण उपयोग में न रहना है।"
-    },
-    {
-      "id": 152,
-      "subject": "English",
-      "en": "Choose the correct article: He is ___ honest officer.",
-      "hi": "सही article चुनें: He is ___ honest officer.",
-      "options": [
-        [
-          "an",
-          "an"
-        ],
-        [
-          "a",
-          "a"
-        ],
-        [
-          "the",
-          "the"
-        ],
-        [
-          "no article",
-          "कोई article नहीं"
-        ]
-      ],
-      "answer": 0,
-      "solution_en": "Honest begins with a vowel sound, so 'an' is used.",
-      "solution_hi": "Honest का उच्चारण स्वर ध्वनि से शुरू होता है, इसलिए 'an' आता है।"
-    },
-    {
-      "id": 153,
-      "subject": "English",
-      "en": "Choose the correct plural of 'Phenomenon'.",
-      "hi": "'Phenomenon' का सही बहुवचन चुनिए।",
-      "options": [
-        [
-          "Phenomena",
-          "Phenomena"
-        ],
-        [
-          "Phenomenons",
-          "Phenomenons"
-        ],
-        [
-          "Phenomenas",
-          "Phenomenas"
-        ],
-        [
-          "Phenomenae",
-          "Phenomenae"
-        ]
-      ],
-      "answer": 0,
-      "solution_en": "Phenomena is the standard plural form of phenomenon.",
-      "solution_hi": "Phenomenon का मानक बहुवचन Phenomena है।"
     }
   ]
 }
