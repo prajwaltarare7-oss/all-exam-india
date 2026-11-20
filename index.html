@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<meta name="aei-build-id" content="205aa3c54314603971140d1416129b82b261586d">
+<meta name="aei-build-id" content="calendar-window-analytics-20261120">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -2378,20 +2378,28 @@ async function loadDashboard() {
   try {
     const snap = await getDocs(query(eventCol, orderBy("createdAt", "desc"), limit(1000)));
     const events = snap.docs.map(d => d.data()).filter(x => x.createdAt && typeof x.createdAt.toDate === "function");
-    const now = Date.now(), day = 86400000;
+    const now = Date.now();
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+    const weekStart = new Date(todayStart);
+    weekStart.setDate(weekStart.getDate() - 6);
+    const monthStart = new Date(todayStart);
+    monthStart.setDate(monthStart.getDate() - 29);
+    const dateLabel = d => d.toLocaleDateString("en-IN", {day:"2-digit", month:"short"});
     const count = (fn, type) => events.filter(e => (!type || e.eventType === type) && fn(e.createdAt.toDate().getTime())).length;
-    // Keep visit analytics independent from the latest 1,000 mixed activity events.
+    // Visit totals use separate local-calendar windows (today, 7 days, 30 days).
     const visitSnap = await getDocs(query(eventCol, where("eventType", "==", "visit")));
     const visitEvents = visitSnap.docs.map(d => d.data()).filter(e => e.createdAt && typeof e.createdAt.toDate === "function");
     const unique = (fn) => new Set(visitEvents.filter(e => fn(e.createdAt.toDate().getTime())).map(e => e.sessionId).filter(Boolean)).size;
-    const sinceDay = t => t >= now-day && t <= now, sinceWeek = t => t >= now-7*day && t <= now, sinceMonth = t => t >= now-30*day && t <= now;
+    const inWindow = start => t => t >= start.getTime() && t <= now;
+    const sinceDay = inWindow(todayStart), sinceWeek = inWindow(weekStart), sinceMonth = inWindow(monthStart);
     const visitCount = fn => visitEvents.filter(e => fn(e.createdAt.toDate().getTime())).length;
     const stats = [
       ["Total Visits", visitEvents.length],
       ["Unique Sessions", unique(()=>true)],
-      ["Today", visitCount(sinceDay)],
-      ["Last 7 Days", visitCount(sinceWeek)],
-      ["Last 30 Days", visitCount(sinceMonth)],
+      ["Today (" + dateLabel(todayStart) + ")", visitCount(sinceDay)],
+      ["Last 7 Days (" + dateLabel(weekStart) + "–" + dateLabel(new Date(now)) + ")", visitCount(sinceWeek)],
+      ["Last 30 Days (" + dateLabel(monthStart) + "–" + dateLabel(new Date(now)) + ")", visitCount(sinceMonth)],
       ["Tests Started", count(()=>true,"test_started")],
       ["Tests Completed", count(()=>true,"test_completed")],
       ["Page Views", count(()=>true,"page_view")]
