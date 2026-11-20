@@ -4,7 +4,7 @@
   "mock": 2,
   "status": "in_progress",
   "target_questions": 150,
-  "completed_questions": 49,
+  "completed_questions": 59,
   "language_modes": [
     "en",
     "hi"
@@ -1337,6 +1337,276 @@
       "answer": 0,
       "solution_en": "Potential difference is measured in volts.",
       "solution_hi": "विभवांतर वोल्ट में मापा जाता है।"
+    },
+    {
+      "id": 50,
+      "subject": "Physics",
+      "en": "A stone is dropped from rest. Neglecting air resistance, how far does it fall in 3 seconds? Take g = 9.8 m/s².",
+      "hi": "एक पत्थर को विराम अवस्था से गिराया जाता है। वायु प्रतिरोध की उपेक्षा करने पर 3 सेकंड में वह कितनी दूरी तय करेगा? g = 9.8 m/s² लें।",
+      "options": [
+        [
+          "44.1 m",
+          "44.1 मीटर"
+        ],
+        [
+          "29.4 m",
+          "29.4 मीटर"
+        ],
+        [
+          "14.7 m",
+          "14.7 मीटर"
+        ],
+        [
+          "88.2 m",
+          "88.2 मीटर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "For free fall from rest, s = ut + ½gt². Here u = 0 and t = 3 s, so s = ½ × 9.8 × 3² = 44.1 m.",
+      "solution_hi": "विराम से मुक्त पतन के लिए s = ut + ½gt²। यहाँ u = 0 और t = 3 सेकंड है। अतः s = ½ × 9.8 × 9 = 44.1 मीटर।"
+    },
+    {
+      "id": 51,
+      "subject": "Chemistry",
+      "en": "Which substance is used as the electrolyte in a lead-acid storage battery?",
+      "hi": "लेड-एसिड संचायक बैटरी में किस पदार्थ का उपयोग इलेक्ट्रोलाइट के रूप में होता है?",
+      "options": [
+        [
+          "Dilute sulphuric acid",
+          "तनु सल्फ्यूरिक अम्ल"
+        ],
+        [
+          "Dilute hydrochloric acid",
+          "तनु हाइड्रोक्लोरिक अम्ल"
+        ],
+        [
+          "Sodium chloride solution",
+          "सोडियम क्लोराइड विलयन"
+        ],
+        [
+          "Potassium hydroxide",
+          "पोटैशियम हाइड्रॉक्साइड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A lead-acid battery uses dilute sulphuric acid (H₂SO₄) as its electrolyte. During discharge, chemical reactions at the lead and lead-dioxide plates produce electrical energy.",
+      "solution_hi": "लेड-एसिड बैटरी में तनु सल्फ्यूरिक अम्ल (H₂SO₄) इलेक्ट्रोलाइट होता है। डिस्चार्ज के समय लेड और लेड-डाइऑक्साइड प्लेटों पर रासायनिक अभिक्रियाएँ विद्युत ऊर्जा उत्पन्न करती हैं।"
+    },
+    {
+      "id": 52,
+      "subject": "Biology",
+      "en": "In the human kidney, the basic structural and functional unit is the:",
+      "hi": "मानव वृक्क में संरचनात्मक और क्रियात्मक मूल इकाई कौन-सी है?",
+      "options": [
+        [
+          "Nephron",
+          "नेफ्रॉन"
+        ],
+        [
+          "Neuron",
+          "न्यूरॉन"
+        ],
+        [
+          "Alveolus",
+          "वायुकोष्ठिका"
+        ],
+        [
+          "Villus",
+          "विलस"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The nephron filters blood, reabsorbs useful substances and helps form urine. Each kidney contains a large number of nephrons.",
+      "solution_hi": "नेफ्रॉन रक्त का छनन करता है, उपयोगी पदार्थों का पुनःअवशोषण करता है और मूत्र निर्माण में सहायता करता है। प्रत्येक वृक्क में बड़ी संख्या में नेफ्रॉन होते हैं।"
+    },
+    {
+      "id": 53,
+      "subject": "Geography",
+      "en": "The Coriolis force is zero at the:",
+      "hi": "कोरिओलिस बल कहाँ शून्य होता है?",
+      "options": [
+        [
+          "Equator",
+          "भूमध्य रेखा"
+        ],
+        [
+          "North Pole",
+          "उत्तरी ध्रुव"
+        ],
+        [
+          "South Pole",
+          "दक्षिणी ध्रुव"
+        ],
+        [
+          "Arctic Circle",
+          "आर्कटिक वृत्त"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Coriolis effect depends on the sine of latitude. At the Equator, latitude is 0° and sin 0° = 0, so the horizontal Coriolis force is zero.",
+      "solution_hi": "कोरिओलिस प्रभाव अक्षांश के sine पर निर्भर करता है। भूमध्य रेखा पर अक्षांश 0° होता है और sin 0° = 0, इसलिए क्षैतिज कोरिओलिस बल शून्य होता है।"
+    },
+    {
+      "id": 54,
+      "subject": "History",
+      "en": "The Ilbert Bill controversy took place during the viceroyalty of:",
+      "hi": "इल्बर्ट बिल विवाद किस वायसराय के कार्यकाल में हुआ था?",
+      "options": [
+        [
+          "Lord Ripon",
+          "लॉर्ड रिपन"
+        ],
+        [
+          "Lord Curzon",
+          "लॉर्ड कर्जन"
+        ],
+        [
+          "Lord Lytton",
+          "लॉर्ड लिटन"
+        ],
+        [
+          "Lord Dufferin",
+          "लॉर्ड डफरिन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Ilbert Bill controversy arose in 1883 during Lord Ripon's tenure. The bill sought to allow senior Indian judges to try European British subjects in criminal cases.",
+      "solution_hi": "इल्बर्ट बिल विवाद 1883 में लॉर्ड रिपन के कार्यकाल में हुआ। इस विधेयक का उद्देश्य वरिष्ठ भारतीय न्यायाधीशों को आपराधिक मामलों में यूरोपीय ब्रिटिश प्रजा के मुकदमे सुनने की अनुमति देना था।"
+    },
+    {
+      "id": 55,
+      "subject": "Polity",
+      "en": "A Money Bill can be introduced in the Lok Sabha only on the recommendation of the:",
+      "hi": "धन विधेयक लोकसभा में केवल किसकी सिफारिश पर प्रस्तुत किया जा सकता है?",
+      "options": [
+        [
+          "President of India",
+          "भारत के राष्ट्रपति"
+        ],
+        [
+          "Speaker of Lok Sabha",
+          "लोकसभा अध्यक्ष"
+        ],
+        [
+          "Chairman of Rajya Sabha",
+          "राज्यसभा के सभापति"
+        ],
+        [
+          "Chief Justice of India",
+          "भारत के मुख्य न्यायाधीश"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Under Article 117(1), a Money Bill cannot be introduced except on the President's recommendation. It can be introduced only in the Lok Sabha.",
+      "solution_hi": "अनुच्छेद 117(1) के अनुसार राष्ट्रपति की सिफारिश के बिना धन विधेयक प्रस्तुत नहीं किया जा सकता। इसे केवल लोकसभा में ही प्रस्तुत किया जाता है।"
+    },
+    {
+      "id": 56,
+      "subject": "English",
+      "en": "Select the correctly spelt word.",
+      "hi": "सही वर्तनी वाले शब्द का चयन कीजिए।",
+      "options": [
+        [
+          "Accommodate",
+          "Accommodate"
+        ],
+        [
+          "Acommodate",
+          "Acommodate"
+        ],
+        [
+          "Accomodate",
+          "Accomodate"
+        ],
+        [
+          "Acomodate",
+          "Acomodate"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The correct spelling is 'accommodate': it has double c and double m.",
+      "solution_hi": "सही वर्तनी 'accommodate' है। इसमें c दो बार और m दो बार आता है।"
+    },
+    {
+      "id": 57,
+      "subject": "English",
+      "en": "Choose the correct meaning of the idiom 'to burn the midnight oil'.",
+      "hi": "मुहावरे 'to burn the midnight oil' का सही अर्थ चुनिए।",
+      "options": [
+        [
+          "To work or study late into the night",
+          "देर रात तक काम या अध्ययन करना"
+        ],
+        [
+          "To waste electricity",
+          "बिजली बर्बाद करना"
+        ],
+        [
+          "To celebrate throughout the night",
+          "पूरी रात उत्सव मनाना"
+        ],
+        [
+          "To sleep very late",
+          "बहुत देर से सोना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The idiom means to work or study late at night, traditionally by the light of an oil lamp.",
+      "solution_hi": "इस मुहावरे का अर्थ देर रात तक काम या पढ़ाई करना है; पहले लोग तेल के दीपक की रोशनी में ऐसा करते थे।"
+    },
+    {
+      "id": 58,
+      "subject": "Economy",
+      "en": "When the Reserve Bank of India increases the repo rate, the immediate intended effect is generally to:",
+      "hi": "जब भारतीय रिज़र्व बैंक रेपो दर बढ़ाता है, तो सामान्यतः इसका तात्कालिक उद्देश्य क्या होता है?",
+      "options": [
+        [
+          "Make borrowing costlier and restrain credit growth",
+          "ऋण महँगा करके ऋण-वृद्धि को नियंत्रित करना"
+        ],
+        [
+          "Make borrowing cheaper",
+          "ऋण सस्ता करना"
+        ],
+        [
+          "Increase government tax revenue directly",
+          "सरकारी कर राजस्व सीधे बढ़ाना"
+        ],
+        [
+          "Fix the exchange rate permanently",
+          "विनिमय दर को स्थायी रूप से तय करना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A higher repo rate raises the cost at which banks obtain short-term funds from the RBI. This tends to increase lending rates and moderate borrowing and demand, helping contain inflation.",
+      "solution_hi": "रेपो दर बढ़ने से बैंकों के लिए RBI से अल्पकालीन धन लेना महँगा होता है। इससे ऋण दरें बढ़ सकती हैं और उधार तथा मांग कम हो सकती है, जिससे महँगाई नियंत्रित करने में मदद मिलती है।"
+    },
+    {
+      "id": 59,
+      "subject": "Geography",
+      "en": "Which Indian state has the longest coastline among the states?",
+      "hi": "भारतीय राज्यों में सबसे लंबी समुद्री तटरेखा किस राज्य की है?",
+      "options": [
+        [
+          "Gujarat",
+          "गुजरात"
+        ],
+        [
+          "Andhra Pradesh",
+          "आंध्र प्रदेश"
+        ],
+        [
+          "Tamil Nadu",
+          "तमिलनाडु"
+        ],
+        [
+          "Maharashtra",
+          "महाराष्ट्र"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Gujarat has the longest coastline among Indian states, with a highly indented shore along the Arabian Sea and the Gulf of Kachchh and Gulf of Khambhat.",
+      "solution_hi": "भारतीय राज्यों में गुजरात की समुद्री तटरेखा सबसे लंबी है। इसकी तटरेखा अरब सागर तथा कच्छ और खंभात की खाड़ियों के किनारे विस्तृत है।"
     }
   ]
 }
