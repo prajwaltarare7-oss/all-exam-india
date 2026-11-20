@@ -4,7 +4,7 @@
   "mock": 1,
   "status": "in_progress",
   "target_questions": 150,
-  "completed_questions": 60,
+  "completed_questions": 153,
   "language_modes": [
     "en",
     "hi"
@@ -1634,6 +1634,2517 @@
       "answer": 0,
       "solution_en": "Directive Principles are contained in Part IV of the Constitution.",
       "solution_hi": "नीति निदेशक तत्व संविधान के भाग IV में हैं।"
+    },
+    {
+      "id": 61,
+      "subject": "English",
+      "en": "Choose the antonym of 'Reluctant'.",
+      "hi": "'Reluctant' का विलोम चुनिए।",
+      "options": [
+        [
+          "Willing",
+          "इच्छुक"
+        ],
+        [
+          "Unwilling",
+          "अनिच्छुक"
+        ],
+        [
+          "Hesitant",
+          "हिचकिचाने वाला"
+        ],
+        [
+          "Doubtful",
+          "संदेहपूर्ण"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Reluctant means unwilling; willing is its opposite.",
+      "solution_hi": "Reluctant का अर्थ अनिच्छुक है; willing इसका विलोम है।"
+    },
+    {
+      "id": 62,
+      "subject": "English",
+      "en": "Fill in: Neither of the boys ___ present.",
+      "hi": "रिक्त स्थान भरें: Neither of the boys ___ present.",
+      "options": [
+        [
+          "was",
+          "था"
+        ],
+        [
+          "were",
+          "थे"
+        ],
+        [
+          "are",
+          "हैं"
+        ],
+        [
+          "have",
+          "हैं"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Neither is singular here, so it takes 'was'.",
+      "solution_hi": "यहाँ Neither एकवचन है, इसलिए 'was' आएगा।"
+    },
+    {
+      "id": 63,
+      "subject": "English",
+      "en": "The idiom 'to hit the nail on the head' means:",
+      "hi": "मुहावरे 'to hit the nail on the head' का अर्थ है:",
+      "options": [
+        [
+          "To say exactly the right thing",
+          "बिल्कुल सही बात कहना"
+        ],
+        [
+          "To work carelessly",
+          "लापरवाही से काम करना"
+        ],
+        [
+          "To cause trouble",
+          "मुसीबत पैदा करना"
+        ],
+        [
+          "To miss a chance",
+          "मौका चूकना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The idiom means to describe or identify something exactly.",
+      "solution_hi": "इस मुहावरे का अर्थ किसी बात को बिल्कुल सही ढंग से कहना या पहचानना है।"
+    },
+    {
+      "id": 64,
+      "subject": "English",
+      "en": "Choose the passive form: 'The officer praised the cadet.'",
+      "hi": "कर्मवाच्य चुनें: 'The officer praised the cadet.'",
+      "options": [
+        [
+          "The cadet was praised by the officer.",
+          "कैडेट की अधिकारी द्वारा प्रशंसा की गई।"
+        ],
+        [
+          "The cadet is praised by the officer.",
+          "कैडेट की अधिकारी द्वारा प्रशंसा की जाती है।"
+        ],
+        [
+          "The officer was praised by the cadet.",
+          "अधिकारी की कैडेट द्वारा प्रशंसा की गई।"
+        ],
+        [
+          "The cadet praised the officer.",
+          "कैडेट ने अधिकारी की प्रशंसा की।"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Simple past active changes to was/were + past participle in passive voice.",
+      "solution_hi": "सामान्य भूतकाल के कर्मवाच्य में was/were + past participle आता है।"
+    },
+    {
+      "id": 65,
+      "subject": "English",
+      "en": "Choose the one-word substitute for 'A person who speaks many languages'.",
+      "hi": "'अनेक भाषाएँ बोलने वाले व्यक्ति' के लिए एक शब्द चुनिए।",
+      "options": [
+        [
+          "Polyglot",
+          "बहुभाषाविद"
+        ],
+        [
+          "Monologue",
+          "एकालाप"
+        ],
+        [
+          "Orator",
+          "वक्ता"
+        ],
+        [
+          "Linguist",
+          "भाषाविद"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A polyglot is a person who knows and uses several languages.",
+      "solution_hi": "Polyglot वह व्यक्ति है जो कई भाषाएँ जानता और बोलता है।"
+    },
+    {
+      "id": 66,
+      "subject": "English",
+      "en": "Choose the correct preposition: She is senior ___ me.",
+      "hi": "सही संबंधसूचक अव्यय चुनें: She is senior ___ me.",
+      "options": [
+        [
+          "to",
+          "to"
+        ],
+        [
+          "than",
+          "than"
+        ],
+        [
+          "from",
+          "from"
+        ],
+        [
+          "with",
+          "with"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Senior is followed by 'to', not 'than'.",
+      "solution_hi": "Senior के बाद 'to' आता है, 'than' नहीं।"
+    },
+    {
+      "id": 67,
+      "subject": "English",
+      "en": "Choose the correct indirect speech: He said, 'I am ready.'",
+      "hi": "सही अप्रत्यक्ष कथन चुनें: He said, 'I am ready.'",
+      "options": [
+        [
+          "He said that he was ready.",
+          "उसने कहा कि वह तैयार था।"
+        ],
+        [
+          "He said that I am ready.",
+          "उसने कहा कि मैं तैयार हूँ।"
+        ],
+        [
+          "He says he was ready.",
+          "वह कहता है कि वह तैयार था।"
+        ],
+        [
+          "He told that he is ready.",
+          "उसने बताया कि वह तैयार है।"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "In reported speech with a past reporting verb, 'am' generally shifts to 'was'.",
+      "solution_hi": "भूतकाल के reporting verb के बाद 'am' सामान्यतः 'was' हो जाता है।"
+    },
+    {
+      "id": 68,
+      "subject": "English",
+      "en": "Choose the word nearest in meaning to 'Meticulous'.",
+      "hi": "'Meticulous' के निकटतम अर्थ वाला शब्द चुनिए।",
+      "options": [
+        [
+          "Careful",
+          "सावधान"
+        ],
+        [
+          "Careless",
+          "लापरवाह"
+        ],
+        [
+          "Hasty",
+          "जल्दबाज़"
+        ],
+        [
+          "Rough",
+          "असावधान"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Meticulous means showing great attention to detail; careful is closest.",
+      "solution_hi": "Meticulous का अर्थ बारीकियों पर विशेष ध्यान देना है; सावधान निकटतम है।"
+    },
+    {
+      "id": 69,
+      "subject": "English",
+      "en": "Select the correct question tag: You have finished, ___?",
+      "hi": "सही प्रश्नसूचक टैग चुनें: You have finished, ___?",
+      "options": [
+        [
+          "haven't you",
+          "haven't you"
+        ],
+        [
+          "don't you",
+          "don't you"
+        ],
+        [
+          "didn't you",
+          "didn't you"
+        ],
+        [
+          "aren't you",
+          "aren't you"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The auxiliary 'have' is repeated in the negative tag.",
+      "solution_hi": "मुख्य वाक्य में 'have' है, इसलिए टैग में 'haven't you' आएगा।"
+    },
+    {
+      "id": 70,
+      "subject": "Physics",
+      "en": "A body moving with uniform speed in a circle has:",
+      "hi": "वृत्त में समान चाल से चलती वस्तु में होता है:",
+      "options": [
+        [
+          "Acceleration towards the centre",
+          "केन्द्र की ओर त्वरण"
+        ],
+        [
+          "Zero acceleration",
+          "शून्य त्वरण"
+        ],
+        [
+          "Acceleration away from centre",
+          "केन्द्र से दूर त्वरण"
+        ],
+        [
+          "Constant velocity",
+          "नियत वेग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Direction of velocity changes continuously, producing centripetal acceleration.",
+      "solution_hi": "वेग की दिशा लगातार बदलती है, इसलिए केन्द्राभिमुख त्वरण होता है।"
+    },
+    {
+      "id": 71,
+      "subject": "Physics",
+      "en": "Which colour of visible light has the shortest wavelength?",
+      "hi": "दृश्य प्रकाश में किस रंग की तरंगदैर्घ्य सबसे कम होती है?",
+      "options": [
+        [
+          "Violet",
+          "बैंगनी"
+        ],
+        [
+          "Red",
+          "लाल"
+        ],
+        [
+          "Yellow",
+          "पीला"
+        ],
+        [
+          "Green",
+          "हरा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Violet lies at the short-wavelength end of the visible spectrum.",
+      "solution_hi": "बैंगनी रंग दृश्य वर्णक्रम के सबसे कम तरंगदैर्घ्य वाले छोर पर होता है।"
+    },
+    {
+      "id": 72,
+      "subject": "Physics",
+      "en": "A transformer works on the principle of:",
+      "hi": "ट्रांसफॉर्मर किस सिद्धांत पर कार्य करता है?",
+      "options": [
+        [
+          "Electromagnetic induction",
+          "विद्युतचुंबकीय प्रेरण"
+        ],
+        [
+          "Electrolysis",
+          "विद्युत अपघटन"
+        ],
+        [
+          "Photoelectric effect",
+          "प्रकाश विद्युत प्रभाव"
+        ],
+        [
+          "Thermionic emission",
+          "तापायनिक उत्सर्जन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A changing magnetic flux induces voltage in the secondary coil.",
+      "solution_hi": "बदलता चुंबकीय फ्लक्स द्वितीयक कुंडली में वोल्टेज प्रेरित करता है।"
+    },
+    {
+      "id": 73,
+      "subject": "Physics",
+      "en": "The apparent weight of a person in a freely falling lift is:",
+      "hi": "स्वतंत्र रूप से गिरती लिफ्ट में व्यक्ति का आभासी भार होता है:",
+      "options": [
+        [
+          "Zero",
+          "शून्य"
+        ],
+        [
+          "Equal to normal weight",
+          "सामान्य भार के बराबर"
+        ],
+        [
+          "Double",
+          "दोगुना"
+        ],
+        [
+          "Half",
+          "आधा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The person and lift accelerate together at g, so the normal reaction becomes zero.",
+      "solution_hi": "व्यक्ति और लिफ्ट दोनों g त्वरण से साथ गिरते हैं, इसलिए अभिलंब प्रतिक्रिया शून्य होती है।"
+    },
+    {
+      "id": 74,
+      "subject": "Physics",
+      "en": "Which type of wave is an electromagnetic wave?",
+      "hi": "निम्न में से कौन-सी विद्युतचुंबकीय तरंग है?",
+      "options": [
+        [
+          "Radio wave",
+          "रेडियो तरंग"
+        ],
+        [
+          "Sound wave",
+          "ध्वनि तरंग"
+        ],
+        [
+          "Water wave",
+          "जल तरंग"
+        ],
+        [
+          "Seismic S-wave",
+          "भूकंपीय S-तरंग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Radio waves are electromagnetic and can travel through vacuum.",
+      "solution_hi": "रेडियो तरंगें विद्युतचुंबकीय होती हैं और निर्वात में चल सकती हैं।"
+    },
+    {
+      "id": 75,
+      "subject": "Physics",
+      "en": "The focal length of a plane mirror is:",
+      "hi": "समतल दर्पण की फोकस दूरी होती है:",
+      "options": [
+        [
+          "Infinite",
+          "अनंत"
+        ],
+        [
+          "Zero",
+          "शून्य"
+        ],
+        [
+          "One metre",
+          "एक मीटर"
+        ],
+        [
+          "Negative one metre",
+          "ऋणात्मक एक मीटर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A plane mirror has zero curvature, so its radius and focal length are infinite.",
+      "solution_hi": "समतल दर्पण की वक्रता शून्य होती है, इसलिए उसकी फोकस दूरी अनंत होती है।"
+    },
+    {
+      "id": 76,
+      "subject": "Chemistry",
+      "en": "Which isotope is commonly used in carbon dating?",
+      "hi": "कार्बन डेटिंग में सामान्यतः किस समस्थानिक का उपयोग होता है?",
+      "options": [
+        [
+          "Carbon-14",
+          "कार्बन-14"
+        ],
+        [
+          "Carbon-12",
+          "कार्बन-12"
+        ],
+        [
+          "Carbon-13",
+          "कार्बन-13"
+        ],
+        [
+          "Oxygen-18",
+          "ऑक्सीजन-18"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbon-14 decays at a known rate and helps estimate the age of once-living material.",
+      "solution_hi": "कार्बन-14 निश्चित दर से क्षय होता है और जैविक अवशेषों की आयु का अनुमान देता है।"
+    },
+    {
+      "id": 77,
+      "subject": "Chemistry",
+      "en": "The chief ore of aluminium is:",
+      "hi": "एल्युमिनियम का प्रमुख अयस्क है:",
+      "options": [
+        [
+          "Bauxite",
+          "बॉक्साइट"
+        ],
+        [
+          "Haematite",
+          "हेमेटाइट"
+        ],
+        [
+          "Galena",
+          "गैलेना"
+        ],
+        [
+          "Cinnabar",
+          "सिनाबार"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Bauxite is the principal commercial ore of aluminium.",
+      "solution_hi": "बॉक्साइट एल्युमिनियम का मुख्य वाणिज्यिक अयस्क है।"
+    },
+    {
+      "id": 78,
+      "subject": "Chemistry",
+      "en": "Which gas is released when an acid reacts with a metal?",
+      "hi": "अम्ल की धातु से अभिक्रिया पर कौन-सी गैस निकलती है?",
+      "options": [
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Many acids react with metals to form a salt and hydrogen gas.",
+      "solution_hi": "अनेक अम्ल धातुओं से अभिक्रिया करके लवण और हाइड्रोजन गैस बनाते हैं।"
+    },
+    {
+      "id": 79,
+      "subject": "Chemistry",
+      "en": "The main constituent of natural gas is:",
+      "hi": "प्राकृतिक गैस का मुख्य घटक है:",
+      "options": [
+        [
+          "Methane",
+          "मीथेन"
+        ],
+        [
+          "Ethane",
+          "एथेन"
+        ],
+        [
+          "Butane",
+          "ब्यूटेन"
+        ],
+        [
+          "Propane",
+          "प्रोपेन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Methane forms the largest fraction of most natural gas.",
+      "solution_hi": "अधिकांश प्राकृतिक गैस में मीथेन सबसे बड़ा घटक होता है।"
+    },
+    {
+      "id": 80,
+      "subject": "Chemistry",
+      "en": "Which substance is used as an antacid?",
+      "hi": "प्रतिअम्ल के रूप में किस पदार्थ का उपयोग होता है?",
+      "options": [
+        [
+          "Magnesium hydroxide",
+          "मैग्नीशियम हाइड्रॉक्साइड"
+        ],
+        [
+          "Sodium chloride",
+          "सोडियम क्लोराइड"
+        ],
+        [
+          "Ethanol",
+          "एथेनॉल"
+        ],
+        [
+          "Copper sulphate",
+          "कॉपर सल्फेट"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Magnesium hydroxide neutralises excess stomach acid.",
+      "solution_hi": "मैग्नीशियम हाइड्रॉक्साइड पेट के अतिरिक्त अम्ल को उदासीन करता है।"
+    },
+    {
+      "id": 81,
+      "subject": "Biology",
+      "en": "Which part of a plant conducts water from roots to leaves?",
+      "hi": "पौधे में जड़ों से पत्तियों तक जल कौन पहुँचाता है?",
+      "options": [
+        [
+          "Xylem",
+          "जाइलम"
+        ],
+        [
+          "Phloem",
+          "फ्लोएम"
+        ],
+        [
+          "Cortex",
+          "कॉर्टेक्स"
+        ],
+        [
+          "Epidermis",
+          "एपिडर्मिस"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Xylem transports water and dissolved minerals upward.",
+      "solution_hi": "जाइलम जल और घुले खनिजों को ऊपर पहुँचाता है।"
+    },
+    {
+      "id": 82,
+      "subject": "Biology",
+      "en": "Which component of blood transports oxygen?",
+      "hi": "रक्त का कौन-सा घटक ऑक्सीजन पहुँचाता है?",
+      "options": [
+        [
+          "Haemoglobin in red cells",
+          "लाल कोशिकाओं का हीमोग्लोबिन"
+        ],
+        [
+          "Platelets",
+          "प्लेटलेट्स"
+        ],
+        [
+          "Plasma proteins only",
+          "केवल प्लाज़्मा प्रोटीन"
+        ],
+        [
+          "White cells",
+          "श्वेत कोशिकाएँ"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Haemoglobin binds oxygen in red blood cells.",
+      "solution_hi": "लाल रक्त कोशिकाओं में हीमोग्लोबिन ऑक्सीजन से जुड़ता है।"
+    },
+    {
+      "id": 83,
+      "subject": "Biology",
+      "en": "The largest gland in the human body is:",
+      "hi": "मानव शरीर की सबसे बड़ी ग्रंथि है:",
+      "options": [
+        [
+          "Liver",
+          "यकृत"
+        ],
+        [
+          "Pancreas",
+          "अग्न्याशय"
+        ],
+        [
+          "Thyroid",
+          "थायरॉयड"
+        ],
+        [
+          "Pituitary",
+          "पीयूष ग्रंथि"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The liver is the largest gland in the human body.",
+      "solution_hi": "यकृत मानव शरीर की सबसे बड़ी ग्रंथि है।"
+    },
+    {
+      "id": 84,
+      "subject": "History",
+      "en": "Who introduced the Permanent Settlement in Bengal?",
+      "hi": "बंगाल में स्थायी बंदोबस्त किसने लागू किया?",
+      "options": [
+        [
+          "Lord Cornwallis",
+          "लॉर्ड कॉर्नवालिस"
+        ],
+        [
+          "Lord Dalhousie",
+          "लॉर्ड डलहौजी"
+        ],
+        [
+          "Lord Curzon",
+          "लॉर्ड कर्जन"
+        ],
+        [
+          "Robert Clive",
+          "रॉबर्ट क्लाइव"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Cornwallis introduced the Permanent Settlement in 1793.",
+      "solution_hi": "कॉर्नवालिस ने 1793 में स्थायी बंदोबस्त लागू किया।"
+    },
+    {
+      "id": 85,
+      "subject": "History",
+      "en": "The Swadeshi Movement was launched in response to:",
+      "hi": "स्वदेशी आंदोलन किसके विरोध में शुरू हुआ?",
+      "options": [
+        [
+          "Partition of Bengal, 1905",
+          "1905 का बंगाल विभाजन"
+        ],
+        [
+          "Rowlatt Act",
+          "रॉलेट एक्ट"
+        ],
+        [
+          "Simon Commission",
+          "साइमन कमीशन"
+        ],
+        [
+          "Cripps Mission",
+          "क्रिप्स मिशन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The 1905 partition of Bengal triggered the Swadeshi Movement.",
+      "solution_hi": "1905 के बंगाल विभाजन के विरोध में स्वदेशी आंदोलन शुरू हुआ।"
+    },
+    {
+      "id": 86,
+      "subject": "History",
+      "en": "Who wrote the book 'The Discovery of India'?",
+      "hi": "'द डिस्कवरी ऑफ इंडिया' पुस्तक किसने लिखी?",
+      "options": [
+        [
+          "Jawaharlal Nehru",
+          "जवाहरलाल नेहरू"
+        ],
+        [
+          "Mahatma Gandhi",
+          "महात्मा गांधी"
+        ],
+        [
+          "B. R. Ambedkar",
+          "बी. आर. आंबेडकर"
+        ],
+        [
+          "Sardar Patel",
+          "सरदार पटेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Jawaharlal Nehru wrote The Discovery of India during imprisonment.",
+      "solution_hi": "जवाहरलाल नेहरू ने कारावास के दौरान 'द डिस्कवरी ऑफ इंडिया' लिखी।"
+    },
+    {
+      "id": 87,
+      "subject": "History",
+      "en": "The first session of the Indian National Congress was held at:",
+      "hi": "भारतीय राष्ट्रीय कांग्रेस का पहला अधिवेशन कहाँ हुआ?",
+      "options": [
+        [
+          "Bombay",
+          "बंबई"
+        ],
+        [
+          "Calcutta",
+          "कलकत्ता"
+        ],
+        [
+          "Madras",
+          "मद्रास"
+        ],
+        [
+          "Allahabad",
+          "इलाहाबाद"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The first Congress session was held in Bombay in December 1885.",
+      "solution_hi": "कांग्रेस का पहला अधिवेशन दिसंबर 1885 में बंबई में हुआ।"
+    },
+    {
+      "id": 88,
+      "subject": "Geography",
+      "en": "Which Indian state has the longest coastline?",
+      "hi": "भारत के किस राज्य की समुद्री तटरेखा सबसे लंबी है?",
+      "options": [
+        [
+          "Gujarat",
+          "गुजरात"
+        ],
+        [
+          "Tamil Nadu",
+          "तमिलनाडु"
+        ],
+        [
+          "Andhra Pradesh",
+          "आंध्र प्रदेश"
+        ],
+        [
+          "Maharashtra",
+          "महाराष्ट्र"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Gujarat has the longest coastline among Indian states.",
+      "solution_hi": "भारतीय राज्यों में गुजरात की तटरेखा सबसे लंबी है।"
+    },
+    {
+      "id": 89,
+      "subject": "Geography",
+      "en": "The retreating monsoon gives most rainfall to:",
+      "hi": "लौटता मानसून मुख्यतः किस क्षेत्र में वर्षा देता है?",
+      "options": [
+        [
+          "Tamil Nadu coast",
+          "तमिलनाडु तट"
+        ],
+        [
+          "Punjab",
+          "पंजाब"
+        ],
+        [
+          "Rajasthan",
+          "राजस्थान"
+        ],
+        [
+          "Kashmir Valley",
+          "कश्मीर घाटी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Northeast monsoon winds bring substantial rain to the Tamil Nadu coast.",
+      "solution_hi": "उत्तर-पूर्वी मानसूनी हवाएँ तमिलनाडु तट पर पर्याप्त वर्षा लाती हैं।"
+    },
+    {
+      "id": 90,
+      "subject": "Geography",
+      "en": "Which pass connects Srinagar with Leh?",
+      "hi": "कौन-सा दर्रा श्रीनगर को लेह से जोड़ता है?",
+      "options": [
+        [
+          "Zoji La",
+          "ज़ोजि ला"
+        ],
+        [
+          "Nathu La",
+          "नाथू ला"
+        ],
+        [
+          "Bomdi La",
+          "बोमडिला"
+        ],
+        [
+          "Shipki La",
+          "शिपकी ला"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Zoji La lies on the route between Srinagar and Leh.",
+      "solution_hi": "ज़ोजि ला श्रीनगर और लेह के मार्ग पर स्थित है।"
+    },
+    {
+      "id": 91,
+      "subject": "Geography",
+      "en": "The Sundarbans are famous for which type of vegetation?",
+      "hi": "सुंदरबन किस प्रकार की वनस्पति के लिए प्रसिद्ध है?",
+      "options": [
+        [
+          "Mangrove",
+          "मैंग्रोव"
+        ],
+        [
+          "Coniferous",
+          "शंकुधारी"
+        ],
+        [
+          "Thorn forest",
+          "काँटेदार वन"
+        ],
+        [
+          "Alpine meadow",
+          "अल्पाइन घासभूमि"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Sundarbans contain extensive tidal mangrove forests.",
+      "solution_hi": "सुंदरबन में ज्वारीय मैंग्रोव वन विस्तृत रूप से पाए जाते हैं।"
+    },
+    {
+      "id": 92,
+      "subject": "Geography",
+      "en": "Which is the highest peak located entirely in India?",
+      "hi": "पूरी तरह भारत में स्थित सबसे ऊँची चोटी कौन-सी है?",
+      "options": [
+        [
+          "Nanda Devi",
+          "नंदा देवी"
+        ],
+        [
+          "K2",
+          "K2"
+        ],
+        [
+          "Kanchenjunga",
+          "कंचनजंघा"
+        ],
+        [
+          "Kamet",
+          "कामेत"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Nanda Devi is the highest peak located wholly within Indian territory.",
+      "solution_hi": "नंदा देवी पूरी तरह भारतीय क्षेत्र में स्थित सबसे ऊँची चोटी है।"
+    },
+    {
+      "id": 93,
+      "subject": "Polity",
+      "en": "A Money Bill can be introduced only in:",
+      "hi": "धन विधेयक केवल कहाँ प्रस्तुत किया जा सकता है?",
+      "options": [
+        [
+          "Lok Sabha",
+          "लोकसभा"
+        ],
+        [
+          "Rajya Sabha",
+          "राज्यसभा"
+        ],
+        [
+          "Either House",
+          "किसी भी सदन में"
+        ],
+        [
+          "Joint sitting",
+          "संयुक्त बैठक में"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Constitution requires a Money Bill to originate in the Lok Sabha.",
+      "solution_hi": "संविधान के अनुसार धन विधेयक लोकसभा में ही प्रस्तुत होता है।"
+    },
+    {
+      "id": 94,
+      "subject": "Polity",
+      "en": "Who appoints the Governor of an Indian state?",
+      "hi": "भारतीय राज्य के राज्यपाल की नियुक्ति कौन करता है?",
+      "options": [
+        [
+          "President of India",
+          "भारत के राष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ],
+        [
+          "Chief Minister",
+          "मुख्यमंत्री"
+        ],
+        [
+          "Chief Justice of India",
+          "भारत के मुख्य न्यायाधीश"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The President appoints the Governor under Article 155.",
+      "solution_hi": "अनुच्छेद 155 के तहत राष्ट्रपति राज्यपाल की नियुक्ति करते हैं।"
+    },
+    {
+      "id": 95,
+      "subject": "Polity",
+      "en": "Fundamental Duties were added by which amendment?",
+      "hi": "मौलिक कर्तव्य किस संशोधन द्वारा जोड़े गए?",
+      "options": [
+        [
+          "42nd Amendment",
+          "42वाँ संशोधन"
+        ],
+        [
+          "44th Amendment",
+          "44वाँ संशोधन"
+        ],
+        [
+          "52nd Amendment",
+          "52वाँ संशोधन"
+        ],
+        [
+          "61st Amendment",
+          "61वाँ संशोधन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The 42nd Constitutional Amendment Act, 1976 added Fundamental Duties.",
+      "solution_hi": "42वें संविधान संशोधन अधिनियम, 1976 ने मौलिक कर्तव्य जोड़े।"
+    },
+    {
+      "id": 96,
+      "subject": "Polity",
+      "en": "The normal term of the Lok Sabha is:",
+      "hi": "लोकसभा का सामान्य कार्यकाल है:",
+      "options": [
+        [
+          "Five years",
+          "पाँच वर्ष"
+        ],
+        [
+          "Four years",
+          "चार वर्ष"
+        ],
+        [
+          "Six years",
+          "छह वर्ष"
+        ],
+        [
+          "Seven years",
+          "सात वर्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Lok Sabha normally continues for five years unless dissolved earlier.",
+      "solution_hi": "लोकसभा सामान्यतः पाँच वर्ष चलती है, जब तक पहले भंग न हो।"
+    },
+    {
+      "id": 97,
+      "subject": "Polity",
+      "en": "Which body conducts elections to Parliament and state legislatures?",
+      "hi": "संसद और राज्य विधानमंडलों के चुनाव कौन कराता है?",
+      "options": [
+        [
+          "Election Commission of India",
+          "भारत निर्वाचन आयोग"
+        ],
+        [
+          "UPSC",
+          "संघ लोक सेवा आयोग"
+        ],
+        [
+          "Finance Commission",
+          "वित्त आयोग"
+        ],
+        [
+          "NITI Aayog",
+          "नीति आयोग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Election Commission supervises and conducts these elections under Article 324.",
+      "solution_hi": "अनुच्छेद 324 के तहत निर्वाचन आयोग इन चुनावों का पर्यवेक्षण और संचालन करता है।"
+    },
+    {
+      "id": 98,
+      "subject": "Economy",
+      "en": "The Reserve Bank of India was established in:",
+      "hi": "भारतीय रिज़र्व बैंक की स्थापना कब हुई?",
+      "options": [
+        [
+          "1935",
+          "1935"
+        ],
+        [
+          "1947",
+          "1947"
+        ],
+        [
+          "1950",
+          "1950"
+        ],
+        [
+          "1921",
+          "1921"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The RBI began operations on 1 April 1935.",
+      "solution_hi": "RBI ने 1 अप्रैल 1935 को कार्य शुरू किया।"
+    },
+    {
+      "id": 99,
+      "subject": "Economy",
+      "en": "Inflation refers to:",
+      "hi": "मुद्रास्फीति का अर्थ है:",
+      "options": [
+        [
+          "A sustained rise in the general price level",
+          "सामान्य मूल्य स्तर में लगातार वृद्धि"
+        ],
+        [
+          "A fall in population",
+          "जनसंख्या में कमी"
+        ],
+        [
+          "A rise in exports only",
+          "केवल निर्यात में वृद्धि"
+        ],
+        [
+          "A fall in money supply only",
+          "केवल मुद्रा आपूर्ति में कमी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Inflation is a sustained increase in the general level of prices.",
+      "solution_hi": "मुद्रास्फीति सामान्य कीमतों के स्तर में लगातार वृद्धि है।"
+    },
+    {
+      "id": 100,
+      "subject": "Economy",
+      "en": "Which tax is levied on the supply of goods and services in India?",
+      "hi": "भारत में वस्तुओं और सेवाओं की आपूर्ति पर कौन-सा कर लगाया जाता है?",
+      "options": [
+        [
+          "GST",
+          "GST"
+        ],
+        [
+          "Wealth tax",
+          "संपत्ति कर"
+        ],
+        [
+          "Toll tax only",
+          "केवल टोल कर"
+        ],
+        [
+          "Securities transaction tax",
+          "प्रतिभूति लेनदेन कर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "GST is an indirect tax on the supply of goods and services.",
+      "solution_hi": "GST वस्तुओं और सेवाओं की आपूर्ति पर लगाया जाने वाला अप्रत्यक्ष कर है।"
+    },
+    {
+      "id": 101,
+      "subject": "Economy",
+      "en": "GDP measures the value of:",
+      "hi": "GDP किसका मूल्य मापता है?",
+      "options": [
+        [
+          "Final goods and services produced within a country",
+          "देश के भीतर उत्पादित अंतिम वस्तुओं और सेवाओं"
+        ],
+        [
+          "Only agricultural output",
+          "केवल कृषि उत्पादन"
+        ],
+        [
+          "Only exports",
+          "केवल निर्यात"
+        ],
+        [
+          "All intermediate goods repeatedly",
+          "सभी मध्यवर्ती वस्तुओं को बार-बार"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "GDP measures the market value of final goods and services produced within a country during a period.",
+      "solution_hi": "GDP एक अवधि में देश के भीतर उत्पादित अंतिम वस्तुओं और सेवाओं का बाजार मूल्य मापता है।"
+    },
+    {
+      "id": 102,
+      "subject": "Science",
+      "en": "The ozone layer is mainly found in the:",
+      "hi": "ओज़ोन परत मुख्यतः किस मंडल में पाई जाती है?",
+      "options": [
+        [
+          "Stratosphere",
+          "समतापमंडल"
+        ],
+        [
+          "Troposphere",
+          "क्षोभमंडल"
+        ],
+        [
+          "Thermosphere",
+          "तापमंडल"
+        ],
+        [
+          "Exosphere",
+          "बहिर्मंडल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Most atmospheric ozone is concentrated in the stratosphere.",
+      "solution_hi": "वायुमंडलीय ओज़ोन का अधिकांश भाग समतापमंडल में केंद्रित है।"
+    },
+    {
+      "id": 103,
+      "subject": "Science",
+      "en": "Which gas is most abundant in Earth's atmosphere?",
+      "hi": "पृथ्वी के वायुमंडल में सबसे अधिक मात्रा में कौन-सी गैस है?",
+      "options": [
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Argon",
+          "आर्गन"
+        ],
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Nitrogen makes up about 78 percent of dry air.",
+      "solution_hi": "शुष्क वायु में नाइट्रोजन लगभग 78 प्रतिशत होती है।"
+    },
+    {
+      "id": 104,
+      "subject": "Science",
+      "en": "Which planet has the largest number of prominent rings?",
+      "hi": "किस ग्रह के प्रमुख वलय सबसे स्पष्ट और विस्तृत हैं?",
+      "options": [
+        [
+          "Saturn",
+          "शनि"
+        ],
+        [
+          "Mars",
+          "मंगल"
+        ],
+        [
+          "Venus",
+          "शुक्र"
+        ],
+        [
+          "Mercury",
+          "बुध"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Saturn is especially known for its extensive and bright ring system.",
+      "solution_hi": "शनि अपने विस्तृत और चमकीले वलय तंत्र के लिए प्रसिद्ध है।"
+    },
+    {
+      "id": 105,
+      "subject": "Science",
+      "en": "The instrument used to detect earthquakes is:",
+      "hi": "भूकंप का पता लगाने वाला यंत्र है:",
+      "options": [
+        [
+          "Seismograph",
+          "भूकंपलेखी"
+        ],
+        [
+          "Altimeter",
+          "ऊँचाईमापी"
+        ],
+        [
+          "Anemometer",
+          "पवनवेगमापी"
+        ],
+        [
+          "Lactometer",
+          "दुग्धमापी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A seismograph records ground motion caused by seismic waves.",
+      "solution_hi": "भूकंपलेखी भूकंपीय तरंगों से होने वाली भूमि की गति दर्ज करता है।"
+    },
+    {
+      "id": 106,
+      "subject": "Science",
+      "en": "Which nutrient is the body's main immediate source of energy?",
+      "hi": "शरीर के लिए ऊर्जा का मुख्य तात्कालिक स्रोत कौन-सा पोषक तत्व है?",
+      "options": [
+        [
+          "Carbohydrates",
+          "कार्बोहाइड्रेट"
+        ],
+        [
+          "Vitamins",
+          "विटामिन"
+        ],
+        [
+          "Minerals",
+          "खनिज"
+        ],
+        [
+          "Water",
+          "जल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbohydrates are readily broken down to provide glucose for energy.",
+      "solution_hi": "कार्बोहाइड्रेट टूटकर ग्लूकोज़ देते हैं, जिसका उपयोग ऊर्जा के लिए होता है।"
+    },
+    {
+      "id": 107,
+      "subject": "Science",
+      "en": "Which disease is caused by the deficiency of vitamin C?",
+      "hi": "विटामिन C की कमी से कौन-सा रोग होता है?",
+      "options": [
+        [
+          "Scurvy",
+          "स्कर्वी"
+        ],
+        [
+          "Beriberi",
+          "बेरी-बेरी"
+        ],
+        [
+          "Night blindness",
+          "रतौंधी"
+        ],
+        [
+          "Pellagra",
+          "पेलाग्रा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Vitamin C deficiency causes scurvy, affecting connective tissue and gums.",
+      "solution_hi": "विटामिन C की कमी से स्कर्वी होता है, जो संयोजी ऊतक और मसूड़ों को प्रभावित करता है।"
+    },
+    {
+      "id": 108,
+      "subject": "Science",
+      "en": "The main function of red blood cells is to:",
+      "hi": "लाल रक्त कोशिकाओं का मुख्य कार्य है:",
+      "options": [
+        [
+          "Transport respiratory gases",
+          "श्वसन गैसों का परिवहन"
+        ],
+        [
+          "Fight infection",
+          "संक्रमण से लड़ना"
+        ],
+        [
+          "Clot blood",
+          "रक्त का थक्का जमाना"
+        ],
+        [
+          "Produce hormones",
+          "हार्मोन बनाना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Red blood cells carry oxygen and some carbon dioxide using haemoglobin.",
+      "solution_hi": "लाल रक्त कोशिकाएँ हीमोग्लोबिन की सहायता से ऑक्सीजन और कुछ कार्बन डाइऑक्साइड ले जाती हैं।"
+    },
+    {
+      "id": 109,
+      "subject": "Science",
+      "en": "Which metal is the best conductor of electricity among these?",
+      "hi": "इनमें विद्युत का सबसे अच्छा चालक कौन-सा धातु है?",
+      "options": [
+        [
+          "Silver",
+          "चाँदी"
+        ],
+        [
+          "Iron",
+          "लोहा"
+        ],
+        [
+          "Lead",
+          "सीसा"
+        ],
+        [
+          "Mercury",
+          "पारा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Silver has the highest electrical conductivity among these choices.",
+      "solution_hi": "दिए गए विकल्पों में चाँदी की विद्युत चालकता सबसे अधिक है।"
+    },
+    {
+      "id": 110,
+      "subject": "Geography",
+      "en": "The Equator passes through which Indian island group?",
+      "hi": "भूमध्य रेखा भारत के किस द्वीप समूह से होकर गुजरती है?",
+      "options": [
+        [
+          "None of the Indian island groups",
+          "भारत के किसी भी द्वीप समूह से नहीं"
+        ],
+        [
+          "Andaman Islands",
+          "अंडमान द्वीप"
+        ],
+        [
+          "Lakshadweep",
+          "लक्षद्वीप"
+        ],
+        [
+          "Nicobar Islands",
+          "निकोबार द्वीप"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Equator lies south of India and does not cross its island groups.",
+      "solution_hi": "भूमध्य रेखा भारत के दक्षिण में है और उसके द्वीप समूहों से नहीं गुजरती।"
+    },
+    {
+      "id": 111,
+      "subject": "Geography",
+      "en": "Which river is known as the 'Sorrow of Bihar'?",
+      "hi": "किस नदी को 'बिहार का शोक' कहा जाता है?",
+      "options": [
+        [
+          "Kosi",
+          "कोसी"
+        ],
+        [
+          "Son",
+          "सोन"
+        ],
+        [
+          "Damodar",
+          "दामोदर"
+        ],
+        [
+          "Gandak",
+          "गंडक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Kosi has historically caused severe flooding in Bihar.",
+      "solution_hi": "कोसी नदी ने ऐतिहासिक रूप से बिहार में गंभीर बाढ़ उत्पन्न की है।"
+    },
+    {
+      "id": 112,
+      "subject": "History",
+      "en": "Who was the founder of the Maurya Empire?",
+      "hi": "मौर्य साम्राज्य के संस्थापक कौन थे?",
+      "options": [
+        [
+          "Chandragupta Maurya",
+          "चंद्रगुप्त मौर्य"
+        ],
+        [
+          "Ashoka",
+          "अशोक"
+        ],
+        [
+          "Bindusara",
+          "बिंदुसार"
+        ],
+        [
+          "Bimbisara",
+          "बिंबिसार"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Chandragupta Maurya founded the Maurya Empire around 322 BCE.",
+      "solution_hi": "चंद्रगुप्त मौर्य ने लगभग 322 ईसा पूर्व मौर्य साम्राज्य की स्थापना की।"
+    },
+    {
+      "id": 113,
+      "subject": "History",
+      "en": "Ashoka embraced Buddhism after which war?",
+      "hi": "अशोक ने किस युद्ध के बाद बौद्ध धर्म अपनाया?",
+      "options": [
+        [
+          "Kalinga War",
+          "कलिंग युद्ध"
+        ],
+        [
+          "Panipat War",
+          "पानीपत युद्ध"
+        ],
+        [
+          "Hydaspes War",
+          "हाइडेस्पीज़ युद्ध"
+        ],
+        [
+          "Tarain War",
+          "तराइन युद्ध"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The suffering caused by the Kalinga War deeply affected Ashoka.",
+      "solution_hi": "कलिंग युद्ध की पीड़ा ने अशोक को गहराई से प्रभावित किया।"
+    },
+    {
+      "id": 114,
+      "subject": "History",
+      "en": "The famous Iron Pillar is located at:",
+      "hi": "प्रसिद्ध लौह स्तंभ कहाँ स्थित है?",
+      "options": [
+        [
+          "Mehrauli, Delhi",
+          "महरौली, दिल्ली"
+        ],
+        [
+          "Sarnath",
+          "सारनाथ"
+        ],
+        [
+          "Nalanda",
+          "नालंदा"
+        ],
+        [
+          "Ujjain",
+          "उज्जैन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The ancient Iron Pillar stands in the Qutb complex at Mehrauli.",
+      "solution_hi": "प्राचीन लौह स्तंभ महरौली के कुतुब परिसर में स्थित है।"
+    },
+    {
+      "id": 115,
+      "subject": "Polity",
+      "en": "Which Article provides the right to constitutional remedies?",
+      "hi": "संवैधानिक उपचारों का अधिकार किस अनुच्छेद में है?",
+      "options": [
+        [
+          "Article 32",
+          "अनुच्छेद 32"
+        ],
+        [
+          "Article 17",
+          "अनुच्छेद 17"
+        ],
+        [
+          "Article 40",
+          "अनुच्छेद 40"
+        ],
+        [
+          "Article 51",
+          "अनुच्छेद 51"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 32 allows people to approach the Supreme Court for enforcement of Fundamental Rights.",
+      "solution_hi": "अनुच्छेद 32 मौलिक अधिकारों के प्रवर्तन हेतु सर्वोच्च न्यायालय जाने का अधिकार देता है।"
+    },
+    {
+      "id": 116,
+      "subject": "Polity",
+      "en": "The ex-officio Chairman of the Rajya Sabha is the:",
+      "hi": "राज्यसभा का पदेन सभापति कौन होता है?",
+      "options": [
+        [
+          "Vice-President of India",
+          "भारत का उपराष्ट्रपति"
+        ],
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ],
+        [
+          "Lok Sabha Speaker",
+          "लोकसभा अध्यक्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Vice-President serves as the ex-officio Chairman of the Rajya Sabha.",
+      "solution_hi": "उपराष्ट्रपति राज्यसभा के पदेन सभापति होते हैं।"
+    },
+    {
+      "id": 117,
+      "subject": "Polity",
+      "en": "Which schedule contains the list of recognised languages?",
+      "hi": "मान्यता प्राप्त भाषाओं की सूची किस अनुसूची में है?",
+      "options": [
+        [
+          "Eighth Schedule",
+          "आठवीं अनुसूची"
+        ],
+        [
+          "Seventh Schedule",
+          "सातवीं अनुसूची"
+        ],
+        [
+          "Ninth Schedule",
+          "नौवीं अनुसूची"
+        ],
+        [
+          "Tenth Schedule",
+          "दसवीं अनुसूची"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Eighth Schedule lists the constitutionally recognised languages.",
+      "solution_hi": "आठवीं अनुसूची में संविधान द्वारा मान्यता प्राप्त भाषाएँ सूचीबद्ध हैं।"
+    },
+    {
+      "id": 118,
+      "subject": "Polity",
+      "en": "The power to issue writs for enforcement of Fundamental Rights is held by:",
+      "hi": "मौलिक अधिकारों के प्रवर्तन हेतु रिट जारी करने की शक्ति किसके पास है?",
+      "options": [
+        [
+          "Supreme Court and High Courts",
+          "सर्वोच्च न्यायालय और उच्च न्यायालय"
+        ],
+        [
+          "Only Parliament",
+          "केवल संसद"
+        ],
+        [
+          "Only President",
+          "केवल राष्ट्रपति"
+        ],
+        [
+          "Only Election Commission",
+          "केवल निर्वाचन आयोग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Articles 32 and 226 empower the Supreme Court and High Courts respectively to issue writs.",
+      "solution_hi": "अनुच्छेद 32 और 226 क्रमशः सर्वोच्च न्यायालय और उच्च न्यायालयों को रिट जारी करने की शक्ति देते हैं।"
+    },
+    {
+      "id": 119,
+      "subject": "Economy",
+      "en": "A budget deficit occurs when:",
+      "hi": "बजट घाटा कब होता है?",
+      "options": [
+        [
+          "Expenditure exceeds receipts",
+          "व्यय प्राप्तियों से अधिक हो"
+        ],
+        [
+          "Receipts exceed expenditure",
+          "प्राप्तियाँ व्यय से अधिक हों"
+        ],
+        [
+          "Exports equal imports",
+          "निर्यात आयात के बराबर हों"
+        ],
+        [
+          "Tax rate is zero",
+          "कर दर शून्य हो"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A deficit means the government's expenditure is greater than its receipts under the relevant measure.",
+      "solution_hi": "घाटे का अर्थ है संबंधित गणना के अनुसार सरकारी व्यय प्राप्तियों से अधिक होना।"
+    },
+    {
+      "id": 120,
+      "subject": "Economy",
+      "en": "Which institution issues currency notes in India, except the one-rupee note?",
+      "hi": "भारत में एक रुपये के नोट को छोड़कर मुद्रा नोट कौन जारी करता है?",
+      "options": [
+        [
+          "Reserve Bank of India",
+          "भारतीय रिज़र्व बैंक"
+        ],
+        [
+          "State Bank of India",
+          "भारतीय स्टेट बैंक"
+        ],
+        [
+          "Ministry of Commerce",
+          "वाणिज्य मंत्रालय"
+        ],
+        [
+          "NITI Aayog",
+          "नीति आयोग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The RBI issues banknotes; the one-rupee note is issued by the Government of India.",
+      "solution_hi": "RBI बैंक नोट जारी करता है; एक रुपये का नोट भारत सरकार जारी करती है।"
+    },
+    {
+      "id": 121,
+      "subject": "English",
+      "en": "Choose the correct meaning of 'Impartial'.",
+      "hi": "'Impartial' का सही अर्थ चुनिए।",
+      "options": [
+        [
+          "Unbiased",
+          "निष्पक्ष"
+        ],
+        [
+          "Uncertain",
+          "अनिश्चित"
+        ],
+        [
+          "Unkind",
+          "निर्दयी"
+        ],
+        [
+          "Unusual",
+          "असामान्य"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Impartial means fair and not favouring one side.",
+      "solution_hi": "Impartial का अर्थ निष्पक्ष होना और किसी एक पक्ष का समर्थन न करना है।"
+    },
+    {
+      "id": 122,
+      "subject": "English",
+      "en": "Choose the correct plural of 'Crisis'.",
+      "hi": "'Crisis' का सही बहुवचन चुनिए।",
+      "options": [
+        [
+          "Crises",
+          "Crises"
+        ],
+        [
+          "Crisises",
+          "Crisises"
+        ],
+        [
+          "Crisis",
+          "Crisis"
+        ],
+        [
+          "Crisen",
+          "Crisen"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Crisis changes to crises in the plural.",
+      "solution_hi": "Crisis का बहुवचन crises होता है।"
+    },
+    {
+      "id": 123,
+      "subject": "English",
+      "en": "Fill in: Each of the candidates ___ a valid identity card.",
+      "hi": "रिक्त स्थान भरें: Each of the candidates ___ a valid identity card.",
+      "options": [
+        [
+          "has",
+          "has"
+        ],
+        [
+          "have",
+          "have"
+        ],
+        [
+          "are having",
+          "are having"
+        ],
+        [
+          "were",
+          "were"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Each is grammatically singular and takes 'has'.",
+      "solution_hi": "Each व्याकरण की दृष्टि से एकवचन है, इसलिए 'has' आएगा।"
+    },
+    {
+      "id": 124,
+      "subject": "English",
+      "en": "Choose the antonym of 'Expand'.",
+      "hi": "'Expand' का विलोम चुनिए।",
+      "options": [
+        [
+          "Contract",
+          "सिकुड़ना"
+        ],
+        [
+          "Enlarge",
+          "बढ़ाना"
+        ],
+        [
+          "Extend",
+          "फैलाना"
+        ],
+        [
+          "Increase",
+          "वृद्धि करना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Contract means to become smaller; it is the opposite of expand.",
+      "solution_hi": "Contract का अर्थ छोटा होना है; यह expand का विलोम है।"
+    },
+    {
+      "id": 125,
+      "subject": "English",
+      "en": "Choose the correctly punctuated sentence.",
+      "hi": "सही विराम-चिह्न वाला वाक्य चुनिए।",
+      "options": [
+        [
+          "Where are you going?",
+          "Where are you going?"
+        ],
+        [
+          "Where are you going.",
+          "Where are you going."
+        ],
+        [
+          "Where are you going!",
+          "Where are you going!"
+        ],
+        [
+          "Where, are you going",
+          "Where, are you going"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A direct question ends with a question mark.",
+      "solution_hi": "प्रत्यक्ष प्रश्न के अंत में प्रश्नवाचक चिह्न लगता है।"
+    },
+    {
+      "id": 126,
+      "subject": "English",
+      "en": "The phrase 'in black and white' means:",
+      "hi": "'in black and white' वाक्यांश का अर्थ है:",
+      "options": [
+        [
+          "In writing",
+          "लिखित रूप में"
+        ],
+        [
+          "In doubt",
+          "संदेह में"
+        ],
+        [
+          "In secret",
+          "गुप्त रूप से"
+        ],
+        [
+          "In confusion",
+          "भ्रम में"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The phrase means something is written or documented.",
+      "solution_hi": "इस वाक्यांश का अर्थ है कि बात लिखित या दस्तावेज़ित है।"
+    },
+    {
+      "id": 127,
+      "subject": "English",
+      "en": "Choose the correct verb: The news ___ shocking.",
+      "hi": "सही क्रिया चुनें: The news ___ shocking.",
+      "options": [
+        [
+          "is",
+          "is"
+        ],
+        [
+          "are",
+          "are"
+        ],
+        [
+          "were",
+          "were"
+        ],
+        [
+          "have",
+          "have"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "News is an uncountable singular noun and takes 'is'.",
+      "solution_hi": "News एकवचन अगणनीय संज्ञा है, इसलिए 'is' आता है।"
+    },
+    {
+      "id": 128,
+      "subject": "English",
+      "en": "Choose the synonym of 'Candid'.",
+      "hi": "'Candid' का समानार्थी चुनिए।",
+      "options": [
+        [
+          "Frank",
+          "स्पष्टवादी"
+        ],
+        [
+          "Secretive",
+          "गोपनीय"
+        ],
+        [
+          "Deceitful",
+          "कपटी"
+        ],
+        [
+          "Reserved",
+          "संकोची"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Candid means truthful and straightforward; frank is a synonym.",
+      "solution_hi": "Candid का अर्थ स्पष्ट और सच्चा बोलना है; Frank इसका समानार्थी है।"
+    },
+    {
+      "id": 129,
+      "subject": "English",
+      "en": "Choose the correct form: If I ___ you, I would accept the offer.",
+      "hi": "सही रूप चुनें: If I ___ you, I would accept the offer.",
+      "options": [
+        [
+          "were",
+          "were"
+        ],
+        [
+          "am",
+          "am"
+        ],
+        [
+          "was",
+          "was"
+        ],
+        [
+          "be",
+          "be"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The subjunctive 'were' is used in this hypothetical condition.",
+      "solution_hi": "काल्पनिक शर्त में subjunctive रूप 'were' का प्रयोग होता है।"
+    },
+    {
+      "id": 130,
+      "subject": "Physics",
+      "en": "The resistance of a wire increases when its:",
+      "hi": "किस स्थिति में तार का प्रतिरोध बढ़ता है?",
+      "options": [
+        [
+          "Length increases",
+          "लंबाई बढ़ती है"
+        ],
+        [
+          "Area increases",
+          "अनुप्रस्थ क्षेत्रफल बढ़ता है"
+        ],
+        [
+          "Temperature always falls",
+          "तापमान हमेशा घटता है"
+        ],
+        [
+          "Length decreases",
+          "लंबाई घटती है"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "For a given material and area, resistance is directly proportional to length.",
+      "solution_hi": "समान पदार्थ और क्षेत्रफल के लिए प्रतिरोध लंबाई के समानुपाती होता है।"
+    },
+    {
+      "id": 131,
+      "subject": "Physics",
+      "en": "Which principle explains the working of a hydraulic lift?",
+      "hi": "हाइड्रोलिक लिफ्ट का कार्य किस सिद्धांत पर आधारित है?",
+      "options": [
+        [
+          "Pascal's law",
+          "पास्कल का नियम"
+        ],
+        [
+          "Archimedes' principle",
+          "आर्किमिडीज़ का सिद्धांत"
+        ],
+        [
+          "Bernoulli's principle",
+          "बर्नौली का सिद्धांत"
+        ],
+        [
+          "Newton's third law",
+          "न्यूटन का तीसरा नियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Pressure applied to an enclosed fluid is transmitted equally in all directions.",
+      "solution_hi": "बंद द्रव पर लगाया गया दाब सभी दिशाओं में समान रूप से संचारित होता है।"
+    },
+    {
+      "id": 132,
+      "subject": "Physics",
+      "en": "The energy stored in a stretched spring is:",
+      "hi": "खींचे गए स्प्रिंग में कौन-सी ऊर्जा संचित होती है?",
+      "options": [
+        [
+          "Elastic potential energy",
+          "प्रत्यास्थ स्थितिज ऊर्जा"
+        ],
+        [
+          "Kinetic energy",
+          "गतिज ऊर्जा"
+        ],
+        [
+          "Nuclear energy",
+          "नाभिकीय ऊर्जा"
+        ],
+        [
+          "Sound energy",
+          "ध्वनि ऊर्जा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A deformed spring stores elastic potential energy.",
+      "solution_hi": "विकृत स्प्रिंग में प्रत्यास्थ स्थितिज ऊर्जा संचित होती है।"
+    },
+    {
+      "id": 133,
+      "subject": "Physics",
+      "en": "Which phenomenon causes the blue colour of the sky?",
+      "hi": "आकाश का नीला रंग किस घटना के कारण होता है?",
+      "options": [
+        [
+          "Scattering of light",
+          "प्रकाश का प्रकीर्णन"
+        ],
+        [
+          "Reflection",
+          "परावर्तन"
+        ],
+        [
+          "Refraction",
+          "अपवर्तन"
+        ],
+        [
+          "Diffraction only",
+          "केवल विवर्तन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Shorter blue wavelengths are scattered more strongly by air molecules.",
+      "solution_hi": "वायु के अणु कम तरंगदैर्घ्य वाली नीली रोशनी का अधिक प्रकीर्णन करते हैं।"
+    },
+    {
+      "id": 134,
+      "subject": "Chemistry",
+      "en": "The number of protons in an atom is its:",
+      "hi": "परमाणु में प्रोटॉनों की संख्या कहलाती है:",
+      "options": [
+        [
+          "Atomic number",
+          "परमाणु क्रमांक"
+        ],
+        [
+          "Mass number",
+          "द्रव्यमान संख्या"
+        ],
+        [
+          "Valency",
+          "संयोजकता"
+        ],
+        [
+          "Neutron number",
+          "न्यूट्रॉन संख्या"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Atomic number is defined as the number of protons in the nucleus.",
+      "solution_hi": "परमाणु क्रमांक नाभिक में प्रोटॉनों की संख्या है।"
+    },
+    {
+      "id": 135,
+      "subject": "Chemistry",
+      "en": "Which of these is a noble gas?",
+      "hi": "इनमें से कौन-सी उत्कृष्ट गैस है?",
+      "options": [
+        [
+          "Argon",
+          "आर्गन"
+        ],
+        [
+          "Chlorine",
+          "क्लोरीन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Sulphur dioxide",
+          "सल्फर डाइऑक्साइड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Argon is a chemically inert noble gas in Group 18.",
+      "solution_hi": "आर्गन समूह 18 की अपेक्षाकृत अक्रिय उत्कृष्ट गैस है।"
+    },
+    {
+      "id": 136,
+      "subject": "Chemistry",
+      "en": "Rust is mainly:",
+      "hi": "जंग मुख्यतः क्या है?",
+      "options": [
+        [
+          "Hydrated iron(III) oxide",
+          "जलयोजित आयरन(III) ऑक्साइड"
+        ],
+        [
+          "Iron sulphide",
+          "आयरन सल्फाइड"
+        ],
+        [
+          "Iron carbonate",
+          "आयरन कार्बोनेट"
+        ],
+        [
+          "Pure iron oxide only",
+          "केवल शुद्ध आयरन ऑक्साइड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Rust is a mixture of hydrated iron(III) oxides, often represented as Fe₂O₃·xH₂O.",
+      "solution_hi": "जंग जलयोजित आयरन(III) ऑक्साइडों का मिश्रण है, जिसे Fe₂O₃·xH₂O से दर्शाते हैं।"
+    },
+    {
+      "id": 137,
+      "subject": "Biology",
+      "en": "Which blood vessels carry blood away from the heart?",
+      "hi": "कौन-सी रक्त वाहिकाएँ हृदय से रक्त बाहर ले जाती हैं?",
+      "options": [
+        [
+          "Arteries",
+          "धमनियाँ"
+        ],
+        [
+          "Veins",
+          "शिराएँ"
+        ],
+        [
+          "Capillaries",
+          "केशिकाएँ"
+        ],
+        [
+          "Lymph vessels",
+          "लसीका वाहिकाएँ"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Arteries carry blood away from the heart, irrespective of oxygen content.",
+      "solution_hi": "धमनियाँ ऑक्सीजन की मात्रा से स्वतंत्र होकर रक्त को हृदय से दूर ले जाती हैं।"
+    },
+    {
+      "id": 138,
+      "subject": "Biology",
+      "en": "The site of protein synthesis in a cell is:",
+      "hi": "कोशिका में प्रोटीन संश्लेषण का स्थान है:",
+      "options": [
+        [
+          "Ribosome",
+          "राइबोसोम"
+        ],
+        [
+          "Lysosome",
+          "लाइसोसोम"
+        ],
+        [
+          "Golgi body",
+          "गॉल्जी पिंड"
+        ],
+        [
+          "Vacuole",
+          "रिक्तिका"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Ribosomes translate messenger RNA to build proteins.",
+      "solution_hi": "राइबोसोम मैसेंजर RNA के निर्देशों से प्रोटीन बनाते हैं।"
+    },
+    {
+      "id": 139,
+      "subject": "Biology",
+      "en": "Which organism fixes atmospheric nitrogen in legume root nodules?",
+      "hi": "दलहनी पौधों की जड़-ग्रंथियों में कौन-सा जीव वायुमंडलीय नाइट्रोजन स्थिर करता है?",
+      "options": [
+        [
+          "Rhizobium",
+          "राइजोबियम"
+        ],
+        [
+          "Lactobacillus",
+          "लैक्टोबैसिलस"
+        ],
+        [
+          "Yeast",
+          "यीस्ट"
+        ],
+        [
+          "Plasmodium",
+          "प्लाज़्मोडियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Rhizobium bacteria in root nodules convert atmospheric nitrogen into usable compounds.",
+      "solution_hi": "जड़-ग्रंथियों के राइजोबियम जीवाणु वायुमंडलीय नाइट्रोजन को उपयोगी यौगिकों में बदलते हैं।"
+    },
+    {
+      "id": 140,
+      "subject": "History",
+      "en": "The Non-Cooperation Movement was withdrawn after:",
+      "hi": "असहयोग आंदोलन किस घटना के बाद वापस लिया गया?",
+      "options": [
+        [
+          "Chauri Chaura incident",
+          "चौरी-चौरा घटना"
+        ],
+        [
+          "Kakori incident",
+          "काकोरी घटना"
+        ],
+        [
+          "Dandi March",
+          "दांडी मार्च"
+        ],
+        [
+          "Bardoli Satyagraha",
+          "बारडोली सत्याग्रह"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Gandhi withdrew the movement in 1922 after the Chauri Chaura violence.",
+      "solution_hi": "चौरी-चौरा की हिंसा के बाद गांधीजी ने 1922 में आंदोलन वापस लिया।"
+    },
+    {
+      "id": 141,
+      "subject": "History",
+      "en": "Who was known as the 'Frontier Gandhi'?",
+      "hi": "'सीमांत गांधी' के नाम से कौन प्रसिद्ध थे?",
+      "options": [
+        [
+          "Khan Abdul Ghaffar Khan",
+          "खान अब्दुल गफ्फार खान"
+        ],
+        [
+          "Maulana Azad",
+          "मौलाना आज़ाद"
+        ],
+        [
+          "Hasrat Mohani",
+          "हसरत मोहानी"
+        ],
+        [
+          "Lala Lajpat Rai",
+          "लाला लाजपत राय"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Khan Abdul Ghaffar Khan was popularly called Frontier Gandhi.",
+      "solution_hi": "खान अब्दुल गफ्फार खान को लोकप्रिय रूप से सीमांत गांधी कहा जाता था।"
+    },
+    {
+      "id": 142,
+      "subject": "History",
+      "en": "The first Battle of Panipat was fought in 1526 between:",
+      "hi": "पानीपत का पहला युद्ध 1526 में किनके बीच हुआ?",
+      "options": [
+        [
+          "Babur and Ibrahim Lodi",
+          "बाबर और इब्राहिम लोदी"
+        ],
+        [
+          "Akbar and Hemu",
+          "अकबर और हेमू"
+        ],
+        [
+          "Sher Shah and Humayun",
+          "शेरशाह और हुमायूँ"
+        ],
+        [
+          "Aurangzeb and Dara",
+          "औरंगज़ेब और दारा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Babur defeated Ibrahim Lodi in the First Battle of Panipat in 1526.",
+      "solution_hi": "1526 में पानीपत के पहले युद्ध में बाबर ने इब्राहिम लोदी को हराया।"
+    },
+    {
+      "id": 143,
+      "subject": "Geography",
+      "en": "Which is the largest freshwater lake in India by area?",
+      "hi": "क्षेत्रफल के अनुसार भारत की सबसे बड़ी मीठे पानी की झील कौन-सी है?",
+      "options": [
+        [
+          "Wular Lake",
+          "वुलर झील"
+        ],
+        [
+          "Chilika Lake",
+          "चिलिका झील"
+        ],
+        [
+          "Sambhar Lake",
+          "सांभर झील"
+        ],
+        [
+          "Pulicat Lake",
+          "पुलिकट झील"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Wular is a major freshwater lake in Jammu and Kashmir; Chilika is brackish.",
+      "solution_hi": "वुलर जम्मू-कश्मीर की बड़ी मीठे पानी की झील है; चिलिका खारे-मीठे पानी की है।"
+    },
+    {
+      "id": 144,
+      "subject": "Geography",
+      "en": "The Coromandel Coast lies mainly along:",
+      "hi": "कोरोमंडल तट मुख्यतः किसके साथ स्थित है?",
+      "options": [
+        [
+          "Southeastern India",
+          "दक्षिण-पूर्वी भारत"
+        ],
+        [
+          "Southwestern India",
+          "दक्षिण-पश्चिमी भारत"
+        ],
+        [
+          "Northwestern India",
+          "उत्तर-पश्चिमी भारत"
+        ],
+        [
+          "Northeastern India",
+          "उत्तर-पूर्वी भारत"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Coromandel Coast borders the southeastern coast, chiefly Tamil Nadu.",
+      "solution_hi": "कोरोमंडल तट दक्षिण-पूर्वी तट, मुख्यतः तमिलनाडु के साथ है।"
+    },
+    {
+      "id": 145,
+      "subject": "Polity",
+      "en": "Who decides whether a bill is a Money Bill in the Lok Sabha?",
+      "hi": "लोकसभा में कोई विधेयक धन विधेयक है या नहीं, यह कौन तय करता है?",
+      "options": [
+        [
+          "Speaker of Lok Sabha",
+          "लोकसभा अध्यक्ष"
+        ],
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Finance Minister",
+          "वित्त मंत्री"
+        ],
+        [
+          "Chairman of Rajya Sabha",
+          "राज्यसभा सभापति"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Lok Sabha Speaker's certification on a Money Bill is constitutionally significant.",
+      "solution_hi": "धन विधेयक पर लोकसभा अध्यक्ष का प्रमाणन संवैधानिक रूप से निर्णायक होता है।"
+    },
+    {
+      "id": 146,
+      "subject": "Polity",
+      "en": "The Comptroller and Auditor General of India is appointed by:",
+      "hi": "भारत के नियंत्रक एवं महालेखा परीक्षक की नियुक्ति कौन करता है?",
+      "options": [
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ],
+        [
+          "Parliament",
+          "संसद"
+        ],
+        [
+          "Chief Justice",
+          "मुख्य न्यायाधीश"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The President appoints the CAG under Article 148.",
+      "solution_hi": "अनुच्छेद 148 के तहत राष्ट्रपति CAG की नियुक्ति करते हैं।"
+    },
+    {
+      "id": 147,
+      "subject": "Economy",
+      "en": "A repo rate is the rate at which:",
+      "hi": "रेपो दर वह दर है जिस पर:",
+      "options": [
+        [
+          "RBI lends short-term funds to banks against eligible securities",
+          "RBI पात्र प्रतिभूतियों के बदले बैंकों को अल्पकालीन धन देता है"
+        ],
+        [
+          "Banks lend to customers",
+          "बैंक ग्राहकों को ऋण देते हैं"
+        ],
+        [
+          "Government taxes imports",
+          "सरकार आयात पर कर लगाती है"
+        ],
+        [
+          "Banks pay interest on savings",
+          "बैंक बचत पर ब्याज देते हैं"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Repo is the rate at which the RBI provides short-term liquidity to banks against collateral.",
+      "solution_hi": "रेपो वह दर है जिस पर RBI जमानत के बदले बैंकों को अल्पकालीन तरलता देता है।"
+    },
+    {
+      "id": 148,
+      "subject": "Economy",
+      "en": "Which sector includes agriculture, forestry and fishing?",
+      "hi": "कृषि, वानिकी और मत्स्य पालन किस क्षेत्र में आते हैं?",
+      "options": [
+        [
+          "Primary sector",
+          "प्राथमिक क्षेत्र"
+        ],
+        [
+          "Secondary sector",
+          "द्वितीयक क्षेत्र"
+        ],
+        [
+          "Tertiary sector",
+          "तृतीयक क्षेत्र"
+        ],
+        [
+          "Quaternary sector",
+          "चतुर्थक क्षेत्र"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "These activities directly use natural resources and belong to the primary sector.",
+      "solution_hi": "ये गतिविधियाँ सीधे प्राकृतिक संसाधनों का उपयोग करती हैं और प्राथमिक क्षेत्र में आती हैं।"
+    },
+    {
+      "id": 149,
+      "subject": "English",
+      "en": "Choose the antonym of 'Hostile'.",
+      "hi": "'Hostile' का विलोम चुनिए।",
+      "options": [
+        [
+          "Friendly",
+          "मित्रवत"
+        ],
+        [
+          "Aggressive",
+          "आक्रामक"
+        ],
+        [
+          "Unfriendly",
+          "अमित्र"
+        ],
+        [
+          "Adverse",
+          "प्रतिकूल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Hostile means unfriendly; friendly is its antonym.",
+      "solution_hi": "Hostile का अर्थ अमित्र है; Friendly इसका विलोम है।"
+    },
+    {
+      "id": 150,
+      "subject": "English",
+      "en": "Choose the correct sentence.",
+      "hi": "सही वाक्य चुनिए।",
+      "options": [
+        [
+          "She has lived here for five years.",
+          "She has lived here for five years."
+        ],
+        [
+          "She is living here since five years.",
+          "She is living here since five years."
+        ],
+        [
+          "She lives here since five years.",
+          "She lives here since five years."
+        ],
+        [
+          "She lived here since five years.",
+          "She lived here since five years."
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The present perfect with 'for' describes a state continuing up to now.",
+      "solution_hi": "'For' के साथ present perfect ऐसी स्थिति बताता है जो अब तक जारी है।"
+    },
+    {
+      "id": 151,
+      "subject": "English",
+      "en": "Choose the synonym of 'Obsolete'.",
+      "hi": "'Obsolete' का समानार्थी चुनिए।",
+      "options": [
+        [
+          "Outdated",
+          "पुराना पड़ चुका"
+        ],
+        [
+          "Modern",
+          "आधुनिक"
+        ],
+        [
+          "Current",
+          "वर्तमान"
+        ],
+        [
+          "Useful",
+          "उपयोगी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Obsolete means no longer in use because it is out of date.",
+      "solution_hi": "Obsolete का अर्थ पुराना होने के कारण उपयोग में न रहना है।"
+    },
+    {
+      "id": 152,
+      "subject": "English",
+      "en": "Choose the correct article: He is ___ honest officer.",
+      "hi": "सही article चुनें: He is ___ honest officer.",
+      "options": [
+        [
+          "an",
+          "an"
+        ],
+        [
+          "a",
+          "a"
+        ],
+        [
+          "the",
+          "the"
+        ],
+        [
+          "no article",
+          "कोई article नहीं"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Honest begins with a vowel sound, so 'an' is used.",
+      "solution_hi": "Honest का उच्चारण स्वर ध्वनि से शुरू होता है, इसलिए 'an' आता है।"
+    },
+    {
+      "id": 153,
+      "subject": "English",
+      "en": "Choose the correct plural of 'Phenomenon'.",
+      "hi": "'Phenomenon' का सही बहुवचन चुनिए।",
+      "options": [
+        [
+          "Phenomena",
+          "Phenomena"
+        ],
+        [
+          "Phenomenons",
+          "Phenomenons"
+        ],
+        [
+          "Phenomenas",
+          "Phenomenas"
+        ],
+        [
+          "Phenomenae",
+          "Phenomenae"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Phenomena is the standard plural form of phenomenon.",
+      "solution_hi": "Phenomenon का मानक बहुवचन Phenomena है।"
     }
   ]
 }
