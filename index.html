@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<meta name="aei-build-id" content="318aa067c7d38de6fc173685f8c0f4e21053a58a">
+<meta name="aei-build-id" content="admin-card-visible-20261120">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SSC GD – PYQ & Mock Test | All Exam India</title>
@@ -512,6 +512,22 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 </section>
 <section id="settings" class="page">
 <h2>Profile & Settings</h2>
+<div class="card" id="aeiAdminCard">
+<h3>🔐 Admin Activity Dashboard</h3>
+<p>फक्त अधिकृत Admin प्रवेश करू शकतो.</p>
+<label for="aeiAdminEmail">Admin Email</label>
+<input id="aeiAdminEmail" type="email" autocomplete="username" placeholder="Admin email">
+<label for="aeiAdminPassword">Firebase Admin Password</label>
+<input id="aeiAdminPassword" type="password" autocomplete="current-password" placeholder="Firebase password">
+<button class="primary" id="aeiAdminLogin" type="button">Admin Login</button>
+<button class="primary" id="aeiAdminLogout" type="button" style="display:none">Logout</button>
+<p id="aeiAdminStatus" class="small-note" aria-live="polite">Dashboard पाहण्यासाठी Admin Login करा.</p>
+<div id="aeiAdminPanel" style="display:none">
+<div id="aeiAdminStats"></div><h3>Activity Summary</h3><div id="aeiAdminBreakdown"></div>
+<button class="primary" id="aeiAdminRefresh" type="button">Refresh Dashboard</button>
+<p class="small-note">हे browser events वर आधारित अंदाजे आकडे आहेत; student names, phone numbers किंवा answers गोळा केले जात नाहीत.</p>
+</div>
+</div>
 <div class="card"><h3>👤 Profile</h3><p id="accountDetails">Your account is saved on this device.</p><p>Your profile information and login are securely saved on this device.</p><button class="primary" type="button" onclick="logoutAccount()">Logout</button></div>
 <div class="card"><h3>📦 Backup &amp; Restore</h3><p>Before installing a new APK, back up your profile, test history, PYQ attempts, and mock test attempts. You can restore this code in the new app.</p><button class="primary" type="button" onclick="createAeiBackup()">Create Backup</button><textarea id="aeiBackupCode" class="search" rows="5" placeholder="Your backup code will appear here. Paste a code here to restore it." style="width:100%;margin-top:10px;resize:vertical"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="primary" type="button" onclick="copyAeiBackup()">Copy Backup</button><button class="primary" type="button" onclick="restoreAeiBackup()">Restore Backup</button></div><p id="aeiBackupStatus" class="small-note" aria-live="polite">Keep your backup code private. It may contain your name and test results.</p></div>
 <div class="card"><h3>Appearance</h3><p>Choose the app theme.</p><button class="primary" onclick="setTheme('light')">Light Mode</button> <button class="primary" onclick="setTheme('dark')">Dark Mode</button></div>
