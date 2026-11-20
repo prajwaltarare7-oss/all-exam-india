@@ -35,7 +35,7 @@
       "id": "NDA-M1-004", "topic": "Binomial Theorem", "difficulty": "moderate",
       "question": {"en": "The coefficient of x³ in (2 + x)⁵ is:", "hi": "(2 + x)⁵ में x³ का गुणांक है:"},
       "options": {"en": ["40", "60", "80", "100"], "hi": ["40", "60", "80", "100"]},
-      "answerIndex": 2,
+      "answerIndex": 0,
       "explanation": {"en": "The x³ term is C(5,3)·2²·x³ = 10·4·x³, so the coefficient is 40.", "hi": "x³ का पद C(5,3)·2²·x³ = 10·4·x³ है, इसलिए गुणांक 40 है।"}
     },
     {
@@ -91,8 +91,8 @@
       "id": "NDA-M1-012", "topic": "Complex Numbers", "difficulty": "moderate",
       "question": {"en": "The value of i² + i⁴ is:", "hi": "i² + i⁴ का मान है:"},
       "options": {"en": ["−2", "−1", "0", "1"], "hi": ["−2", "−1", "0", "1"]},
-      "answerIndex": 1,
-      "explanation": {"en": "Since i² = −1 and i⁴ = 1, the sum is 0. Correct option: 0.", "hi": "i² = −1 और i⁴ = 1, इसलिए योग 0 है। सही विकल्प 0 है।"}
+      "answerIndex": 2,
+      "explanation": {"en": "Since i² = −1 and i⁴ = 1, the sum is 0.", "hi": "i² = −1 और i⁴ = 1, इसलिए योग 0 है।"}
     },
     {
       "id": "NDA-M1-013", "topic": "Limits", "difficulty": "moderate",
