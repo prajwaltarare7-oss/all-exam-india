@@ -4,7 +4,7 @@
   "mock": 2,
   "status": "in_progress",
   "target_questions": 150,
-  "completed_questions": 89,
+  "completed_questions": 99,
   "language_modes": [
     "en",
     "hi"
@@ -2417,6 +2417,276 @@
       "answer": 0,
       "solution_en": "Many active metals react with dilute acids to form a salt and release hydrogen gas. For example, Zn + 2HCl → ZnCl₂ + H₂.",
       "solution_hi": "कई सक्रिय धातुएँ तनु अम्लों से अभिक्रिया करके लवण बनाती हैं और हाइड्रोजन गैस छोड़ती हैं। उदाहरण: Zn + 2HCl → ZnCl₂ + H₂।"
+    },
+    {
+      "id": 90,
+      "subject": "Biology",
+      "en": "Which vitamin is essential for normal blood clotting?",
+      "hi": "सामान्य रक्त का थक्का जमने के लिए कौन-सा विटामिन आवश्यक है?",
+      "options": [
+        [
+          "Vitamin K",
+          "विटामिन K"
+        ],
+        [
+          "Vitamin C",
+          "विटामिन C"
+        ],
+        [
+          "Vitamin D",
+          "विटामिन D"
+        ],
+        [
+          "Vitamin B₁₂",
+          "विटामिन B₁₂"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Vitamin K is required for the synthesis of several clotting factors in the liver, including prothrombin.",
+      "solution_hi": "यकृत में प्रोथ्रोम्बिन सहित कई रक्त-स्कंदन कारकों के निर्माण के लिए विटामिन K आवश्यक है।"
+    },
+    {
+      "id": 91,
+      "subject": "Geography",
+      "en": "The Sunderban delta is formed mainly by which river system?",
+      "hi": "सुंदरबन डेल्टा मुख्यतः किस नदी तंत्र द्वारा बनाया गया है?",
+      "options": [
+        [
+          "Ganga-Brahmaputra-Meghna",
+          "गंगा-ब्रह्मपुत्र-मेघना"
+        ],
+        [
+          "Godavari-Krishna",
+          "गोदावरी-कृष्णा"
+        ],
+        [
+          "Narmada-Tapi",
+          "नर्मदा-ताप्ती"
+        ],
+        [
+          "Indus-Jhelum",
+          "सिंधु-झेलम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Ganga-Brahmaputra-Meghna river system carries enormous sediment into the Bay of Bengal and forms the Sunderban delta.",
+      "solution_hi": "गंगा-ब्रह्मपुत्र-मेघना नदी तंत्र भारी मात्रा में अवसाद बंगाल की खाड़ी में लाता है और सुंदरबन डेल्टा बनाता है।"
+    },
+    {
+      "id": 92,
+      "subject": "History",
+      "en": "The Champaran Satyagraha of 1917 was associated with which issue?",
+      "hi": "1917 का चंपारण सत्याग्रह किस मुद्दे से संबंधित था?",
+      "options": [
+        [
+          "Indigo cultivators' grievances",
+          "नील किसानों की समस्याएँ"
+        ],
+        [
+          "Forest rights in central India",
+          "मध्य भारत में वन अधिकार"
+        ],
+        [
+          "Salt tax",
+          "नमक कर"
+        ],
+        [
+          "Mill workers' wages in Ahmedabad",
+          "अहमदाबाद के मिल मजदूरों का वेतन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Champaran Satyagraha addressed the exploitation of indigo cultivators under the tinkathia system. It was Gandhi's first major satyagraha in India.",
+      "solution_hi": "चंपारण सत्याग्रह तिनकठिया व्यवस्था के अंतर्गत नील किसानों के शोषण के विरुद्ध था। भारत में गांधीजी का यह पहला बड़ा सत्याग्रह था।"
+    },
+    {
+      "id": 93,
+      "subject": "Polity",
+      "en": "The minimum age required to become a member of the Rajya Sabha is:",
+      "hi": "राज्यसभा का सदस्य बनने के लिए न्यूनतम आयु कितनी होनी चाहिए?",
+      "options": [
+        [
+          "30 years",
+          "30 वर्ष"
+        ],
+        [
+          "25 years",
+          "25 वर्ष"
+        ],
+        [
+          "35 years",
+          "35 वर्ष"
+        ],
+        [
+          "21 years",
+          "21 वर्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 84 of the Constitution prescribes 30 years as the minimum age for membership of the Rajya Sabha. The minimum age for the Lok Sabha is 25 years.",
+      "solution_hi": "संविधान का अनुच्छेद 84 राज्यसभा की सदस्यता के लिए न्यूनतम आयु 30 वर्ष निर्धारित करता है। लोकसभा के लिए न्यूनतम आयु 25 वर्ष है।"
+    },
+    {
+      "id": 94,
+      "subject": "Physics",
+      "en": "The resistance of a conductor is doubled while the potential difference across it remains constant. The current becomes:",
+      "hi": "किसी चालक का प्रतिरोध दोगुना कर दिया जाए और उसके सिरों पर विभवांतर स्थिर रहे, तो धारा कितनी हो जाएगी?",
+      "options": [
+        [
+          "Half the original value",
+          "मूल मान की आधी"
+        ],
+        [
+          "Twice the original value",
+          "मूल मान की दोगुनी"
+        ],
+        [
+          "Four times the original value",
+          "मूल मान की चार गुनी"
+        ],
+        [
+          "Unchanged",
+          "अपरिवर्तित"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "By Ohm's law, I = V/R. At constant voltage, doubling resistance makes current V/(2R), which is half the original current.",
+      "solution_hi": "ओम के नियम के अनुसार I = V/R। विभवांतर स्थिर रहने पर प्रतिरोध दोगुना करने से धारा V/(2R) हो जाती है, अर्थात मूल धारा की आधी।"
+    },
+    {
+      "id": 95,
+      "subject": "Chemistry",
+      "en": "Which of the following is a noble gas?",
+      "hi": "निम्नलिखित में से कौन-सी उत्कृष्ट गैस है?",
+      "options": [
+        [
+          "Argon",
+          "आर्गन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Chlorine",
+          "क्लोरीन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Argon is a Group 18 noble gas. Its filled outer electron shell makes it relatively unreactive under ordinary conditions.",
+      "solution_hi": "आर्गन समूह 18 की उत्कृष्ट गैस है। इसका बाहरी इलेक्ट्रॉन कोश पूर्ण होता है, इसलिए सामान्य परिस्थितियों में यह कम अभिक्रियाशील है।"
+    },
+    {
+      "id": 96,
+      "subject": "English",
+      "en": "Choose the correct sentence.",
+      "hi": "सही वाक्य चुनिए।",
+      "options": [
+        [
+          "Each of the players has a uniform.",
+          "Each of the players has a uniform."
+        ],
+        [
+          "Each of the players have a uniform.",
+          "Each of the players have a uniform."
+        ],
+        [
+          "Each players has a uniform.",
+          "Each players has a uniform."
+        ],
+        [
+          "Each of players have uniform.",
+          "Each of players have uniform."
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "'Each' is singular and takes a singular verb. Therefore, 'Each of the players has a uniform' is correct.",
+      "solution_hi": "'Each' एकवचन होता है और इसके साथ एकवचन क्रिया आती है। इसलिए 'Each of the players has a uniform' सही है।"
+    },
+    {
+      "id": 97,
+      "subject": "Economy",
+      "en": "Which organisation publishes the Consumer Price Index (Combined) in India?",
+      "hi": "भारत में उपभोक्ता मूल्य सूचकांक (संयुक्त) कौन-सा संगठन जारी करता है?",
+      "options": [
+        [
+          "National Statistical Office (NSO)",
+          "राष्ट्रीय सांख्यिकी कार्यालय (NSO)"
+        ],
+        [
+          "Reserve Bank of India",
+          "भारतीय रिज़र्व बैंक"
+        ],
+        [
+          "NITI Aayog",
+          "नीति आयोग"
+        ],
+        [
+          "Securities and Exchange Board of India",
+          "भारतीय प्रतिभूति और विनिमय बोर्ड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The National Statistical Office under the Ministry of Statistics and Programme Implementation releases the CPI (Rural, Urban and Combined).",
+      "solution_hi": "सांख्यिकी और कार्यक्रम कार्यान्वयन मंत्रालय के अंतर्गत राष्ट्रीय सांख्यिकी कार्यालय CPI (ग्रामीण, शहरी और संयुक्त) जारी करता है।"
+    },
+    {
+      "id": 98,
+      "subject": "Geography",
+      "en": "Which type of rainfall is commonly associated with intense heating of the ground and rising air?",
+      "hi": "भूमि के तीव्र गर्म होने और वायु के ऊपर उठने से सामान्यतः किस प्रकार की वर्षा होती है?",
+      "options": [
+        [
+          "Convectional rainfall",
+          "संवहनीय वर्षा"
+        ],
+        [
+          "Orographic rainfall",
+          "पर्वतीय वर्षा"
+        ],
+        [
+          "Cyclonic rainfall",
+          "चक्रवाती वर्षा"
+        ],
+        [
+          "Frontal rainfall only",
+          "केवल वाताग्रीय वर्षा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Strong surface heating warms moist air, causing it to rise, cool and condense into clouds. The resulting precipitation is convectional rainfall.",
+      "solution_hi": "सतह के तीव्र गर्म होने से नम वायु गर्म होकर ऊपर उठती है, ठंडी होती है और संघनित होकर बादल बनाती है। इससे संवहनीय वर्षा होती है।"
+    },
+    {
+      "id": 99,
+      "subject": "Physics",
+      "en": "A wave has frequency 50 Hz and wavelength 4 m. Its speed is:",
+      "hi": "एक तरंग की आवृत्ति 50 Hz और तरंगदैर्ध्य 4 m है। उसकी चाल कितनी होगी?",
+      "options": [
+        [
+          "200 m/s",
+          "200 m/s"
+        ],
+        [
+          "54 m/s",
+          "54 m/s"
+        ],
+        [
+          "12.5 m/s",
+          "12.5 m/s"
+        ],
+        [
+          "100 m/s",
+          "100 m/s"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Wave speed v = fλ = 50 × 4 = 200 m/s.",
+      "solution_hi": "तरंग की चाल v = fλ = 50 × 4 = 200 m/s होती है।"
     }
   ]
 }
