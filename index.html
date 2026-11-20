@@ -2,20 +2,23 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<meta name="aei-build-id" content="ac7ae64a6fc49259c2187d1351cb95207c29fcc0">
+<meta name="aei-build-id" content="all-exam-india-cache-admin-fix-20261120-01">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SSC GD – PYQ & Mock Test | All Exam India</title>
-<meta name="description" content="SSC GD previous-year paper practice, year-wise sets and mock tests on All Exam India.">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>ALL EXAM INDIA – Free Mock Tests, PYQ & Solutions</title>
+<meta name="description" content="ALL EXAM INDIA: free exam-wise mock tests, previous year questions, solutions and study resources for competitive exams.">
 
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://prajwaltarare7-oss.github.io/all-exam-india/">
-<meta name="application-name" content="SSC GD – All Exam India">
+<meta name="application-name" content="ALL EXAM INDIA">
 <meta name="theme-color" content="#101b35">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="SSC GD | All Exam India">
-<meta property="og:title" content="SSC GD – PYQ & Mock Test | All Exam India">
-<meta property="og:description" content="SSC GD year-wise PYQ practice and mock tests.">
+<meta property="og:site_name" content="ALL EXAM INDIA">
+<meta property="og:title" content="ALL EXAM INDIA – Free Mock Tests, PYQ & Solutions">
+<meta property="og:description" content="Free exam-wise mock tests, previous year questions and solutions for competitive exams.">
 <meta property="og:url" content="https://prajwaltarare7-oss.github.io/all-exam-india/">
 <meta property="og:locale" content="mr_IN">
 <meta name="twitter:card" content="summary">
@@ -30,8 +33,8 @@
   "description": "Free online mock tests, previous year question practice and exam preparation resources for SSC and other competitive exams."
 }
 </script>
-<meta name="twitter:title" content="All Exam India – Free SSC Mock Tests, PYQ Practice &amp; Exam Preparation">
-<meta name="twitter:description" content="Prepare for SSC and other competitive exams with free online mock tests, previous year question (PYQ) practice, exam-wise study resources and solutions on All Exam India.">
+<meta name="twitter:title" content="ALL EXAM INDIA – Free Mock Tests, PYQ & Solutions">
+<meta name="twitter:description" content="Prepare for competitive exams with free mock tests, previous year questions, exam-wise study resources and step-by-step solutions.">
 
 <style>
 :root{--navy:#101b35;--blue:#315ee8;--cyan:#25b8c8;--ink:#17233d;--muted:#68748b;--paper:#f5f7fc;--line:#e4e9f2}
@@ -2364,17 +2367,10 @@ if (typeof originalSubmit === "function") {
 }
 
 const style = document.createElement("style");
-style.textContent = "#aeiAdminCard input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:10px;margin:5px 0 12px}#aeiAdminStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}#aeiAdminStats .stat{background:#f1f5ff;padding:14px;border-radius:12px}#aeiAdminStats b{display:block;font-size:25px;color:#244fc5}#aeiAdminStatus{white-space:pre-wrap}";
+style.textContent = "#aeiAdminCard [hidden]{display:none!important}#aeiAdminCard input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:10px;margin:5px 0 12px}#aeiAdminStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}#aeiAdminStats .stat{background:#f1f5ff;padding:14px;border-radius:12px}#aeiAdminStats b{display:block;font-size:25px;color:#244fc5}#aeiAdminStatus{white-space:pre-wrap}";
 document.head.appendChild(style);
 
-const settingsTitle = document.querySelector("#settings h2");
-if (settingsTitle && !document.getElementById("aeiAdminCard")) {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.id = "aeiAdminCard";
-  card.innerHTML = '<h3>🔐 Admin Activity Dashboard</h3><p>फक्त अधिकृत Admin प्रवेश करू शकतो.</p><label for="aeiAdminEmail">Admin Email</label><input id="aeiAdminEmail" type="email" autocomplete="username" placeholder="Admin email"><label for="aeiAdminPassword">Firebase Admin Password</label><input id="aeiAdminPassword" type="password" autocomplete="current-password" placeholder="Firebase password"><button class="primary" id="aeiAdminLogin">Admin Login</button> <button class="primary" id="aeiAdminLogout" style="display:none">Logout</button><p id="aeiAdminStatus" class="small-note" aria-live="polite">Dashboard पाहण्यासाठी Admin Login करा.</p><div id="aeiAdminPanel" style="display:none"><div id="aeiAdminStats"></div><h3>Activity Summary</h3><div id="aeiAdminBreakdown"></div><button class="primary" id="aeiAdminRefresh">Refresh Dashboard</button><p class="small-note">हे browser events वर आधारित अंदाजे आकडे आहेत; student names, phone numbers किंवा answers गोळा केले जात नाहीत.</p></div>';
-  settingsTitle.insertAdjacentElement("afterend", card);
-}
+// Admin dashboard markup is defined once in the Settings HTML above.
 const el = id => document.getElementById(id);
 function setStatus(t) { if (el("aeiAdminStatus")) el("aeiAdminStatus").textContent = t; }
 async function loadDashboard() {
@@ -2414,22 +2410,34 @@ async function loadDashboard() {
 }
 function showAdmin(user) {
   const ok = !!user && user.uid === ADMIN_UID;
-  if (el("aeiAdminPanel")) el("aeiAdminPanel").style.display = ok ? "block" : "none";
-  if (el("aeiAdminLogout")) el("aeiAdminLogout").style.display = ok ? "inline-block" : "none";
-  if (el("aeiAdminLogin")) el("aeiAdminLogin").style.display = ok ? "none" : "inline-block";
+  const panel = el("aeiAdminPanel");
+  const login = el("aeiAdminLogin");
+  const logout = el("aeiAdminLogout");
+  if (panel) panel.hidden = !ok;
+  if (login) login.hidden = ok;
+  if (logout) logout.hidden = !ok;
   ["aeiAdminEmail","aeiAdminPassword"].forEach(id => {
     const field = el(id);
     const label = document.querySelector('label[for="' + id + '"]');
-    if (field) field.style.display = ok ? "none" : "block";
-    if (label) label.style.display = ok ? "none" : "block";
+    if (field) {
+      field.hidden = ok;
+      if (ok) field.value = "";
+    }
+    if (label) label.hidden = ok;
   });
   if (ok) {
-    if (el("aeiAdminEmail")) el("aeiAdminEmail").value = "";
-    if (el("aeiAdminPassword")) el("aeiAdminPassword").value = "";
+    setStatus("Admin Login यशस्वी. Dashboard अद्ययावत करत आहे...");
     loadDashboard();
-  } else if (user) {
-    signOut(auth);
-    setStatus("हा Account Admin म्हणून अधिकृत नाही.");
+  } else {
+    if (panel) panel.hidden = true;
+    if (logout) logout.hidden = true;
+    if (login) login.hidden = false;
+    if (user) {
+      signOut(auth);
+      setStatus("हा Account Admin म्हणून अधिकृत नाही.");
+    } else {
+      setStatus("Dashboard पाहण्यासाठी Admin Login करा.");
+    }
   }
 }
 onAuthStateChanged(auth, showAdmin);
