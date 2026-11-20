@@ -2475,5 +2475,24 @@ el("aeiAdminLogout")?.addEventListener("click", () => signOut(auth));
 el("aeiAdminRefresh")?.addEventListener("click", loadDashboard);
 </script>
 
+<script>
+/* Independent owner-entry reveal: does not depend on Firebase module execution. */
+(function () {
+  if (new URLSearchParams(window.location.search).get("admin") !== "1") return;
+  document.body.classList.add("aei-admin-entry");
+  var card = document.getElementById("aeiAdminCard");
+  if (card) {
+    card.style.setProperty("display", "block", "important");
+    card.style.setProperty("visibility", "visible", "important");
+    card.style.setProperty("opacity", "1", "important");
+  }
+  var settings = document.getElementById("settings");
+  if (settings) {
+    document.querySelectorAll(".page").forEach(function (page) { page.classList.remove("active"); });
+    settings.classList.add("active");
+  }
+})();
+</script>
+
 </body>
 </html>
