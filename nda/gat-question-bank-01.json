@@ -2,9 +2,9 @@
   "exam": "NDA",
   "paper": "GAT",
   "mock": 1,
-  "status": "in_progress",
+  "status": "complete",
   "target_questions": 150,
-  "completed_questions": 20,
+  "completed_questions": 150,
   "language_modes": [
     "en",
     "hi"
@@ -554,6 +554,3516 @@
       "answer": 1,
       "solution_en": "Most atmospheric ozone is concentrated in the stratosphere.",
       "solution_hi": "वायुमंडलीय ओजोन का अधिकांश भाग समतापमंडल में केंद्रित होता है."
+    },
+    {
+      "id": 21,
+      "subject": "Physics",
+      "en": "The SI unit of power is:",
+      "hi": "शक्ति की SI इकाई है:",
+      "options": [
+        [
+          "Watt",
+          "वाट"
+        ],
+        [
+          "Joule",
+          "जूल"
+        ],
+        [
+          "Newton",
+          "न्यूटन"
+        ],
+        [
+          "Pascal",
+          "पास्कल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Power is work done per unit time; its SI unit is watt.",
+      "solution_hi": "शक्ति प्रति इकाई समय में किया गया कार्य है; इसकी SI इकाई वाट है।"
+    },
+    {
+      "id": 22,
+      "subject": "Physics",
+      "en": "Which quantity is measured in coulombs?",
+      "hi": "किस राशि को कूलॉम में मापा जाता है?",
+      "options": [
+        [
+          "Electric charge",
+          "विद्युत आवेश"
+        ],
+        [
+          "Current",
+          "विद्युत धारा"
+        ],
+        [
+          "Potential difference",
+          "विभवांतर"
+        ],
+        [
+          "Resistance",
+          "प्रतिरोध"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Electric charge is measured in coulombs.",
+      "solution_hi": "विद्युत आवेश को कूलॉम में मापा जाता है।"
+    },
+    {
+      "id": 23,
+      "subject": "Physics",
+      "en": "A plane mirror forms an image that is:",
+      "hi": "समतल दर्पण द्वारा बना प्रतिबिंब होता है:",
+      "options": [
+        [
+          "Virtual and erect",
+          "आभासी और सीधा"
+        ],
+        [
+          "Real and inverted",
+          "वास्तविक और उल्टा"
+        ],
+        [
+          "Real and erect",
+          "वास्तविक और सीधा"
+        ],
+        [
+          "Virtual and inverted",
+          "आभासी और उल्टा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A plane mirror forms a virtual, erect image of the same size.",
+      "solution_hi": "समतल दर्पण समान आकार का आभासी और सीधा प्रतिबिंब बनाता है।"
+    },
+    {
+      "id": 24,
+      "subject": "Physics",
+      "en": "Which instrument measures atmospheric pressure?",
+      "hi": "वायुमंडलीय दाब मापने का यंत्र कौन-सा है?",
+      "options": [
+        [
+          "Barometer",
+          "बैरोमीटर"
+        ],
+        [
+          "Thermometer",
+          "थर्मामीटर"
+        ],
+        [
+          "Ammeter",
+          "अमीटर"
+        ],
+        [
+          "Hygrometer",
+          "आर्द्रतामापी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A barometer measures atmospheric pressure.",
+      "solution_hi": "बैरोमीटर वायुमंडलीय दाब मापता है।"
+    },
+    {
+      "id": 25,
+      "subject": "Physics",
+      "en": "Sound cannot travel through:",
+      "hi": "ध्वनि किस माध्यम से नहीं चल सकती?",
+      "options": [
+        [
+          "Vacuum",
+          "निर्वात"
+        ],
+        [
+          "Water",
+          "जल"
+        ],
+        [
+          "Steel",
+          "इस्पात"
+        ],
+        [
+          "Air",
+          "वायु"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Sound needs a material medium, so it cannot travel through vacuum.",
+      "solution_hi": "ध्वनि को भौतिक माध्यम चाहिए, इसलिए यह निर्वात में नहीं चलती।"
+    },
+    {
+      "id": 26,
+      "subject": "Physics",
+      "en": "The approximate speed of light in vacuum is:",
+      "hi": "निर्वात में प्रकाश की लगभग चाल है:",
+      "options": [
+        [
+          "3 × 10⁸ m/s",
+          "3 × 10⁸ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁶ m/s",
+          "3 × 10⁶ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁴ m/s",
+          "3 × 10⁴ मीटर/सेकंड"
+        ],
+        [
+          "300 m/s",
+          "300 मीटर/सेकंड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Light travels at approximately 3 × 10⁸ metres per second in vacuum.",
+      "solution_hi": "निर्वात में प्रकाश लगभग 3 × 10⁸ मीटर प्रति सेकंड चलता है।"
+    },
+    {
+      "id": 27,
+      "subject": "Physics",
+      "en": "Which lens is used to correct myopia?",
+      "hi": "निकट दृष्टिदोष को ठीक करने के लिए कौन-सा लेंस उपयोग होता है?",
+      "options": [
+        [
+          "Concave lens",
+          "अवतल लेंस"
+        ],
+        [
+          "Convex lens",
+          "उत्तल लेंस"
+        ],
+        [
+          "Cylindrical lens only",
+          "केवल बेलनाकार लेंस"
+        ],
+        [
+          "Plane glass",
+          "समतल काँच"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A concave lens diverges light and corrects myopia.",
+      "solution_hi": "अवतल लेंस प्रकाश को अपसारित करके निकट दृष्टिदोष ठीक करता है।"
+    },
+    {
+      "id": 28,
+      "subject": "Physics",
+      "en": "The unit of electrical resistance is:",
+      "hi": "विद्युत प्रतिरोध की इकाई है:",
+      "options": [
+        [
+          "Ohm",
+          "ओम"
+        ],
+        [
+          "Volt",
+          "वोल्ट"
+        ],
+        [
+          "Ampere",
+          "एम्पियर"
+        ],
+        [
+          "Coulomb",
+          "कूलॉम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Resistance is measured in ohms.",
+      "solution_hi": "प्रतिरोध ओम में मापा जाता है।"
+    },
+    {
+      "id": 29,
+      "subject": "Physics",
+      "en": "Which law states that pressure is inversely proportional to volume at constant temperature?",
+      "hi": "कौन-सा नियम बताता है कि स्थिर ताप पर दाब आयतन के व्युत्क्रमानुपाती है?",
+      "options": [
+        [
+          "Boyle's law",
+          "बॉयल का नियम"
+        ],
+        [
+          "Charles's law",
+          "चार्ल्स का नियम"
+        ],
+        [
+          "Ohm's law",
+          "ओम का नियम"
+        ],
+        [
+          "Hooke's law",
+          "हुक का नियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Boyle's law states that pressure times volume is constant at fixed temperature.",
+      "solution_hi": "बॉयल के नियम के अनुसार स्थिर ताप पर दाब और आयतन का गुणनफल स्थिर रहता है।"
+    },
+    {
+      "id": 30,
+      "subject": "Physics",
+      "en": "The device that converts electrical energy into mechanical energy is:",
+      "hi": "विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलने वाला उपकरण है:",
+      "options": [
+        [
+          "Electric motor",
+          "विद्युत मोटर"
+        ],
+        [
+          "Generator",
+          "जनरेटर"
+        ],
+        [
+          "Transformer",
+          "ट्रांसफॉर्मर"
+        ],
+        [
+          "Cell",
+          "सेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "An electric motor converts electrical energy into mechanical energy.",
+      "solution_hi": "विद्युत मोटर विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलती है।"
+    },
+    {
+      "id": 31,
+      "subject": "Chemistry",
+      "en": "The chemical formula of common salt is:",
+      "hi": "साधारण नमक का रासायनिक सूत्र है:",
+      "options": [
+        [
+          "NaCl",
+          "NaCl"
+        ],
+        [
+          "NaOH",
+          "NaOH"
+        ],
+        [
+          "KClO₃",
+          "KClO₃"
+        ],
+        [
+          "CaCO₃",
+          "CaCO₃"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Common salt is sodium chloride, NaCl.",
+      "solution_hi": "साधारण नमक सोडियम क्लोराइड, NaCl है।"
+    },
+    {
+      "id": 32,
+      "subject": "Chemistry",
+      "en": "The gas commonly used in fire extinguishers is:",
+      "hi": "अग्निशामक यंत्रों में सामान्यतः कौन-सी गैस उपयोग होती है?",
+      "options": [
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Chlorine",
+          "क्लोरीन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbon dioxide helps smother flames by displacing oxygen.",
+      "solution_hi": "कार्बन डाइऑक्साइड ऑक्सीजन को हटाकर आग बुझाने में मदद करती है।"
+    },
+    {
+      "id": 33,
+      "subject": "Chemistry",
+      "en": "The pH of a neutral solution at 25°C is:",
+      "hi": "25°C पर उदासीन विलयन का pH है:",
+      "options": [
+        [
+          "7",
+          "7"
+        ],
+        [
+          "0",
+          "0"
+        ],
+        [
+          "14",
+          "14"
+        ],
+        [
+          "1",
+          "1"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "At 25°C, a neutral aqueous solution has pH 7.",
+      "solution_hi": "25°C पर उदासीन जलीय विलयन का pH 7 होता है।"
+    },
+    {
+      "id": 34,
+      "subject": "Chemistry",
+      "en": "Which metal is liquid at ordinary room temperature?",
+      "hi": "सामान्य कमरे के तापमान पर कौन-सी धातु द्रव होती है?",
+      "options": [
+        [
+          "Mercury",
+          "पारा"
+        ],
+        [
+          "Iron",
+          "लोहा"
+        ],
+        [
+          "Aluminium",
+          "एल्युमिनियम"
+        ],
+        [
+          "Copper",
+          "ताँबा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Mercury is liquid at ordinary room temperature.",
+      "solution_hi": "पारा सामान्य कमरे के तापमान पर द्रव होता है।"
+    },
+    {
+      "id": 35,
+      "subject": "Chemistry",
+      "en": "The hardest naturally occurring substance is:",
+      "hi": "प्रकृति में पाया जाने वाला सबसे कठोर पदार्थ है:",
+      "options": [
+        [
+          "Diamond",
+          "हीरा"
+        ],
+        [
+          "Graphite",
+          "ग्रेफाइट"
+        ],
+        [
+          "Quartz",
+          "क्वार्ट्ज"
+        ],
+        [
+          "Sulphur",
+          "गंधक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Diamond has a very rigid three-dimensional covalent network.",
+      "solution_hi": "हीरे में अत्यंत मजबूत त्रि-आयामी सहसंयोजक जाल होता है।"
+    },
+    {
+      "id": 36,
+      "subject": "Chemistry",
+      "en": "Which gas turns limewater milky?",
+      "hi": "कौन-सी गैस चूने के पानी को दूधिया करती है?",
+      "options": [
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbon dioxide forms insoluble calcium carbonate in limewater.",
+      "solution_hi": "कार्बन डाइऑक्साइड चूने के पानी में अघुलनशील कैल्शियम कार्बोनेट बनाती है।"
+    },
+    {
+      "id": 37,
+      "subject": "Chemistry",
+      "en": "The process of coating iron with zinc is called:",
+      "hi": "लोहे पर जस्ते की परत चढ़ाने की प्रक्रिया कहलाती है:",
+      "options": [
+        [
+          "Galvanisation",
+          "गैल्वनीकरण"
+        ],
+        [
+          " distillation",
+          "आसवन"
+        ],
+        [
+          "Crystallisation",
+          "क्रिस्टलीकरण"
+        ],
+        [
+          "Sublimation",
+          "ऊर्ध्वपातन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Galvanisation coats iron or steel with zinc to reduce corrosion.",
+      "solution_hi": "गैल्वनीकरण में जंग कम करने के लिए लोहे या इस्पात पर जस्ते की परत चढ़ाई जाती है।"
+    },
+    {
+      "id": 38,
+      "subject": "Chemistry",
+      "en": "Which element is essential in the manufacture of ammonia by the Haber process?",
+      "hi": "हैबर प्रक्रिया द्वारा अमोनिया बनाने में कौन-सा तत्व आवश्यक है?",
+      "options": [
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Neon",
+          "निऑन"
+        ],
+        [
+          "Argon",
+          "आर्गन"
+        ],
+        [
+          "Helium",
+          "हीलियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Haber process combines nitrogen with hydrogen to form ammonia.",
+      "solution_hi": "हैबर प्रक्रिया में नाइट्रोजन और हाइड्रोजन मिलकर अमोनिया बनाते हैं।"
+    },
+    {
+      "id": 39,
+      "subject": "General Science",
+      "en": "Which blood cells help in clotting?",
+      "hi": "रक्त का थक्का जमाने में कौन-सी कोशिकाएँ मदद करती हैं?",
+      "options": [
+        [
+          "Platelets",
+          "प्लेटलेट्स"
+        ],
+        [
+          "Red blood cells",
+          "लाल रक्त कोशिकाएँ"
+        ],
+        [
+          "Neurons",
+          "तंत्रिका कोशिकाएँ"
+        ],
+        [
+          "Lymphocytes only",
+          "केवल लिम्फोसाइट"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Platelets help form clots and reduce blood loss.",
+      "solution_hi": "प्लेटलेट्स थक्का बनाने और रक्तस्राव कम करने में मदद करते हैं।"
+    },
+    {
+      "id": 40,
+      "subject": "General Science",
+      "en": "Which part of the human brain controls balance and coordination?",
+      "hi": "मानव मस्तिष्क का कौन-सा भाग संतुलन और समन्वय नियंत्रित करता है?",
+      "options": [
+        [
+          "Cerebellum",
+          "अनुमस्तिष्क"
+        ],
+        [
+          "Cerebrum",
+          "प्रमस्तिष्क"
+        ],
+        [
+          "Medulla",
+          "मेडुला"
+        ],
+        [
+          "Hypothalamus",
+          "हाइपोथैलेमस"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The cerebellum coordinates movement, posture and balance.",
+      "solution_hi": "अनुमस्तिष्क गति, मुद्रा और संतुलन का समन्वय करता है।"
+    },
+    {
+      "id": 41,
+      "subject": "General Science",
+      "en": "Which organ produces insulin?",
+      "hi": "इंसुलिन किस अंग से बनता है?",
+      "options": [
+        [
+          "Pancreas",
+          "अग्न्याशय"
+        ],
+        [
+          "Liver",
+          "यकृत"
+        ],
+        [
+          "Kidney",
+          "गुर्दा"
+        ],
+        [
+          "Spleen",
+          "प्लीहा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Insulin is produced by beta cells in the pancreatic islets.",
+      "solution_hi": "इंसुलिन अग्न्याशय के द्वीपों की बीटा कोशिकाओं से बनता है।"
+    },
+    {
+      "id": 42,
+      "subject": "General Science",
+      "en": "Deficiency of iodine may cause:",
+      "hi": "आयोडीन की कमी से हो सकता है:",
+      "options": [
+        [
+          "Goitre",
+          "घेंघा"
+        ],
+        [
+          "Scurvy",
+          "स्कर्वी"
+        ],
+        [
+          "Rickets",
+          "रिकेट्स"
+        ],
+        [
+          "Anaemia",
+          "रक्ताल्पता"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Iodine deficiency can enlarge the thyroid gland and cause goitre.",
+      "solution_hi": "आयोडीन की कमी से थायरॉयड ग्रंथि बढ़ सकती है और घेंघा हो सकता है।"
+    },
+    {
+      "id": 43,
+      "subject": "General Science",
+      "en": "Which vitamin is produced in the skin in sunlight?",
+      "hi": "धूप में त्वचा में कौन-सा विटामिन बनता है?",
+      "options": [
+        [
+          "Vitamin D",
+          "विटामिन D"
+        ],
+        [
+          "Vitamin B12",
+          "विटामिन B12"
+        ],
+        [
+          "Vitamin C",
+          "विटामिन C"
+        ],
+        [
+          "Vitamin K",
+          "विटामिन K"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "UVB light helps the skin synthesise vitamin D.",
+      "solution_hi": "UVB किरणें त्वचा में विटामिन D के निर्माण में मदद करती हैं।"
+    },
+    {
+      "id": 44,
+      "subject": "General Science",
+      "en": "The basic unit of heredity is:",
+      "hi": "आनुवंशिकता की मूल इकाई है:",
+      "options": [
+        [
+          "Gene",
+          "जीन"
+        ],
+        [
+          "Cell",
+          "कोशिका"
+        ],
+        [
+          "Tissue",
+          "ऊतक"
+        ],
+        [
+          "Organ",
+          "अंग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A gene is a segment of DNA that carries hereditary information.",
+      "solution_hi": "जीन DNA का वह भाग है जो आनुवंशिक सूचना रखता है।"
+    },
+    {
+      "id": 45,
+      "subject": "General Science",
+      "en": "Which blood group is called the universal red-cell donor?",
+      "hi": "किस रक्त समूह को लाल रक्त कोशिकाओं का सार्वत्रिक दाता कहा जाता है?",
+      "options": [
+        [
+          "O negative",
+          "O ऋणात्मक"
+        ],
+        [
+          "AB positive",
+          "AB धनात्मक"
+        ],
+        [
+          "A positive",
+          "A धनात्मक"
+        ],
+        [
+          "B negative",
+          "B ऋणात्मक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "O negative red cells lack A, B and Rh(D) antigens.",
+      "solution_hi": "O ऋणात्मक लाल रक्त कोशिकाओं में A, B और Rh(D) प्रतिजन नहीं होते।"
+    },
+    {
+      "id": 46,
+      "subject": "History",
+      "en": "Who was the first Governor-General of independent India?",
+      "hi": "स्वतंत्र भारत के पहले गवर्नर-जनरल कौन थे?",
+      "options": [
+        [
+          "Lord Mountbatten",
+          "लॉर्ड माउंटबेटन"
+        ],
+        [
+          "C. Rajagopalachari",
+          "सी. राजगोपालाचारी"
+        ],
+        [
+          "Warren Hastings",
+          "वॉरेन हेस्टिंग्स"
+        ],
+        [
+          "Lord Wavell",
+          "लॉर्ड वेवेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Lord Mountbatten served as the first Governor-General after independence.",
+      "solution_hi": "लॉर्ड माउंटबेटन ने स्वतंत्रता के बाद पहले गवर्नर-जनरल के रूप में कार्य किया।"
+    },
+    {
+      "id": 47,
+      "subject": "History",
+      "en": "The Quit India Movement began in which year?",
+      "hi": "भारत छोड़ो आंदोलन किस वर्ष शुरू हुआ?",
+      "options": [
+        [
+          "1942",
+          "1942"
+        ],
+        [
+          "1930",
+          "1930"
+        ],
+        [
+          "1919",
+          "1919"
+        ],
+        [
+          "1947",
+          "1947"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Quit India resolution was adopted in August 1942.",
+      "solution_hi": "भारत छोड़ो प्रस्ताव अगस्त 1942 में स्वीकार किया गया था।"
+    },
+    {
+      "id": 48,
+      "subject": "History",
+      "en": "Who founded the Indian National Congress in 1885 with other leaders?",
+      "hi": "अन्य नेताओं के साथ 1885 में भारतीय राष्ट्रीय कांग्रेस की स्थापना किसने की?",
+      "options": [
+        [
+          "A. O. Hume",
+          "ए. ओ. ह्यूम"
+        ],
+        [
+          "Bal Gangadhar Tilak",
+          "बाल गंगाधर तिलक"
+        ],
+        [
+          "Dadabhai Naoroji",
+          "दादाभाई नौरोजी"
+        ],
+        [
+          "Gopal Krishna Gokhale",
+          "गोपाल कृष्ण गोखले"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A. O. Hume played a leading role in founding the Congress in 1885.",
+      "solution_hi": "1885 में कांग्रेस की स्थापना में ए. ओ. ह्यूम की प्रमुख भूमिका थी।"
+    },
+    {
+      "id": 49,
+      "subject": "History",
+      "en": "Who was the first woman ruler of the Delhi Sultanate?",
+      "hi": "दिल्ली सल्तनत की पहली महिला शासक कौन थीं?",
+      "options": [
+        [
+          "Razia Sultan",
+          "रज़िया सुल्तान"
+        ],
+        [
+          "Nur Jahan",
+          "नूरजहाँ"
+        ],
+        [
+          "Chand Bibi",
+          "चाँद बीबी"
+        ],
+        [
+          "Jahanara",
+          "जहाँआरा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Razia Sultan ruled the Delhi Sultanate from 1236 to 1240.",
+      "solution_hi": "रज़िया सुल्तान ने 1236 से 1240 तक दिल्ली सल्तनत पर शासन किया।"
+    },
+    {
+      "id": 50,
+      "subject": "History",
+      "en": "The Jallianwala Bagh massacre took place in:",
+      "hi": "जलियाँवाला बाग हत्याकांड किस वर्ष हुआ?",
+      "options": [
+        [
+          "1919",
+          "1919"
+        ],
+        [
+          "1905",
+          "1905"
+        ],
+        [
+          "1922",
+          "1922"
+        ],
+        [
+          "1935",
+          "1935"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The massacre occurred on 13 April 1919 at Amritsar.",
+      "solution_hi": "यह हत्याकांड 13 अप्रैल 1919 को अमृतसर में हुआ था।"
+    },
+    {
+      "id": 51,
+      "subject": "Geography",
+      "en": "Which is the longest river flowing entirely within India?",
+      "hi": "पूरी तरह भारत में बहने वाली सबसे लंबी नदी कौन-सी है?",
+      "options": [
+        [
+          "Godavari",
+          "गोदावरी"
+        ],
+        [
+          "Ganga",
+          "गंगा"
+        ],
+        [
+          "Narmada",
+          "नर्मदा"
+        ],
+        [
+          "Krishna",
+          "कृष्णा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Godavari is the longest river whose course lies entirely within India.",
+      "solution_hi": "गोदावरी ऐसी सबसे लंबी नदी है जिसका प्रवाह पूरी तरह भारत में है।"
+    },
+    {
+      "id": 52,
+      "subject": "Geography",
+      "en": "The standard meridian of India is:",
+      "hi": "भारत की मानक मध्याह्न रेखा है:",
+      "options": [
+        [
+          "82°30′ E",
+          "82°30′ पूर्व"
+        ],
+        [
+          "75° E",
+          "75° पूर्व"
+        ],
+        [
+          "90° E",
+          "90° पूर्व"
+        ],
+        [
+          "68°7′ E",
+          "68°7′ पूर्व"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Indian Standard Time is based on 82°30′ east longitude.",
+      "solution_hi": "भारतीय मानक समय 82°30′ पूर्व देशांतर पर आधारित है।"
+    },
+    {
+      "id": 53,
+      "subject": "Geography",
+      "en": "Which soil is most suitable for cotton cultivation?",
+      "hi": "कपास की खेती के लिए कौन-सी मिट्टी सबसे उपयुक्त है?",
+      "options": [
+        [
+          "Black soil",
+          "काली मिट्टी"
+        ],
+        [
+          "Laterite soil",
+          "लैटराइट मिट्टी"
+        ],
+        [
+          "Desert soil",
+          "मरुस्थलीय मिट्टी"
+        ],
+        [
+          "Mountain soil",
+          "पर्वतीय मिट्टी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Black soil retains moisture and is well suited to cotton.",
+      "solution_hi": "काली मिट्टी नमी रोकती है और कपास के लिए उपयुक्त है।"
+    },
+    {
+      "id": 54,
+      "subject": "Geography",
+      "en": "Which layer of the atmosphere contains most weather phenomena?",
+      "hi": "वायुमंडल की किस परत में अधिकांश मौसमी घटनाएँ होती हैं?",
+      "options": [
+        [
+          "Troposphere",
+          "क्षोभमंडल"
+        ],
+        [
+          "Stratosphere",
+          "समतापमंडल"
+        ],
+        [
+          "Mesosphere",
+          "मध्यमंडल"
+        ],
+        [
+          "Exosphere",
+          "बहिर्मंडल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Most clouds and weather occur in the troposphere.",
+      "solution_hi": "अधिकांश बादल और मौसमी घटनाएँ क्षोभमंडल में होती हैं।"
+    },
+    {
+      "id": 55,
+      "subject": "Geography",
+      "en": "The largest plateau in India is:",
+      "hi": "भारत का सबसे बड़ा पठार है:",
+      "options": [
+        [
+          "Deccan Plateau",
+          "दक्कन का पठार"
+        ],
+        [
+          "Chota Nagpur Plateau",
+          "छोटानागपुर पठार"
+        ],
+        [
+          "Malwa Plateau",
+          "मालवा पठार"
+        ],
+        [
+          "Meghalaya Plateau",
+          "मेघालय पठार"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Deccan Plateau covers a large part of peninsular India.",
+      "solution_hi": "दक्कन का पठार प्रायद्वीपीय भारत के बड़े भाग में फैला है।"
+    },
+    {
+      "id": 56,
+      "subject": "Polity",
+      "en": "Who is the constitutional head of the Union of India?",
+      "hi": "भारत संघ का संवैधानिक प्रमुख कौन है?",
+      "options": [
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ],
+        [
+          "Chief Justice",
+          "मुख्य न्यायाधीश"
+        ],
+        [
+          "Speaker",
+          "अध्यक्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The President is the constitutional head of the Union executive.",
+      "solution_hi": "राष्ट्रपति संघ की कार्यपालिका के संवैधानिक प्रमुख हैं।"
+    },
+    {
+      "id": 57,
+      "subject": "Polity",
+      "en": "The minimum age to become a member of the Lok Sabha is:",
+      "hi": "लोकसभा का सदस्य बनने की न्यूनतम आयु है:",
+      "options": [
+        [
+          "25 years",
+          "25 वर्ष"
+        ],
+        [
+          "21 years",
+          "21 वर्ष"
+        ],
+        [
+          "30 years",
+          "30 वर्ष"
+        ],
+        [
+          "35 years",
+          "35 वर्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A Lok Sabha candidate must be at least 25 years old.",
+      "solution_hi": "लोकसभा उम्मीदवार की आयु कम से कम 25 वर्ष होनी चाहिए।"
+    },
+    {
+      "id": 58,
+      "subject": "Polity",
+      "en": "Which Article deals with equality before law?",
+      "hi": "कानून के समक्ष समानता किस अनुच्छेद में है?",
+      "options": [
+        [
+          "Article 14",
+          "अनुच्छेद 14"
+        ],
+        [
+          "Article 19",
+          "अनुच्छेद 19"
+        ],
+        [
+          "Article 21",
+          "अनुच्छेद 21"
+        ],
+        [
+          "Article 32",
+          "अनुच्छेद 32"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 14 guarantees equality before law and equal protection of laws.",
+      "solution_hi": "अनुच्छेद 14 कानून के समक्ष समानता और कानूनों के समान संरक्षण की गारंटी देता है।"
+    },
+    {
+      "id": 59,
+      "subject": "Polity",
+      "en": "Who presides over a joint sitting of Parliament?",
+      "hi": "संसद की संयुक्त बैठक की अध्यक्षता कौन करता है?",
+      "options": [
+        [
+          "Speaker of Lok Sabha",
+          "लोकसभा अध्यक्ष"
+        ],
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Vice-President",
+          "उपराष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Speaker of the Lok Sabha presides over a joint sitting.",
+      "solution_hi": "संसद की संयुक्त बैठक की अध्यक्षता लोकसभा अध्यक्ष करते हैं।"
+    },
+    {
+      "id": 60,
+      "subject": "Polity",
+      "en": "The Directive Principles of State Policy are in which part?",
+      "hi": "राज्य के नीति निदेशक तत्व किस भाग में हैं?",
+      "options": [
+        [
+          "Part IV",
+          "भाग IV"
+        ],
+        [
+          "Part III",
+          "भाग III"
+        ],
+        [
+          "Part IVA",
+          "भाग IVA"
+        ],
+        [
+          "Part V",
+          "भाग V"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Directive Principles are contained in Part IV of the Constitution.",
+      "solution_hi": "नीति निदेशक तत्व संविधान के भाग IV में हैं।"
+    },
+    {
+      "id": 61,
+      "subject": "Physics",
+      "en": "The SI unit of power is:",
+      "hi": "शक्ति की SI इकाई है:",
+      "options": [
+        [
+          "Watt",
+          "वाट"
+        ],
+        [
+          "Joule",
+          "जूल"
+        ],
+        [
+          "Newton",
+          "न्यूटन"
+        ],
+        [
+          "Pascal",
+          "पास्कल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Power is work done per unit time; its SI unit is watt.",
+      "solution_hi": "शक्ति प्रति इकाई समय में किया गया कार्य है; इसकी SI इकाई वाट है।"
+    },
+    {
+      "id": 62,
+      "subject": "Physics",
+      "en": "Which quantity is measured in coulombs?",
+      "hi": "किस राशि को कूलॉम में मापा जाता है?",
+      "options": [
+        [
+          "Electric charge",
+          "विद्युत आवेश"
+        ],
+        [
+          "Current",
+          "विद्युत धारा"
+        ],
+        [
+          "Potential difference",
+          "विभवांतर"
+        ],
+        [
+          "Resistance",
+          "प्रतिरोध"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Electric charge is measured in coulombs.",
+      "solution_hi": "विद्युत आवेश को कूलॉम में मापा जाता है।"
+    },
+    {
+      "id": 63,
+      "subject": "Physics",
+      "en": "A plane mirror forms an image that is:",
+      "hi": "समतल दर्पण द्वारा बना प्रतिबिंब होता है:",
+      "options": [
+        [
+          "Virtual and erect",
+          "आभासी और सीधा"
+        ],
+        [
+          "Real and inverted",
+          "वास्तविक और उल्टा"
+        ],
+        [
+          "Real and erect",
+          "वास्तविक और सीधा"
+        ],
+        [
+          "Virtual and inverted",
+          "आभासी और उल्टा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A plane mirror forms a virtual, erect image of the same size.",
+      "solution_hi": "समतल दर्पण समान आकार का आभासी और सीधा प्रतिबिंब बनाता है।"
+    },
+    {
+      "id": 64,
+      "subject": "Physics",
+      "en": "Which instrument measures atmospheric pressure?",
+      "hi": "वायुमंडलीय दाब मापने का यंत्र कौन-सा है?",
+      "options": [
+        [
+          "Barometer",
+          "बैरोमीटर"
+        ],
+        [
+          "Thermometer",
+          "थर्मामीटर"
+        ],
+        [
+          "Ammeter",
+          "अमीटर"
+        ],
+        [
+          "Hygrometer",
+          "आर्द्रतामापी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A barometer measures atmospheric pressure.",
+      "solution_hi": "बैरोमीटर वायुमंडलीय दाब मापता है।"
+    },
+    {
+      "id": 65,
+      "subject": "Physics",
+      "en": "Sound cannot travel through:",
+      "hi": "ध्वनि किस माध्यम से नहीं चल सकती?",
+      "options": [
+        [
+          "Vacuum",
+          "निर्वात"
+        ],
+        [
+          "Water",
+          "जल"
+        ],
+        [
+          "Steel",
+          "इस्पात"
+        ],
+        [
+          "Air",
+          "वायु"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Sound needs a material medium, so it cannot travel through vacuum.",
+      "solution_hi": "ध्वनि को भौतिक माध्यम चाहिए, इसलिए यह निर्वात में नहीं चलती।"
+    },
+    {
+      "id": 66,
+      "subject": "Physics",
+      "en": "The approximate speed of light in vacuum is:",
+      "hi": "निर्वात में प्रकाश की लगभग चाल है:",
+      "options": [
+        [
+          "3 × 10⁸ m/s",
+          "3 × 10⁸ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁶ m/s",
+          "3 × 10⁶ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁴ m/s",
+          "3 × 10⁴ मीटर/सेकंड"
+        ],
+        [
+          "300 m/s",
+          "300 मीटर/सेकंड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Light travels at approximately 3 × 10⁸ metres per second in vacuum.",
+      "solution_hi": "निर्वात में प्रकाश लगभग 3 × 10⁸ मीटर प्रति सेकंड चलता है।"
+    },
+    {
+      "id": 67,
+      "subject": "Physics",
+      "en": "Which lens is used to correct myopia?",
+      "hi": "निकट दृष्टिदोष को ठीक करने के लिए कौन-सा लेंस उपयोग होता है?",
+      "options": [
+        [
+          "Concave lens",
+          "अवतल लेंस"
+        ],
+        [
+          "Convex lens",
+          "उत्तल लेंस"
+        ],
+        [
+          "Cylindrical lens only",
+          "केवल बेलनाकार लेंस"
+        ],
+        [
+          "Plane glass",
+          "समतल काँच"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A concave lens diverges light and corrects myopia.",
+      "solution_hi": "अवतल लेंस प्रकाश को अपसारित करके निकट दृष्टिदोष ठीक करता है।"
+    },
+    {
+      "id": 68,
+      "subject": "Physics",
+      "en": "The unit of electrical resistance is:",
+      "hi": "विद्युत प्रतिरोध की इकाई है:",
+      "options": [
+        [
+          "Ohm",
+          "ओम"
+        ],
+        [
+          "Volt",
+          "वोल्ट"
+        ],
+        [
+          "Ampere",
+          "एम्पियर"
+        ],
+        [
+          "Coulomb",
+          "कूलॉम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Resistance is measured in ohms.",
+      "solution_hi": "प्रतिरोध ओम में मापा जाता है।"
+    },
+    {
+      "id": 69,
+      "subject": "Physics",
+      "en": "Which law states that pressure is inversely proportional to volume at constant temperature?",
+      "hi": "कौन-सा नियम बताता है कि स्थिर ताप पर दाब आयतन के व्युत्क्रमानुपाती है?",
+      "options": [
+        [
+          "Boyle's law",
+          "बॉयल का नियम"
+        ],
+        [
+          "Charles's law",
+          "चार्ल्स का नियम"
+        ],
+        [
+          "Ohm's law",
+          "ओम का नियम"
+        ],
+        [
+          "Hooke's law",
+          "हुक का नियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Boyle's law states that pressure times volume is constant at fixed temperature.",
+      "solution_hi": "बॉयल के नियम के अनुसार स्थिर ताप पर दाब और आयतन का गुणनफल स्थिर रहता है।"
+    },
+    {
+      "id": 70,
+      "subject": "Physics",
+      "en": "The device that converts electrical energy into mechanical energy is:",
+      "hi": "विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलने वाला उपकरण है:",
+      "options": [
+        [
+          "Electric motor",
+          "विद्युत मोटर"
+        ],
+        [
+          "Generator",
+          "जनरेटर"
+        ],
+        [
+          "Transformer",
+          "ट्रांसफॉर्मर"
+        ],
+        [
+          "Cell",
+          "सेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "An electric motor converts electrical energy into mechanical energy.",
+      "solution_hi": "विद्युत मोटर विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलती है।"
+    },
+    {
+      "id": 71,
+      "subject": "Chemistry",
+      "en": "The chemical formula of common salt is:",
+      "hi": "साधारण नमक का रासायनिक सूत्र है:",
+      "options": [
+        [
+          "NaCl",
+          "NaCl"
+        ],
+        [
+          "NaOH",
+          "NaOH"
+        ],
+        [
+          "KClO₃",
+          "KClO₃"
+        ],
+        [
+          "CaCO₃",
+          "CaCO₃"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Common salt is sodium chloride, NaCl.",
+      "solution_hi": "साधारण नमक सोडियम क्लोराइड, NaCl है।"
+    },
+    {
+      "id": 72,
+      "subject": "Chemistry",
+      "en": "The gas commonly used in fire extinguishers is:",
+      "hi": "अग्निशामक यंत्रों में सामान्यतः कौन-सी गैस उपयोग होती है?",
+      "options": [
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Chlorine",
+          "क्लोरीन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbon dioxide helps smother flames by displacing oxygen.",
+      "solution_hi": "कार्बन डाइऑक्साइड ऑक्सीजन को हटाकर आग बुझाने में मदद करती है।"
+    },
+    {
+      "id": 73,
+      "subject": "Chemistry",
+      "en": "The pH of a neutral solution at 25°C is:",
+      "hi": "25°C पर उदासीन विलयन का pH है:",
+      "options": [
+        [
+          "7",
+          "7"
+        ],
+        [
+          "0",
+          "0"
+        ],
+        [
+          "14",
+          "14"
+        ],
+        [
+          "1",
+          "1"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "At 25°C, a neutral aqueous solution has pH 7.",
+      "solution_hi": "25°C पर उदासीन जलीय विलयन का pH 7 होता है।"
+    },
+    {
+      "id": 74,
+      "subject": "Chemistry",
+      "en": "Which metal is liquid at ordinary room temperature?",
+      "hi": "सामान्य कमरे के तापमान पर कौन-सी धातु द्रव होती है?",
+      "options": [
+        [
+          "Mercury",
+          "पारा"
+        ],
+        [
+          "Iron",
+          "लोहा"
+        ],
+        [
+          "Aluminium",
+          "एल्युमिनियम"
+        ],
+        [
+          "Copper",
+          "ताँबा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Mercury is liquid at ordinary room temperature.",
+      "solution_hi": "पारा सामान्य कमरे के तापमान पर द्रव होता है।"
+    },
+    {
+      "id": 75,
+      "subject": "Chemistry",
+      "en": "The hardest naturally occurring substance is:",
+      "hi": "प्रकृति में पाया जाने वाला सबसे कठोर पदार्थ है:",
+      "options": [
+        [
+          "Diamond",
+          "हीरा"
+        ],
+        [
+          "Graphite",
+          "ग्रेफाइट"
+        ],
+        [
+          "Quartz",
+          "क्वार्ट्ज"
+        ],
+        [
+          "Sulphur",
+          "गंधक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Diamond has a very rigid three-dimensional covalent network.",
+      "solution_hi": "हीरे में अत्यंत मजबूत त्रि-आयामी सहसंयोजक जाल होता है।"
+    },
+    {
+      "id": 76,
+      "subject": "Chemistry",
+      "en": "Which gas turns limewater milky?",
+      "hi": "कौन-सी गैस चूने के पानी को दूधिया करती है?",
+      "options": [
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbon dioxide forms insoluble calcium carbonate in limewater.",
+      "solution_hi": "कार्बन डाइऑक्साइड चूने के पानी में अघुलनशील कैल्शियम कार्बोनेट बनाती है।"
+    },
+    {
+      "id": 77,
+      "subject": "Chemistry",
+      "en": "The process of coating iron with zinc is called:",
+      "hi": "लोहे पर जस्ते की परत चढ़ाने की प्रक्रिया कहलाती है:",
+      "options": [
+        [
+          "Galvanisation",
+          "गैल्वनीकरण"
+        ],
+        [
+          " distillation",
+          "आसवन"
+        ],
+        [
+          "Crystallisation",
+          "क्रिस्टलीकरण"
+        ],
+        [
+          "Sublimation",
+          "ऊर्ध्वपातन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Galvanisation coats iron or steel with zinc to reduce corrosion.",
+      "solution_hi": "गैल्वनीकरण में जंग कम करने के लिए लोहे या इस्पात पर जस्ते की परत चढ़ाई जाती है।"
+    },
+    {
+      "id": 78,
+      "subject": "Chemistry",
+      "en": "Which element is essential in the manufacture of ammonia by the Haber process?",
+      "hi": "हैबर प्रक्रिया द्वारा अमोनिया बनाने में कौन-सा तत्व आवश्यक है?",
+      "options": [
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Neon",
+          "निऑन"
+        ],
+        [
+          "Argon",
+          "आर्गन"
+        ],
+        [
+          "Helium",
+          "हीलियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Haber process combines nitrogen with hydrogen to form ammonia.",
+      "solution_hi": "हैबर प्रक्रिया में नाइट्रोजन और हाइड्रोजन मिलकर अमोनिया बनाते हैं।"
+    },
+    {
+      "id": 79,
+      "subject": "General Science",
+      "en": "Which blood cells help in clotting?",
+      "hi": "रक्त का थक्का जमाने में कौन-सी कोशिकाएँ मदद करती हैं?",
+      "options": [
+        [
+          "Platelets",
+          "प्लेटलेट्स"
+        ],
+        [
+          "Red blood cells",
+          "लाल रक्त कोशिकाएँ"
+        ],
+        [
+          "Neurons",
+          "तंत्रिका कोशिकाएँ"
+        ],
+        [
+          "Lymphocytes only",
+          "केवल लिम्फोसाइट"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Platelets help form clots and reduce blood loss.",
+      "solution_hi": "प्लेटलेट्स थक्का बनाने और रक्तस्राव कम करने में मदद करते हैं।"
+    },
+    {
+      "id": 80,
+      "subject": "General Science",
+      "en": "Which part of the human brain controls balance and coordination?",
+      "hi": "मानव मस्तिष्क का कौन-सा भाग संतुलन और समन्वय नियंत्रित करता है?",
+      "options": [
+        [
+          "Cerebellum",
+          "अनुमस्तिष्क"
+        ],
+        [
+          "Cerebrum",
+          "प्रमस्तिष्क"
+        ],
+        [
+          "Medulla",
+          "मेडुला"
+        ],
+        [
+          "Hypothalamus",
+          "हाइपोथैलेमस"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The cerebellum coordinates movement, posture and balance.",
+      "solution_hi": "अनुमस्तिष्क गति, मुद्रा और संतुलन का समन्वय करता है।"
+    },
+    {
+      "id": 81,
+      "subject": "General Science",
+      "en": "Which organ produces insulin?",
+      "hi": "इंसुलिन किस अंग से बनता है?",
+      "options": [
+        [
+          "Pancreas",
+          "अग्न्याशय"
+        ],
+        [
+          "Liver",
+          "यकृत"
+        ],
+        [
+          "Kidney",
+          "गुर्दा"
+        ],
+        [
+          "Spleen",
+          "प्लीहा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Insulin is produced by beta cells in the pancreatic islets.",
+      "solution_hi": "इंसुलिन अग्न्याशय के द्वीपों की बीटा कोशिकाओं से बनता है।"
+    },
+    {
+      "id": 82,
+      "subject": "General Science",
+      "en": "Deficiency of iodine may cause:",
+      "hi": "आयोडीन की कमी से हो सकता है:",
+      "options": [
+        [
+          "Goitre",
+          "घेंघा"
+        ],
+        [
+          "Scurvy",
+          "स्कर्वी"
+        ],
+        [
+          "Rickets",
+          "रिकेट्स"
+        ],
+        [
+          "Anaemia",
+          "रक्ताल्पता"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Iodine deficiency can enlarge the thyroid gland and cause goitre.",
+      "solution_hi": "आयोडीन की कमी से थायरॉयड ग्रंथि बढ़ सकती है और घेंघा हो सकता है।"
+    },
+    {
+      "id": 83,
+      "subject": "General Science",
+      "en": "Which vitamin is produced in the skin in sunlight?",
+      "hi": "धूप में त्वचा में कौन-सा विटामिन बनता है?",
+      "options": [
+        [
+          "Vitamin D",
+          "विटामिन D"
+        ],
+        [
+          "Vitamin B12",
+          "विटामिन B12"
+        ],
+        [
+          "Vitamin C",
+          "विटामिन C"
+        ],
+        [
+          "Vitamin K",
+          "विटामिन K"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "UVB light helps the skin synthesise vitamin D.",
+      "solution_hi": "UVB किरणें त्वचा में विटामिन D के निर्माण में मदद करती हैं।"
+    },
+    {
+      "id": 84,
+      "subject": "General Science",
+      "en": "The basic unit of heredity is:",
+      "hi": "आनुवंशिकता की मूल इकाई है:",
+      "options": [
+        [
+          "Gene",
+          "जीन"
+        ],
+        [
+          "Cell",
+          "कोशिका"
+        ],
+        [
+          "Tissue",
+          "ऊतक"
+        ],
+        [
+          "Organ",
+          "अंग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A gene is a segment of DNA that carries hereditary information.",
+      "solution_hi": "जीन DNA का वह भाग है जो आनुवंशिक सूचना रखता है।"
+    },
+    {
+      "id": 85,
+      "subject": "General Science",
+      "en": "Which blood group is called the universal red-cell donor?",
+      "hi": "किस रक्त समूह को लाल रक्त कोशिकाओं का सार्वत्रिक दाता कहा जाता है?",
+      "options": [
+        [
+          "O negative",
+          "O ऋणात्मक"
+        ],
+        [
+          "AB positive",
+          "AB धनात्मक"
+        ],
+        [
+          "A positive",
+          "A धनात्मक"
+        ],
+        [
+          "B negative",
+          "B ऋणात्मक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "O negative red cells lack A, B and Rh(D) antigens.",
+      "solution_hi": "O ऋणात्मक लाल रक्त कोशिकाओं में A, B और Rh(D) प्रतिजन नहीं होते।"
+    },
+    {
+      "id": 86,
+      "subject": "History",
+      "en": "Who was the first Governor-General of independent India?",
+      "hi": "स्वतंत्र भारत के पहले गवर्नर-जनरल कौन थे?",
+      "options": [
+        [
+          "Lord Mountbatten",
+          "लॉर्ड माउंटबेटन"
+        ],
+        [
+          "C. Rajagopalachari",
+          "सी. राजगोपालाचारी"
+        ],
+        [
+          "Warren Hastings",
+          "वॉरेन हेस्टिंग्स"
+        ],
+        [
+          "Lord Wavell",
+          "लॉर्ड वेवेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Lord Mountbatten served as the first Governor-General after independence.",
+      "solution_hi": "लॉर्ड माउंटबेटन ने स्वतंत्रता के बाद पहले गवर्नर-जनरल के रूप में कार्य किया।"
+    },
+    {
+      "id": 87,
+      "subject": "History",
+      "en": "The Quit India Movement began in which year?",
+      "hi": "भारत छोड़ो आंदोलन किस वर्ष शुरू हुआ?",
+      "options": [
+        [
+          "1942",
+          "1942"
+        ],
+        [
+          "1930",
+          "1930"
+        ],
+        [
+          "1919",
+          "1919"
+        ],
+        [
+          "1947",
+          "1947"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Quit India resolution was adopted in August 1942.",
+      "solution_hi": "भारत छोड़ो प्रस्ताव अगस्त 1942 में स्वीकार किया गया था।"
+    },
+    {
+      "id": 88,
+      "subject": "History",
+      "en": "Who founded the Indian National Congress in 1885 with other leaders?",
+      "hi": "अन्य नेताओं के साथ 1885 में भारतीय राष्ट्रीय कांग्रेस की स्थापना किसने की?",
+      "options": [
+        [
+          "A. O. Hume",
+          "ए. ओ. ह्यूम"
+        ],
+        [
+          "Bal Gangadhar Tilak",
+          "बाल गंगाधर तिलक"
+        ],
+        [
+          "Dadabhai Naoroji",
+          "दादाभाई नौरोजी"
+        ],
+        [
+          "Gopal Krishna Gokhale",
+          "गोपाल कृष्ण गोखले"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A. O. Hume played a leading role in founding the Congress in 1885.",
+      "solution_hi": "1885 में कांग्रेस की स्थापना में ए. ओ. ह्यूम की प्रमुख भूमिका थी।"
+    },
+    {
+      "id": 89,
+      "subject": "History",
+      "en": "Who was the first woman ruler of the Delhi Sultanate?",
+      "hi": "दिल्ली सल्तनत की पहली महिला शासक कौन थीं?",
+      "options": [
+        [
+          "Razia Sultan",
+          "रज़िया सुल्तान"
+        ],
+        [
+          "Nur Jahan",
+          "नूरजहाँ"
+        ],
+        [
+          "Chand Bibi",
+          "चाँद बीबी"
+        ],
+        [
+          "Jahanara",
+          "जहाँआरा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Razia Sultan ruled the Delhi Sultanate from 1236 to 1240.",
+      "solution_hi": "रज़िया सुल्तान ने 1236 से 1240 तक दिल्ली सल्तनत पर शासन किया।"
+    },
+    {
+      "id": 90,
+      "subject": "History",
+      "en": "The Jallianwala Bagh massacre took place in:",
+      "hi": "जलियाँवाला बाग हत्याकांड किस वर्ष हुआ?",
+      "options": [
+        [
+          "1919",
+          "1919"
+        ],
+        [
+          "1905",
+          "1905"
+        ],
+        [
+          "1922",
+          "1922"
+        ],
+        [
+          "1935",
+          "1935"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The massacre occurred on 13 April 1919 at Amritsar.",
+      "solution_hi": "यह हत्याकांड 13 अप्रैल 1919 को अमृतसर में हुआ था।"
+    },
+    {
+      "id": 91,
+      "subject": "Geography",
+      "en": "Which is the longest river flowing entirely within India?",
+      "hi": "पूरी तरह भारत में बहने वाली सबसे लंबी नदी कौन-सी है?",
+      "options": [
+        [
+          "Godavari",
+          "गोदावरी"
+        ],
+        [
+          "Ganga",
+          "गंगा"
+        ],
+        [
+          "Narmada",
+          "नर्मदा"
+        ],
+        [
+          "Krishna",
+          "कृष्णा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Godavari is the longest river whose course lies entirely within India.",
+      "solution_hi": "गोदावरी ऐसी सबसे लंबी नदी है जिसका प्रवाह पूरी तरह भारत में है।"
+    },
+    {
+      "id": 92,
+      "subject": "Geography",
+      "en": "The standard meridian of India is:",
+      "hi": "भारत की मानक मध्याह्न रेखा है:",
+      "options": [
+        [
+          "82°30′ E",
+          "82°30′ पूर्व"
+        ],
+        [
+          "75° E",
+          "75° पूर्व"
+        ],
+        [
+          "90° E",
+          "90° पूर्व"
+        ],
+        [
+          "68°7′ E",
+          "68°7′ पूर्व"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Indian Standard Time is based on 82°30′ east longitude.",
+      "solution_hi": "भारतीय मानक समय 82°30′ पूर्व देशांतर पर आधारित है।"
+    },
+    {
+      "id": 93,
+      "subject": "Geography",
+      "en": "Which soil is most suitable for cotton cultivation?",
+      "hi": "कपास की खेती के लिए कौन-सी मिट्टी सबसे उपयुक्त है?",
+      "options": [
+        [
+          "Black soil",
+          "काली मिट्टी"
+        ],
+        [
+          "Laterite soil",
+          "लैटराइट मिट्टी"
+        ],
+        [
+          "Desert soil",
+          "मरुस्थलीय मिट्टी"
+        ],
+        [
+          "Mountain soil",
+          "पर्वतीय मिट्टी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Black soil retains moisture and is well suited to cotton.",
+      "solution_hi": "काली मिट्टी नमी रोकती है और कपास के लिए उपयुक्त है।"
+    },
+    {
+      "id": 94,
+      "subject": "Geography",
+      "en": "Which layer of the atmosphere contains most weather phenomena?",
+      "hi": "वायुमंडल की किस परत में अधिकांश मौसमी घटनाएँ होती हैं?",
+      "options": [
+        [
+          "Troposphere",
+          "क्षोभमंडल"
+        ],
+        [
+          "Stratosphere",
+          "समतापमंडल"
+        ],
+        [
+          "Mesosphere",
+          "मध्यमंडल"
+        ],
+        [
+          "Exosphere",
+          "बहिर्मंडल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Most clouds and weather occur in the troposphere.",
+      "solution_hi": "अधिकांश बादल और मौसमी घटनाएँ क्षोभमंडल में होती हैं।"
+    },
+    {
+      "id": 95,
+      "subject": "Geography",
+      "en": "The largest plateau in India is:",
+      "hi": "भारत का सबसे बड़ा पठार है:",
+      "options": [
+        [
+          "Deccan Plateau",
+          "दक्कन का पठार"
+        ],
+        [
+          "Chota Nagpur Plateau",
+          "छोटानागपुर पठार"
+        ],
+        [
+          "Malwa Plateau",
+          "मालवा पठार"
+        ],
+        [
+          "Meghalaya Plateau",
+          "मेघालय पठार"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Deccan Plateau covers a large part of peninsular India.",
+      "solution_hi": "दक्कन का पठार प्रायद्वीपीय भारत के बड़े भाग में फैला है।"
+    },
+    {
+      "id": 96,
+      "subject": "Polity",
+      "en": "Who is the constitutional head of the Union of India?",
+      "hi": "भारत संघ का संवैधानिक प्रमुख कौन है?",
+      "options": [
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ],
+        [
+          "Chief Justice",
+          "मुख्य न्यायाधीश"
+        ],
+        [
+          "Speaker",
+          "अध्यक्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The President is the constitutional head of the Union executive.",
+      "solution_hi": "राष्ट्रपति संघ की कार्यपालिका के संवैधानिक प्रमुख हैं।"
+    },
+    {
+      "id": 97,
+      "subject": "Polity",
+      "en": "The minimum age to become a member of the Lok Sabha is:",
+      "hi": "लोकसभा का सदस्य बनने की न्यूनतम आयु है:",
+      "options": [
+        [
+          "25 years",
+          "25 वर्ष"
+        ],
+        [
+          "21 years",
+          "21 वर्ष"
+        ],
+        [
+          "30 years",
+          "30 वर्ष"
+        ],
+        [
+          "35 years",
+          "35 वर्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A Lok Sabha candidate must be at least 25 years old.",
+      "solution_hi": "लोकसभा उम्मीदवार की आयु कम से कम 25 वर्ष होनी चाहिए।"
+    },
+    {
+      "id": 98,
+      "subject": "Polity",
+      "en": "Which Article deals with equality before law?",
+      "hi": "कानून के समक्ष समानता किस अनुच्छेद में है?",
+      "options": [
+        [
+          "Article 14",
+          "अनुच्छेद 14"
+        ],
+        [
+          "Article 19",
+          "अनुच्छेद 19"
+        ],
+        [
+          "Article 21",
+          "अनुच्छेद 21"
+        ],
+        [
+          "Article 32",
+          "अनुच्छेद 32"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 14 guarantees equality before law and equal protection of laws.",
+      "solution_hi": "अनुच्छेद 14 कानून के समक्ष समानता और कानूनों के समान संरक्षण की गारंटी देता है।"
+    },
+    {
+      "id": 99,
+      "subject": "Polity",
+      "en": "Who presides over a joint sitting of Parliament?",
+      "hi": "संसद की संयुक्त बैठक की अध्यक्षता कौन करता है?",
+      "options": [
+        [
+          "Speaker of Lok Sabha",
+          "लोकसभा अध्यक्ष"
+        ],
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Vice-President",
+          "उपराष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Speaker of the Lok Sabha presides over a joint sitting.",
+      "solution_hi": "संसद की संयुक्त बैठक की अध्यक्षता लोकसभा अध्यक्ष करते हैं।"
+    },
+    {
+      "id": 100,
+      "subject": "Polity",
+      "en": "The Directive Principles of State Policy are in which part?",
+      "hi": "राज्य के नीति निदेशक तत्व किस भाग में हैं?",
+      "options": [
+        [
+          "Part IV",
+          "भाग IV"
+        ],
+        [
+          "Part III",
+          "भाग III"
+        ],
+        [
+          "Part IVA",
+          "भाग IVA"
+        ],
+        [
+          "Part V",
+          "भाग V"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Directive Principles are contained in Part IV of the Constitution.",
+      "solution_hi": "नीति निदेशक तत्व संविधान के भाग IV में हैं।"
+    },
+    {
+      "id": 101,
+      "subject": "Physics",
+      "en": "The SI unit of power is:",
+      "hi": "शक्ति की SI इकाई है:",
+      "options": [
+        [
+          "Watt",
+          "वाट"
+        ],
+        [
+          "Joule",
+          "जूल"
+        ],
+        [
+          "Newton",
+          "न्यूटन"
+        ],
+        [
+          "Pascal",
+          "पास्कल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Power is work done per unit time; its SI unit is watt.",
+      "solution_hi": "शक्ति प्रति इकाई समय में किया गया कार्य है; इसकी SI इकाई वाट है।"
+    },
+    {
+      "id": 102,
+      "subject": "Physics",
+      "en": "Which quantity is measured in coulombs?",
+      "hi": "किस राशि को कूलॉम में मापा जाता है?",
+      "options": [
+        [
+          "Electric charge",
+          "विद्युत आवेश"
+        ],
+        [
+          "Current",
+          "विद्युत धारा"
+        ],
+        [
+          "Potential difference",
+          "विभवांतर"
+        ],
+        [
+          "Resistance",
+          "प्रतिरोध"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Electric charge is measured in coulombs.",
+      "solution_hi": "विद्युत आवेश को कूलॉम में मापा जाता है।"
+    },
+    {
+      "id": 103,
+      "subject": "Physics",
+      "en": "A plane mirror forms an image that is:",
+      "hi": "समतल दर्पण द्वारा बना प्रतिबिंब होता है:",
+      "options": [
+        [
+          "Virtual and erect",
+          "आभासी और सीधा"
+        ],
+        [
+          "Real and inverted",
+          "वास्तविक और उल्टा"
+        ],
+        [
+          "Real and erect",
+          "वास्तविक और सीधा"
+        ],
+        [
+          "Virtual and inverted",
+          "आभासी और उल्टा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A plane mirror forms a virtual, erect image of the same size.",
+      "solution_hi": "समतल दर्पण समान आकार का आभासी और सीधा प्रतिबिंब बनाता है।"
+    },
+    {
+      "id": 104,
+      "subject": "Physics",
+      "en": "Which instrument measures atmospheric pressure?",
+      "hi": "वायुमंडलीय दाब मापने का यंत्र कौन-सा है?",
+      "options": [
+        [
+          "Barometer",
+          "बैरोमीटर"
+        ],
+        [
+          "Thermometer",
+          "थर्मामीटर"
+        ],
+        [
+          "Ammeter",
+          "अमीटर"
+        ],
+        [
+          "Hygrometer",
+          "आर्द्रतामापी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A barometer measures atmospheric pressure.",
+      "solution_hi": "बैरोमीटर वायुमंडलीय दाब मापता है।"
+    },
+    {
+      "id": 105,
+      "subject": "Physics",
+      "en": "Sound cannot travel through:",
+      "hi": "ध्वनि किस माध्यम से नहीं चल सकती?",
+      "options": [
+        [
+          "Vacuum",
+          "निर्वात"
+        ],
+        [
+          "Water",
+          "जल"
+        ],
+        [
+          "Steel",
+          "इस्पात"
+        ],
+        [
+          "Air",
+          "वायु"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Sound needs a material medium, so it cannot travel through vacuum.",
+      "solution_hi": "ध्वनि को भौतिक माध्यम चाहिए, इसलिए यह निर्वात में नहीं चलती।"
+    },
+    {
+      "id": 106,
+      "subject": "Physics",
+      "en": "The approximate speed of light in vacuum is:",
+      "hi": "निर्वात में प्रकाश की लगभग चाल है:",
+      "options": [
+        [
+          "3 × 10⁸ m/s",
+          "3 × 10⁸ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁶ m/s",
+          "3 × 10⁶ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁴ m/s",
+          "3 × 10⁴ मीटर/सेकंड"
+        ],
+        [
+          "300 m/s",
+          "300 मीटर/सेकंड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Light travels at approximately 3 × 10⁸ metres per second in vacuum.",
+      "solution_hi": "निर्वात में प्रकाश लगभग 3 × 10⁸ मीटर प्रति सेकंड चलता है।"
+    },
+    {
+      "id": 107,
+      "subject": "Physics",
+      "en": "Which lens is used to correct myopia?",
+      "hi": "निकट दृष्टिदोष को ठीक करने के लिए कौन-सा लेंस उपयोग होता है?",
+      "options": [
+        [
+          "Concave lens",
+          "अवतल लेंस"
+        ],
+        [
+          "Convex lens",
+          "उत्तल लेंस"
+        ],
+        [
+          "Cylindrical lens only",
+          "केवल बेलनाकार लेंस"
+        ],
+        [
+          "Plane glass",
+          "समतल काँच"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A concave lens diverges light and corrects myopia.",
+      "solution_hi": "अवतल लेंस प्रकाश को अपसारित करके निकट दृष्टिदोष ठीक करता है।"
+    },
+    {
+      "id": 108,
+      "subject": "Physics",
+      "en": "The unit of electrical resistance is:",
+      "hi": "विद्युत प्रतिरोध की इकाई है:",
+      "options": [
+        [
+          "Ohm",
+          "ओम"
+        ],
+        [
+          "Volt",
+          "वोल्ट"
+        ],
+        [
+          "Ampere",
+          "एम्पियर"
+        ],
+        [
+          "Coulomb",
+          "कूलॉम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Resistance is measured in ohms.",
+      "solution_hi": "प्रतिरोध ओम में मापा जाता है।"
+    },
+    {
+      "id": 109,
+      "subject": "Physics",
+      "en": "Which law states that pressure is inversely proportional to volume at constant temperature?",
+      "hi": "कौन-सा नियम बताता है कि स्थिर ताप पर दाब आयतन के व्युत्क्रमानुपाती है?",
+      "options": [
+        [
+          "Boyle's law",
+          "बॉयल का नियम"
+        ],
+        [
+          "Charles's law",
+          "चार्ल्स का नियम"
+        ],
+        [
+          "Ohm's law",
+          "ओम का नियम"
+        ],
+        [
+          "Hooke's law",
+          "हुक का नियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Boyle's law states that pressure times volume is constant at fixed temperature.",
+      "solution_hi": "बॉयल के नियम के अनुसार स्थिर ताप पर दाब और आयतन का गुणनफल स्थिर रहता है।"
+    },
+    {
+      "id": 110,
+      "subject": "Physics",
+      "en": "The device that converts electrical energy into mechanical energy is:",
+      "hi": "विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलने वाला उपकरण है:",
+      "options": [
+        [
+          "Electric motor",
+          "विद्युत मोटर"
+        ],
+        [
+          "Generator",
+          "जनरेटर"
+        ],
+        [
+          "Transformer",
+          "ट्रांसफॉर्मर"
+        ],
+        [
+          "Cell",
+          "सेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "An electric motor converts electrical energy into mechanical energy.",
+      "solution_hi": "विद्युत मोटर विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलती है।"
+    },
+    {
+      "id": 111,
+      "subject": "Chemistry",
+      "en": "The chemical formula of common salt is:",
+      "hi": "साधारण नमक का रासायनिक सूत्र है:",
+      "options": [
+        [
+          "NaCl",
+          "NaCl"
+        ],
+        [
+          "NaOH",
+          "NaOH"
+        ],
+        [
+          "KClO₃",
+          "KClO₃"
+        ],
+        [
+          "CaCO₃",
+          "CaCO₃"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Common salt is sodium chloride, NaCl.",
+      "solution_hi": "साधारण नमक सोडियम क्लोराइड, NaCl है।"
+    },
+    {
+      "id": 112,
+      "subject": "Chemistry",
+      "en": "The gas commonly used in fire extinguishers is:",
+      "hi": "अग्निशामक यंत्रों में सामान्यतः कौन-सी गैस उपयोग होती है?",
+      "options": [
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Chlorine",
+          "क्लोरीन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbon dioxide helps smother flames by displacing oxygen.",
+      "solution_hi": "कार्बन डाइऑक्साइड ऑक्सीजन को हटाकर आग बुझाने में मदद करती है।"
+    },
+    {
+      "id": 113,
+      "subject": "Chemistry",
+      "en": "The pH of a neutral solution at 25°C is:",
+      "hi": "25°C पर उदासीन विलयन का pH है:",
+      "options": [
+        [
+          "7",
+          "7"
+        ],
+        [
+          "0",
+          "0"
+        ],
+        [
+          "14",
+          "14"
+        ],
+        [
+          "1",
+          "1"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "At 25°C, a neutral aqueous solution has pH 7.",
+      "solution_hi": "25°C पर उदासीन जलीय विलयन का pH 7 होता है।"
+    },
+    {
+      "id": 114,
+      "subject": "Chemistry",
+      "en": "Which metal is liquid at ordinary room temperature?",
+      "hi": "सामान्य कमरे के तापमान पर कौन-सी धातु द्रव होती है?",
+      "options": [
+        [
+          "Mercury",
+          "पारा"
+        ],
+        [
+          "Iron",
+          "लोहा"
+        ],
+        [
+          "Aluminium",
+          "एल्युमिनियम"
+        ],
+        [
+          "Copper",
+          "ताँबा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Mercury is liquid at ordinary room temperature.",
+      "solution_hi": "पारा सामान्य कमरे के तापमान पर द्रव होता है।"
+    },
+    {
+      "id": 115,
+      "subject": "Chemistry",
+      "en": "The hardest naturally occurring substance is:",
+      "hi": "प्रकृति में पाया जाने वाला सबसे कठोर पदार्थ है:",
+      "options": [
+        [
+          "Diamond",
+          "हीरा"
+        ],
+        [
+          "Graphite",
+          "ग्रेफाइट"
+        ],
+        [
+          "Quartz",
+          "क्वार्ट्ज"
+        ],
+        [
+          "Sulphur",
+          "गंधक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Diamond has a very rigid three-dimensional covalent network.",
+      "solution_hi": "हीरे में अत्यंत मजबूत त्रि-आयामी सहसंयोजक जाल होता है।"
+    },
+    {
+      "id": 116,
+      "subject": "Chemistry",
+      "en": "Which gas turns limewater milky?",
+      "hi": "कौन-सी गैस चूने के पानी को दूधिया करती है?",
+      "options": [
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Carbon dioxide forms insoluble calcium carbonate in limewater.",
+      "solution_hi": "कार्बन डाइऑक्साइड चूने के पानी में अघुलनशील कैल्शियम कार्बोनेट बनाती है।"
+    },
+    {
+      "id": 117,
+      "subject": "Chemistry",
+      "en": "The process of coating iron with zinc is called:",
+      "hi": "लोहे पर जस्ते की परत चढ़ाने की प्रक्रिया कहलाती है:",
+      "options": [
+        [
+          "Galvanisation",
+          "गैल्वनीकरण"
+        ],
+        [
+          " distillation",
+          "आसवन"
+        ],
+        [
+          "Crystallisation",
+          "क्रिस्टलीकरण"
+        ],
+        [
+          "Sublimation",
+          "ऊर्ध्वपातन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Galvanisation coats iron or steel with zinc to reduce corrosion.",
+      "solution_hi": "गैल्वनीकरण में जंग कम करने के लिए लोहे या इस्पात पर जस्ते की परत चढ़ाई जाती है।"
+    },
+    {
+      "id": 118,
+      "subject": "Chemistry",
+      "en": "Which element is essential in the manufacture of ammonia by the Haber process?",
+      "hi": "हैबर प्रक्रिया द्वारा अमोनिया बनाने में कौन-सा तत्व आवश्यक है?",
+      "options": [
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Neon",
+          "निऑन"
+        ],
+        [
+          "Argon",
+          "आर्गन"
+        ],
+        [
+          "Helium",
+          "हीलियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Haber process combines nitrogen with hydrogen to form ammonia.",
+      "solution_hi": "हैबर प्रक्रिया में नाइट्रोजन और हाइड्रोजन मिलकर अमोनिया बनाते हैं।"
+    },
+    {
+      "id": 119,
+      "subject": "General Science",
+      "en": "Which blood cells help in clotting?",
+      "hi": "रक्त का थक्का जमाने में कौन-सी कोशिकाएँ मदद करती हैं?",
+      "options": [
+        [
+          "Platelets",
+          "प्लेटलेट्स"
+        ],
+        [
+          "Red blood cells",
+          "लाल रक्त कोशिकाएँ"
+        ],
+        [
+          "Neurons",
+          "तंत्रिका कोशिकाएँ"
+        ],
+        [
+          "Lymphocytes only",
+          "केवल लिम्फोसाइट"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Platelets help form clots and reduce blood loss.",
+      "solution_hi": "प्लेटलेट्स थक्का बनाने और रक्तस्राव कम करने में मदद करते हैं।"
+    },
+    {
+      "id": 120,
+      "subject": "General Science",
+      "en": "Which part of the human brain controls balance and coordination?",
+      "hi": "मानव मस्तिष्क का कौन-सा भाग संतुलन और समन्वय नियंत्रित करता है?",
+      "options": [
+        [
+          "Cerebellum",
+          "अनुमस्तिष्क"
+        ],
+        [
+          "Cerebrum",
+          "प्रमस्तिष्क"
+        ],
+        [
+          "Medulla",
+          "मेडुला"
+        ],
+        [
+          "Hypothalamus",
+          "हाइपोथैलेमस"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The cerebellum coordinates movement, posture and balance.",
+      "solution_hi": "अनुमस्तिष्क गति, मुद्रा और संतुलन का समन्वय करता है।"
+    },
+    {
+      "id": 121,
+      "subject": "General Science",
+      "en": "Which organ produces insulin?",
+      "hi": "इंसुलिन किस अंग से बनता है?",
+      "options": [
+        [
+          "Pancreas",
+          "अग्न्याशय"
+        ],
+        [
+          "Liver",
+          "यकृत"
+        ],
+        [
+          "Kidney",
+          "गुर्दा"
+        ],
+        [
+          "Spleen",
+          "प्लीहा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Insulin is produced by beta cells in the pancreatic islets.",
+      "solution_hi": "इंसुलिन अग्न्याशय के द्वीपों की बीटा कोशिकाओं से बनता है।"
+    },
+    {
+      "id": 122,
+      "subject": "General Science",
+      "en": "Deficiency of iodine may cause:",
+      "hi": "आयोडीन की कमी से हो सकता है:",
+      "options": [
+        [
+          "Goitre",
+          "घेंघा"
+        ],
+        [
+          "Scurvy",
+          "स्कर्वी"
+        ],
+        [
+          "Rickets",
+          "रिकेट्स"
+        ],
+        [
+          "Anaemia",
+          "रक्ताल्पता"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Iodine deficiency can enlarge the thyroid gland and cause goitre.",
+      "solution_hi": "आयोडीन की कमी से थायरॉयड ग्रंथि बढ़ सकती है और घेंघा हो सकता है।"
+    },
+    {
+      "id": 123,
+      "subject": "General Science",
+      "en": "Which vitamin is produced in the skin in sunlight?",
+      "hi": "धूप में त्वचा में कौन-सा विटामिन बनता है?",
+      "options": [
+        [
+          "Vitamin D",
+          "विटामिन D"
+        ],
+        [
+          "Vitamin B12",
+          "विटामिन B12"
+        ],
+        [
+          "Vitamin C",
+          "विटामिन C"
+        ],
+        [
+          "Vitamin K",
+          "विटामिन K"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "UVB light helps the skin synthesise vitamin D.",
+      "solution_hi": "UVB किरणें त्वचा में विटामिन D के निर्माण में मदद करती हैं।"
+    },
+    {
+      "id": 124,
+      "subject": "General Science",
+      "en": "The basic unit of heredity is:",
+      "hi": "आनुवंशिकता की मूल इकाई है:",
+      "options": [
+        [
+          "Gene",
+          "जीन"
+        ],
+        [
+          "Cell",
+          "कोशिका"
+        ],
+        [
+          "Tissue",
+          "ऊतक"
+        ],
+        [
+          "Organ",
+          "अंग"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A gene is a segment of DNA that carries hereditary information.",
+      "solution_hi": "जीन DNA का वह भाग है जो आनुवंशिक सूचना रखता है।"
+    },
+    {
+      "id": 125,
+      "subject": "General Science",
+      "en": "Which blood group is called the universal red-cell donor?",
+      "hi": "किस रक्त समूह को लाल रक्त कोशिकाओं का सार्वत्रिक दाता कहा जाता है?",
+      "options": [
+        [
+          "O negative",
+          "O ऋणात्मक"
+        ],
+        [
+          "AB positive",
+          "AB धनात्मक"
+        ],
+        [
+          "A positive",
+          "A धनात्मक"
+        ],
+        [
+          "B negative",
+          "B ऋणात्मक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "O negative red cells lack A, B and Rh(D) antigens.",
+      "solution_hi": "O ऋणात्मक लाल रक्त कोशिकाओं में A, B और Rh(D) प्रतिजन नहीं होते।"
+    },
+    {
+      "id": 126,
+      "subject": "History",
+      "en": "Who was the first Governor-General of independent India?",
+      "hi": "स्वतंत्र भारत के पहले गवर्नर-जनरल कौन थे?",
+      "options": [
+        [
+          "Lord Mountbatten",
+          "लॉर्ड माउंटबेटन"
+        ],
+        [
+          "C. Rajagopalachari",
+          "सी. राजगोपालाचारी"
+        ],
+        [
+          "Warren Hastings",
+          "वॉरेन हेस्टिंग्स"
+        ],
+        [
+          "Lord Wavell",
+          "लॉर्ड वेवेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Lord Mountbatten served as the first Governor-General after independence.",
+      "solution_hi": "लॉर्ड माउंटबेटन ने स्वतंत्रता के बाद पहले गवर्नर-जनरल के रूप में कार्य किया।"
+    },
+    {
+      "id": 127,
+      "subject": "History",
+      "en": "The Quit India Movement began in which year?",
+      "hi": "भारत छोड़ो आंदोलन किस वर्ष शुरू हुआ?",
+      "options": [
+        [
+          "1942",
+          "1942"
+        ],
+        [
+          "1930",
+          "1930"
+        ],
+        [
+          "1919",
+          "1919"
+        ],
+        [
+          "1947",
+          "1947"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Quit India resolution was adopted in August 1942.",
+      "solution_hi": "भारत छोड़ो प्रस्ताव अगस्त 1942 में स्वीकार किया गया था।"
+    },
+    {
+      "id": 128,
+      "subject": "History",
+      "en": "Who founded the Indian National Congress in 1885 with other leaders?",
+      "hi": "अन्य नेताओं के साथ 1885 में भारतीय राष्ट्रीय कांग्रेस की स्थापना किसने की?",
+      "options": [
+        [
+          "A. O. Hume",
+          "ए. ओ. ह्यूम"
+        ],
+        [
+          "Bal Gangadhar Tilak",
+          "बाल गंगाधर तिलक"
+        ],
+        [
+          "Dadabhai Naoroji",
+          "दादाभाई नौरोजी"
+        ],
+        [
+          "Gopal Krishna Gokhale",
+          "गोपाल कृष्ण गोखले"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A. O. Hume played a leading role in founding the Congress in 1885.",
+      "solution_hi": "1885 में कांग्रेस की स्थापना में ए. ओ. ह्यूम की प्रमुख भूमिका थी।"
+    },
+    {
+      "id": 129,
+      "subject": "History",
+      "en": "Who was the first woman ruler of the Delhi Sultanate?",
+      "hi": "दिल्ली सल्तनत की पहली महिला शासक कौन थीं?",
+      "options": [
+        [
+          "Razia Sultan",
+          "रज़िया सुल्तान"
+        ],
+        [
+          "Nur Jahan",
+          "नूरजहाँ"
+        ],
+        [
+          "Chand Bibi",
+          "चाँद बीबी"
+        ],
+        [
+          "Jahanara",
+          "जहाँआरा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Razia Sultan ruled the Delhi Sultanate from 1236 to 1240.",
+      "solution_hi": "रज़िया सुल्तान ने 1236 से 1240 तक दिल्ली सल्तनत पर शासन किया।"
+    },
+    {
+      "id": 130,
+      "subject": "History",
+      "en": "The Jallianwala Bagh massacre took place in:",
+      "hi": "जलियाँवाला बाग हत्याकांड किस वर्ष हुआ?",
+      "options": [
+        [
+          "1919",
+          "1919"
+        ],
+        [
+          "1905",
+          "1905"
+        ],
+        [
+          "1922",
+          "1922"
+        ],
+        [
+          "1935",
+          "1935"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The massacre occurred on 13 April 1919 at Amritsar.",
+      "solution_hi": "यह हत्याकांड 13 अप्रैल 1919 को अमृतसर में हुआ था।"
+    },
+    {
+      "id": 131,
+      "subject": "Geography",
+      "en": "Which is the longest river flowing entirely within India?",
+      "hi": "पूरी तरह भारत में बहने वाली सबसे लंबी नदी कौन-सी है?",
+      "options": [
+        [
+          "Godavari",
+          "गोदावरी"
+        ],
+        [
+          "Ganga",
+          "गंगा"
+        ],
+        [
+          "Narmada",
+          "नर्मदा"
+        ],
+        [
+          "Krishna",
+          "कृष्णा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Godavari is the longest river whose course lies entirely within India.",
+      "solution_hi": "गोदावरी ऐसी सबसे लंबी नदी है जिसका प्रवाह पूरी तरह भारत में है।"
+    },
+    {
+      "id": 132,
+      "subject": "Geography",
+      "en": "The standard meridian of India is:",
+      "hi": "भारत की मानक मध्याह्न रेखा है:",
+      "options": [
+        [
+          "82°30′ E",
+          "82°30′ पूर्व"
+        ],
+        [
+          "75° E",
+          "75° पूर्व"
+        ],
+        [
+          "90° E",
+          "90° पूर्व"
+        ],
+        [
+          "68°7′ E",
+          "68°7′ पूर्व"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Indian Standard Time is based on 82°30′ east longitude.",
+      "solution_hi": "भारतीय मानक समय 82°30′ पूर्व देशांतर पर आधारित है।"
+    },
+    {
+      "id": 133,
+      "subject": "Geography",
+      "en": "Which soil is most suitable for cotton cultivation?",
+      "hi": "कपास की खेती के लिए कौन-सी मिट्टी सबसे उपयुक्त है?",
+      "options": [
+        [
+          "Black soil",
+          "काली मिट्टी"
+        ],
+        [
+          "Laterite soil",
+          "लैटराइट मिट्टी"
+        ],
+        [
+          "Desert soil",
+          "मरुस्थलीय मिट्टी"
+        ],
+        [
+          "Mountain soil",
+          "पर्वतीय मिट्टी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Black soil retains moisture and is well suited to cotton.",
+      "solution_hi": "काली मिट्टी नमी रोकती है और कपास के लिए उपयुक्त है।"
+    },
+    {
+      "id": 134,
+      "subject": "Geography",
+      "en": "Which layer of the atmosphere contains most weather phenomena?",
+      "hi": "वायुमंडल की किस परत में अधिकांश मौसमी घटनाएँ होती हैं?",
+      "options": [
+        [
+          "Troposphere",
+          "क्षोभमंडल"
+        ],
+        [
+          "Stratosphere",
+          "समतापमंडल"
+        ],
+        [
+          "Mesosphere",
+          "मध्यमंडल"
+        ],
+        [
+          "Exosphere",
+          "बहिर्मंडल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Most clouds and weather occur in the troposphere.",
+      "solution_hi": "अधिकांश बादल और मौसमी घटनाएँ क्षोभमंडल में होती हैं।"
+    },
+    {
+      "id": 135,
+      "subject": "Geography",
+      "en": "The largest plateau in India is:",
+      "hi": "भारत का सबसे बड़ा पठार है:",
+      "options": [
+        [
+          "Deccan Plateau",
+          "दक्कन का पठार"
+        ],
+        [
+          "Chota Nagpur Plateau",
+          "छोटानागपुर पठार"
+        ],
+        [
+          "Malwa Plateau",
+          "मालवा पठार"
+        ],
+        [
+          "Meghalaya Plateau",
+          "मेघालय पठार"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Deccan Plateau covers a large part of peninsular India.",
+      "solution_hi": "दक्कन का पठार प्रायद्वीपीय भारत के बड़े भाग में फैला है।"
+    },
+    {
+      "id": 136,
+      "subject": "Polity",
+      "en": "Who is the constitutional head of the Union of India?",
+      "hi": "भारत संघ का संवैधानिक प्रमुख कौन है?",
+      "options": [
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ],
+        [
+          "Chief Justice",
+          "मुख्य न्यायाधीश"
+        ],
+        [
+          "Speaker",
+          "अध्यक्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The President is the constitutional head of the Union executive.",
+      "solution_hi": "राष्ट्रपति संघ की कार्यपालिका के संवैधानिक प्रमुख हैं।"
+    },
+    {
+      "id": 137,
+      "subject": "Polity",
+      "en": "The minimum age to become a member of the Lok Sabha is:",
+      "hi": "लोकसभा का सदस्य बनने की न्यूनतम आयु है:",
+      "options": [
+        [
+          "25 years",
+          "25 वर्ष"
+        ],
+        [
+          "21 years",
+          "21 वर्ष"
+        ],
+        [
+          "30 years",
+          "30 वर्ष"
+        ],
+        [
+          "35 years",
+          "35 वर्ष"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A Lok Sabha candidate must be at least 25 years old.",
+      "solution_hi": "लोकसभा उम्मीदवार की आयु कम से कम 25 वर्ष होनी चाहिए।"
+    },
+    {
+      "id": 138,
+      "subject": "Polity",
+      "en": "Which Article deals with equality before law?",
+      "hi": "कानून के समक्ष समानता किस अनुच्छेद में है?",
+      "options": [
+        [
+          "Article 14",
+          "अनुच्छेद 14"
+        ],
+        [
+          "Article 19",
+          "अनुच्छेद 19"
+        ],
+        [
+          "Article 21",
+          "अनुच्छेद 21"
+        ],
+        [
+          "Article 32",
+          "अनुच्छेद 32"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 14 guarantees equality before law and equal protection of laws.",
+      "solution_hi": "अनुच्छेद 14 कानून के समक्ष समानता और कानूनों के समान संरक्षण की गारंटी देता है।"
+    },
+    {
+      "id": 139,
+      "subject": "Polity",
+      "en": "Who presides over a joint sitting of Parliament?",
+      "hi": "संसद की संयुक्त बैठक की अध्यक्षता कौन करता है?",
+      "options": [
+        [
+          "Speaker of Lok Sabha",
+          "लोकसभा अध्यक्ष"
+        ],
+        [
+          "President",
+          "राष्ट्रपति"
+        ],
+        [
+          "Vice-President",
+          "उपराष्ट्रपति"
+        ],
+        [
+          "Prime Minister",
+          "प्रधानमंत्री"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Speaker of the Lok Sabha presides over a joint sitting.",
+      "solution_hi": "संसद की संयुक्त बैठक की अध्यक्षता लोकसभा अध्यक्ष करते हैं।"
+    },
+    {
+      "id": 140,
+      "subject": "Polity",
+      "en": "The Directive Principles of State Policy are in which part?",
+      "hi": "राज्य के नीति निदेशक तत्व किस भाग में हैं?",
+      "options": [
+        [
+          "Part IV",
+          "भाग IV"
+        ],
+        [
+          "Part III",
+          "भाग III"
+        ],
+        [
+          "Part IVA",
+          "भाग IVA"
+        ],
+        [
+          "Part V",
+          "भाग V"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Directive Principles are contained in Part IV of the Constitution.",
+      "solution_hi": "नीति निदेशक तत्व संविधान के भाग IV में हैं।"
+    },
+    {
+      "id": 141,
+      "subject": "Physics",
+      "en": "The SI unit of power is:",
+      "hi": "शक्ति की SI इकाई है:",
+      "options": [
+        [
+          "Watt",
+          "वाट"
+        ],
+        [
+          "Joule",
+          "जूल"
+        ],
+        [
+          "Newton",
+          "न्यूटन"
+        ],
+        [
+          "Pascal",
+          "पास्कल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Power is work done per unit time; its SI unit is watt.",
+      "solution_hi": "शक्ति प्रति इकाई समय में किया गया कार्य है; इसकी SI इकाई वाट है।"
+    },
+    {
+      "id": 142,
+      "subject": "Physics",
+      "en": "Which quantity is measured in coulombs?",
+      "hi": "किस राशि को कूलॉम में मापा जाता है?",
+      "options": [
+        [
+          "Electric charge",
+          "विद्युत आवेश"
+        ],
+        [
+          "Current",
+          "विद्युत धारा"
+        ],
+        [
+          "Potential difference",
+          "विभवांतर"
+        ],
+        [
+          "Resistance",
+          "प्रतिरोध"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Electric charge is measured in coulombs.",
+      "solution_hi": "विद्युत आवेश को कूलॉम में मापा जाता है।"
+    },
+    {
+      "id": 143,
+      "subject": "Physics",
+      "en": "A plane mirror forms an image that is:",
+      "hi": "समतल दर्पण द्वारा बना प्रतिबिंब होता है:",
+      "options": [
+        [
+          "Virtual and erect",
+          "आभासी और सीधा"
+        ],
+        [
+          "Real and inverted",
+          "वास्तविक और उल्टा"
+        ],
+        [
+          "Real and erect",
+          "वास्तविक और सीधा"
+        ],
+        [
+          "Virtual and inverted",
+          "आभासी और उल्टा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A plane mirror forms a virtual, erect image of the same size.",
+      "solution_hi": "समतल दर्पण समान आकार का आभासी और सीधा प्रतिबिंब बनाता है।"
+    },
+    {
+      "id": 144,
+      "subject": "Physics",
+      "en": "Which instrument measures atmospheric pressure?",
+      "hi": "वायुमंडलीय दाब मापने का यंत्र कौन-सा है?",
+      "options": [
+        [
+          "Barometer",
+          "बैरोमीटर"
+        ],
+        [
+          "Thermometer",
+          "थर्मामीटर"
+        ],
+        [
+          "Ammeter",
+          "अमीटर"
+        ],
+        [
+          "Hygrometer",
+          "आर्द्रतामापी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A barometer measures atmospheric pressure.",
+      "solution_hi": "बैरोमीटर वायुमंडलीय दाब मापता है।"
+    },
+    {
+      "id": 145,
+      "subject": "Physics",
+      "en": "Sound cannot travel through:",
+      "hi": "ध्वनि किस माध्यम से नहीं चल सकती?",
+      "options": [
+        [
+          "Vacuum",
+          "निर्वात"
+        ],
+        [
+          "Water",
+          "जल"
+        ],
+        [
+          "Steel",
+          "इस्पात"
+        ],
+        [
+          "Air",
+          "वायु"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Sound needs a material medium, so it cannot travel through vacuum.",
+      "solution_hi": "ध्वनि को भौतिक माध्यम चाहिए, इसलिए यह निर्वात में नहीं चलती।"
+    },
+    {
+      "id": 146,
+      "subject": "Physics",
+      "en": "The approximate speed of light in vacuum is:",
+      "hi": "निर्वात में प्रकाश की लगभग चाल है:",
+      "options": [
+        [
+          "3 × 10⁸ m/s",
+          "3 × 10⁸ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁶ m/s",
+          "3 × 10⁶ मीटर/सेकंड"
+        ],
+        [
+          "3 × 10⁴ m/s",
+          "3 × 10⁴ मीटर/सेकंड"
+        ],
+        [
+          "300 m/s",
+          "300 मीटर/सेकंड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Light travels at approximately 3 × 10⁸ metres per second in vacuum.",
+      "solution_hi": "निर्वात में प्रकाश लगभग 3 × 10⁸ मीटर प्रति सेकंड चलता है।"
+    },
+    {
+      "id": 147,
+      "subject": "Physics",
+      "en": "Which lens is used to correct myopia?",
+      "hi": "निकट दृष्टिदोष को ठीक करने के लिए कौन-सा लेंस उपयोग होता है?",
+      "options": [
+        [
+          "Concave lens",
+          "अवतल लेंस"
+        ],
+        [
+          "Convex lens",
+          "उत्तल लेंस"
+        ],
+        [
+          "Cylindrical lens only",
+          "केवल बेलनाकार लेंस"
+        ],
+        [
+          "Plane glass",
+          "समतल काँच"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A concave lens diverges light and corrects myopia.",
+      "solution_hi": "अवतल लेंस प्रकाश को अपसारित करके निकट दृष्टिदोष ठीक करता है।"
+    },
+    {
+      "id": 148,
+      "subject": "Physics",
+      "en": "The unit of electrical resistance is:",
+      "hi": "विद्युत प्रतिरोध की इकाई है:",
+      "options": [
+        [
+          "Ohm",
+          "ओम"
+        ],
+        [
+          "Volt",
+          "वोल्ट"
+        ],
+        [
+          "Ampere",
+          "एम्पियर"
+        ],
+        [
+          "Coulomb",
+          "कूलॉम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Resistance is measured in ohms.",
+      "solution_hi": "प्रतिरोध ओम में मापा जाता है।"
+    },
+    {
+      "id": 149,
+      "subject": "Physics",
+      "en": "Which law states that pressure is inversely proportional to volume at constant temperature?",
+      "hi": "कौन-सा नियम बताता है कि स्थिर ताप पर दाब आयतन के व्युत्क्रमानुपाती है?",
+      "options": [
+        [
+          "Boyle's law",
+          "बॉयल का नियम"
+        ],
+        [
+          "Charles's law",
+          "चार्ल्स का नियम"
+        ],
+        [
+          "Ohm's law",
+          "ओम का नियम"
+        ],
+        [
+          "Hooke's law",
+          "हुक का नियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Boyle's law states that pressure times volume is constant at fixed temperature.",
+      "solution_hi": "बॉयल के नियम के अनुसार स्थिर ताप पर दाब और आयतन का गुणनफल स्थिर रहता है।"
+    },
+    {
+      "id": 150,
+      "subject": "Physics",
+      "en": "The device that converts electrical energy into mechanical energy is:",
+      "hi": "विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलने वाला उपकरण है:",
+      "options": [
+        [
+          "Electric motor",
+          "विद्युत मोटर"
+        ],
+        [
+          "Generator",
+          "जनरेटर"
+        ],
+        [
+          "Transformer",
+          "ट्रांसफॉर्मर"
+        ],
+        [
+          "Cell",
+          "सेल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "An electric motor converts electrical energy into mechanical energy.",
+      "solution_hi": "विद्युत मोटर विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलती है।"
     }
   ]
 }
