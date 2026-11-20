@@ -564,7 +564,8 @@ body:has(.test-instructions) #testArea{height:auto!important;overflow:visible!im
 </main>
 <footer>© 2026 ALL EXAM INDIA | Website by <strong class="footer-owner">Prajwal Tarare</strong> | Learn • Practice • Succeed</footer>
 <script>
-const exams=["SSC GD","NDA Mathematics","NDA GAT"];
+const exams=["SSC GD"];
+const mockExamOptions=["SSC GD","NDA Mathematics","NDA GAT"];
 const officialSources=[
 {name:"SSC",category:"Staff Selection Commission",source:"https://ssc.gov.in/"}
 ];
@@ -1634,8 +1635,8 @@ function startSelectedMockTest(){const exam=document.getElementById("mockExamSel
 function changeMockPage(delta){mockBrowserPage=Math.max(0,Math.min((mockBrowserExam==="Maharashtra Police Bharti"?9:(mockBrowserExam==="SSC GD"?27:(mockBrowserExam.startsWith("NDA ")?0:99))),mockBrowserPage+delta));mockBrowserSelected=mockBrowserPage*50+1;renderMockBrowser();}
 function renderMockCards(){
  const el=document.getElementById("mockExamCards"),sel=document.getElementById("mockExamSelect");
- if(sel)sel.innerHTML=exams.map(x=>'<option value="'+escapeHTML(x)+'">'+escapeHTML(x)+'</option>').join("");
- if(el)el.innerHTML=exams.map(x=>{const p=examProfiles[x],safe=escapeHTML(x),total=x==="Maharashtra Police Bharti"?500:(x==="SSC GD"?1378:(x.startsWith("NDA ")?20:5000));return '<div class="card"><h3>🎯 '+safe+'</h3><p>'+total+' exam-wise Hard Mock Tests • '+p.sections.reduce((a,b)=>a+b[1],0)+' Questions • '+p.duration+' minutes</p><button class="primary" type="button" onclick="selectMockExam(\''+safe+'\')">Browse '+total+' Tests</button></div>';}).join("");
+ if(sel)sel.innerHTML=mockExamOptions.map(x=>'<option value="'+escapeHTML(x)+'">'+escapeHTML(x)+'</option>').join("");
+ if(el)el.innerHTML=mockExamOptions.map(x=>{const p=examProfiles[x],safe=escapeHTML(x),total=x==="Maharashtra Police Bharti"?500:(x==="SSC GD"?1378:(x.startsWith("NDA ")?20:5000));return '<div class="card"><h3>🎯 '+safe+'</h3><p>'+total+' exam-wise Hard Mock Tests • '+p.sections.reduce((a,b)=>a+b[1],0)+' Questions • '+p.duration+' minutes</p><button class="primary" type="button" onclick="selectMockExam(\''+safe+'\')">Browse '+total+' Tests</button></div>';}).join("");
  if(sel)sel.value="SSC GD";updateMockProfile();mockBrowserExam="SSC GD";renderMockBrowser();
 }
 let policePYQPage=0;
