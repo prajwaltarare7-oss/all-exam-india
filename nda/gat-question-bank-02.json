@@ -1,0 +1,613 @@
+{
+  "exam": "NDA",
+  "paper": "GAT",
+  "mock": 2,
+  "status": "in_progress",
+  "target_questions": 150,
+  "completed_questions": 22,
+  "language_modes": [
+    "en",
+    "hi"
+  ],
+  "marking": {
+    "correct": 4,
+    "wrong": -1.3333333333333333,
+    "unanswered": 0
+  },
+  "questions": [
+    {
+      "id": 1,
+      "subject": "English",
+      "en": "Choose the antonym of 'Diligent'.",
+      "hi": "'Diligent' का विलोम चुनिए।",
+      "options": [
+        [
+          "Negligent",
+          "लापरवाह"
+        ],
+        [
+          "Hardworking",
+          "परिश्रमी"
+        ],
+        [
+          "Careful",
+          "सावधान"
+        ],
+        [
+          "Active",
+          "सक्रिय"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Diligent means hardworking; negligent is the opposite.",
+      "solution_hi": "Diligent का अर्थ परिश्रमी है; Negligent इसका विलोम है।"
+    },
+    {
+      "id": 2,
+      "subject": "English",
+      "en": "Choose the synonym of 'Lucid'.",
+      "hi": "'Lucid' का समानार्थी चुनिए।",
+      "options": [
+        [
+          "Clear",
+          "स्पष्ट"
+        ],
+        [
+          "Obscure",
+          "अस्पष्ट"
+        ],
+        [
+          "Vague",
+          "धुँधला"
+        ],
+        [
+          "Complex",
+          "जटिल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Lucid means clear and easy to understand.",
+      "solution_hi": "Lucid का अर्थ स्पष्ट और आसानी से समझ आने वाला है।"
+    },
+    {
+      "id": 3,
+      "subject": "English",
+      "en": "A person who cannot read or write is called:",
+      "hi": "जो व्यक्ति पढ़ या लिख नहीं सकता, उसे कहते हैं:",
+      "options": [
+        [
+          "Illiterate",
+          "निरक्षर"
+        ],
+        [
+          "Ineligible",
+          "अयोग्य"
+        ],
+        [
+          "Immigrant",
+          "प्रवासी"
+        ],
+        [
+          "Infallible",
+          "अचूक"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Illiterate means unable to read or write.",
+      "solution_hi": "Illiterate का अर्थ पढ़ने-लिखने में असमर्थ होना है।"
+    },
+    {
+      "id": 4,
+      "subject": "Physics",
+      "en": "A 2 kg body moving at 3 m/s has kinetic energy:",
+      "hi": "3 m/s से चल रहे 2 kg द्रव्यमान के पिंड की गतिज ऊर्जा है:",
+      "options": [
+        [
+          "9 J",
+          "9 जूल"
+        ],
+        [
+          "6 J",
+          "6 जूल"
+        ],
+        [
+          "3 J",
+          "3 जूल"
+        ],
+        [
+          "18 J",
+          "18 जूल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Kinetic energy = ½mv² = ½ × 2 × 3² = 9 J.",
+      "solution_hi": "गतिज ऊर्जा = ½mv² = ½ × 2 × 3² = 9 जूल।"
+    },
+    {
+      "id": 5,
+      "subject": "Physics",
+      "en": "The dimensional formula of force is:",
+      "hi": "बल का विमीय सूत्र है:",
+      "options": [
+        [
+          "MLT⁻²",
+          "MLT⁻²"
+        ],
+        [
+          "ML²T⁻²",
+          "ML²T⁻²"
+        ],
+        [
+          "ML⁻¹T⁻²",
+          "ML⁻¹T⁻²"
+        ],
+        [
+          "M⁰LT⁻¹",
+          "M⁰LT⁻¹"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Force = mass × acceleration, giving MLT⁻².",
+      "solution_hi": "बल = द्रव्यमान × त्वरण, इसलिए विमा MLT⁻² है।"
+    },
+    {
+      "id": 6,
+      "subject": "Physics",
+      "en": "Which law explains the recoil of a gun?",
+      "hi": "बंदूक के पीछे झटके को कौन-सा नियम समझाता है?",
+      "options": [
+        [
+          "Conservation of momentum",
+          "संवेग संरक्षण"
+        ],
+        [
+          "Conservation of charge",
+          "आवेश संरक्षण"
+        ],
+        [
+          "Hooke's law",
+          "हुक का नियम"
+        ],
+        [
+          "Faraday's law",
+          "फैराडे का नियम"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Forward momentum of the projectile is balanced by backward momentum of the gun.",
+      "solution_hi": "प्रक्षेप्य का आगे का संवेग बंदूक के पीछे के संवेग से संतुलित होता है।"
+    },
+    {
+      "id": 7,
+      "subject": "Physics",
+      "en": "The SI unit of magnetic flux is:",
+      "hi": "चुंबकीय फ्लक्स की SI इकाई है:",
+      "options": [
+        [
+          "Weber",
+          "वेबर"
+        ],
+        [
+          "Tesla",
+          "टेस्ला"
+        ],
+        [
+          "Henry",
+          "हेनरी"
+        ],
+        [
+          "Gauss",
+          "गॉस"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Magnetic flux is measured in webers.",
+      "solution_hi": "चुंबकीय फ्लक्स वेबर में मापा जाता है।"
+    },
+    {
+      "id": 8,
+      "subject": "Chemistry",
+      "en": "The chemical name of baking soda is:",
+      "hi": "बेकिंग सोडा का रासायनिक नाम है:",
+      "options": [
+        [
+          "Sodium hydrogen carbonate",
+          "सोडियम हाइड्रोजन कार्बोनेट"
+        ],
+        [
+          "Sodium carbonate",
+          "सोडियम कार्बोनेट"
+        ],
+        [
+          "Calcium carbonate",
+          "कैल्शियम कार्बोनेट"
+        ],
+        [
+          "Sodium hydroxide",
+          "सोडियम हाइड्रॉक्साइड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Baking soda is NaHCO₃, sodium hydrogen carbonate.",
+      "solution_hi": "बेकिंग सोडा NaHCO₃ यानी सोडियम हाइड्रोजन कार्बोनेट है।"
+    },
+    {
+      "id": 9,
+      "subject": "Chemistry",
+      "en": "Which of the following is an alkali?",
+      "hi": "निम्नलिखित में से कौन-सा क्षार है?",
+      "options": [
+        [
+          "Sodium hydroxide",
+          "सोडियम हाइड्रॉक्साइड"
+        ],
+        [
+          "Hydrochloric acid",
+          "हाइड्रोक्लोरिक अम्ल"
+        ],
+        [
+          "Sulphuric acid",
+          "सल्फ्यूरिक अम्ल"
+        ],
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Sodium hydroxide is a soluble base, hence an alkali.",
+      "solution_hi": "सोडियम हाइड्रॉक्साइड जल में घुलनशील क्षार है।"
+    },
+    {
+      "id": 10,
+      "subject": "Chemistry",
+      "en": "The process of conversion of a solid directly into gas is:",
+      "hi": "ठोस का सीधे गैस में बदलना कहलाता है:",
+      "options": [
+        [
+          "Sublimation",
+          "ऊर्ध्वपातन"
+        ],
+        [
+          "Condensation",
+          "संघनन"
+        ],
+        [
+          "Freezing",
+          "जमना"
+        ],
+        [
+          "Melting",
+          "पिघलना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Sublimation is the direct change from solid to vapour.",
+      "solution_hi": "ऊर्ध्वपातन में ठोस सीधे वाष्प में बदलता है।"
+    },
+    {
+      "id": 11,
+      "subject": "Biology",
+      "en": "Which chamber of the human heart pumps oxygenated blood to the body?",
+      "hi": "हृदय का कौन-सा कक्ष शरीर में ऑक्सीजनयुक्त रक्त भेजता है?",
+      "options": [
+        [
+          "Left ventricle",
+          "बायाँ निलय"
+        ],
+        [
+          "Right ventricle",
+          "दायाँ निलय"
+        ],
+        [
+          "Right atrium",
+          "दायाँ आलिंद"
+        ],
+        [
+          "Left atrium",
+          "बायाँ आलिंद"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The left ventricle pumps oxygenated blood into the aorta and systemic circulation.",
+      "solution_hi": "बायाँ निलय महाधमनी द्वारा ऑक्सीजनयुक्त रक्त पूरे शरीर में भेजता है।"
+    },
+    {
+      "id": 12,
+      "subject": "Biology",
+      "en": "The process by which plants lose water vapour through leaves is:",
+      "hi": "पत्तियों से जलवाष्प निकलने की प्रक्रिया है:",
+      "options": [
+        [
+          "Transpiration",
+          "वाष्पोत्सर्जन"
+        ],
+        [
+          "Respiration",
+          "श्वसन"
+        ],
+        [
+          "Germination",
+          "अंकुरण"
+        ],
+        [
+          "Pollination",
+          "परागण"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Transpiration is the loss of water vapour from aerial plant parts, mainly leaves.",
+      "solution_hi": "वाष्पोत्सर्जन पौधों के वायवीय भागों, मुख्यतः पत्तियों से जलवाष्प का निकलना है।"
+    },
+    {
+      "id": 13,
+      "subject": "History",
+      "en": "The slogan 'Do or Die' is associated with which movement?",
+      "hi": "'करो या मरो' का नारा किस आंदोलन से जुड़ा है?",
+      "options": [
+        [
+          "Quit India Movement",
+          "भारत छोड़ो आंदोलन"
+        ],
+        [
+          "Non-Cooperation Movement",
+          "असहयोग आंदोलन"
+        ],
+        [
+          "Swadeshi Movement",
+          "स्वदेशी आंदोलन"
+        ],
+        [
+          "Khilafat Movement",
+          "खिलाफत आंदोलन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Gandhi gave the 'Do or Die' call during the Quit India Movement in 1942.",
+      "solution_hi": "गांधीजी ने 1942 के भारत छोड़ो आंदोलन में 'करो या मरो' का आह्वान किया।"
+    },
+    {
+      "id": 14,
+      "subject": "History",
+      "en": "Who founded the Arya Samaj in 1875?",
+      "hi": "1875 में आर्य समाज की स्थापना किसने की?",
+      "options": [
+        [
+          "Swami Dayanand Saraswati",
+          "स्वामी दयानंद सरस्वती"
+        ],
+        [
+          "Raja Ram Mohan Roy",
+          "राजा राममोहन राय"
+        ],
+        [
+          "Swami Vivekananda",
+          "स्वामी विवेकानंद"
+        ],
+        [
+          "Ishwar Chandra Vidyasagar",
+          "ईश्वरचंद्र विद्यासागर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Swami Dayanand Saraswati founded the Arya Samaj in Bombay in 1875.",
+      "solution_hi": "स्वामी दयानंद सरस्वती ने 1875 में बंबई में आर्य समाज की स्थापना की।"
+    },
+    {
+      "id": 15,
+      "subject": "History",
+      "en": "The Sanchi Stupa was originally commissioned by:",
+      "hi": "सांची स्तूप का मूल निर्माण किसने करवाया था?",
+      "options": [
+        [
+          "Ashoka",
+          "अशोक"
+        ],
+        [
+          "Kanishka",
+          "कनिष्क"
+        ],
+        [
+          "Harsha",
+          "हर्ष"
+        ],
+        [
+          "Chandragupta II",
+          "चंद्रगुप्त द्वितीय"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Emperor Ashoka commissioned the original stupa at Sanchi.",
+      "solution_hi": "सम्राट अशोक ने सांची में मूल स्तूप बनवाया था।"
+    },
+    {
+      "id": 16,
+      "subject": "Geography",
+      "en": "Which river flows through a rift valley in India?",
+      "hi": "भारत में कौन-सी नदी भ्रंश घाटी से होकर बहती है?",
+      "options": [
+        [
+          "Narmada",
+          "नर्मदा"
+        ],
+        [
+          "Ganga",
+          "गंगा"
+        ],
+        [
+          "Yamuna",
+          "यमुना"
+        ],
+        [
+          "Mahanadi",
+          "महानदी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The Narmada flows westward through a rift valley between the Vindhya and Satpura ranges.",
+      "solution_hi": "नर्मदा विंध्य और सतपुड़ा के बीच भ्रंश घाटी से पश्चिम की ओर बहती है।"
+    },
+    {
+      "id": 17,
+      "subject": "Geography",
+      "en": "The highest rainfall in India is generally recorded at:",
+      "hi": "भारत में सामान्यतः सर्वाधिक वर्षा कहाँ दर्ज होती है?",
+      "options": [
+        [
+          "Mawsynram",
+          "मौसिनराम"
+        ],
+        [
+          "Jaisalmer",
+          "जैसलमेर"
+        ],
+        [
+          "Leh",
+          "लेह"
+        ],
+        [
+          "Bikaner",
+          "बीकानेर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Mawsynram in Meghalaya is widely recognised for exceptionally high annual rainfall.",
+      "solution_hi": "मेघालय का मौसिनराम अत्यधिक वार्षिक वर्षा के लिए प्रसिद्ध है।"
+    },
+    {
+      "id": 18,
+      "subject": "Polity",
+      "en": "The procedure for amendment of the Constitution is mainly given in:",
+      "hi": "संविधान संशोधन की प्रक्रिया मुख्यतः किस अनुच्छेद में दी गई है?",
+      "options": [
+        [
+          "Article 368",
+          "अनुच्छेद 368"
+        ],
+        [
+          "Article 356",
+          "अनुच्छेद 356"
+        ],
+        [
+          "Article 370",
+          "अनुच्छेद 370"
+        ],
+        [
+          "Article 280",
+          "अनुच्छेद 280"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 368 lays down the constitutional amendment procedure.",
+      "solution_hi": "अनुच्छेद 368 संविधान संशोधन की प्रक्रिया बताता है।"
+    },
+    {
+      "id": 19,
+      "subject": "Economy",
+      "en": "Disinvestment means:",
+      "hi": "विनिवेश का अर्थ है:",
+      "options": [
+        [
+          "Sale of government stake in public enterprises",
+          "सार्वजनिक उपक्रमों में सरकारी हिस्सेदारी बेचना"
+        ],
+        [
+          "Increase in government ownership",
+          "सरकारी स्वामित्व बढ़ाना"
+        ],
+        [
+          "Raising customs duty",
+          "सीमा शुल्क बढ़ाना"
+        ],
+        [
+          "Printing currency",
+          "मुद्रा छापना"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Disinvestment reduces government equity in an enterprise by selling shares.",
+      "solution_hi": "विनिवेश में शेयर बेचकर किसी उपक्रम में सरकारी हिस्सेदारी घटाई जाती है।"
+    },
+    {
+      "id": 20,
+      "subject": "Science",
+      "en": "Which instrument measures relative humidity?",
+      "hi": "सापेक्ष आर्द्रता मापने का यंत्र है:",
+      "options": [
+        [
+          "Hygrometer",
+          "आर्द्रतामापी"
+        ],
+        [
+          "Barometer",
+          "बैरोमीटर"
+        ],
+        [
+          "Calorimeter",
+          "कैलोरीमीटर"
+        ],
+        [
+          "Voltmeter",
+          "वोल्टमीटर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "A hygrometer measures moisture content or relative humidity of air.",
+      "solution_hi": "आर्द्रतामापी वायु की नमी या सापेक्ष आर्द्रता मापता है।"
+    },
+    {
+      "id": 21,
+      "subject": "Science",
+      "en": "Which planet rotates on its side with an axial tilt close to 98 degrees?",
+      "hi": "लगभग 98 डिग्री अक्षीय झुकाव के साथ अपनी करवट पर घूमने वाला ग्रह कौन-सा है?",
+      "options": [
+        [
+          "Uranus",
+          "अरुण"
+        ],
+        [
+          "Jupiter",
+          "बृहस्पति"
+        ],
+        [
+          "Mercury",
+          "बुध"
+        ],
+        [
+          "Mars",
+          "मंगल"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Uranus has an extreme axial tilt, making its rotation appear almost sideways.",
+      "solution_hi": "अरुण का अक्षीय झुकाव बहुत अधिक है, इसलिए उसका घूर्णन लगभग करवट जैसा दिखता है।"
+    },
+    {
+      "id": 22,
+      "subject": "Science",
+      "en": "The SI unit of pressure is:",
+      "hi": "दाब की SI इकाई है:",
+      "options": [
+        [
+          "Pascal",
+          "पास्कल"
+        ],
+        [
+          "Joule",
+          "जूल"
+        ],
+        [
+          "Newton",
+          "न्यूटन"
+        ],
+        [
+          "Watt",
+          "वाट"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "One pascal equals one newton per square metre.",
+      "solution_hi": "एक पास्कल एक न्यूटन प्रति वर्ग मीटर के बराबर है।"
+    }
+  ]
+}
