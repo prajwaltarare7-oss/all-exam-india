@@ -1850,8 +1850,12 @@ if(id==="pyq")renderPYQ();
 }
 (function initInSiteBackNavigation(){
 const active=document.querySelector(".page.active");
-const initialPage=active?active.id:"home";
-history.replaceState({aeiPage:initialPage}, "", location.pathname+location.search);
+const hashParams=new URLSearchParams(location.hash.replace(/^#/, ""));
+const hashPage=hashParams.get("page");
+const hashTarget=hashPage&&document.getElementById(hashPage);
+const initialPage=hashTarget&&hashTarget.classList.contains("page")?hashPage:(active?active.id:"home");
+document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===initialPage));
+history.replaceState({aeiPage:initialPage}, "", location.pathname+location.search+(initialPage==="home"?"":"#page="+encodeURIComponent(initialPage)));
 window.addEventListener("popstate",event=>{
 const requested=event.state&&event.state.aeiPage;
 const target=requested&&document.getElementById(requested);
