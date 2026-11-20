@@ -4,7 +4,7 @@
   "mock": 2,
   "status": "in_progress",
   "target_questions": 150,
-  "completed_questions": 59,
+  "completed_questions": 69,
   "language_modes": [
     "en",
     "hi"
@@ -1607,6 +1607,276 @@
       "answer": 0,
       "solution_en": "Gujarat has the longest coastline among Indian states, with a highly indented shore along the Arabian Sea and the Gulf of Kachchh and Gulf of Khambhat.",
       "solution_hi": "भारतीय राज्यों में गुजरात की समुद्री तटरेखा सबसे लंबी है। इसकी तटरेखा अरब सागर तथा कच्छ और खंभात की खाड़ियों के किनारे विस्तृत है।"
+    },
+    {
+      "id": 60,
+      "subject": "Physics",
+      "en": "A ray of light passes from air into glass. Which quantity remains unchanged?",
+      "hi": "प्रकाश की किरण वायु से काँच में प्रवेश करती है। कौन-सी राशि अपरिवर्तित रहती है?",
+      "options": [
+        [
+          "Frequency",
+          "आवृत्ति"
+        ],
+        [
+          "Speed",
+          "चाल"
+        ],
+        [
+          "Wavelength",
+          "तरंगदैर्ध्य"
+        ],
+        [
+          "Direction in every case",
+          "हर स्थिति में दिशा"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The frequency is fixed by the source and remains unchanged at a boundary. Speed and wavelength change when light enters a medium of different refractive index.",
+      "solution_hi": "आवृत्ति स्रोत द्वारा निर्धारित होती है और माध्यम की सीमा पर अपरिवर्तित रहती है। अलग अपवर्तनांक वाले माध्यम में प्रवेश करने पर चाल और तरंगदैर्ध्य बदलते हैं।"
+    },
+    {
+      "id": 61,
+      "subject": "Chemistry",
+      "en": "Which of the following elements has the highest electronegativity?",
+      "hi": "निम्नलिखित में से किस तत्व की विद्युतऋणात्मकता सबसे अधिक है?",
+      "options": [
+        [
+          "Fluorine",
+          "फ्लोरीन"
+        ],
+        [
+          "Chlorine",
+          "क्लोरीन"
+        ],
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Fluorine is the most electronegative element. Its small atomic size and strong effective nuclear attraction make it attract shared electrons most strongly.",
+      "solution_hi": "फ्लोरीन सबसे अधिक विद्युतऋणात्मक तत्व है। इसका छोटा परमाणु आकार और प्रभावी नाभिकीय आकर्षण साझा इलेक्ट्रॉनों को सबसे अधिक आकर्षित करता है।"
+    },
+    {
+      "id": 62,
+      "subject": "Biology",
+      "en": "Which hormone lowers the blood glucose level?",
+      "hi": "कौन-सा हार्मोन रक्त में ग्लूकोज़ का स्तर कम करता है?",
+      "options": [
+        [
+          "Insulin",
+          "इंसुलिन"
+        ],
+        [
+          "Glucagon",
+          "ग्लूकागॉन"
+        ],
+        [
+          "Adrenaline",
+          "एड्रेनालिन"
+        ],
+        [
+          "Thyroxine",
+          "थायरॉक्सिन"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Insulin, secreted by beta cells of the pancreas, promotes glucose uptake by cells and storage as glycogen, thereby lowering blood glucose.",
+      "solution_hi": "अग्न्याशय की बीटा कोशिकाओं से निकलने वाला इंसुलिन कोशिकाओं द्वारा ग्लूकोज़ ग्रहण और ग्लाइकोजन के रूप में उसके भंडारण को बढ़ाता है, जिससे रक्त शर्करा घटती है।"
+    },
+    {
+      "id": 63,
+      "subject": "Geography",
+      "en": "The seasonal reversal of wind direction is the defining characteristic of which climate?",
+      "hi": "हवाओं की दिशा का मौसमी उलटाव किस जलवायु की प्रमुख विशेषता है?",
+      "options": [
+        [
+          "Monsoon climate",
+          "मानसूनी जलवायु"
+        ],
+        [
+          "Mediterranean climate",
+          "भूमध्यसागरीय जलवायु"
+        ],
+        [
+          "Equatorial climate",
+          "भूमध्यरेखीय जलवायु"
+        ],
+        [
+          "Tundra climate",
+          "टुंड्रा जलवायु"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Monsoon climate is characterised by a seasonal reversal of prevailing winds, producing distinct wet and dry seasons.",
+      "solution_hi": "मानसूनी जलवायु में प्रचलित हवाओं की दिशा ऋतु के अनुसार बदलती है, जिससे स्पष्ट वर्षा और शुष्क ऋतुएँ बनती हैं।"
+    },
+    {
+      "id": 64,
+      "subject": "History",
+      "en": "The Permanent Settlement of Bengal was introduced in 1793 by:",
+      "hi": "बंगाल में स्थायी बंदोबस्त 1793 में किसने लागू किया था?",
+      "options": [
+        [
+          "Lord Cornwallis",
+          "लॉर्ड कॉर्नवालिस"
+        ],
+        [
+          "Warren Hastings",
+          "वॉरेन हेस्टिंग्स"
+        ],
+        [
+          "Lord Wellesley",
+          "लॉर्ड वेलेजली"
+        ],
+        [
+          "Lord Dalhousie",
+          "लॉर्ड डलहौजी"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Lord Cornwallis introduced the Permanent Settlement in 1793. It fixed land revenue demand and recognised zamindars as landholders responsible for payment.",
+      "solution_hi": "लॉर्ड कॉर्नवालिस ने 1793 में स्थायी बंदोबस्त लागू किया। इसमें भूमि-राजस्व की मांग निश्चित की गई और ज़मींदारों को भुगतान के लिए जिम्मेदार भू-स्वामी माना गया।"
+    },
+    {
+      "id": 65,
+      "subject": "Polity",
+      "en": "The Comptroller and Auditor General of India can be removed in the same manner as a:",
+      "hi": "भारत के नियंत्रक एवं महालेखा परीक्षक को किसके समान प्रक्रिया से पद से हटाया जा सकता है?",
+      "options": [
+        [
+          "Judge of the Supreme Court",
+          "उच्चतम न्यायालय के न्यायाधीश"
+        ],
+        [
+          "Governor of a State",
+          "राज्य के राज्यपाल"
+        ],
+        [
+          "Attorney General of India",
+          "भारत के महान्यायवादी"
+        ],
+        [
+          "Cabinet Secretary",
+          "कैबिनेट सचिव"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Article 148 provides that the CAG can be removed in the same manner and on the same grounds as a Supreme Court judge, protecting the office's independence.",
+      "solution_hi": "अनुच्छेद 148 के अनुसार CAG को उच्चतम न्यायालय के न्यायाधीश के समान प्रक्रिया और आधारों पर हटाया जा सकता है। इससे पद की स्वतंत्रता सुरक्षित रहती है।"
+    },
+    {
+      "id": 66,
+      "subject": "English",
+      "en": "Choose the correct passive form of: 'The committee approved the proposal.'",
+      "hi": "वाक्य 'The committee approved the proposal.' का सही कर्मवाच्य रूप चुनिए।",
+      "options": [
+        [
+          "The proposal was approved by the committee.",
+          "The proposal was approved by the committee."
+        ],
+        [
+          "The proposal is approved by the committee.",
+          "The proposal is approved by the committee."
+        ],
+        [
+          "The proposal had approve by the committee.",
+          "The proposal had approve by the committee."
+        ],
+        [
+          "The committee was approved the proposal.",
+          "The committee was approved the proposal."
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "The active sentence is in the simple past. Its passive form uses 'was/were + past participle': 'The proposal was approved by the committee.'",
+      "solution_hi": "मूल वाक्य simple past में है। इसका कर्मवाच्य रूप 'was/were + past participle' से बनेगा: 'The proposal was approved by the committee.'"
+    },
+    {
+      "id": 67,
+      "subject": "English",
+      "en": "Choose the word closest in meaning to 'Prudent'.",
+      "hi": "'Prudent' के सबसे निकट अर्थ वाला शब्द चुनिए।",
+      "options": [
+        [
+          "Wise and cautious",
+          "बुद्धिमान और सावधान"
+        ],
+        [
+          "Careless and hasty",
+          "लापरवाह और जल्दबाज़"
+        ],
+        [
+          "Proud and arrogant",
+          "घमंडी और अहंकारी"
+        ],
+        [
+          "Weak and uncertain",
+          "कमज़ोर और अनिश्चित"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Prudent means acting with care, good judgement and foresight; therefore 'wise and cautious' is the closest meaning.",
+      "solution_hi": "Prudent का अर्थ सावधानी, अच्छे विवेक और दूरदर्शिता से काम करना है; इसलिए 'बुद्धिमान और सावधान' निकटतम अर्थ है।"
+    },
+    {
+      "id": 68,
+      "subject": "Economy",
+      "en": "Which of the following is counted as a direct tax in India?",
+      "hi": "भारत में निम्नलिखित में से किसे प्रत्यक्ष कर माना जाता है?",
+      "options": [
+        [
+          "Income tax",
+          "आयकर"
+        ],
+        [
+          "Goods and Services Tax",
+          "वस्तु एवं सेवा कर"
+        ],
+        [
+          "Customs duty",
+          "सीमा शुल्क"
+        ],
+        [
+          "Excise duty",
+          "उत्पाद शुल्क"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "Income tax is a direct tax because it is imposed directly on the income of the person or entity liable to pay it. GST, customs and excise duties are indirect taxes.",
+      "solution_hi": "आयकर प्रत्यक्ष कर है क्योंकि यह करदाता व्यक्ति या संस्था की आय पर सीधे लगाया जाता है। GST, सीमा शुल्क और उत्पाद शुल्क अप्रत्यक्ष कर हैं।"
+    },
+    {
+      "id": 69,
+      "subject": "Geography",
+      "en": "The Standard Meridian of India is:",
+      "hi": "भारत की मानक मध्याह्न रेखा कौन-सी है?",
+      "options": [
+        [
+          "82°30′ East longitude",
+          "82°30′ पूर्वी देशांतर"
+        ],
+        [
+          "75°30′ East longitude",
+          "75°30′ पूर्वी देशांतर"
+        ],
+        [
+          "90° East longitude",
+          "90° पूर्वी देशांतर"
+        ],
+        [
+          "68°7′ East longitude",
+          "68°7′ पूर्वी देशांतर"
+        ]
+      ],
+      "answer": 0,
+      "solution_en": "India's Standard Meridian is 82°30′ E, passing near Mirzapur in Uttar Pradesh. Indian Standard Time is UTC + 5 hours 30 minutes.",
+      "solution_hi": "भारत की मानक मध्याह्न रेखा 82°30′ पूर्वी देशांतर है, जो उत्तर प्रदेश के मिर्ज़ापुर के निकट से गुजरती है। भारतीय मानक समय UTC से 5 घंटे 30 मिनट आगे है।"
     }
   ]
 }
