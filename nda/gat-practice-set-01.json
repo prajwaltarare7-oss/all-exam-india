@@ -1,0 +1,267 @@
+{
+  "exam": "NDA GAT",
+  "mock": 1,
+  "language": "bilingual",
+  "questions": [
+    {
+      "subject": "English",
+      "en": "Choose the word nearest in meaning to 'ABUNDANT'.",
+      "hi": "'ABUNDANT' शब्द का निकटतम अर्थ चुनिए।",
+      "options": [
+        [
+          "Scarce",
+          "दुर्लभ"
+        ],
+        [
+          "Plentiful",
+          "प्रचुर"
+        ],
+        [
+          "Brief",
+          "संक्षिप्त"
+        ],
+        [
+          "Fragile",
+          "नाज़ुक"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "Abundant means existing in large quantities. 'Plentiful' has the same meaning; scarce is its opposite.",
+      "solution_hi": "Abundant का अर्थ बड़ी मात्रा में उपलब्ध होना है। Plentiful इसका समानार्थी है, जबकि Scarce इसका विलोम है।"
+    },
+    {
+      "subject": "English",
+      "en": "Choose the grammatically correct sentence.",
+      "hi": "व्याकरण की दृष्टि से सही वाक्य चुनिए।",
+      "options": [
+        [
+          "He do not know the answer.",
+          "He do not know the answer."
+        ],
+        [
+          "He does not knows the answer.",
+          "He does not knows the answer."
+        ],
+        [
+          "He does not know the answer.",
+          "He does not know the answer."
+        ],
+        [
+          "He not know the answer.",
+          "He not know the answer."
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "With the third-person singular subject 'he', use 'does not' followed by the base verb 'know'.",
+      "solution_hi": "Third-person singular 'he' के साथ 'does not' आता है और इसके बाद क्रिया का मूल रूप 'know' प्रयोग होता है।"
+    },
+    {
+      "subject": "Physics",
+      "en": "A body moving with uniform speed in a circular path has:",
+      "hi": "एक वस्तु वृत्ताकार पथ पर समान चाल से चल रही है। उसका:",
+      "options": [
+        [
+          "Zero acceleration",
+          "त्वरण शून्य"
+        ],
+        [
+          "Constant velocity",
+          "वेग स्थिर"
+        ],
+        [
+          "Changing velocity",
+          "वेग बदलता रहता है"
+        ],
+        [
+          "Zero centripetal force",
+          "अभिकेन्द्रीय बल शून्य"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Velocity changes continuously because its direction changes. The body therefore has centripetal acceleration even when speed is constant.",
+      "solution_hi": "दिशा लगातार बदलने के कारण वेग बदलता रहता है। चाल समान होने पर भी अभिकेन्द्रीय त्वरण मौजूद रहता है।"
+    },
+    {
+      "subject": "Physics",
+      "en": "The SI unit of electric resistance is:",
+      "hi": "विद्युत प्रतिरोध की SI इकाई है:",
+      "options": [
+        [
+          "Ampere",
+          "एम्पियर"
+        ],
+        [
+          "Volt",
+          "वोल्ट"
+        ],
+        [
+          "Ohm",
+          "ओम"
+        ],
+        [
+          "Watt",
+          "वाट"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Resistance is measured in ohms (Ω). From Ohm's law, R = V/I.",
+      "solution_hi": "प्रतिरोध की इकाई ओम (Ω) है। ओम के नियम से R = V/I।"
+    },
+    {
+      "subject": "Chemistry",
+      "en": "Which gas is released when a dilute acid reacts with an active metal?",
+      "hi": "तनु अम्ल की सक्रिय धातु से अभिक्रिया होने पर कौन-सी गैस निकलती है?",
+      "options": [
+        [
+          "Oxygen",
+          "ऑक्सीजन"
+        ],
+        [
+          "Hydrogen",
+          "हाइड्रोजन"
+        ],
+        [
+          "Nitrogen",
+          "नाइट्रोजन"
+        ],
+        [
+          "Carbon dioxide",
+          "कार्बन डाइऑक्साइड"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "A typical metal-acid reaction forms a salt and hydrogen gas, for example Zn + 2HCl → ZnCl₂ + H₂.",
+      "solution_hi": "धातु और अम्ल की सामान्य अभिक्रिया से लवण तथा हाइड्रोजन गैस बनती है। उदाहरण: Zn + 2HCl → ZnCl₂ + H₂।"
+    },
+    {
+      "subject": "Chemistry",
+      "en": "The pH of a neutral aqueous solution at 25°C is:",
+      "hi": "25°C पर उदासीन जलीय विलयन का pH कितना होता है?",
+      "options": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "5",
+          "5"
+        ],
+        [
+          "7",
+          "7"
+        ],
+        [
+          "14",
+          "14"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "At 25°C, a neutral aqueous solution has equal hydrogen and hydroxide ion concentrations, giving pH 7.",
+      "solution_hi": "25°C पर उदासीन जलीय विलयन में H⁺ और OH⁻ आयनों की सांद्रता समान होती है, इसलिए pH 7 होता है।"
+    },
+    {
+      "subject": "History",
+      "en": "The Non-Cooperation Movement was launched in:",
+      "hi": "असहयोग आंदोलन किस वर्ष शुरू किया गया था?",
+      "options": [
+        [
+          "1905",
+          "1905"
+        ],
+        [
+          "1919",
+          "1919"
+        ],
+        [
+          "1920",
+          "1920"
+        ],
+        [
+          "1930",
+          "1930"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Mahatma Gandhi launched the Non-Cooperation Movement in 1920, following the events of 1919.",
+      "solution_hi": "1919 की घटनाओं के बाद महात्मा गांधी ने 1920 में असहयोग आंदोलन शुरू किया।"
+    },
+    {
+      "subject": "Geography",
+      "en": "Which is the longest river flowing entirely within India?",
+      "hi": "पूरी तरह भारत के भीतर बहने वाली सबसे लंबी नदी कौन-सी है?",
+      "options": [
+        [
+          "Ganga",
+          "गंगा"
+        ],
+        [
+          "Godavari",
+          "गोदावरी"
+        ],
+        [
+          "Narmada",
+          "नर्मदा"
+        ],
+        [
+          "Krishna",
+          "कृष्णा"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "The Godavari is the longest river that flows entirely within India; it is often called the Dakshin Ganga.",
+      "solution_hi": "गोदावरी पूरी तरह भारत में बहने वाली सबसे लंबी नदी है। इसे दक्षिण गंगा भी कहा जाता है।"
+    },
+    {
+      "subject": "Polity",
+      "en": "The Constitution of India was adopted by the Constituent Assembly on:",
+      "hi": "भारतीय संविधान को संविधान सभा ने कब अंगीकृत किया?",
+      "options": [
+        [
+          "15 August 1947",
+          "15 अगस्त 1947"
+        ],
+        [
+          "26 November 1949",
+          "26 नवंबर 1949"
+        ],
+        [
+          "26 January 1950",
+          "26 जनवरी 1950"
+        ],
+        [
+          "2 October 1950",
+          "2 अक्टूबर 1950"
+        ]
+      ],
+      "answer": 1,
+      "solution_en": "The Constituent Assembly adopted the Constitution on 26 November 1949. It came into force on 26 January 1950.",
+      "solution_hi": "संविधान सभा ने 26 नवंबर 1949 को संविधान अंगीकृत किया। यह 26 जनवरी 1950 को लागू हुआ।"
+    },
+    {
+      "subject": "General Science",
+      "en": "Which cell organelle is known as the powerhouse of the cell?",
+      "hi": "कोशिका का 'ऊर्जा गृह' किस कोशिकांग को कहा जाता है?",
+      "options": [
+        [
+          "Ribosome",
+          "राइबोसोम"
+        ],
+        [
+          "Nucleus",
+          "केंद्रक"
+        ],
+        [
+          "Mitochondrion",
+          "माइटोकॉन्ड्रिया"
+        ],
+        [
+          "Golgi apparatus",
+          "गॉल्जी तंत्र"
+        ]
+      ],
+      "answer": 2,
+      "solution_en": "Mitochondria produce most of the ATP used by the cell during aerobic respiration.",
+      "solution_hi": "माइटोकॉन्ड्रिया वायवीय श्वसन के दौरान कोशिका के अधिकांश ATP का निर्माण करते हैं।"
+    }
+  ]
+}
