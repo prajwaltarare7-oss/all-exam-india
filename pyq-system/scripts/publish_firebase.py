@@ -33,6 +33,23 @@ def main():
         if count%400==0: batch.commit(); batch=db.batch()
     if count%400: batch.commit()
     print(f"Published {count} verified questions to Firestore.")
+    # Publish independently authored practice items to a separate collection; never label them as PYQs.
+    original_path=ROOT/"data"/"verified-original-questions.json"
+    original_count=0
+    if original_path.exists():
+        originals=json.loads(original_path.read_text(encoding="utf-8"))
+        for q in originals.get("questions",[]):
+            if (q.get("contentType")!="original_practice" or q.get("authorship")!="original"
+                or q.get("originalityReviewStatus")!="verified" or q.get("reviewStatus")!="verified"
+                or q.get("answerKeyStatus")!="verified" or q.get("reusePermission")!="owned"):
+                continue
+            import re
+            exam=re.sub(r"[^a-z0-9]+","-",str(q["exam"]).strip().lower()).strip("-")
+            qid=str(q.get("id") or q.get("candidateId") or f'original-{original_count}')
+            ref=db.collection("practiceBank").document(exam).collection("questions").document(qid)
+            payload=dict(q); payload["published"]=True; payload["contentType"]="original_practice"
+            ref.set(payload,merge=True); original_count+=1
+    print(f"Published {original_count} independently authored practice questions to practiceBank (not PYQ).")
     # Publish only complete mock papers produced from verified profiles and verified questions.
     mocks_dir=ROOT/"data"/"generated-mocks"
     test_count=0
