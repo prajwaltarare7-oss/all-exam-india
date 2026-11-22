@@ -23,15 +23,20 @@ function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&
 function showHistory(){let h=[];try{h=JSON.parse(localStorage.getItem('aei_auto_mock_history')||'[]')}catch{}$('history').innerHTML=h.length?h.slice(0,10).map(x=>'<div class="history"><b>'+safe(x.exam)+'</b> · '+safe(x.date)+'<br>'+x.score+'/'+x.max+' गुण · बरोबर '+x.correct+' · चुकीचे '+x.wrong+'</div>').join(''):'अजून टेस्ट पूर्ण केलेली नाही.'}
 async function init(){
  try{
-  const res=await fetch('./data/nda-question-bank-batch-01.json',{cache:'no-store'});
-  if(!res.ok)throw new Error('प्रश्नसंच फाइल मिळाली नाही');
-  const bank=await res.json();staticBanks.nda=bank.questions||[];
+  const catalogRes=await fetch('./data/exam-catalog.json',{cache:'no-store'});
+  if(!catalogRes.ok)throw new Error('परीक्षा सूची फाइल मिळाली नाही');
+  const catalog=await catalogRes.json();
+  const bankRes=await fetch('./data/nda-question-bank-batch-01.json',{cache:'no-store'});
+  if(!bankRes.ok)throw new Error('NDA प्रश्नसंच फाइल मिळाली नाही');
+  const bank=await bankRes.json();staticBanks.nda=bank.questions||[];
   profiles.nda={id:'nda',name:'NDA · सराव संच 01 (पूर्ण अधिकृत पेपर नाही)',totalQuestions:20,durationMinutes:30,marksCorrect:4,marksWrong:-1.333333,subjectBlueprint:[{subject:'Mathematics',count:12,difficultyCounts:{medium:6,hard:6}},{subject:'General Ability Test',count:8,difficultyCounts:{medium:4,hard:4}}],difficultyBlueprint:[{level:'medium',count:10},{level:'hard',count:10}]};
   if(db){try{const snap=await db.collection('examProfiles').where('published','==',true).get();snap.forEach(d=>{if(!profiles[d.id])profiles[d.id]={id:d.id,...d.data()}})}catch(e){console.warn('Firestore profiles unavailable; using bundled bank',e)}}
-  const entries=Object.values(profiles);$('exam').innerHTML='<option value="">परीक्षा निवडा</option>'+entries.map(p=>'<option value="'+safe(p.id)+'">'+safe(p.name||p.id)+'</option>').join('');
-  $('profile').textContent='प्रश्नसंच आपोआप लोड झाला. NDA साठी सध्या 20 प्रश्नांचा (निवडलेल्या भाषेत) सराव संच उपलब्ध आहे.';
+  const activeOptions=Object.values(profiles).map(p=>'<option value="'+safe(p.id)+'">'+safe(p.name||p.id)+'</option>').join('');
+  const catalogOptions=catalog.categories.map(group=>'<optgroup label="'+safe(group.name)+'">'+group.exams.map(ex=>'<option value="'+safe(ex.id)+'" '+(profiles[ex.id]?'':'disabled')+'>'+safe(ex.name)+(profiles[ex.id]?'':' · प्रश्नसंच तयार होत आहे')+'</option>').join('')+'</optgroup>').join('');
+  $('exam').innerHTML='<option value="">परीक्षा निवडा</option>'+catalogOptions;
+  $('profile').textContent='भारतामधील विविध परीक्षांची सूची जोडली. सध्या NDA चा मर्यादित सराव संच उपलब्ध आहे; इतर परीक्षा pattern व पूर्ण प्रश्नसंच पडताळून तयार झाल्यावरच सुरू होतील.';
   $('exam').onchange=profileInfo;profileInfo();
- }catch(e){$('exam').innerHTML='<option>प्रश्नसंच उपलब्ध नाही</option>';$('profile').textContent='प्रश्नसंच लोड झाला नाही: '+e.message}
+ }catch(e){$('exam').innerHTML='<option>परीक्षा सूची उपलब्ध नाही</option>';$('profile').textContent='लोड करताना अडचण: '+e.message}
 }
 function profileInfo(){const p=profiles[$('exam').value];$('generate').disabled=!p;$('profile').innerHTML=p?'<div class="stats"><span class="chip">'+Number(p.totalQuestions||0)+' प्रश्न</span><span class="chip">'+Number(p.durationMinutes||0)+' मिनिटे</span><span class="chip">बरोबर +'+Number(p.marksCorrect||0)+'</span><span class="chip">चुकीचे '+Number(p.marksWrong||0)+'</span></div><p class="muted">विषयवार प्रश्नसंख्या: '+(p.subjectBlueprint||[]).map(s=>safe(s.subject)+': '+Number(s.count)).join(' · ')+'</p>':'Profile निवडा.'}
 async function buildTest(){const p=profiles[$('exam').value],lang=$('language').value;if(!p)return;const blueprint=p.subjectBlueprint||[];if(!blueprint.length){$('status').textContent='या परीक्षेच्या profile मध्ये subjectBlueprint नाही.';return}
