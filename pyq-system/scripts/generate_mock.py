@@ -11,6 +11,7 @@ def main() -> int:
     ap.add_argument("--profiles", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--seed", type=int, default=20261122)
+    ap.add_argument("--content-type", choices=("pyq", "original_practice"), default="pyq")
     args = ap.parse_args()
 
     bank = json.loads(Path(args.bank).read_text(encoding="utf-8"))
@@ -23,15 +24,21 @@ def main() -> int:
     if missing:
         raise SystemExit("Incomplete exam profile: " + ", ".join(missing))
 
-    eligible = [
-        q for q in bank.get("questions", [])
-        if q.get("exam") == args.exam
-        and q.get("reviewStatus") == "verified"
-        and q.get("answerKeyStatus") == "verified"
-        and q.get("reusePermission") == "approved"
-        and q.get("question") and isinstance(q.get("options"), list)
-        and len(q["options"]) >= 2 and q.get("correctOption") is not None
-    ]
+    def approved_for_lane(q):
+        common = (q.get("reviewStatus") == "verified"
+                  and q.get("answerKeyStatus") == "verified"
+                  and q.get("question") and isinstance(q.get("options"), list)
+                  and len(q["options"]) >= 2 and q.get("correctOption") is not None)
+        if args.content_type == "pyq":
+            return common and q.get("contentType", "pyq") == "pyq" and q.get("reusePermission") == "approved"
+        return (common and q.get("contentType") == "original_practice"
+                and q.get("authorship") == "original"
+                and q.get("sourceUse") == "topic_only_no_question_text"
+                and q.get("originalityReviewStatus") == "verified"
+                and q.get("reusePermission") == "owned")
+
+    eligible = [q for q in bank.get("questions", [])
+                if q.get("exam") == args.exam and approved_for_lane(q)]
     rng = random.Random(args.seed)
     chosen = []
     for section in profile["sections"]:
@@ -53,7 +60,8 @@ def main() -> int:
         "sections": profile["sections"],
         "marksCorrect": profile["marksCorrect"], "marksWrong": profile["marksWrong"],
         "questions": chosen,
-        "sourcePolicy": "verified-and-approved-only",
+        "contentType": args.content_type,
+        "sourcePolicy": ("verified-and-reuse-approved-pyq" if args.content_type == "pyq" else "independently-authored-and-reviewed-practice"),
         "status": "generated_not_yet_published",
         "published": False
     }
