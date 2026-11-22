@@ -24,7 +24,8 @@ def main():
     for q in bank.get("questions",[]):
         if q.get("reviewStatus")!="verified" or q.get("answerKeyStatus")!="verified" or q.get("reusePermission")!="approved":
             continue
-        exam=str(q["exam"]).strip().lower().replace(" ","-")
+        import re
+        exam=re.sub(r"[^a-z0-9]+","-",str(q["exam"]).strip().lower()).strip("-")
         qid=str(q.get("id") or q.get("candidateId") or f'{q["year"]}-{q.get("questionNo","q")}-{count}')
         ref=db.collection("questionBank").document(exam).collection("questions").document(qid)
         payload=dict(q); payload["published"]=True
