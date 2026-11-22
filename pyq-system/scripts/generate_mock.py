@@ -46,11 +46,16 @@ def main() -> int:
     rng.shuffle(chosen)
     payload = {
         "exam": args.exam, "seed": args.seed,
+        "testId": f'{args.exam.lower().replace(" ", "-")}-mock-{args.seed}',
+        "title": f'{args.exam} Full Mock Test',
         "durationMinutes": profile["durationMinutes"],
+        "totalQuestions": profile["totalQuestions"],
+        "sections": profile["sections"],
         "marksCorrect": profile["marksCorrect"], "marksWrong": profile["marksWrong"],
         "questions": chosen,
         "sourcePolicy": "verified-and-approved-only",
-        "status": "generated_not_yet_published"
+        "status": "generated_not_yet_published",
+        "published": False
     }
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
