@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "app": "ALL EXAM INDIA",
+  "policy": {
+    "patternSourceRequired": true,
+    "officialPYQRequiresSourceVerification": true,
+    "generatedPracticeMustNotBeLabeledPYQ": true,
+    "publishOnlyWhenPatternAndQuestionBankAreComplete": true
+  },
+  "categories": [
+    {
+      "id": "central-government",
+      "name": "केंद्र सरकारी परीक्षा",
+      "exams": [
+        {
+          "id": "ssc-cgl",
+          "name": "SSC CGL",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ssc-chsl",
+          "name": "SSC CHSL",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ssc-mts",
+          "name": "SSC MTS",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ssc-gd",
+          "name": "SSC GD Constable",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ssc-cpo",
+          "name": "SSC CPO",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ssc-je",
+          "name": "SSC JE",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "upsc-cse",
+          "name": "UPSC Civil Services",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "nda",
+          "name": "NDA",
+          "patternStatus": "practice-profile-only",
+          "bankStatus": "partial"
+        }
+      ]
+    },
+    {
+      "id": "banking",
+      "name": "बँकिंग परीक्षा",
+      "exams": [
+        {
+          "id": "ibps-po",
+          "name": "IBPS PO",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ibps-clerk",
+          "name": "IBPS Clerk",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "sbi-po",
+          "name": "SBI PO",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "sbi-clerk",
+          "name": "SBI Clerk",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ibps-rrb-po",
+          "name": "IBPS RRB PO",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "ibps-rrb-clerk",
+          "name": "IBPS RRB Clerk",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "rbi-grade-b",
+          "name": "RBI Grade B",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "railway",
+      "name": "रेल्वे परीक्षा",
+      "exams": [
+        {
+          "id": "rrb-ntpc",
+          "name": "RRB NTPC",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "rrb-group-d",
+          "name": "RRB Group D",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "rrb-alp",
+          "name": "RRB ALP",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "rrb-technician",
+          "name": "RRB Technician",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "maharashtra",
+      "name": "महाराष्ट्र राज्य परीक्षा",
+      "exams": [
+        {
+          "id": "mpsc-rajyaseva",
+          "name": "MPSC राज्यसेवा",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "mpsc-combine",
+          "name": "MPSC संयुक्त गट-ब/क",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "maharashtra-police",
+          "name": "महाराष्ट्र पोलीस भरती",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "talathi",
+          "name": "तलाठी भरती",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "zilha-parishad",
+          "name": "जिल्हा परिषद भरती",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "defence",
+      "name": "संरक्षण परीक्षा",
+      "exams": [
+        {
+          "id": "nda",
+          "name": "NDA",
+          "patternStatus": "practice-profile-only",
+          "bankStatus": "partial"
+        },
+        {
+          "id": "cds",
+          "name": "CDS",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "agniveer-army",
+          "name": "Agniveer Army",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "agniveer-airforce",
+          "name": "Agniveer Air Force",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "agniveer-navy",
+          "name": "Agniveer Navy",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "teaching",
+      "name": "शिक्षक पात्रता परीक्षा",
+      "exams": [
+        {
+          "id": "ctet",
+          "name": "CTET",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "maha-tet",
+          "name": "MahaTET",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "stet",
+          "name": "State TET",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "name": "इतर स्पर्धा परीक्षा",
+      "exams": [
+        {
+          "id": "upsc-capf",
+          "name": "UPSC CAPF",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "lic-aao",
+          "name": "LIC AAO",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        },
+        {
+          "id": "esic-udc",
+          "name": "ESIC UDC",
+          "patternStatus": "needs_verification",
+          "bankStatus": "not_ready"
+        }
+      ]
+    }
+  ]
+}
