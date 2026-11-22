@@ -51,7 +51,7 @@ def main():
     title=soup.title.get_text(' ',strip=True)[:200] if soup.title else ''
     if matches>=2:
      row={'sourceId':src['id'],'sourceName':src['name'],'examFamilies':src.get('examFamilies',[]),'url':r.url,'title':title,'questionPatternMatches':matches,'checkedAt':now,'reusePermission':src.get('reusePermission','not_reviewed'),'status':'discovered_needs_exam_year_answer_and_rights_review'}
-     if src.get('reusePermission')=='approved':
+     if (src.get('reusePermission')=='approved' and src.get('permissionEvidenceUrl')\n                        and src.get('permissionBasis') and src.get('permissionReviewedAt')):
       row['textDraft']=txt[:100000]; row['status']='text_draft_needs_exam_year_and_answer_review'
      found.append(row)
     if d<2:
