@@ -44,7 +44,12 @@ footer{text-align:center;padding:24px;color:#7d899f;border-top:1px solid var(--l
 <section id="sectionPage" hidden></section>
 </main>
 <footer>ALL EXAM INDIA · Exam-wise Question Practice</footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="./firebase-config.js"></script>
 <script>
+let db=null;
+try { if(window.ALL_EXAM_FIREBASE_CONFIG && window.ALL_EXAM_FIREBASE_CONFIG.apiKey) { firebase.initializeApp(window.ALL_EXAM_FIREBASE_CONFIG); db=firebase.firestore(); } } catch(e) { console.warn("Firebase setup:",e); }
 const categories={"Defence & UPSC":["NDA","CDS","AFCAT","UPSC Civil Services (IAS/CSE)","UPSC CMS","Indian Coast Guard Assistant Commandant","UPSC Engineering Services (ESE)","UPSC CAPF"],"SSC & Central Recruitment":["SSC CGL","SSC CHSL","SSC GD Constable","SSC JE","SSC MTS","SSC CPO","SSC JHT","SSC Selection Post","RPF SI","MPPEB Jail Prahari","NSC Management Trainee"],"Railways":["RRB NTPC","RRB Group D"],"Banking & Insurance":["SBI PO","SBI Clerk","IBPS PO","IBPS Clerk","IBPS RRB","IBPS SO","RBI Assistant","RBI Grade B","ICICI Bank PO","NIACL Assistant"],"State Services":["BPSC Civil Services","UPPSC PCS","CGPSC State Service","MPPSC State Service","TNPSC Group 4","RPSC RAS","TSPSC Group 4","APPSC Assistant Professor","MPPSC State Forest Service","Jharkhand JGGLCCE","Bihar Judicial Service"],"Teaching & Eligibility":["CTET","UPTET","UGC NET","CSIR UGC NET","REET","HTET","APTET","Haryana CET","HP TET","Maha TET","MP TET","TNTET","TS TET","UPSSSC PET","WB SET","KSET","Bihar STET","TS SET","MP SET","TN SET","USET","OSSTET"]};
 const sourceTotal=145;
 const all=Object.entries(categories).flatMap(([category,names])=>names.map(name=>({name,category,id:name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g)})));
@@ -76,11 +81,49 @@ function openExam(exam){
  show('examPage');
 }
 const labels={pyq:'Previous Year Questions (PYQ)',mcq:'MCQ Practice',mock:'Mock Test',full:'Full-length Exam Test'};
-function openSection(exam,kind){
+function safe(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function optionList(q){
+ const opts=Array.isArray(q.options)?q.options:[];
+ return opts.map((o,i)=>{const key=typeof o==='string'?String.fromCharCode(65+i):(o.key||String.fromCharCode(65+i));const val=typeof o==='string'?o:o.text;return {key,text:val}});
+}
+function renderQuestion(q,i,interactive=true){
+ const opts=optionList(q);
+ return '<article class="item" style="display:block"><b>Q'+(q.questionNo||i+1)+'. '+safe(q.question||q.text)+'</b><div class="sub">'+safe(q.subject||'')+' '+(q.year?'· '+safe(q.year):'')+'</div><div class="list">'+opts.map(o=>'<button class="tile answer-option" data-q="'+i+'" data-answer="'+safe(o.key)+'" style="text-align:left;padding:11px">'+safe(o.key)+'. '+safe(o.text)+'</button>').join('')+'</div><div class="sub answer-feedback" id="feedback-'+i+'"></div></article>';
+}
+async function openSection(exam,kind){
  history.pushState({page:'section',id:exam.id,kind},'','#'+kind+'/'+exam.id);
- $('sectionPage').innerHTML='<button class="back" id="backExam">← '+exam.name+'</button><div class="panel"><h2>'+exam.name+' — '+labels[kind]+'</h2><p class="sub">'+labels[kind]+' हा विभाग स्वतंत्र आहे.</p><div class="notice">प्रश्न प्रकाशित करण्यापूर्वी मूळ पेपरचा स्रोत, वापराची परवानगी आणि उत्तरतालिका पडताळली जाईल. चुकीचे किंवा बनावट PYQ दाखवले जाणार नाहीत.</div><div class="empty"><b>प्रश्नसंच जोडण्याचे काम बाकी आहे.</b><br>या परीक्षेचा पडताळलेला प्रश्नसंच उपलब्ध झाल्यावर वर्ष / विषय / टेस्टनुसार इथे दिसेल. सध्या डेमो किंवा बनावट प्रश्न दाखवलेले नाहीत.</div></div>';
+ $('sectionPage').innerHTML='<button class="back" id="backExam">← '+safe(exam.name)+'</button><div class="panel"><h2>'+safe(exam.name)+' — '+labels[kind]+'</h2><p class="sub">प्रश्नसंच लोड होत आहे...</p><div id="questionArea" class="list"></div></div>';
  $('sectionPage').querySelector('#backExam').onclick=()=>openExam(exam);
  show('sectionPage');
+ const area=$('questionArea');
+ if(!db){area.innerHTML='<div class="notice">Firebase Web App configuration अजून जोडलेले नाही. Firebase Console मधील Web App config firebase-config.js मध्ये सेट केल्यावर प्रश्न आपोआप इथे लोड होतील.</div>';return;}
+ try{
+  const snap=await db.collection('questionBank').doc(exam.id).collection('questions').where('published','==',true).get();
+  let questions=snap.docs.map(d=>({id:d.id,...d.data()}));
+  if(kind==='pyq') questions=questions.filter(q=>q.year);
+  if(!questions.length){area.innerHTML='<div class="empty"><b>अद्याप पडताळलेले प्रश्न उपलब्ध नाहीत.</b><br>Firebase मध्ये या परीक्षेसाठी published=true असलेले प्रश्न आले की ते इथे आपोआप दिसतील. बनावट प्रश्न दाखवले जाणार नाहीत.</div>';return;}
+  if(kind==='pyq'){
+    const years=[...new Set(questions.map(q=>String(q.year)))].sort().reverse();
+    area.innerHTML='<label>वर्ष निवडा</label><select id="yearFilter" class="search"><option value="">सर्व वर्षे</option>'+years.map(y=>'<option>'+safe(y)+'</option>').join('')+'</select><div id="pyqList" class="list"></div>';
+    const paint=()=>{const y=$('yearFilter').value;const filtered=questions.filter(q=>!y||String(q.year)===y);$('pyqList').innerHTML=filtered.map((q,i)=>renderQuestion(q,i)).join('');wireAnswers(filtered);};
+    $('yearFilter').onchange=paint;paint();return;
+  }
+  if(kind==='mcq'){
+    area.innerHTML=questions.map((q,i)=>renderQuestion(q,i)).join('');wireAnswers(questions);return;
+  }
+  const mode=kind==='full'?'Full-length Exam Test':'Mock Test';
+  area.innerHTML='<div class="notice">'+mode+' सुरू करण्यासाठी उपलब्ध पडताळलेले प्रश्न वापरले जातील. अधिकृत प्रश्नसंख्या, वेळ व गुणपद्धती verified exam profile मध्ये उपलब्ध असेल तेव्हाच लागू होईल.</div><button class="action" id="startQuiz">Test सुरू करा ('+questions.length+' प्रश्न)</button><div id="testList" class="list"></div><button class="action" id="submitQuiz" style="display:none">उत्तर सबमिट करा</button><p id="testResult" class="sub"></p>';
+  $('startQuiz').onclick=()=>{$('testList').innerHTML=questions.map((q,i)=>renderQuestion(q,i)).join('');$('submitQuiz').style.display='inline-block';wireAnswers(questions);};
+  $('submitQuiz').onclick=()=>{let correct=0,answered=0;questions.forEach((q,i)=>{const chosen=document.querySelector('[data-q="'+i+'"].chosen');if(chosen){answered++;if(chosen.dataset.answer===String(q.correctOption||q.answer||'').toUpperCase())correct++;}});$('testResult').textContent='उत्तर दिले: '+answered+'/'+questions.length+' · बरोबर: '+correct+' · निकाल प्रश्नसंचाच्या उपलब्ध उत्तरांवर आधारित.';};
+ }catch(e){console.error(e);area.innerHTML='<div class="notice">Firebase मधून प्रश्न लोड करता आले नाहीत. Firestore rules आणि Firebase configuration तपासा.</div>';}
+}
+function wireAnswers(questions){
+ document.querySelectorAll('.answer-option').forEach(btn=>btn.onclick=()=>{
+  const i=Number(btn.dataset.q);document.querySelectorAll('[data-q="'+i+'"]').forEach(x=>x.classList.remove('chosen'));btn.classList.add('chosen');
+  const q=questions[i];const key=String(q.correctOption||q.answer||'').toUpperCase();
+  const fb=$('feedback-'+i);
+  if(fb) fb.textContent=key?'उत्तर निवडले. सबमिट केल्यावर निकाल दिसेल.':'उत्तरतालिका अद्याप उपलब्ध नाही.';
+ });
 }
 $('search').addEventListener('input',renderExams);
 window.addEventListener('popstate',()=>{const h=location.hash.slice(1);if(h.startsWith('exam=')){const id=h.slice(5);const x=all.find(v=>v.id===id);if(x)openExam(x);else show('home')}else if(h.includes('/')){const [kind,id]=h.split('/');const x=all.find(v=>v.id===id);if(x)openSection(x,kind);else show('home')}else show('home')});
