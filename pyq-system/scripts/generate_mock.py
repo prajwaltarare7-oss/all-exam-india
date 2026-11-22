@@ -53,7 +53,7 @@ def main() -> int:
     rng.shuffle(chosen)
     payload = {
         "exam": args.exam, "seed": args.seed,
-        "testId": f'{args.exam.lower().replace(" ", "-")}-mock-{args.seed}',
+        "testId": f'{args.exam.lower().replace(" ", "-")}-{args.content_type}-mock-{args.seed}',
         "title": f'{args.exam} Full Mock Test',
         "durationMinutes": profile["durationMinutes"],
         "totalQuestions": profile["totalQuestions"],
@@ -67,7 +67,7 @@ def main() -> int:
     }
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    target = out / f"{args.exam.lower().replace(' ', '-')}-mock-{args.seed}.json"
+    target = out / f"{args.exam.lower().replace(' ', '-')}-{args.content_type}-mock-{args.seed}.json"
     target.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Generated review draft: {target}")
     return 0
