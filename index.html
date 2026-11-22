@@ -88,7 +88,9 @@ function optionList(q){
 }
 function renderQuestion(q,i,interactive=true){
  const opts=optionList(q);
- return '<article class="item" style="display:block"><b>Q'+(q.questionNo||i+1)+'. '+safe(q.question||q.text)+'</b><div class="sub">'+safe(q.subject||'')+' '+(q.year?'· '+safe(q.year):'')+'</div><div class="list">'+opts.map(o=>'<button class="tile answer-option" data-q="'+i+'" data-answer="'+safe(o.key)+'" style="text-align:left;padding:11px">'+safe(o.key)+'. '+safe(o.text)+'</button>').join('')+'</div><div class="sub answer-feedback" id="feedback-'+i+'"></div></article>';
+ const based=q.contentType==='original_practice';
+ const tag=based?'<span style="display:inline-block;margin:8px 0 0;padding:4px 9px;border-radius:20px;background:#fff1d6;color:#80520b;font-size:12px;font-weight:800">PYQ आधारित प्रश्न</span>':'<span style="display:inline-block;margin:8px 0 0;padding:4px 9px;border-radius:20px;background:#e8efff;color:#244bd0;font-size:12px;font-weight:800">मूळ PYQ</span>';
+ return '<article class="item" style="display:block"><b>Q'+(q.questionNo||i+1)+'. '+safe(q.question||q.text)+'</b><div>'+tag+'</div><div class="sub">'+safe(q.subject||'')+' '+(q.year?'· '+safe(q.year):'')+'</div><div class="list">'+opts.map(o=>'<button class="tile answer-option" data-q="'+i+'" data-answer="'+safe(o.key)+'" style="text-align:left;padding:11px">'+safe(o.key)+'. '+safe(o.text)+'</button>').join('')+'</div><div class="sub answer-feedback" id="feedback-'+i+'"></div></article>';
 }
 async function openSection(exam,kind){
  history.pushState({page:'section',id:exam.id,kind},'','#'+kind+'/'+exam.id);
@@ -125,7 +127,7 @@ async function openSection(exam,kind){
     });
     return;
   }
-  if(kind==='pyq') questions=questions.filter(q=>q.year);
+  if(kind==='pyq') questions=questions.filter(q=>q.year||q.contentType==='original_practice');
   if(!questions.length){area.innerHTML='<div class="empty"><b>अद्याप पडताळलेले प्रश्न उपलब्ध नाहीत.</b><br>Firebase मध्ये या परीक्षेसाठी published=true असलेले प्रश्न आले की ते इथे आपोआप दिसतील. बनावट प्रश्न दाखवले जाणार नाहीत.</div>';return;}
   if(kind==='pyq'){
     const years=[...new Set(questions.map(q=>String(q.year)))].sort().reverse();
