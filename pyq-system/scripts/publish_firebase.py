@@ -63,7 +63,16 @@ def main():
                 questions=test.get("questions",[])
                 if not exam or not questions or len(questions)!=int(test.get("totalQuestions",0)):
                     continue
-                if any(q.get("reviewStatus")!="verified" or q.get("answerKeyStatus")!="verified" or q.get("reusePermission")!="approved" for q in questions):
+                def test_question_is_publishable(q):
+                    common = (q.get("reviewStatus") == "verified" and q.get("answerKeyStatus") == "verified")
+                    if test.get("contentType") == "original_practice":
+                        return (common and q.get("contentType") == "original_practice"
+                                and q.get("authorship") == "original"
+                                and q.get("sourceUse") == "topic_only_no_question_text"
+                                and q.get("originalityReviewStatus") == "verified"
+                                and q.get("reusePermission") == "owned")
+                    return common and q.get("contentType", "pyq") == "pyq" and q.get("reusePermission") == "approved"
+                if not all(test_question_is_publishable(q) for q in questions):
                     continue
                 import re
                 exam_id=re.sub(r"[^a-z0-9]+","-",exam.strip().lower()).strip("-")
