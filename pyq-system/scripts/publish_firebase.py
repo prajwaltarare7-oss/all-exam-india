@@ -46,10 +46,10 @@ def main():
             import re
             exam=re.sub(r"[^a-z0-9]+","-",str(q["exam"]).strip().lower()).strip("-")
             qid=str(q.get("id") or q.get("candidateId") or f'original-{original_count}')
-            ref=db.collection("practiceBank").document(exam).collection("questions").document(qid)
+            ref=db.collection("questionBank").document(exam).collection("questions").document("practice-"+qid)
             payload=dict(q); payload["published"]=True; payload["contentType"]="original_practice"
             ref.set(payload,merge=True); original_count+=1
-    print(f"Published {original_count} independently authored practice questions to practiceBank (not PYQ).")
+    print(f"Published {original_count} original concept-based practice questions inside the PYQ section collection with a distinct contentType label; they are not represented as actual PYQs.")
     # Publish only complete mock papers produced from verified profiles and verified questions.
     mocks_dir=ROOT/"data"/"generated-mocks"
     test_count=0
