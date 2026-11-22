@@ -33,6 +33,29 @@ def main():
         if count%400==0: batch.commit(); batch=db.batch()
     if count%400: batch.commit()
     print(f"Published {count} verified questions to Firestore.")
+    # Publish only complete mock papers produced from verified profiles and verified questions.
+    mocks_dir=ROOT/"data"/"generated-mocks"
+    test_count=0
+    if mocks_dir.exists():
+        for file in sorted(mocks_dir.glob("*.json")):
+            try:
+                test=json.loads(file.read_text(encoding="utf-8"))
+                if test.get("status")!="generated_not_yet_published" or not test.get("testId"):
+                    continue
+                exam=str(test.get("exam",""))
+                questions=test.get("questions",[])
+                if not exam or not questions or len(questions)!=int(test.get("totalQuestions",0)):
+                    continue
+                if any(q.get("reviewStatus")!="verified" or q.get("answerKeyStatus")!="verified" or q.get("reusePermission")!="approved" for q in questions):
+                    continue
+                import re
+                exam_id=re.sub(r"[^a-z0-9]+","-",exam.strip().lower()).strip("-")
+                ref=db.collection("questionBank").document(exam_id).collection("tests").document(str(test["testId"]))
+                payload=dict(test); payload["published"]=True; payload["publishedAt"]=firestore.SERVER_TIMESTAMP
+                ref.set(payload,merge=True); test_count+=1
+            except (ValueError, KeyError, TypeError) as exc:
+                print(f"Skipping invalid generated test {file.name}: {exc}")
+    print(f"Published {test_count} complete verified mock tests to Firestore.")
     if bucket_name:
         manifest=json.loads((ROOT/"intake"/"manifest.json").read_text(encoding="utf-8"))
         bucket=storage.bucket()
