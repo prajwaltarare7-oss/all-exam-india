@@ -1,10 +1,41 @@
 {
   "version": 1,
-  "note": "No paper profile is active until its current official notification is checked and the values below are filled and reviewed.",
+  "note": "NDA pattern checked against UPSC NDA-II 2026 official notification and official question booklet. Other exam profiles remain inactive until individually checked.",
   "profiles": {
     "NDA": {
-      "status": "needs_official_review",
-      "officialSource": "https://upsc.gov.in/"
+      "status": "verified",
+      "patternYear": 2026,
+      "patternSourceUrls": [
+        "https://www.upsc.gov.in/uploads/2026/06/Notif-NDA-II-2026-Engl-200526-1.pdf",
+        "https://upsc.gov.in/uploads/2026/09/QP-NDANA-II-26-MATHEMATICS-140926.pdf"
+      ],
+      "durationMinutes": 300,
+      "totalQuestions": 270,
+      "sections": [
+        {
+          "subject": "Mathematics",
+          "count": 120,
+          "marks": 300,
+          "durationMinutes": 150
+        },
+        {
+          "subject": "English",
+          "count": 50,
+          "marks": 200,
+          "durationMinutes": 150
+        },
+        {
+          "subject": "General Knowledge",
+          "count": 100,
+          "marks": 400,
+          "durationMinutes": 150
+        }
+      ],
+      "marksCorrect": 2.5,
+      "marksWrong": -0.8333333333,
+      "gatMarksCorrect": 4,
+      "gatMarksWrong": -1.3333333333,
+      "note": "Written papers are Mathematics 120 questions/300 marks/150 minutes and GAT 150 questions/600 marks/150 minutes. GAT split: English 50 questions/200 marks and General Knowledge 100 questions/400 marks. Wrong answer penalty is one-third of marks assigned to the question. Test sections represent the two separate papers; English and General Knowledge are subsections of GAT."
     },
     "SSC GD": {
       "status": "needs_official_review",
