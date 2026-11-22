@@ -48,7 +48,6 @@ jobs:
       - name: Generate mocks from verified question bank
         run: python pyq-system/scripts/generate_all_mocks.py
       - name: Publish approved questions and PDFs to Firebase (optional)
-        if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON != '' }}
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
           FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
