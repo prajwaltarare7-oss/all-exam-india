@@ -35,8 +35,22 @@ jobs:
         run: python pyq-system/scripts/monitor_sources.py
       - name: OCR owner-approved PDFs
         run: python pyq-system/scripts/process_intake.py
+      - name: Parse OCR text into review candidates
+        run: python pyq-system/scripts/parse_ocr_drafts.py
+      - name: Match supplied answer keys
+        run: python pyq-system/scripts/match_answer_keys.py
+      - name: Detect duplicate candidates
+        run: python pyq-system/scripts/deduplicate_bank.py
+      - name: Validate explicitly reviewed central question bank
+        run: python pyq-system/scripts/validate_reviewed_bank.py
       - name: Generate mocks from verified question bank
         run: python pyq-system/scripts/generate_all_mocks.py
+      - name: Publish approved questions and PDFs to Firebase (optional)
+        if: ${{ env.FIREBASE_SERVICE_ACCOUNT_JSON != '' }}
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+        run: python pyq-system/scripts/publish_firebase.py
       - name: Upload collection, OCR drafts and generated mock drafts
         uses: actions/upload-artifact@v4
         with:
@@ -47,5 +61,9 @@ jobs:
             pyq-system/data/generated-mocks/
             pyq-system/data/pipeline-report.json
             pyq-system/data/intake-report.json
+            pyq-system/data/question-candidates.json
+            pyq-system/data/answer-key-matches.json
+            pyq-system/data/deduplicated-question-candidates.json
+            pyq-system/data/bank-validation-report.json
           if-no-files-found: warn
           retention-days: 30
