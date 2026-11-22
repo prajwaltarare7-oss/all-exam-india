@@ -1,0 +1,808 @@
+{
+  "examId": "nda",
+  "name": "NDA",
+  "notice": "Original bilingual practice questions; not claimed as official PYQs. This is an initial bank batch, not a full-length NDA paper.",
+  "questionCount": 40,
+  "questions": [
+    {
+      "id": "nda-001-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "If 3x − 7 = 20, find x.",
+      "options": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "correctOption": "C",
+      "explanation": "Add 7 to both sides: 3x=27, so x=9.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-001-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "यदि 3x − 7 = 20, तो x ज्ञात कीजिए।",
+      "options": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "correctOption": "C",
+      "explanation": "दोनों पक्षों में 7 जोड़ने पर 3x=27, अतः x=9।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-002-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "The roots of x² − 5x + 6 = 0 are:",
+      "options": [
+        "1, 6",
+        "2, 3",
+        "−2, −3",
+        "−1, −6"
+      ],
+      "correctOption": "B",
+      "explanation": "Factor: (x−2)(x−3)=0.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-002-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "x² − 5x + 6 = 0 के मूल हैं:",
+      "options": [
+        "1, 6",
+        "2, 3",
+        "−2, −3",
+        "−1, −6"
+      ],
+      "correctOption": "B",
+      "explanation": "गुणनखंड: (x−2)(x−3)=0।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-003-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "A train covers 180 km in 2.5 hours. Its average speed is:",
+      "options": [
+        "60 km/h",
+        "70 km/h",
+        "72 km/h",
+        "75 km/h"
+      ],
+      "correctOption": "C",
+      "explanation": "Speed = distance/time = 180/2.5 = 72 km/h.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-003-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "एक रेलगाड़ी 2.5 घंटे में 180 किमी चलती है। औसत चाल है:",
+      "options": [
+        "60 किमी/घंटा",
+        "70 किमी/घंटा",
+        "72 किमी/घंटा",
+        "75 किमी/घंटा"
+      ],
+      "correctOption": "C",
+      "explanation": "चाल = दूरी/समय = 180/2.5 = 72 किमी/घंटा।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-004-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "If sin θ = 3/5 and θ is acute, cos θ equals:",
+      "options": [
+        "3/5",
+        "4/5",
+        "5/4",
+        "1/5"
+      ],
+      "correctOption": "B",
+      "explanation": "Using sin²θ+cos²θ=1 gives cos θ=4/5.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-004-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "यदि sin θ = 3/5 तथा θ न्यूनकोण है, तो cos θ होगा:",
+      "options": [
+        "3/5",
+        "4/5",
+        "5/4",
+        "1/5"
+      ],
+      "correctOption": "B",
+      "explanation": "sin²θ+cos²θ=1 से cos θ=4/5।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-005-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "The sum of the first 20 natural numbers is:",
+      "options": [
+        "190",
+        "200",
+        "210",
+        "220"
+      ],
+      "correctOption": "C",
+      "explanation": "n(n+1)/2 = 20×21/2 = 210.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-005-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "प्रथम 20 प्राकृतिक संख्याओं का योग है:",
+      "options": [
+        "190",
+        "200",
+        "210",
+        "220"
+      ],
+      "correctOption": "C",
+      "explanation": "n(n+1)/2 = 20×21/2 = 210।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-006-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "The determinant of [[2,3],[4,5]] is:",
+      "options": [
+        "−2",
+        "2",
+        "10",
+        "22"
+      ],
+      "correctOption": "A",
+      "explanation": "Determinant = 2×5 − 3×4 = −2.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-006-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "मैट्रिक्स [[2,3],[4,5]] का सारणिक है:",
+      "options": [
+        "−2",
+        "2",
+        "10",
+        "22"
+      ],
+      "correctOption": "A",
+      "explanation": "सारणिक = 2×5 − 3×4 = −2।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-007-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "A circle has radius 7 cm. Its area (π=22/7) is:",
+      "options": [
+        "144 cm²",
+        "154 cm²",
+        "164 cm²",
+        "176 cm²"
+      ],
+      "correctOption": "B",
+      "explanation": "Area = πr² = (22/7)×49 = 154 cm².",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-007-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "एक वृत्त की त्रिज्या 7 सेमी है। उसका क्षेत्रफल (π=22/7) है:",
+      "options": [
+        "144 सेमी²",
+        "154 सेमी²",
+        "164 सेमी²",
+        "176 सेमी²"
+      ],
+      "correctOption": "B",
+      "explanation": "क्षेत्रफल = πr² = (22/7)×49 = 154 सेमी²।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-008-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "If log₂ x = 5, then x is:",
+      "options": [
+        "10",
+        "16",
+        "25",
+        "32"
+      ],
+      "correctOption": "D",
+      "explanation": "x=2⁵=32.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-008-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "यदि log₂ x = 5, तो x है:",
+      "options": [
+        "10",
+        "16",
+        "25",
+        "32"
+      ],
+      "correctOption": "D",
+      "explanation": "x=2⁵=32।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-009-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "The probability of getting an even number on a fair die is:",
+      "options": [
+        "1/6",
+        "1/3",
+        "1/2",
+        "2/3"
+      ],
+      "correctOption": "C",
+      "explanation": "Even outcomes are 2,4,6: 3/6=1/2.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-009-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "एक निष्पक्ष पासे पर सम संख्या आने की प्रायिकता है:",
+      "options": [
+        "1/6",
+        "1/3",
+        "1/2",
+        "2/3"
+      ],
+      "correctOption": "C",
+      "explanation": "सम परिणाम 2,4,6 हैं: 3/6=1/2।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-010-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "The distance between (1,2) and (4,6) is:",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "correctOption": "B",
+      "explanation": "Distance = √[(4−1)²+(6−2)²]=√25=5.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-010-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "बिंदुओं (1,2) और (4,6) के बीच दूरी है:",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "correctOption": "B",
+      "explanation": "दूरी = √[(4−1)²+(6−2)²]=√25=5।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-011-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "If a:b=3:4 and b:c=2:5, then a:c is:",
+      "options": [
+        "3:5",
+        "3:10",
+        "6:5",
+        "4:10"
+      ],
+      "correctOption": "B",
+      "explanation": "Make b equal: 3:4 and 4:10, so a:c=3:10.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-011-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "यदि a:b=3:4 तथा b:c=2:5, तो a:c है:",
+      "options": [
+        "3:5",
+        "3:10",
+        "6:5",
+        "4:10"
+      ],
+      "correctOption": "B",
+      "explanation": "b समान करने पर 3:4 और 4:10, अतः a:c=3:10।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-012-en",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "The derivative of x³ − 4x is:",
+      "options": [
+        "3x²−4",
+        "3x−4",
+        "x²−4",
+        "3x²"
+      ],
+      "correctOption": "A",
+      "explanation": "Differentiate termwise: 3x²−4.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-012-hi",
+      "examId": "nda",
+      "subject": "Mathematics",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "x³ − 4x का अवकलज है:",
+      "options": [
+        "3x²−4",
+        "3x−4",
+        "x²−4",
+        "3x²"
+      ],
+      "correctOption": "A",
+      "explanation": "प्रत्येक पद का अवकलन करने पर 3x²−4।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-013-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "Which layer of the atmosphere contains most weather phenomena?",
+      "options": [
+        "Stratosphere",
+        "Troposphere",
+        "Mesosphere",
+        "Thermosphere"
+      ],
+      "correctOption": "B",
+      "explanation": "Most clouds and weather occur in the troposphere.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-013-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "वायुमंडल की किस परत में अधिकांश मौसमी घटनाएँ होती हैं?",
+      "options": [
+        "समतापमंडल",
+        "क्षोभमंडल",
+        "मध्यमंडल",
+        "तापमंडल"
+      ],
+      "correctOption": "B",
+      "explanation": "अधिकांश बादल और मौसमी घटनाएँ क्षोभमंडल में होती हैं।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-014-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "The SI unit of electric resistance is:",
+      "options": [
+        "Volt",
+        "Ampere",
+        "Ohm",
+        "Watt"
+      ],
+      "correctOption": "C",
+      "explanation": "Resistance is measured in ohms (Ω).",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-014-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "विद्युत प्रतिरोध की SI इकाई है:",
+      "options": [
+        "वोल्ट",
+        "एम्पियर",
+        "ओम",
+        "वाट"
+      ],
+      "correctOption": "C",
+      "explanation": "प्रतिरोध को ओम (Ω) में मापा जाता है।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-015-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "Who was the first President of the Constituent Assembly of India?",
+      "options": [
+        "Dr Rajendra Prasad",
+        "Dr Sachchidananda Sinha",
+        "Jawaharlal Nehru",
+        "B. R. Ambedkar"
+      ],
+      "correctOption": "B",
+      "explanation": "Dr Sachchidananda Sinha served as temporary chairman; Dr Rajendra Prasad was elected permanent president.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-015-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "भारत की संविधान सभा के प्रथम अध्यक्ष कौन थे?",
+      "options": [
+        "डॉ. राजेंद्र प्रसाद",
+        "डॉ. सच्चिदानंद सिन्हा",
+        "जवाहरलाल नेहरू",
+        "बी. आर. आंबेडकर"
+      ],
+      "correctOption": "B",
+      "explanation": "डॉ. सच्चिदानंद सिन्हा अस्थायी अध्यक्ष थे; डॉ. राजेंद्र प्रसाद स्थायी अध्यक्ष चुने गए।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-016-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "Which Indian river flows through a rift valley?",
+      "options": [
+        "Godavari",
+        "Narmada",
+        "Mahanadi",
+        "Kaveri"
+      ],
+      "correctOption": "B",
+      "explanation": "The Narmada flows westward through a rift valley.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-016-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "भारत की कौन-सी नदी भ्रंश घाटी से होकर बहती है?",
+      "options": [
+        "गोदावरी",
+        "नर्मदा",
+        "महानदी",
+        "कावेरी"
+      ],
+      "correctOption": "B",
+      "explanation": "नर्मदा भ्रंश घाटी से पश्चिम की ओर बहती है।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-017-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "The chemical symbol K stands for:",
+      "options": [
+        "Krypton",
+        "Calcium",
+        "Potassium",
+        "Cobalt"
+      ],
+      "correctOption": "C",
+      "explanation": "K is the symbol for potassium.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-017-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "K किस तत्व का रासायनिक प्रतीक है?",
+      "options": [
+        "क्रिप्टॉन",
+        "कैल्शियम",
+        "पोटैशियम",
+        "कोबाल्ट"
+      ],
+      "correctOption": "C",
+      "explanation": "K पोटैशियम का प्रतीक है।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-018-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "The ozone layer is mainly found in the:",
+      "options": [
+        "Troposphere",
+        "Stratosphere",
+        "Mesosphere",
+        "Exosphere"
+      ],
+      "correctOption": "B",
+      "explanation": "The ozone layer is concentrated in the stratosphere.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-018-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "ओजोन परत मुख्यतः किस मंडल में पाई जाती है?",
+      "options": [
+        "क्षोभमंडल",
+        "समतापमंडल",
+        "मध्यमंडल",
+        "बहिर्मंडल"
+      ],
+      "correctOption": "B",
+      "explanation": "ओजोन परत समतापमंडल में केंद्रित होती है।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-019-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "en",
+      "question": "The Battle of Plassey was fought in:",
+      "options": [
+        "1757",
+        "1764",
+        "1773",
+        "1857"
+      ],
+      "correctOption": "A",
+      "explanation": "The Battle of Plassey took place in 1757.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-019-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "medium",
+      "language": "hi",
+      "question": "प्लासी का युद्ध किस वर्ष लड़ा गया था?",
+      "options": [
+        "1757",
+        "1764",
+        "1773",
+        "1857"
+      ],
+      "correctOption": "A",
+      "explanation": "प्लासी का युद्ध 1757 में हुआ था।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-020-en",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "en",
+      "question": "Which blood component is primarily responsible for clotting?",
+      "options": [
+        "Red blood cells",
+        "White blood cells",
+        "Platelets",
+        "Plasma proteins only"
+      ],
+      "correctOption": "C",
+      "explanation": "Platelets initiate the clotting process.",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    },
+    {
+      "id": "nda-020-hi",
+      "examId": "nda",
+      "subject": "General Ability Test",
+      "topic": "NDA syllabus-based",
+      "difficulty": "hard",
+      "language": "hi",
+      "question": "रक्त का कौन-सा घटक मुख्यतः थक्का जमाने के लिए उत्तरदायी है?",
+      "options": [
+        "लाल रक्त कोशिकाएँ",
+        "श्वेत रक्त कोशिकाएँ",
+        "प्लेटलेट्स",
+        "केवल प्लाज़्मा प्रोटीन"
+      ],
+      "correctOption": "C",
+      "explanation": "प्लेटलेट्स रक्त के थक्के बनने की प्रक्रिया शुरू करते हैं।",
+      "published": true,
+      "sourceType": "original_practice",
+      "verifiedPYQ": false
+    }
+  ]
+}
