@@ -1,6 +1,10 @@
 name: ALL EXAM INDIA — continuous PYQ and mock pipeline
 
 on:
+  push:
+    paths:
+      - 'pyq-system/**'
+      - '.github/workflows/pyq-source-monitor.yml'
   workflow_dispatch:
   schedule:
     - cron: "17 */3 * * *"
@@ -31,6 +35,8 @@ jobs:
           sudo apt-get install -y tesseract-ocr tesseract-ocr-hin tesseract-ocr-mar
       - name: Install Python dependencies
         run: python -m pip install -r pyq-system/requirements.txt
+      - name: Check Python syntax
+        run: python -m compileall -q pyq-system/scripts
       - name: Audit source reuse permissions
         run: python pyq-system/scripts/check_reuse_permissions.py
       - name: Collect links from official exam portals
