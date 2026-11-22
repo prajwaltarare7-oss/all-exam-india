@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "note": "No paper profile is active until its current official notification is checked and the values below are filled and reviewed.",
+  "profiles": {
+    "NDA": {
+      "status": "needs_official_review",
+      "officialSource": "https://upsc.gov.in/"
+    },
+    "SSC GD": {
+      "status": "needs_official_review",
+      "officialSource": "https://ssc.gov.in/"
+    },
+    "Maharashtra Police Bharti": {
+      "status": "needs_official_review",
+      "officialSource": "https://www.mahapolice.gov.in/"
+    },
+    "RRB NTPC": {
+      "status": "needs_official_review",
+      "officialSource": "https://www.rrbcdg.gov.in/"
+    },
+    "UPSC": {
+      "status": "needs_official_review",
+      "officialSource": "https://upsc.gov.in/"
+    },
+    "IBPS": {
+      "status": "needs_official_review",
+      "officialSource": "https://www.ibps.in/"
+    },
+    "MPSC": {
+      "status": "needs_official_review",
+      "officialSource": "https://mpsc.gov.in/"
+    }
+  }
+}
