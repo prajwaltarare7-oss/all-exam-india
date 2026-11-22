@@ -65,11 +65,20 @@ def main() -> int:
                 checked += 1
                 pages_checked += 1
                 soup = BeautifulSoup(response.text, "html.parser")
-                for a in soup.find_all("a", href=True):
-                    url = clean(urljoin(response.url, a["href"].strip()))
+                # Some official portals expose PDF links through embedded viewers or
+                # data attributes rather than ordinary anchor hrefs. Inspect common URL
+                # attributes while remaining strictly inside configured official domains.
+                candidates = []
+                for tag in soup.find_all(True):
+                    title = " ".join(tag.get_text(" ", strip=True).split())[:240]
+                    for attr in ("href", "src", "data", "data-href", "data-url", "data-src"):
+                        raw = tag.get(attr)
+                        if isinstance(raw, str) and raw.strip():
+                            candidates.append((raw.strip(), title))
+                for raw_url, title in candidates:
+                    url = clean(urljoin(response.url, raw_url))
                     if not allowed(url, domains):
                         continue
-                    title = " ".join(a.get_text(" ", strip=True).split())[:240]
                     context = title + " " + url
                     if PDF_RE.search(url):
                         row = existing.get(url, {"url": url, "firstSeen": now, "status": "needs_source_and_reuse_review"})
