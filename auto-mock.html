@@ -16,17 +16,27 @@
 <div id="status" class="muted"></div></main>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="./firebase-config.js"></script>
 <script>
-const $=id=>document.getElementById(id);let db=null,profiles={},questions=[],answers={},seconds=0,tick=null,active=null,done=false;
+const $=id=>document.getElementById(id);let db=null,profiles={},staticBanks={},questions=[],answers={},seconds=0,tick=null,active=null,done=false;
 try{if(window.ALL_EXAM_FIREBASE_CONFIG?.apiKey){firebase.initializeApp(window.ALL_EXAM_FIREBASE_CONFIG);db=firebase.firestore()}}catch(e){console.warn(e)}
 function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function showHistory(){let h=[];try{h=JSON.parse(localStorage.getItem('aei_auto_mock_history')||'[]')}catch{}$('history').innerHTML=h.length?h.slice(0,10).map(x=>'<div class="history"><b>'+safe(x.exam)+'</b> · '+safe(x.date)+'<br>'+x.score+'/'+x.max+' गुण · बरोबर '+x.correct+' · चुकीचे '+x.wrong+'</div>').join(''):'अजून टेस्ट पूर्ण केलेली नाही.'}
-async function init(){if(!db){$('exam').innerHTML='<option>Firebase config आवश्यक</option>';$('profile').innerHTML='<div class="notice">Firebase Web App config जोडलेले नाही. firebase-config.js मध्ये ALL_EXAM_FIREBASE_CONFIG सेट केल्यावर Auto Generator सुरू होईल.</div>';return}
-try{const snap=await db.collection('examProfiles').where('published','==',true).get();snap.forEach(d=>profiles[d.id]={id:d.id,...d.data()});const entries=Object.values(profiles);$('exam').innerHTML='<option value="">परीक्षा निवडा</option>'+entries.map(p=>'<option value="'+safe(p.id)+'">'+safe(p.name||p.id)+'</option>').join('');if(!entries.length)$('profile').textContent='अद्याप published verified exam profile नाही. आधी examProfiles मध्ये profile प्रकाशित करा.';$('exam').onchange=profileInfo}catch(e){$('profile').textContent='Exam profiles लोड झाले नाहीत. Firestore permissions तपासा.';console.error(e)}}
+async function init(){
+ try{
+  const res=await fetch('./data/nda-question-bank-batch-01.json',{cache:'no-store'});
+  if(!res.ok)throw new Error('प्रश्नसंच फाइल मिळाली नाही');
+  const bank=await res.json();staticBanks.nda=bank.questions||[];
+  profiles.nda={id:'nda',name:'NDA · सराव संच 01 (पूर्ण अधिकृत पेपर नाही)',totalQuestions:40,durationMinutes:30,marksCorrect:4,marksWrong:-1.333333,subjectBlueprint:[{subject:'Mathematics',count:20,difficultyCounts:{medium:6,hard:4}},{subject:'General Ability Test',count:20,difficultyCounts:{medium:4,hard:6}}],difficultyBlueprint:[{level:'medium',count:10},{level:'hard',count:10}]};
+  if(db){try{const snap=await db.collection('examProfiles').where('published','==',true).get();snap.forEach(d=>{if(!profiles[d.id])profiles[d.id]={id:d.id,...d.data()}})}catch(e){console.warn('Firestore profiles unavailable; using bundled bank',e)}}
+  const entries=Object.values(profiles);$('exam').innerHTML='<option value="">परीक्षा निवडा</option>'+entries.map(p=>'<option value="'+safe(p.id)+'">'+safe(p.name||p.id)+'</option>').join('');
+  $('profile').textContent='प्रश्नसंच आपोआप लोड झाला. NDA साठी सध्या 40 प्रश्नांचा सराव संच उपलब्ध आहे.';
+  $('exam').onchange=profileInfo;profileInfo();
+ }catch(e){$('exam').innerHTML='<option>प्रश्नसंच उपलब्ध नाही</option>';$('profile').textContent='प्रश्नसंच लोड झाला नाही: '+e.message}
+}
 function profileInfo(){const p=profiles[$('exam').value];$('generate').disabled=!p;$('profile').innerHTML=p?'<div class="stats"><span class="chip">'+Number(p.totalQuestions||0)+' प्रश्न</span><span class="chip">'+Number(p.durationMinutes||0)+' मिनिटे</span><span class="chip">बरोबर +'+Number(p.marksCorrect||0)+'</span><span class="chip">चुकीचे '+Number(p.marksWrong||0)+'</span></div><p class="muted">विषयवार प्रश्नसंख्या: '+(p.subjectBlueprint||[]).map(s=>safe(s.subject)+': '+Number(s.count)).join(' · ')+'</p>':'Profile निवडा.'}
 async function buildTest(){const p=profiles[$('exam').value],lang=$('language').value;if(!p)return;const blueprint=p.subjectBlueprint||[];if(!blueprint.length){$('status').textContent='या परीक्षेच्या profile मध्ये subjectBlueprint नाही.';return}
 $('generate').disabled=true;$('status').textContent='प्रश्न निवडत आहे...';
-try{const snap=await db.collection('questionBank').doc(p.id).collection('questions').where('published','==',true).get();const pool=snap.docs.map(d=>({id:d.id,...d.data()})).filter(q=>(q.language||'').toLowerCase().startsWith(lang)&&(q.question||q.text)&&Array.isArray(q.options)&&q.options.length>=2&&String(q.correctOption||q.answer||q.correctAnswer||'').trim());let selected=[];
+try{const snap=staticBanks[p.id]?null:await db.collection('questionBank').doc(p.id).collection('questions').where('published','==',true).get();const source=staticBanks[p.id]||snap.docs.map(d=>({id:d.id,...d.data()}));const pool=source.filter(q=>(q.language||'').toLowerCase().startsWith(lang)&&(q.question||q.text)&&Array.isArray(q.options)&&q.options.length>=2&&String(q.correctOption||q.answer||q.correctAnswer||'').trim());let selected=[];
 const difficultyPlan=p.difficultyBlueprint||[];
 if(!difficultyPlan.length)throw new Error('या परीक्षेसाठी difficultyBlueprint सेट नाही. Exam level निश्चित नसताना टेस्ट तयार केली जाणार नाही.');
 const requiredTotal=Number(p.totalQuestions||0);
