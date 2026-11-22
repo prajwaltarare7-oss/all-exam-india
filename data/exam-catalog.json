@@ -53,12 +53,6 @@
           "name": "UPSC Civil Services",
           "patternStatus": "needs_verification",
           "bankStatus": "not_ready"
-        },
-        {
-          "id": "nda",
-          "name": "NDA",
-          "patternStatus": "practice-profile-only",
-          "bankStatus": "partial"
         }
       ]
     },
