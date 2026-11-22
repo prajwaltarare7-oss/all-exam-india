@@ -49,8 +49,7 @@ def main():
             "approvedSourceDomains": domains, "autoDiscovered": True
         }
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    MANIFEST.write_text(json.dumps({"version": 1, "files": list(rows.values())}, ensure_ascii=False, indent=2) + "
-", encoding="utf-8")
+    MANIFEST.write_text(json.dumps({"version": 1, "files": list(rows.values())}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"manifestFiles": len(rows), "notAutoIntaked": skipped}, ensure_ascii=False))
 
 if __name__ == "__main__":
