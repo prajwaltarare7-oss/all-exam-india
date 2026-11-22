@@ -35,6 +35,8 @@ jobs:
         run: python pyq-system/scripts/monitor_sources.py
       - name: Build automatic PDF intake from approved source links
         run: python pyq-system/scripts/build_auto_intake.py
+      - name: Discover question pages in permitted official HTML
+        run: python pyq-system/scripts/collect_html_question_pages.py
       - name: Download explicitly approved PDFs
         run: python pyq-system/scripts/download_approved_pdfs.py
       - name: OCR owner-approved PDFs
@@ -60,6 +62,7 @@ jobs:
           name: all-exam-india-pyq-pipeline-${{ github.run_number }}
           path: |
             pyq-system/data/source-discoveries.json
+            pyq-system/data/html-question-discoveries.json
             pyq-system/data/ocr-drafts/
             pyq-system/data/generated-mocks/
             pyq-system/data/pipeline-report.json
