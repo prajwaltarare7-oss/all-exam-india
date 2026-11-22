@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "note": "Official authority portals only. Monitor discovers links; it does not imply permission to republish exam content.",
+  "sources": [
+    {
+      "id": "upsc-papers",
+      "name": "Union Public Service Commission — Previous Question Papers",
+      "examFamilies": [
+        "NDA",
+        "CDS",
+        "UPSC"
+      ],
+      "url": "https://upsc.gov.in/examinations/previous-question-papers",
+      "allowedDomains": [
+        "upsc.gov.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
+    },
+    {
+      "id": "ssc-portal",
+      "name": "Staff Selection Commission",
+      "examFamilies": [
+        "SSC GD",
+        "SSC CGL",
+        "SSC CHSL",
+        "SSC MTS",
+        "SSC CPO"
+      ],
+      "url": "https://ssc.gov.in/",
+      "allowedDomains": [
+        "ssc.gov.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
+    },
+    {
+      "id": "rrb-portal",
+      "name": "Railway Recruitment Boards",
+      "examFamilies": [
+        "RRB NTPC",
+        "RRB Group D",
+        "RRB ALP",
+        "RRB JE"
+      ],
+      "url": "https://www.rrbcdg.gov.in/",
+      "allowedDomains": [
+        "rrbcdg.gov.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
+    },
+    {
+      "id": "ibps-portal",
+      "name": "Institute of Banking Personnel Selection",
+      "examFamilies": [
+        "IBPS PO",
+        "IBPS Clerk",
+        "IBPS RRB"
+      ],
+      "url": "https://www.ibps.in/",
+      "allowedDomains": [
+        "ibps.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
+    },
+    {
+      "id": "mpsc-portal",
+      "name": "Maharashtra Public Service Commission",
+      "examFamilies": [
+        "MPSC"
+      ],
+      "url": "https://mpsc.gov.in/",
+      "allowedDomains": [
+        "mpsc.gov.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
+    }
+  ]
+}
