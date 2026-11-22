@@ -16,7 +16,7 @@
 <div id="status" class="muted"></div></main>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="./firebase-config.js"></script>
 <script>
-const $=id=>document.getElementById(id);let db=null,profiles={},staticBanks={},questions=[],answers={},seconds=0,tick=null,active=null,done=false;
+const $=id=>document.getElementById(id);let db=null,profiles={},staticBanks={},examPatterns={},questions=[],answers={},seconds=0,tick=null,active=null,done=false;
 try{if(window.ALL_EXAM_FIREBASE_CONFIG?.apiKey){firebase.initializeApp(window.ALL_EXAM_FIREBASE_CONFIG);db=firebase.firestore()}}catch(e){console.warn(e)}
 function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -26,13 +26,15 @@ async function init(){
   const catalogRes=await fetch('./data/exam-catalog.json',{cache:'no-store'});
   if(!catalogRes.ok)throw new Error('परीक्षा सूची फाइल मिळाली नाही');
   const catalog=await catalogRes.json();
+  const patternRes=await fetch('./data/exam-patterns.json',{cache:'no-store'});
+  if(patternRes.ok){const patternData=await patternRes.json();examPatterns=patternData.exams||{}}
   const bankRes=await fetch('./data/nda-question-bank-batch-01.json',{cache:'no-store'});
   if(!bankRes.ok)throw new Error('NDA प्रश्नसंच फाइल मिळाली नाही');
   const bank=await bankRes.json();staticBanks.nda=bank.questions||[];
   profiles.nda={id:'nda',name:'NDA · सराव संच 01 (पूर्ण अधिकृत पेपर नाही)',totalQuestions:20,durationMinutes:30,marksCorrect:4,marksWrong:-1.333333,subjectBlueprint:[{subject:'Mathematics',count:12,difficultyCounts:{medium:6,hard:6}},{subject:'General Ability Test',count:8,difficultyCounts:{medium:4,hard:4}}],difficultyBlueprint:[{level:'medium',count:10},{level:'hard',count:10}]};
   if(db){try{const snap=await db.collection('examProfiles').where('published','==',true).get();snap.forEach(d=>{if(!profiles[d.id])profiles[d.id]={id:d.id,...d.data()}})}catch(e){console.warn('Firestore profiles unavailable; using bundled bank',e)}}
   const activeOptions=Object.values(profiles).map(p=>'<option value="'+safe(p.id)+'">'+safe(p.name||p.id)+'</option>').join('');
-  const catalogOptions=catalog.categories.map(group=>'<optgroup label="'+safe(group.name)+'">'+group.exams.map(ex=>'<option value="'+safe(ex.id)+'" '+(profiles[ex.id]?'':'disabled')+'>'+safe(ex.name)+(profiles[ex.id]?'':' · प्रश्नसंच तयार होत आहे')+'</option>').join('')+'</optgroup>').join('');
+  const catalogOptions=catalog.categories.map(group=>'<optgroup label="'+safe(group.name)+'">'+group.exams.map(ex=>'<option value="'+safe(ex.id)+'" '+(profiles[ex.id]?'':'disabled')+'>'+safe(ex.name)+(profiles[ex.id]?'':' · '+(examPatterns[ex.id]?'पॅटर्न तपासला, प्रश्नसंच तयार होत आहे':'पॅटर्न तपासायचा आहे'))+'</option>').join('')+'</optgroup>').join('');
   $('exam').innerHTML='<option value="">परीक्षा निवडा</option>'+catalogOptions;
   $('profile').textContent='भारतामधील विविध परीक्षांची सूची जोडली. सध्या NDA चा मर्यादित सराव संच उपलब्ध आहे; इतर परीक्षा pattern व पूर्ण प्रश्नसंच पडताळून तयार झाल्यावरच सुरू होतील.';
   $('exam').onchange=profileInfo;profileInfo();
