@@ -46,5 +46,6 @@ jobs:
             pyq-system/data/ocr-drafts/
             pyq-system/data/generated-mocks/
             pyq-system/data/pipeline-report.json
+            pyq-system/data/intake-report.json
           if-no-files-found: warn
           retention-days: 30
