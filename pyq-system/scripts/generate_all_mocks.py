@@ -23,9 +23,18 @@ def main() -> int:
                "--exam", exam, "--bank", str(BANK), "--profiles", str(PROFILES), "--out", str(OUT)]
         result = subprocess.run(cmd, text=True, capture_output=True)
         if result.returncode == 0:
-            generated.append({"exam": exam, "output": result.stdout.strip()})
+            generated.append({"exam": exam, "contentType": "pyq", "output": result.stdout.strip()})
         else:
-            skipped.append({"exam": exam, "reason": result.stderr.strip() or result.stdout.strip()})
+            skipped.append({"exam": exam, "contentType": "pyq", "reason": result.stderr.strip() or result.stdout.strip()})
+        original_cmd = [sys.executable, str(ROOT / "scripts" / "generate_mock.py"),
+                        "--exam", exam, "--bank", str(ROOT / "data" / "verified-original-questions.json"),
+                        "--profiles", str(PROFILES), "--out", str(OUT), "--content-type", "original_practice"]
+        original_result = subprocess.run(original_cmd, text=True, capture_output=True)
+        if original_result.returncode == 0:
+            generated.append({"exam": exam, "contentType": "original_practice", "output": original_result.stdout.strip()})
+        else:
+            skipped.append({"exam": exam, "contentType": "original_practice",
+                            "reason": original_result.stderr.strip() or original_result.stdout.strip()})
     report = {"generatedAt": datetime.now(timezone.utc).isoformat(), "generated": generated, "skipped": skipped,
               "note": "Mocks are drafts. Only verified, answer-checked and reuse-approved questions are eligible; no website publishing occurs here."}
     REPORT.parent.mkdir(parents=True, exist_ok=True)
