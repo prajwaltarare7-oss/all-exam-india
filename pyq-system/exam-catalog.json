@@ -1,0 +1,84 @@
+{
+  "source": "https://competition.careers360.com/exams",
+  "sourceReportedTotal": 145,
+  "catalogueStatus": "partial_verified_names",
+  "note": "This first batch contains names directly visible in the source page extraction. Add the remaining source-page entries only after their names are captured; do not invent exam names.",
+  "categories": {
+    "Defence & UPSC": [
+      "NDA",
+      "CDS",
+      "AFCAT",
+      "UPSC Civil Services (IAS/CSE)",
+      "UPSC CMS",
+      "Indian Coast Guard Assistant Commandant",
+      "UPSC Engineering Services (ESE)",
+      "UPSC CAPF"
+    ],
+    "SSC & Central Recruitment": [
+      "SSC CGL",
+      "SSC CHSL",
+      "SSC GD Constable",
+      "SSC JE",
+      "SSC MTS",
+      "SSC CPO",
+      "SSC JHT",
+      "SSC Selection Post",
+      "RPF SI",
+      "MPPEB Jail Prahari",
+      "NSC Management Trainee"
+    ],
+    "Railways": [
+      "RRB NTPC",
+      "RRB Group D"
+    ],
+    "Banking & Insurance": [
+      "SBI PO",
+      "SBI Clerk",
+      "IBPS PO",
+      "IBPS Clerk",
+      "IBPS RRB",
+      "IBPS SO",
+      "RBI Assistant",
+      "RBI Grade B",
+      "ICICI Bank PO",
+      "NIACL Assistant"
+    ],
+    "State Services": [
+      "BPSC Civil Services",
+      "UPPSC PCS",
+      "CGPSC State Service",
+      "MPPSC State Service",
+      "TNPSC Group 4",
+      "RPSC RAS",
+      "TSPSC Group 4",
+      "APPSC Assistant Professor",
+      "MPPSC State Forest Service",
+      "Jharkhand JGGLCCE",
+      "Bihar Judicial Service"
+    ],
+    "Teaching & Eligibility": [
+      "CTET",
+      "UPTET",
+      "UGC NET",
+      "CSIR UGC NET",
+      "REET",
+      "HTET",
+      "APTET",
+      "Haryana CET",
+      "HP TET",
+      "Maha TET",
+      "MP TET",
+      "TNTET",
+      "TS TET",
+      "UPSSSC PET",
+      "WB SET",
+      "KSET",
+      "Bihar STET",
+      "TS SET",
+      "MP SET",
+      "TN SET",
+      "USET",
+      "OSSTET"
+    ]
+  }
+}
