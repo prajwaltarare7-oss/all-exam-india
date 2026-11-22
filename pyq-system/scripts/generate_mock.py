@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+"""Build an exam-shaped mock only from verified and reusable question records."""
+from __future__ import annotations
+import argparse, json, random
+from pathlib import Path
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--exam", required=True)
+    ap.add_argument("--bank", required=True)
+    ap.add_argument("--profiles", required=True)
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--seed", type=int, default=20261122)
+    args = ap.parse_args()
+
+    bank = json.loads(Path(args.bank).read_text(encoding="utf-8"))
+    profiles = json.loads(Path(args.profiles).read_text(encoding="utf-8"))
+    profile = profiles.get("profiles", {}).get(args.exam)
+    if not profile or profile.get("status") != "verified":
+        raise SystemExit(f"{args.exam}: exam profile is not verified; refusing to invent a paper pattern.")
+    required = ("durationMinutes", "totalQuestions", "sections", "marksCorrect", "marksWrong")
+    missing = [k for k in required if k not in profile]
+    if missing:
+        raise SystemExit("Incomplete exam profile: " + ", ".join(missing))
+
+    eligible = [
+        q for q in bank.get("questions", [])
+        if q.get("exam") == args.exam
+        and q.get("reviewStatus") == "verified"
+        and q.get("answerKeyStatus") == "verified"
+        and q.get("reusePermission") == "approved"
+        and q.get("question") and isinstance(q.get("options"), list)
+        and len(q["options"]) >= 2 and q.get("correctOption") is not None
+    ]
+    rng = random.Random(args.seed)
+    chosen = []
+    for section in profile["sections"]:
+        count = int(section["count"])
+        pool = [q for q in eligible if q.get("subject") == section["subject"]]
+        if len(pool) < count:
+            raise SystemExit(f"Not enough verified questions for {section['subject']}: need {count}, have {len(pool)}.")
+        chosen.extend(rng.sample(pool, count))
+    if len(chosen) != int(profile["totalQuestions"]):
+        raise SystemExit("Section counts do not equal the verified totalQuestions value.")
+
+    rng.shuffle(chosen)
+    payload = {
+        "exam": args.exam, "seed": args.seed,
+        "durationMinutes": profile["durationMinutes"],
+        "marksCorrect": profile["marksCorrect"], "marksWrong": profile["marksWrong"],
+        "questions": chosen,
+        "sourcePolicy": "verified-and-approved-only",
+        "status": "generated_not_yet_published"
+    }
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    target = out / f"{args.exam.lower().replace(' ', '-')}-mock-{args.seed}.json"
+    target.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Generated review draft: {target}")
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())

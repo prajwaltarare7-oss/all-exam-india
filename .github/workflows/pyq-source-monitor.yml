@@ -1,0 +1,31 @@
+name: PYQ official-source monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 2 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install monitor dependencies
+        run: python -m pip install -r pyq-system/requirements.txt
+      - name: Discover official PDF links
+        run: python pyq-system/scripts/monitor_sources.py
+      - name: Save discovery report
+        uses: actions/upload-artifact@v4
+        with:
+          name: pyq-source-discoveries
+          path: pyq-system/data/source-discoveries.json
+          if-no-files-found: error
+          retention-days: 30
