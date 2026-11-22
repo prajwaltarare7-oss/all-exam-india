@@ -3,7 +3,7 @@
 ## Scheduled pipeline
 GitHub Actions is configured to run every 6 hours and can also be started manually. It:
 1. Checks configured official exam portals for PDF links and records discoveries.
-2. OCRs only owner-approved PDFs listed in `intake/manifest.json`.
+2. Downloads PDFs only when the intake manifest explicitly records source review, reuse approval, and an approved host; then OCRs those approved files.
 3. Splits OCR text into question candidates (conservative heuristic; review required).
 4. Matches answer keys supplied in `intake/answer-keys/` (matches still require human verification).
 5. Marks exact duplicate question candidates.
@@ -27,7 +27,7 @@ Artifacts include source discoveries, OCR drafts, question candidates, answer-ke
 - Answer-key matching is a suggestion until checked against the official key.
 - Duplicate detection marks exact normalized text duplicates; similar-but-not-identical questions need review.
 - No mock is generated from unverified or unlicensed material, and no mock is claimed to be a PYQ.
-- The workflow does not guarantee uninterrupted operation; GitHub Actions schedules may be delayed or disabled by platform limits.
+- The workflow does not guarantee uninterrupted operation; GitHub Actions schedules may be delayed or disabled by platform limits. Firebase rules/config files are in the repository but have not yet been deployed to the Firebase project.
 
 ## Local run
 ```bash
