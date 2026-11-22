@@ -82,6 +82,50 @@
       "enabled": true,
       "downloadPolicy": "link_only",
       "reviewRequired": true
+    },
+    {
+      "id": "upsc-question-paper-archive",
+      "name": "UPSC — Current Question Paper Archive",
+      "examFamilies": [
+        "NDA",
+        "CDS",
+        "UPSC"
+      ],
+      "url": "https://www.upsc.gov.in/exam-documents/question-papers/",
+      "allowedDomains": [
+        "upsc.gov.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
+    },
+    {
+      "id": "upsc-nda-i-2026",
+      "name": "UPSC — NDA and NA Examination I 2026",
+      "examFamilies": [
+        "NDA"
+      ],
+      "url": "https://www.upsc.gov.in/examinations/National%20Defence%20Academy%20and%20Naval%20Academy%20Examination%20%28I%29%2C%202026",
+      "allowedDomains": [
+        "upsc.gov.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
+    },
+    {
+      "id": "upsc-nda-ii-2026",
+      "name": "UPSC — NDA and NA Examination II 2026",
+      "examFamilies": [
+        "NDA"
+      ],
+      "url": "https://www.upsc.gov.in/examinations/National%20Defence%20Academy%20and%20Naval%20Academy%20Examination%20%28II%29%2C%202026",
+      "allowedDomains": [
+        "upsc.gov.in"
+      ],
+      "enabled": true,
+      "downloadPolicy": "link_only",
+      "reviewRequired": true
     }
   ]
 }
