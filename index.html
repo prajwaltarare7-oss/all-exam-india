@@ -100,6 +100,31 @@ async function openSection(exam,kind){
  try{
   const snap=await db.collection('questionBank').doc(exam.id).collection('questions').where('published','==',true).get();
   let questions=snap.docs.map(d=>({id:d.id,...d.data()}));
+  if(kind==='mock'||kind==='full'){
+    const testSnap=await db.collection('questionBank').doc(exam.id).collection('tests').where('published','==',true).get();
+    let tests=testSnap.docs.map(d=>({id:d.id,...d.data()}));
+    if(!tests.length){
+      area.innerHTML='<div class="empty"><b>अधिकृत पॅटर्ननुसार पडताळलेली टेस्ट अजून उपलब्ध नाही.</b><br>पुरेसे पडताळलेले प्रश्न आणि verified exam profile मिळाल्यावर टेस्ट येथे आपोआप प्रकाशित होईल.</div>';
+      return;
+    }
+    area.innerHTML='<div class="list">'+tests.map((t,i)=>'<article class="item" style="display:block"><b>'+safe(t.title||'Mock Test')+'</b><p class="sub">'+Number(t.totalQuestions||t.questions?.length||0)+' प्रश्न · '+Number(t.durationMinutes||0)+' मिनिटे · बरोबर +'+Number(t.marksCorrect||0)+' · चुकीचे '+Number(t.marksWrong||0)+'</p><button class="action" data-test="'+i+'">टेस्ट सुरू करा</button></article>').join('')+'</div>';
+    area.querySelectorAll('[data-test]').forEach(btn=>btn.onclick=()=>{
+      const t=tests[Number(btn.dataset.test)], qs=Array.isArray(t.questions)?t.questions:[];
+      if(!qs.length){area.innerHTML='<div class="notice">या टेस्टमध्ये प्रश्न उपलब्ध नाहीत.</div>';return;}
+      let remaining=Math.max(1,Number(t.durationMinutes||1))*60, finished=false;
+      area.innerHTML='<div class="notice"><b id="testClock"></b> · '+qs.length+' प्रश्न · प्रत्येक बरोबर उत्तराला +'+Number(t.marksCorrect||0)+' आणि चुकीला '+Number(t.marksWrong||0)+'</div><div id="liveTest" class="list">'+qs.map((q,i)=>renderQuestion(q,i)).join('')+'</div><button class="action" id="finishTest">टेस्ट सबमिट करा</button><p id="liveResult" class="sub"></p>';
+      const clock=area.querySelector('#testClock');
+      const tick=()=>{if(finished)return;clock.textContent='वेळ: '+Math.floor(remaining/60)+' मिनिटे '+(remaining%60)+' सेकंद';if(remaining<=0){finish();return;}remaining--;};
+      const timer=setInterval(tick,1000);tick();
+      function finish(){if(finished)return;finished=true;clearInterval(timer);let score=0,correct=0,wrong=0,unanswered=0;
+        qs.forEach((q,i)=>{const chosen=area.querySelector('[data-q="'+i+'"].chosen');const answer=String(q.correctOption||q.answer||'').toUpperCase();if(!chosen){unanswered++;return;}if(chosen.dataset.answer===answer){correct++;score+=Number(t.marksCorrect||0);}else{wrong++;score+=Number(t.marksWrong||0);}});
+        area.querySelector('#liveResult').textContent='निकाल: '+score+' गुण · बरोबर: '+correct+' · चुकीचे: '+wrong+' · अनुत्तरित: '+unanswered;
+        area.querySelector('#finishTest').disabled=true;
+      }
+      area.querySelector('#finishTest').onclick=finish;
+    });
+    return;
+  }
   if(kind==='pyq') questions=questions.filter(q=>q.year);
   if(!questions.length){area.innerHTML='<div class="empty"><b>अद्याप पडताळलेले प्रश्न उपलब्ध नाहीत.</b><br>Firebase मध्ये या परीक्षेसाठी published=true असलेले प्रश्न आले की ते इथे आपोआप दिसतील. बनावट प्रश्न दाखवले जाणार नाहीत.</div>';return;}
   if(kind==='pyq'){
