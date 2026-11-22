@@ -34,13 +34,24 @@ async function init(){
   profiles.nda={id:'nda',name:'NDA · सराव संच 01 (पूर्ण अधिकृत पेपर नाही)',totalQuestions:20,durationMinutes:30,marksCorrect:4,marksWrong:-1.333333,subjectBlueprint:[{subject:'Mathematics',count:12,difficultyCounts:{medium:6,hard:6}},{subject:'General Ability Test',count:8,difficultyCounts:{medium:4,hard:4}}],difficultyBlueprint:[{level:'medium',count:10},{level:'hard',count:10}]};
   if(db){try{const snap=await db.collection('examProfiles').where('published','==',true).get();snap.forEach(d=>{if(!profiles[d.id])profiles[d.id]={id:d.id,...d.data()}})}catch(e){console.warn('Firestore profiles unavailable; using bundled bank',e)}}
   const activeOptions=Object.values(profiles).map(p=>'<option value="'+safe(p.id)+'">'+safe(p.name||p.id)+'</option>').join('');
-  const catalogOptions=catalog.categories.map(group=>'<optgroup label="'+safe(group.name)+'">'+group.exams.map(ex=>'<option value="'+safe(ex.id)+'" '+(profiles[ex.id]?'':'disabled')+'>'+safe(ex.name)+(profiles[ex.id]?'':' · '+(examPatterns[ex.id]?'पॅटर्न तपासला, प्रश्नसंच तयार होत आहे':'पॅटर्न तपासायचा आहे'))+'</option>').join('')+'</optgroup>').join('');
+  const catalogOptions=catalog.categories.map(group=>'<optgroup label="'+safe(group.name)+'">'+group.exams.map(ex=>'<option value="'+safe(ex.id)+'" '+'>'+safe(ex.name)+(profiles[ex.id]?'':' · '+(examPatterns[ex.id]?'पॅटर्न तपासला, प्रश्नसंच तयार होत आहे':'पॅटर्न तपासायचा आहे'))+'</option>').join('')+'</optgroup>').join('');
   $('exam').innerHTML='<option value="">परीक्षा निवडा</option>'+catalogOptions;
   $('profile').textContent='भारतामधील विविध परीक्षांची सूची जोडली. सध्या NDA चा मर्यादित सराव संच उपलब्ध आहे; इतर परीक्षा pattern व पूर्ण प्रश्नसंच पडताळून तयार झाल्यावरच सुरू होतील.';
   $('exam').onchange=profileInfo;profileInfo();
  }catch(e){$('exam').innerHTML='<option>परीक्षा सूची उपलब्ध नाही</option>';$('profile').textContent='लोड करताना अडचण: '+e.message}
 }
-function profileInfo(){const p=profiles[$('exam').value];$('generate').disabled=!p;$('profile').innerHTML=p?'<div class="stats"><span class="chip">'+Number(p.totalQuestions||0)+' प्रश्न</span><span class="chip">'+Number(p.durationMinutes||0)+' मिनिटे</span><span class="chip">बरोबर +'+Number(p.marksCorrect||0)+'</span><span class="chip">चुकीचे '+Number(p.marksWrong||0)+'</span></div><p class="muted">विषयवार प्रश्नसंख्या: '+(p.subjectBlueprint||[]).map(s=>safe(s.subject)+': '+Number(s.count)).join(' · ')+'</p>':'Profile निवडा.'}
+function profileInfo(){
+ const id=$('exam').value,p=profiles[id],pattern=examPatterns[id];
+ $('generate').disabled=!p;
+ if(p){
+  $('profile').innerHTML='<div class="stats"><span class="chip">'+Number(p.totalQuestions||0)+' प्रश्न</span><span class="chip">'+Number(p.durationMinutes||0)+' मिनिटे</span><span class="chip">बरोबर +'+Number(p.marksCorrect||0)+'</span><span class="chip">चुकीचे '+Number(p.marksWrong||0)+'</span></div><p class="muted">विषयवार प्रश्नसंख्या: '+(p.subjectBlueprint||[]).map(s=>safe(s.subject)+': '+Number(s.count)).join(' · ')+'</p><p class="notice">हा उपलब्ध सराव संच आहे; अधिकृत पूर्ण पेपर समजू नका.</p>';
+  return;
+ }
+ if(pattern){
+  const stages=(pattern.stages||[]).map(s=>'<div class="question"><b>'+safe(s.name)+'</b><div class="stats"><span class="chip">'+(s.questions===null?'प्रश्नसंख्या निश्चित नाही':s.questions+' प्रश्न')+'</span><span class="chip">'+s.marks+' गुण</span><span class="chip">'+s.durationMinutes+' मिनिटे</span>'+(s.marksWrong!==undefined&&s.marksWrong!==null?'<span class="chip">चुकीचे '+s.marksWrong+'</span>':'')+'</div>'+(s.sections||[]).map(x=>'<p class="muted">'+safe(x.name)+': '+x.questions+' प्रश्न / '+x.marks+' गुण</p>').join('')+(s.note?'<p class="muted">'+safe(s.note)+'</p>':'')+'</div>').join('');
+  $('profile').innerHTML='<p class="notice">या परीक्षेचा पॅटर्न नोंदवला आहे; पूर्ण प्रश्नसंच अजून तयार नाही. त्यामुळे टेस्ट सुरू करता येणार नाही.</p>'+stages+'<p class="muted">अधिकृत संदर्भ: '+safe(pattern.source||'संदर्भ नोंदवलेला नाही')+'</p>';
+ }else{$('profile').textContent='या परीक्षेचा अधिकृत پॅटर्न आणि प्रश्नसंच अजून तयार होत आहे.'}
+}
 async function buildTest(){const p=profiles[$('exam').value],lang=$('language').value;if(!p)return;const blueprint=p.subjectBlueprint||[];if(!blueprint.length){$('status').textContent='या परीक्षेच्या profile मध्ये subjectBlueprint नाही.';return}
 $('generate').disabled=true;$('status').textContent='प्रश्न निवडत आहे...';
 try{const snap=staticBanks[p.id]?null:await db.collection('questionBank').doc(p.id).collection('questions').where('published','==',true).get();const source=staticBanks[p.id]||snap.docs.map(d=>({id:d.id,...d.data()}));const pool=source.filter(q=>(q.language||'').toLowerCase().startsWith(lang)&&(q.question||q.text)&&Array.isArray(q.options)&&q.options.length>=2&&String(q.correctOption||q.answer||q.correctAnswer||'').trim());let selected=[];
