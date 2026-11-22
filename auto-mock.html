@@ -5,7 +5,7 @@
 </style></head><body>
 <header><h1>ALL EXAM INDIA</h1><p>Auto Mock Test Generator · स्वतः नवीन प्रश्नपत्रिका तयार करा</p></header>
 <main><a href="./" style="color:#315ee8;font-weight:700">← मुख्य पेज</a>
-<section id="setup" class="panel"><h2>Auto Mock Test तयार करा</h2><p class="muted">प्रत्येक वेळी उपलब्ध प्रश्नसंचातून वेगळी यादृच्छिक टेस्ट तयार होईल. परीक्षेचा अधिकृत पॅटर्न verified profile मधूनच घेतला जाईल.</p>
+<section id="setup" class="panel"><h2>Auto Mock Test तयार करा</h2><p class="muted">प्रत्येक परीक्षेसाठी स्वतंत्र verified pattern, विषयवार प्रश्नसंख्या आणि difficulty mix वापरला जाईल. फक्त त्या परीक्षेच्या स्तराचे पडताळलेले प्रश्न घेतले जातील; सोपे प्रश्न भरून टेस्ट पूर्ण केली जाणार नाही.</p>
 <div class="row"><label>परीक्षा<select id="exam"><option value="">परीक्षा लोड होत आहे...</option></select></label><label>भाषा<select id="language"><option value="hi">हिंदी</option><option value="en">English</option></select></label></div>
 <div id="profile" class="muted" style="margin:14px 0">Exam profile तपासत आहे...</div>
 <button class="btn" id="generate" disabled>नवीन Mock Test तयार करा</button>
@@ -27,8 +27,31 @@ function profileInfo(){const p=profiles[$('exam').value];$('generate').disabled=
 async function buildTest(){const p=profiles[$('exam').value],lang=$('language').value;if(!p)return;const blueprint=p.subjectBlueprint||[];if(!blueprint.length){$('status').textContent='या परीक्षेच्या profile मध्ये subjectBlueprint नाही.';return}
 $('generate').disabled=true;$('status').textContent='प्रश्न निवडत आहे...';
 try{const snap=await db.collection('questionBank').doc(p.id).collection('questions').where('published','==',true).get();const pool=snap.docs.map(d=>({id:d.id,...d.data()})).filter(q=>(q.language||'').toLowerCase().startsWith(lang)&&q.question&&Array.isArray(q.options)&&q.options.length>=2&&String(q.correctOption||q.answer||'').trim());let selected=[];
-for(const s of blueprint){const candidates=pool.filter(q=>String(q.subject||'').toLowerCase()===String(s.subject).toLowerCase());if(candidates.length<Number(s.count)){throw new Error(s.subject+' साठी '+s.count+' प्रश्न आवश्यक; उपलब्ध '+candidates.length+'. अपुरे प्रश्न असताना बनावट प्रश्न तयार केले जाणार नाहीत.')}selected.push(...shuffle(candidates).slice(0,Number(s.count)))}
-questions=shuffle(selected);answers={};seconds=Math.max(1,Number(p.durationMinutes||0))*60;active={profile:p,language:lang};done=false;$('setup').classList.add('hide');$('result').classList.add('hide');$('test').classList.remove('hide');$('testName').textContent=p.name||p.id;$('questions').innerHTML=questions.map((q,i)=>'<article class="question"><b>प्रश्न '+(i+1)+'. '+safe(q.question||q.text)+'</b><p class="muted">'+safe(q.subject||'')+'</p>'+q.options.map((o,j)=>{const key=typeof o==='string'?String.fromCharCode(65+j):(o.key||String.fromCharCode(65+j));const val=typeof o==='string'?o:o.text;return '<button class="opt" data-i="'+i+'" data-key="'+safe(key)+'">'+safe(key)+'. '+safe(val)+'</button>'}).join('')+'</article>').join('');$('questions').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(done)return;const i=Number(b.dataset.i);answers[i]=b.dataset.key;$('questions').querySelectorAll('[data-i="'+i+'"]').forEach(x=>x.classList.toggle('selected',x===b));progress()});progress();clock();tick=setInterval(clock,1000);$('status').textContent='';}catch(e){$('status').textContent=e.message||'प्रश्न लोड झाले नाहीत.'}finally{$('generate').disabled=false}}
+const difficultyPlan=p.difficultyBlueprint||[];
+if(!difficultyPlan.length)throw new Error('या परीक्षेसाठी difficultyBlueprint सेट नाही. Exam level निश्चित नसताना टेस्ट तयार केली जाणार नाही.');
+const requiredTotal=Number(p.totalQuestions||0);
+const subjectTotal=blueprint.reduce((n,s)=>n+Number(s.count||0),0);
+const difficultyTotal=difficultyPlan.reduce((n,d)=>n+Number(d.count||0),0);
+if(!requiredTotal||subjectTotal!==requiredTotal||difficultyTotal!==requiredTotal)throw new Error('Exam profile मध्ये totalQuestions, subjectBlueprint आणि difficultyBlueprint यांची बेरीज जुळत नाही.');
+const norm=v=>String(v||'').toLowerCase().trim();
+for(const s of blueprint){
+ const subjectPool=pool.filter(q=>norm(q.subject)===norm(s.subject));
+ const subjectSelected=[], breakdown=s.difficultyCounts||{};
+ if(!Object.keys(breakdown).length)throw new Error(s.subject+' साठी difficultyCounts सेट नाही.');
+ for(const [level,countRaw] of Object.entries(breakdown)){
+  const count=Number(countRaw||0), candidates=subjectPool.filter(q=>norm(q.difficulty)===norm(level));
+  if(candidates.length<count)throw new Error(s.subject+' — '+level+' स्तराचे '+count+' प्रश्न आवश्यक; उपलब्ध '+candidates.length+'. पुरेसे exam-level प्रश्न नसल्याने टेस्ट तयार केली नाही.');
+  subjectSelected.push(...shuffle(candidates).slice(0,count));
+ }
+ if(subjectSelected.length!==Number(s.count))throw new Error(s.subject+' ची difficulty-wise प्रश्नसंख्या जुळत नाही.');
+ selected.push(...subjectSelected);
+}
+for(const d of difficultyPlan){
+ const actual=selected.filter(q=>norm(q.difficulty)===norm(d.level)).length;
+ if(actual!==Number(d.count))throw new Error(d.level+' स्तराचे '+d.count+' प्रश्न अपेक्षित; निवडीत '+actual+' मिळाले. Profile मधील विभागणी दुरुस्त करा.');
+}
+if(new Set(selected.map(q=>q.id)).size!==requiredTotal)throw new Error('प्रश्नांची पुनरावृत्ती आढळली; वेगळी पूर्ण टेस्ट तयार करता आली नाही.');
+questions=shuffle(selected);answers={};seconds=Math.max(1,Number(p.durationMinutes||0))*60;active={profile:p,language:lang};done=false;$('setup').classList.add('hide');$('result').classList.add('hide');$('test').classList.remove('hide');$('testName').textContent=p.name||p.id;$('questions').innerHTML=questions.map((q,i)=>'<article class="question"><b>प्रश्न '+(i+1)+'. '+safe(q.question||q.text)+'</b><p class="muted">'+safe(q.subject||'')+' · स्तर: '+safe(q.difficulty||'')+'</p>'+q.options.map((o,j)=>{const key=typeof o==='string'?String.fromCharCode(65+j):(o.key||String.fromCharCode(65+j));const val=typeof o==='string'?o:o.text;return '<button class="opt" data-i="'+i+'" data-key="'+safe(key)+'">'+safe(key)+'. '+safe(val)+'</button>'}).join('')+'</article>').join('');$('questions').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(done)return;const i=Number(b.dataset.i);answers[i]=b.dataset.key;$('questions').querySelectorAll('[data-i="'+i+'"]').forEach(x=>x.classList.toggle('selected',x===b));progress()});progress();clock();tick=setInterval(clock,1000);$('status').textContent='';}catch(e){$('status').textContent=e.message||'प्रश्न लोड झाले नाहीत.'}finally{$('generate').disabled=false}}
 function progress(){$('progress').textContent=Object.keys(answers).length+'/'+questions.length+' उत्तरे'}
 function clock(){if(done)return;$('timer').textContent='वेळ: '+Math.floor(seconds/60)+' मिनिटे '+seconds%60+' सेकंद';if(seconds<=0){finish();return}seconds--}
 function finish(){if(done)return;done=true;clearInterval(tick);const p=active.profile;let correct=0,wrong=0,unanswered=0;questions.forEach((q,i)=>{const key=String(q.correctOption||q.answer).toUpperCase();if(!answers[i])unanswered++;else if(answers[i]===key)correct++;else wrong++});const score=correct*Number(p.marksCorrect||0)+wrong*Number(p.marksWrong||0),max=questions.length*Number(p.marksCorrect||0);$('questions').querySelectorAll('button').forEach(b=>b.disabled=true);$('submit').disabled=true;$('result').classList.remove('hide');$('result').innerHTML='<h2>टेस्ट निकाल</h2><p class="result">'+score+' / '+max+' गुण</p><div class="stats"><span class="chip">बरोबर: '+correct+'</span><span class="chip">चुकीचे: '+wrong+'</span><span class="chip">अनुत्तरित: '+unanswered+'</span></div><p class="muted">Accuracy: '+(correct+wrong?Math.round(correct/(correct+wrong)*100):0)+'%</p><button class="btn" id="again">आणखी एक नवीन टेस्ट</button>';const hist=JSON.parse(localStorage.getItem('aei_auto_mock_history')||'[]');hist.unshift({exam:p.name||p.id,date:new Date().toLocaleString('en-IN'),score,max,correct,wrong});localStorage.setItem('aei_auto_mock_history',JSON.stringify(hist.slice(0,30)));showHistory();$('again').onclick=()=>{ $('test').classList.add('hide');$('setup').classList.remove('hide');$('submit').disabled=false;$('generate').click();};}
