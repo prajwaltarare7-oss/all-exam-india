@@ -24,7 +24,9 @@ def main():
     for d in discoveries:
         s = source_by_id.get(d.get("sourceId"), {})
         if not (s.get("autoIntake") is True and s.get("reusePermission") == "approved"
-                and s.get("downloadPolicy") == "download_and_ocr"\n                and s.get("permissionEvidenceUrl") and s.get("permissionBasis")\n                and s.get("permissionReviewedAt")):
+                and s.get("downloadPolicy") == "download_and_ocr"
+                and s.get("permissionEvidenceUrl") and s.get("permissionBasis")
+                and s.get("permissionReviewedAt")):
             skipped += 1
             continue
         exam = s.get("autoExam") or (d.get("examFamilies") or [None])[0]
@@ -47,7 +49,8 @@ def main():
             "approvedSourceDomains": domains, "autoDiscovered": True
         }
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    MANIFEST.write_text(json.dumps({"version": 1, "files": list(rows.values())}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    MANIFEST.write_text(json.dumps({"version": 1, "files": list(rows.values())}, ensure_ascii=False, indent=2) + "
+", encoding="utf-8")
     print(json.dumps({"manifestFiles": len(rows), "notAutoIntaked": skipped}, ensure_ascii=False))
 
 if __name__ == "__main__":
