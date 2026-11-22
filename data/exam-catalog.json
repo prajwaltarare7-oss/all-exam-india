@@ -15,13 +15,13 @@
         {
           "id": "ssc-cgl",
           "name": "SSC CGL",
-          "patternStatus": "needs_verification",
+          "patternStatus": "verified",
           "bankStatus": "not_ready"
         },
         {
           "id": "ssc-chsl",
           "name": "SSC CHSL",
-          "patternStatus": "needs_verification",
+          "patternStatus": "verified",
           "bankStatus": "not_ready"
         },
         {
@@ -33,7 +33,7 @@
         {
           "id": "ssc-gd",
           "name": "SSC GD Constable",
-          "patternStatus": "needs_verification",
+          "patternStatus": "verified",
           "bankStatus": "not_ready"
         },
         {
@@ -51,7 +51,7 @@
         {
           "id": "upsc-cse",
           "name": "UPSC Civil Services",
-          "patternStatus": "needs_verification",
+          "patternStatus": "verified",
           "bankStatus": "not_ready"
         }
       ]
@@ -111,7 +111,7 @@
         {
           "id": "rrb-ntpc",
           "name": "RRB NTPC",
-          "patternStatus": "needs_verification",
+          "patternStatus": "verified",
           "bankStatus": "not_ready"
         },
         {
