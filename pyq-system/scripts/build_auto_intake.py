@@ -24,7 +24,7 @@ def main():
     for d in discoveries:
         s = source_by_id.get(d.get("sourceId"), {})
         if not (s.get("autoIntake") is True and s.get("reusePermission") == "approved"
-                and s.get("downloadPolicy") == "download_and_ocr"):
+                and s.get("downloadPolicy") == "download_and_ocr"\n                and s.get("permissionEvidenceUrl") and s.get("permissionBasis")\n                and s.get("permissionReviewedAt")):
             skipped += 1
             continue
         exam = s.get("autoExam") or (d.get("examFamilies") or [None])[0]
