@@ -1,16 +1,21 @@
-name: PYQ official-source monitor
+name: ALL EXAM INDIA — continuous PYQ and mock pipeline
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "23 2 * * *"
+    - cron: "17 */6 * * *"
 
 permissions:
   contents: read
 
+concurrency:
+  group: pyq-pipeline
+  cancel-in-progress: false
+
 jobs:
-  discover:
+  collect-ocr-generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -18,14 +23,28 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install monitor dependencies
+          cache: pip
+          cache-dependency-path: pyq-system/requirements.txt
+      - name: Install OCR engine and language packs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-hin tesseract-ocr-mar
+      - name: Install Python dependencies
         run: python -m pip install -r pyq-system/requirements.txt
-      - name: Discover official PDF links
+      - name: Collect links from official exam portals
         run: python pyq-system/scripts/monitor_sources.py
-      - name: Save discovery report
+      - name: OCR owner-approved PDFs
+        run: python pyq-system/scripts/process_intake.py
+      - name: Generate mocks from verified question bank
+        run: python pyq-system/scripts/generate_all_mocks.py
+      - name: Upload collection, OCR drafts and generated mock drafts
         uses: actions/upload-artifact@v4
         with:
-          name: pyq-source-discoveries
-          path: pyq-system/data/source-discoveries.json
-          if-no-files-found: error
+          name: all-exam-india-pyq-pipeline-${{ github.run_number }}
+          path: |
+            pyq-system/data/source-discoveries.json
+            pyq-system/data/ocr-drafts/
+            pyq-system/data/generated-mocks/
+            pyq-system/data/pipeline-report.json
+          if-no-files-found: warn
           retention-days: 30
